@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollor3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="previou" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previou.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="closeb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closeb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menuwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="t_dollor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\t_dollor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollar4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="del1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menuxxx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuxxx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="help1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\help1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="keyboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\keyboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="closewhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closewhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="driver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\driver1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profilex1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profilex1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vewitem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vewitem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="del3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deleteitem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteitem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dollor2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refresh1x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh1x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="del2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profilex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profilex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0000" xml:space="preserve">
+    <value>Arthi App</value>
+  </data>
+  <data name="a0001" xml:space="preserve">
+    <value>ریفریش کریں</value>
+  </data>
+  <data name="a0002" xml:space="preserve">
+    <value>قیمت فی پروڈکٹ</value>
+  </data>
+  <data name="a0004" xml:space="preserve">
+    <value>پیش نظارہ</value>
+  </data>
+  <data name="a0005" xml:space="preserve">
+    <value>پرنٹ سينگل بل</value>
+  </data>
+  <data name="a0006" xml:space="preserve">
+    <value>چھوٹ</value>
+  </data>
+  <data name="a0007" xml:space="preserve">
+    <value>بل ‌ادایگی ‌تاریخ</value>
+  </data>
+  <data name="a0008" xml:space="preserve">
+    <value>کریڈٹ</value>
+  </data>
+  <data name="a0009" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="a0011" xml:space="preserve">
+    <value>پیغام</value>
+  </data>
+  <data name="a0012" xml:space="preserve">
+    <value>‌نمبر</value>
+  </data>
+  <data name="a0013" xml:space="preserve">
+    <value>كھاتہ ‌نمبر</value>
+  </data>
+  <data name="a0014" xml:space="preserve">
+    <value>گاہک نمبر</value>
+  </data>
+  <data name="a0021" xml:space="preserve">
+    <value>بل کا نام</value>
+  </data>
+  <data name="a0022" xml:space="preserve">
+    <value>گاہک کا نام</value>
+  </data>
+  <data name="a0023" xml:space="preserve">
+    <value>بل کا نام</value>
+  </data>
+  <data name="a0030" xml:space="preserve">
+    <value>رقم موصولی</value>
+  </data>
+  <data name="a0031" xml:space="preserve">
+    <value>انوائسنگ</value>
+  </data>
+  <data name="a0032" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="a0033" xml:space="preserve">
+    <value>فروخت کی رقم</value>
+  </data>
+  <data name="a0034" xml:space="preserve">
+    <value>بلنگ اکاؤنٹ</value>
+  </data>
+  <data name="a0035" xml:space="preserve">
+    <value>رقم وصول</value>
+  </data>
+  <data name="a0036" xml:space="preserve">
+    <value>آخری بل کی رقم</value>
+  </data>
+  <data name="a0037" xml:space="preserve">
+    <value>سابقہ بيلنس</value>
+  </data>
+  <data name="a0038" xml:space="preserve">
+    <value>اگراھى وصولى</value>
+  </data>
+  <data name="a0039" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="a0101" xml:space="preserve">
+    <value>خارج کریں</value>
+  </data>
+  <data name="a0102" xml:space="preserve">
+    <value>ترمیم</value>
+  </data>
+  <data name="a0103" xml:space="preserve">
+    <value>داخل کریں</value>
+  </data>
+  <data name="a0104" xml:space="preserve">
+    <value>اپ ڈیٹ</value>
+  </data>
+  <data name="a0201" xml:space="preserve">
+    <value>بیپاری</value>
+  </data>
+  <data name="a0202" xml:space="preserve">
+    <value>گاہک</value>
+  </data>
+  <data name="a0203" xml:space="preserve">
+    <value>گاہک کا نام</value>
+  </data>
+  <data name="a0204" xml:space="preserve">
+    <value>بیپاری کا نام</value>
+  </data>
+  <data name="a0205" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="a0206" xml:space="preserve">
+    <value>پروڈکٹ کا نام</value>
+  </data>
+  <data name="a0207" xml:space="preserve">
+    <value>زمیدار</value>
+  </data>
+  <data name="a0208" xml:space="preserve">
+    <value>بیپاری سیٹنگ</value>
+  </data>
+  <data name="a0209" xml:space="preserve">
+    <value>گاہک سیٹنگ</value>
+  </data>
+  <data name="a0210" xml:space="preserve">
+    <value>زمیدار</value>
+  </data>
+  <data name="a0301" xml:space="preserve">
+    <value>چونگی</value>
+  </data>
+  <data name="a0302" xml:space="preserve">
+    <value>کمیشن</value>
+  </data>
+  <data name="a0303" xml:space="preserve">
+    <value>مزدوری</value>
+  </data>
+  <data name="a0304" xml:space="preserve">
+    <value>کرايہ محصول</value>
+  </data>
+  <data name="a0305" xml:space="preserve">
+    <value>ایڈوانس</value>
+  </data>
+  <data name="a0306" xml:space="preserve">
+    <value>ديگر اخراجات</value>
+  </data>
+  <data name="a0307" xml:space="preserve">
+    <value>منشیانہ</value>
+  </data>
+  <data name="a0308" xml:space="preserve">
+    <value>کلرک</value>
+  </data>
+  <data name="a0309" xml:space="preserve">
+    <value>مزدوری</value>
+  </data>
+  <data name="a0311" xml:space="preserve">
+    <value>واپسی</value>
+  </data>
+  <data name="a0401" xml:space="preserve">
+    <value>تعداد نگ </value>
+  </data>
+  <data name="a0402" xml:space="preserve">
+    <value>پروڈکٹ</value>
+  </data>
+  <data name="a0403" xml:space="preserve">
+    <value>وزن</value>
+  </data>
+  <data name="a0404" xml:space="preserve">
+    <value>ایڈوانس رقم</value>
+  </data>
+  <data name="a0405" xml:space="preserve">
+    <value>پیکنگ</value>
+  </data>
+  <data name="a0406" xml:space="preserve">
+    <value>باقی</value>
+  </data>
+  <data name="a0407" xml:space="preserve">
+    <value>باقی تعداد</value>
+  </data>
+  <data name="a0501" xml:space="preserve">
+    <value>کل کرایہ</value>
+  </data>
+  <data name="a0502" xml:space="preserve">
+    <value>کل مزدوری</value>
+  </data>
+  <data name="a0503" xml:space="preserve">
+    <value>ٹوٹل ‌رقم</value>
+  </data>
+  <data name="a0504" xml:space="preserve">
+    <value>ٹوٹل ‌سیل</value>
+  </data>
+  <data name="a0505" xml:space="preserve">
+    <value>ٹوٹل رعایت</value>
+  </data>
+  <data name="a0506" xml:space="preserve">
+    <value>ٹوٹل مزدوری</value>
+  </data>
+  <data name="a0507" xml:space="preserve">
+    <value>ٹوٹل مقدار</value>
+  </data>
+  <data name="a0508" xml:space="preserve">
+    <value>ٹوٹل کرایہ</value>
+  </data>
+  <data name="a0509" xml:space="preserve">
+    <value>ٹوٹل منشیانہ</value>
+  </data>
+  <data name="a0510" xml:space="preserve">
+    <value>ٹوٹل اخراجات</value>
+  </data>
+  <data name="a0511" xml:space="preserve">
+    <value>ٹوٹل ‌چالان</value>
+  </data>
+  <data name="a0512" xml:space="preserve">
+    <value>گرینڈ کل</value>
+  </data>
+  <data name="a0601" xml:space="preserve">
+    <value>تلاش</value>
+  </data>
+  <data name="a0602" xml:space="preserve">
+    <value>حساب</value>
+  </data>
+  <data name="a0603" xml:space="preserve">
+    <value>مصنوعات شامل کریں</value>
+  </data>
+  <data name="a0604" xml:space="preserve">
+    <value>آئٹم شامل کریں</value>
+  </data>
+  <data name="a0605" xml:space="preserve">
+    <value>دوبارہ ترتیب</value>
+  </data>
+  <data name="a0606" xml:space="preserve">
+    <value>بل شامل کریں</value>
+  </data>
+  <data name="a1001" xml:space="preserve">
+    <value>(POS) پوائنٹ آف سیل</value>
+  </data>
+  <data name="a1002" xml:space="preserve">
+    <value>وینڈر</value>
+  </data>
+  <data name="a1003" xml:space="preserve">
+    <value>بلنگ</value>
+  </data>
+  <data name="a1004" xml:space="preserve">
+    <value>اگراھى شيٹ</value>
+  </data>
+  <data name="a1005" xml:space="preserve">
+    <value>ادائیگی/رقم وصولی</value>
+  </data>
+  <data name="a1006" xml:space="preserve">
+    <value>پروفائلز</value>
+  </data>
+  <data name="a1007" xml:space="preserve">
+    <value>رپورٹ ‌كو ‌دیكھے</value>
+  </data>
+  <data name="a1008" xml:space="preserve">
+    <value>ترتیب</value>
+  </data>
+  <data name="a1009" xml:space="preserve">
+    <value>کیلکولیٹر</value>
+  </data>
+  <data name="a1010" xml:space="preserve">
+    <value>لاگ آؤٹ</value>
+  </data>
+  <data name="a1011" xml:space="preserve">
+    <value>انتباہ</value>
+  </data>
+  <data name="a1012" xml:space="preserve">
+    <value>کیا آپ اپنے سسٹم کی زبان کو تبدیل کرنا چاہتے ہیں؟</value>
+  </data>
+  <data name="a1013" xml:space="preserve">
+    <value>گاڑی #</value>
+  </data>
+  <data name="a1014" xml:space="preserve">
+    <value>ہوم پیج</value>
+  </data>
+  <data name="a1015" xml:space="preserve">
+    <value>ایڈمن اکاؤنٹ</value>
+  </data>
+  <data name="a1016" xml:space="preserve">
+    <value>فروخت کی تفصیلات</value>
+  </data>
+  <data name="a1017" xml:space="preserve">
+    <value>بل ‌كی ‌تعداد</value>
+  </data>
+  <data name="a1018" xml:space="preserve">
+    <value>كل ‌نگ ‌كی ‌تعداد</value>
+  </data>
+  <data name="a1019" xml:space="preserve">
+    <value>بقایا نگ</value>
+  </data>
+  <data name="a1020" xml:space="preserve">
+    <value>بقایا ‌بل ‌كی ‌تعداد</value>
+  </data>
+  <data name="a1021" xml:space="preserve">
+    <value>رقم ‌وصولی</value>
+  </data>
+  <data name="a1022" xml:space="preserve">
+    <value>آج ‌كے ‌اخراجات</value>
+  </data>
+  <data name="a1023" xml:space="preserve">
+    <value>بیوپار ‌سیل</value>
+  </data>
+  <data name="a1024" xml:space="preserve">
+    <value>بیوپاری ‌تعداد</value>
+  </data>
+  <data name="a1025" xml:space="preserve">
+    <value>ایڈوانس رقم</value>
+  </data>
+  <data name="a1026" xml:space="preserve">
+    <value>کمیشن/چونگی</value>
+  </data>
+  <data name="a1027" xml:space="preserve">
+    <value>سیل ‌كی ‌تفصیلات</value>
+  </data>
+  <data name="a1028" xml:space="preserve">
+    <value>گاہك ‌تلاش ‌كریں
+‌بل ‌نمر ، ‌نام ‌اور ‌گاہك ‌كےنمر ‌سے</value>
+  </data>
+  <data name="a1029" xml:space="preserve">
+    <value>اخراجات/ادائیگی</value>
+  </data>
+  <data name="a1030" xml:space="preserve">
+    <value>گاڑی ‌نمر</value>
+  </data>
+  <data name="a1031" xml:space="preserve">
+    <value>پیكنگ</value>
+  </data>
+  <data name="a1032" xml:space="preserve">
+    <value> گاہک کمیشن</value>
+  </data>
+  <data name="a1033" xml:space="preserve">
+    <value>گاہک چونگی</value>
+  </data>
+  <data name="a1034" xml:space="preserve">
+    <value>بیوپاری کمیشن</value>
+  </data>
+  <data name="a1035" xml:space="preserve">
+    <value>بیوپاری چونگی</value>
+  </data>
+  <data name="a1036" xml:space="preserve">
+    <value>سیٹنگ</value>
+  </data>
+  <data name="a1037" xml:space="preserve">
+    <value>ریٹ</value>
+  </data>
+  <data name="a1038" xml:space="preserve">
+    <value>سارے ‌
+چلان ‌دكھنا</value>
+  </data>
+  <data name="a1039" xml:space="preserve">
+    <value>‌ٹوٹل ‌‌چلان</value>
+  </data>
+  <data name="a1040" xml:space="preserve">
+    <value>ٹوٹل بل</value>
+  </data>
+  <data name="a1041" xml:space="preserve">
+    <value>ٹوٹل بل</value>
+  </data>
+  <data name="a1042" xml:space="preserve">
+    <value>فون ‌نمر</value>
+  </data>
+  <data name="a1043" xml:space="preserve">
+    <value>انگلش ‌نام</value>
+  </data>
+  <data name="a1044" xml:space="preserve">
+    <value>اردو ‌نام</value>
+  </data>
+  <data name="a1045" xml:space="preserve">
+    <value>پتہ</value>
+  </data>
+  <data name="a1046" xml:space="preserve">
+    <value>پرانی رقم</value>
+  </data>
+  <data name="a1047" xml:space="preserve">
+    <value>سرمایہ کاری</value>
+  </data>
+  <data name="a1048" xml:space="preserve">
+    <value>سے تلاش ‌كریں ‌ID ‌یا ‌Name</value>
+  </data>
+  <data name="a1049" xml:space="preserve">
+    <value>پروفایلز</value>
+  </data>
+  <data name="a1050" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="a1051" xml:space="preserve">
+    <value>بیپاری/ ‌گاہك ‌ایڈ ‌كریں</value>
+  </data>
+  <data name="a1052" xml:space="preserve">
+    <value>پروفایل ‌كو ‌ایڈٹ ‌كریں</value>
+  </data>
+  <data name="a1053" xml:space="preserve">
+    <value>ٹوٹل</value>
+  </data>
+  <data name="a1054" xml:space="preserve">
+    <value>‌سیزن‌‌ ‌كی ‌رپورٹ ‌تیار ‌كریں</value>
+  </data>
+  <data name="a1055" xml:space="preserve">
+    <value>بلینس ‌شیٹ ‌</value>
+  </data>
+  <data name="a1056" xml:space="preserve">
+    <value>اوگراہی ‌‌رپورٹ</value>
+  </data>
+  <data name="a1057" xml:space="preserve">
+    <value>بیپاری/زمیداد سرمایہ کاری وصولی</value>
+  </data>
+  <data name="a1058" xml:space="preserve">
+    <value>نفع اور نقصان</value>
+  </data>
+  <data name="a1059" xml:space="preserve">
+    <value>بل ‌اور ‌اكراجات</value>
+  </data>
+  <data name="a1060" xml:space="preserve">
+    <value>رقم ‌وصولی</value>
+  </data>
+  <data name="a1061" xml:space="preserve">
+    <value>كمیشن چونگی</value>
+  </data>
+  <data name="a1062" xml:space="preserve">
+    <value>سیلز</value>
+  </data>
+  <data name="a1063" xml:space="preserve">
+    <value>مال ‌كی ‌خریداری</value>
+  </data>
+  <data name="a1064" xml:space="preserve">
+    <value>سرمایہ کاری</value>
+  </data>
+  <data name="a1065" xml:space="preserve">
+    <value>شہر</value>
+  </data>
+  <data name="a1066" xml:space="preserve">
+    <value>آئٹم</value>
+  </data>
+  <data name="a1067" xml:space="preserve">
+    <value>کوئی نہیں</value>
+  </data>
+  <data name="a1068" xml:space="preserve">
+    <value>پہلی تاریخ</value>
+  </data>
+  <data name="a1069" xml:space="preserve">
+    <value>آخری تاریخ</value>
+  </data>
+  <data name="a1070" xml:space="preserve">
+    <value>رپورٹ ‌كو ‌پرنٹ ‌كریں</value>
+  </data>
+  <data name="a1071" xml:space="preserve">
+    <value> پہلی بلینس</value>
+  </data>
+  <data name="a1072" xml:space="preserve">
+    <value> آخری بلینس</value>
+  </data>
+  <data name="a1073" xml:space="preserve">
+    <value>بلینس</value>
+  </data>
+  <data name="a1074" xml:space="preserve">
+    <value>ادھار</value>
+  </data>
+  <data name="a1075" xml:space="preserve">
+    <value>وصولی</value>
+  </data>
+  <data name="a1076" xml:space="preserve">
+    <value>بقیہ رقم</value>
+  </data>
+  <data name="a1077" xml:space="preserve">
+    <value>تفصیل</value>
+  </data>
+  <data name="a1078" xml:space="preserve">
+    <value>چھوٹ</value>
+  </data>
+  <data name="a1079" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="a1080" xml:space="preserve">
+    <value>آئٹم</value>
+  </data>
+  <data name="a1081" xml:space="preserve">
+    <value>نقدی</value>
+  </data>
+  <data name="a1082" xml:space="preserve">
+    <value>براہ کرم بیک اپ فائل فولڈر منتخب کریں۔</value>
+  </data>
+  <data name="a1083" xml:space="preserve">
+    <value>ڈیٹا بیس کامیابی کے ساتھ بحال ہوا</value>
+  </data>
+  <data name="a1084" xml:space="preserve">
+    <value>ڈیٹا بیس کا بیک اپ کامیابی کے ساتھ ہوا</value>
+  </data>
+  <data name="a1085" xml:space="preserve">
+    <value>ڈیلی سیلز کو اپ ڈیٹ کریں</value>
+  </data>
+  <data name="a1086" xml:space="preserve">
+    <value>ڈیٹا بیس کو اپ ڈیٹ نہیں ہوا </value>
+  </data>
+  <data name="a1087" xml:space="preserve">
+    <value>ڈیٹا بیس کو اپ ڈیٹ کر دیا گیا</value>
+  </data>
+  <data name="a1088" xml:space="preserve">
+    <value>سیل،ادایگی ‌خرچہ،نفع ‌اور ‌نقصان</value>
+  </data>
+  <data name="a1089" xml:space="preserve">
+    <value>چلان/چٹا</value>
+  </data>
+  <data name="a1090" xml:space="preserve">
+    <value>اضافی بل کی رقم میں شامل کریں</value>
+  </data>
+  <data name="a1091" xml:space="preserve">
+    <value>اضافی ‌رجمع ‌كریں</value>
+  </data>
+  <data name="a1092" xml:space="preserve">
+    <value>ریكارڈ ‌كو ‌ڈیلیٹ ‌كرنے ‌كے ‌لیے ‌ہاں ‌كا ‌بٹن ‌دبایں</value>
+  </data>
+  <data name="a1093" xml:space="preserve">
+    <value>‌ہاں</value>
+  </data>
+  <data name="a1094" xml:space="preserve">
+    <value>ناں</value>
+  </data>
+  <data name="a1095" xml:space="preserve">
+    <value>ڈرائیور نقدی</value>
+  </data>
+  <data name="a1097" xml:space="preserve">
+    <value>اکاونٹ میں کیش ایڈ کریں</value>
+  </data>
+  <data name="a1098" xml:space="preserve">
+    <value>بیپواری ‌تلاش ‌كریں</value>
+  </data>
+  <data name="a1099" xml:space="preserve">
+    <value>‌زمیدار ‌تلاش ‌كریں</value>
+  </data>
+  <data name="a2000" xml:space="preserve">
+    <value>‌پروڈكٹ ‌تلاش ‌كریں</value>
+  </data>
+  <data name="a1200" xml:space="preserve">
+    <value>ادایگی/ وصولی</value>
+  </data>
+  <data name="a2001" xml:space="preserve">
+    <value>بقایا ‌كیش</value>
+  </data>
+  <data name="a2002" xml:space="preserve">
+    <value>ادایگی</value>
+  </data>
+  <data name="a2003" xml:space="preserve">
+    <value>وصولی</value>
+  </data>
+  <data name="a2004" xml:space="preserve">
+    <value>بقایا ‌كیش ‌رقم</value>
+  </data>
+  <data name="a2005" xml:space="preserve">
+    <value>ٹایپ</value>
+  </data>
+  <data name="a2006" xml:space="preserve">
+    <value>كاروای</value>
+  </data>
+  <data name="a2007" xml:space="preserve">
+    <value>تاریخ وصولی</value>
+  </data>
+  <data name="a2008" xml:space="preserve">
+    <value>اخراجات کی ادائیگی</value>
+  </data>
+  <data name="a2009" xml:space="preserve">
+    <value>تاریخ ادائیگی / خرچ</value>
+  </data>
+  <data name="a2010" xml:space="preserve">
+    <value>ادائیگی / خرچ کا نام</value>
+  </data>
+  <data name="a2011" xml:space="preserve">
+    <value>ادائیگی / خرچ</value>
+  </data>
+  <data name="a2012" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="a2013" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="a2014" xml:space="preserve">
+    <value>معرکہ</value>
+  </data>
+  <data name="a2015" xml:space="preserve">
+    <value>اضافی ‌رقم ‌كسٹمر</value>
+  </data>
+  <data name="a2016" xml:space="preserve">
+    <value>اضافی ‌رقم ‌بییپاری</value>
+  </data>
+  <data name="a2017" xml:space="preserve">
+    <value>باقی تعداد</value>
+  </data>
+  <data name="Resources_ur_PK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.ur-pk.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Resources_ur_PK_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.ur-pk.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="a2018" xml:space="preserve">
+    <value>كھاتہ ‌اور ‌وصولی</value>
+  </data>
+  <data name="a2019" xml:space="preserve">
+    <value>گاہك اگراہی ‌فرق</value>
+  </data>
+  <data name="a2020" xml:space="preserve">
+    <value>تفصیل ‌كہ ‌ایڈ ‌كریں</value>
+  </data>
+  <data name="a2021" xml:space="preserve">
+    <value>بقایا رقم</value>
+  </data>
+  <data name="a2022" xml:space="preserve">
+    <value>‌سابقہ ‌رقم</value>
+  </data>
+  <data name="a2023" xml:space="preserve">
+    <value>اخری ‌بل</value>
+  </data>
+  <data name="rd1" xml:space="preserve">
+    <value>سیزن ‌رپورٹ</value>
+  </data>
+  <data name="rd2" xml:space="preserve">
+    <value>خرچہ/ ‌اخراجات ‌رپورٹ</value>
+  </data>
+  <data name="rd3" xml:space="preserve">
+    <value>بیوپاری ‌رپورٹ</value>
+  </data>
+  <data name="rd4" xml:space="preserve">
+    <value>گاہك ‌رپورٹ</value>
+  </data>
+  <data name="rd5" xml:space="preserve">
+    <value>اوگراھی ‌رپورٹ</value>
+  </data>
+  <data name="ad1" xml:space="preserve">
+    <value>نمبر</value>
+  </data>
+  <data name="ad10" xml:space="preserve">
+    <value>‌وصولی</value>
+  </data>
+  <data name="ad11" xml:space="preserve">
+    <value>چھوٹ</value>
+  </data>
+  <data name="ad2" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="ad3" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="ad4" xml:space="preserve">
+    <value>اوگراھی</value>
+  </data>
+  <data name="ad5" xml:space="preserve">
+    <value>تازہ ‌بقایا ‌رقم</value>
+  </data>
+  <data name="ad6" xml:space="preserve">
+    <value>سابقہ ‌رقم</value>
+  </data>
+  <data name="ad7" xml:space="preserve">
+    <value>كمیشن ‌چونگی ‌</value>
+  </data>
+  <data name="ad8" xml:space="preserve">
+    <value>تازہ ‌بنام</value>
+  </data>
+  <data name="ad9" xml:space="preserve">
+    <value>‌ٹوٹل ‌بنام ‌</value>
+  </data>
+  <data name="bd1" xml:space="preserve">
+    <value>نمبر</value>
+  </data>
+  <data name="bd2" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="bd3" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="bd4" xml:space="preserve">
+    <value>ایڈوانس</value>
+  </data>
+  <data name="bd5" xml:space="preserve">
+    <value>كمیشن ‌لاگا</value>
+  </data>
+  <data name="bd6" xml:space="preserve">
+    <value>منشیانہ</value>
+  </data>
+  <data name="cd1" xml:space="preserve">
+    <value>نمبر</value>
+  </data>
+  <data name="cd2" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="cd3" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="cd4" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="cd5" xml:space="preserve">
+    <value>‌ٹوٹل ‌بنام ‌</value>
+  </data>
+  <data name="cd6" xml:space="preserve">
+    <value>آخری تاریخ</value>
+  </data>
+  <data name="cd7" xml:space="preserve">
+    <value>‌وصولی</value>
+  </data>
+  <data name="cd8" xml:space="preserve">
+    <value>چھوٹ</value>
+  </data>
+  <data name="cd9" xml:space="preserve">
+    <value>اوگراھی</value>
+  </data>
+  <data name="ex1" xml:space="preserve">
+    <value>نمبر</value>
+  </data>
+  <data name="ex2" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="ex3" xml:space="preserve">
+    <value>تفصیل</value>
+  </data>
+  <data name="ex4" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="ex5" xml:space="preserve">
+    <value>ٹایپ</value>
+  </data>
+  <data name="sa9" xml:space="preserve">
+    <value>تازہ ‌اوگراھی</value>
+  </data>
+  <data name="af1" xml:space="preserve">
+    <value>نمبر</value>
+  </data>
+  <data name="af2" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="af3" xml:space="preserve">
+    <value>تازہ ‌اوگراھی</value>
+  </data>
+  <data name="af4" xml:space="preserve">
+    <value>پرانی رقم</value>
+  </data>
+  <data name="af5" xml:space="preserve">
+    <value>سیزن ‌میں ‌اوگراھی</value>
+  </data>
+  <data name="af6" xml:space="preserve">
+    <value>ٹوٹل ‌بنام</value>
+  </data>
+  <data name="af7" xml:space="preserve">
+    <value>‌وصولی</value>
+  </data>
+  <data name="af8" xml:space="preserve">
+    <value>چھوٹ</value>
+  </data>
+  <data name="desc" xml:space="preserve">
+    <value>تفصیل</value>
+  </data>
+  <data name="recevingcash" xml:space="preserve">
+    <value>كیش ‌وصولی ‌كامیابی ‌سے ‌ہو ‌گی ‌ہیں ‌شكریا</value>
+  </data>
+  <data name="cio1" xml:space="preserve">
+    <value> زمیدار/ بیوپاری ایڈوانس ادائیگی</value>
+  </data>
+  <data name="cio2" xml:space="preserve">
+    <value> زمیدار/ بیوپاری ایڈوانس ‌وصولی</value>
+  </data>
+  <data name="cio3" xml:space="preserve">
+    <value>گاہك ‌كیش ‌وصولی</value>
+  </data>
+  <data name="cio4" xml:space="preserve">
+    <value>زمیدار/ بیوپاری ‌بل ادائیگی</value>
+  </data>
+  <data name="cio5" xml:space="preserve">
+    <value>ایڈمن ‌كیش ادائیگی</value>
+  </data>
+  <data name="cio6" xml:space="preserve">
+    <value>ایڈمن ‌كیش ‌وصولی</value>
+  </data>
+  <data name="marketfee" xml:space="preserve">
+    <value>ماركیٹ ‌فیس</value>
+  </data>
+</root>

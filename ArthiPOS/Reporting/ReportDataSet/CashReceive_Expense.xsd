@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CashReceive_Expense" targetNamespace="http://tempuri.org/CashReceive_Expense.xsd" xmlns:mstns="http://tempuri.org/CashReceive_Expense.xsd" xmlns="http://tempuri.org/CashReceive_Expense.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_ptConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_ptConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ArthiPOS.Properties.Settings.GlobalReference.Default.db_ptConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CashReceive_Expense" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CashReceive_Expense" msprop:Generator_UserDSName="CashReceive_Expense">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CashExpense" msprop:Generator_TableClassName="CashExpenseDataTable" msprop:Generator_TableVarName="tableCashExpense" msprop:Generator_RowChangedName="CashExpenseRowChanged" msprop:Generator_TablePropName="CashExpense" msprop:Generator_RowDeletingName="CashExpenseRowDeleting" msprop:Generator_RowChangingName="CashExpenseRowChanging" msprop:Generator_RowEvHandlerName="CashExpenseRowChangeEventHandler" msprop:Generator_RowDeletedName="CashExpenseRowDeleted" msprop:Generator_RowClassName="CashExpenseRow" msprop:Generator_UserTableName="CashExpense" msprop:Generator_RowEvArgName="CashExpenseRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="No" msprop:Generator_ColumnVarNameInTable="columnNo" msprop:Generator_ColumnPropNameInRow="No" msprop:Generator_ColumnPropNameInTable="NoColumn" msprop:Generator_UserColumnName="No" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="CashName" msprop:Generator_ColumnVarNameInTable="columnCashName" msprop:Generator_ColumnPropNameInRow="CashName" msprop:Generator_ColumnPropNameInTable="CashNameColumn" msprop:Generator_UserColumnName="CashName" type="xs:string" minOccurs="0" />
+              <xs:element name="CashReceive" msprop:Generator_ColumnVarNameInTable="columnCashReceive" msprop:Generator_ColumnPropNameInRow="CashReceive" msprop:Generator_ColumnPropNameInTable="CashReceiveColumn" msprop:Generator_UserColumnName="CashReceive" type="xs:int" minOccurs="0" />
+              <xs:element name="Discount" msprop:Generator_ColumnVarNameInTable="columnDiscount" msprop:Generator_ColumnPropNameInRow="Discount" msprop:Generator_ColumnPropNameInTable="DiscountColumn" msprop:Generator_UserColumnName="Discount" type="xs:int" minOccurs="0" />
+              <xs:element name="ExpenseDate" msprop:Generator_ColumnVarNameInTable="columnExpenseDate" msprop:Generator_ColumnPropNameInRow="ExpenseDate" msprop:Generator_ColumnPropNameInTable="ExpenseDateColumn" msprop:Generator_UserColumnName="ExpenseDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpenseName" msprop:Generator_ColumnVarNameInTable="columnExpenseName" msprop:Generator_ColumnPropNameInRow="ExpenseName" msprop:Generator_ColumnPropNameInTable="ExpenseNameColumn" msprop:Generator_UserColumnName="ExpenseName" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpenseAmount" msprop:Generator_ColumnVarNameInTable="columnExpenseAmount" msprop:Generator_ColumnPropNameInRow="ExpenseAmount" msprop:Generator_ColumnPropNameInTable="ExpenseAmountColumn" msprop:Generator_UserColumnName="ExpenseAmount" type="xs:int" minOccurs="0" />
+              <xs:element name="LastBalance" msprop:Generator_ColumnVarNameInTable="columnLastBalance" msprop:Generator_ColumnPropNameInRow="LastBalance" msprop:Generator_ColumnPropNameInTable="LastBalanceColumn" msprop:Generator_UserColumnName="LastBalance" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Receivings" msprop:Generator_TableClassName="ReceivingsDataTable" msprop:Generator_TableVarName="tableReceivings" msprop:Generator_RowChangedName="ReceivingsRowChanged" msprop:Generator_TablePropName="Receivings" msprop:Generator_RowDeletingName="ReceivingsRowDeleting" msprop:Generator_RowChangingName="ReceivingsRowChanging" msprop:Generator_RowEvHandlerName="ReceivingsRowChangeEventHandler" msprop:Generator_RowDeletedName="ReceivingsRowDeleted" msprop:Generator_RowClassName="ReceivingsRow" msprop:Generator_UserTableName="Receivings" msprop:Generator_RowEvArgName="ReceivingsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="CashName" msprop:Generator_ColumnVarNameInTable="columnCashName" msprop:Generator_ColumnPropNameInRow="CashName" msprop:Generator_ColumnPropNameInTable="CashNameColumn" msprop:Generator_UserColumnName="CashName" type="xs:string" minOccurs="0" />
+              <xs:element name="CashReceive" msprop:Generator_ColumnVarNameInTable="columnCashReceive" msprop:Generator_ColumnPropNameInRow="CashReceive" msprop:Generator_ColumnPropNameInTable="CashReceiveColumn" msprop:Generator_UserColumnName="CashReceive" type="xs:int" minOccurs="0" />
+              <xs:element name="Discount" msprop:Generator_ColumnVarNameInTable="columnDiscount" msprop:Generator_ColumnPropNameInRow="Discount" msprop:Generator_ColumnPropNameInTable="DiscountColumn" msprop:Generator_UserColumnName="Discount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Expense" msprop:Generator_TableClassName="ExpenseDataTable" msprop:Generator_TableVarName="tableExpense" msprop:Generator_RowChangedName="ExpenseRowChanged" msprop:Generator_TablePropName="Expense" msprop:Generator_RowDeletingName="ExpenseRowDeleting" msprop:Generator_RowChangingName="ExpenseRowChanging" msprop:Generator_RowEvHandlerName="ExpenseRowChangeEventHandler" msprop:Generator_RowDeletedName="ExpenseRowDeleted" msprop:Generator_RowClassName="ExpenseRow" msprop:Generator_UserTableName="Expense" msprop:Generator_RowEvArgName="ExpenseRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ExpenseDate" msprop:Generator_ColumnVarNameInTable="columnExpenseDate" msprop:Generator_ColumnPropNameInRow="ExpenseDate" msprop:Generator_ColumnPropNameInTable="ExpenseDateColumn" msprop:Generator_UserColumnName="ExpenseDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpenseName" msprop:Generator_ColumnVarNameInTable="columnExpenseName" msprop:Generator_ColumnPropNameInRow="ExpenseName" msprop:Generator_ColumnPropNameInTable="ExpenseNameColumn" msprop:Generator_UserColumnName="ExpenseName" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpenseAmount" msprop:Generator_ColumnVarNameInTable="columnExpenseAmount" msprop:Generator_ColumnPropNameInRow="ExpenseAmount" msprop:Generator_ColumnPropNameInTable="ExpenseAmountColumn" msprop:Generator_UserColumnName="ExpenseAmount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DTSeason" targetNamespace="http://tempuri.org/DTSeason.xsd" xmlns:mstns="http://tempuri.org/DTSeason.xsd" xmlns="http://tempuri.org/DTSeason.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DTSeason" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DTSeason" msprop:Generator_UserDSName="DTSeason">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Season" msprop:Generator_TableClassName="SeasonDataTable" msprop:Generator_TableVarName="tableSeason" msprop:Generator_TablePropName="Season" msprop:Generator_RowDeletingName="SeasonRowDeleting" msprop:Generator_RowChangingName="SeasonRowChanging" msprop:Generator_RowEvHandlerName="SeasonRowChangeEventHandler" msprop:Generator_RowDeletedName="SeasonRowDeleted" msprop:Generator_UserTableName="Season" msprop:Generator_RowChangedName="SeasonRowChanged" msprop:Generator_RowEvArgName="SeasonRowChangeEvent" msprop:Generator_RowClassName="SeasonRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Detail" msprop:Generator_ColumnVarNameInTable="columnDetail" msprop:Generator_ColumnPropNameInRow="Detail" msprop:Generator_ColumnPropNameInTable="DetailColumn" msprop:Generator_UserColumnName="Detail" type="xs:string" minOccurs="0" />
+              <xs:element name="created_at" msprop:Generator_ColumnVarNameInTable="columncreated_at" msprop:Generator_ColumnPropNameInRow="created_at" msprop:Generator_ColumnPropNameInTable="created_atColumn" msprop:Generator_UserColumnName="created_at" type="xs:string" minOccurs="0" />
+              <xs:element name="season_start_date" msprop:Generator_ColumnVarNameInTable="columnseason_start_date" msprop:Generator_ColumnPropNameInRow="season_start_date" msprop:Generator_ColumnPropNameInTable="season_start_dateColumn" msprop:Generator_UserColumnName="season_start_date" type="xs:string" minOccurs="0" />
+              <xs:element name="season_end_date" msprop:Generator_ColumnVarNameInTable="columnseason_end_date" msprop:Generator_ColumnPropNameInRow="season_end_date" msprop:Generator_ColumnPropNameInTable="season_end_dateColumn" msprop:Generator_UserColumnName="season_end_date" type="xs:string" minOccurs="0" />
+              <xs:element name="starting_balance" msprop:Generator_ColumnVarNameInTable="columnstarting_balance" msprop:Generator_ColumnPropNameInRow="starting_balance" msprop:Generator_ColumnPropNameInTable="starting_balanceColumn" msprop:Generator_UserColumnName="starting_balance" type="xs:int" minOccurs="0" />
+              <xs:element name="closing_balance" msprop:Generator_ColumnVarNameInTable="columnclosing_balance" msprop:Generator_ColumnPropNameInRow="closing_balance" msprop:Generator_ColumnPropNameInTable="closing_balanceColumn" msprop:Generator_UserColumnName="closing_balance" type="xs:int" minOccurs="0" />
+              <xs:element name="augrai" msprop:Generator_ColumnVarNameInTable="columnaugrai" msprop:Generator_ColumnPropNameInRow="augrai" msprop:Generator_ColumnPropNameInTable="augraiColumn" msprop:Generator_UserColumnName="augrai" type="xs:int" minOccurs="0" />
+              <xs:element name="advance_bipari" msprop:Generator_ColumnVarNameInTable="columnadvance_bipari" msprop:Generator_ColumnPropNameInRow="advance_bipari" msprop:Generator_ColumnPropNameInTable="advance_bipariColumn" msprop:Generator_UserColumnName="advance_bipari" type="xs:int" minOccurs="0" />
+              <xs:element name="quantity" msprop:Generator_ColumnVarNameInTable="columnquantity" msprop:Generator_ColumnPropNameInRow="quantity" msprop:Generator_ColumnPropNameInTable="quantityColumn" msprop:Generator_UserColumnName="quantity" type="xs:int" minOccurs="0" />
+              <xs:element name="total_sale" msprop:Generator_ColumnVarNameInTable="columntotal_sale" msprop:Generator_ColumnPropNameInRow="total_sale" msprop:Generator_ColumnPropNameInTable="total_saleColumn" msprop:Generator_UserColumnName="total_sale" type="xs:int" minOccurs="0" />
+              <xs:element name="total_expense" msprop:Generator_ColumnVarNameInTable="columntotal_expense" msprop:Generator_ColumnPropNameInRow="total_expense" msprop:Generator_ColumnPropNameInTable="total_expenseColumn" msprop:Generator_UserColumnName="total_expense" type="xs:int" minOccurs="0" />
+              <xs:element name="total_payment" msprop:Generator_ColumnVarNameInTable="columntotal_payment" msprop:Generator_ColumnPropNameInRow="total_payment" msprop:Generator_ColumnPropNameInTable="total_paymentColumn" msprop:Generator_UserColumnName="total_payment" type="xs:int" minOccurs="0" />
+              <xs:element name="total_receiving" msprop:Generator_ColumnVarNameInTable="columntotal_receiving" msprop:Generator_ColumnPropNameInRow="total_receiving" msprop:Generator_ColumnPropNameInTable="total_receivingColumn" msprop:Generator_UserColumnName="total_receiving" type="xs:int" minOccurs="0" />
+              <xs:element name="total_discount" msprop:Generator_ColumnVarNameInTable="columntotal_discount" msprop:Generator_ColumnPropNameInRow="total_discount" msprop:Generator_ColumnPropNameInTable="total_discountColumn" msprop:Generator_UserColumnName="total_discount" type="xs:int" minOccurs="0" />
+              <xs:element name="total_commission" msprop:Generator_ColumnVarNameInTable="columntotal_commission" msprop:Generator_ColumnPropNameInRow="total_commission" msprop:Generator_ColumnPropNameInTable="total_commissionColumn" msprop:Generator_UserColumnName="total_commission" type="xs:int" minOccurs="0" />
+              <xs:element name="total_chongi" msprop:Generator_ColumnVarNameInTable="columntotal_chongi" msprop:Generator_ColumnPropNameInRow="total_chongi" msprop:Generator_ColumnPropNameInTable="total_chongiColumn" msprop:Generator_UserColumnName="total_chongi" type="xs:int" minOccurs="0" />
+              <xs:element name="total_bipari_commission" msprop:Generator_ColumnVarNameInTable="columntotal_bipari_commission" msprop:Generator_ColumnPropNameInRow="total_bipari_commission" msprop:Generator_ColumnPropNameInTable="total_bipari_commissionColumn" msprop:Generator_UserColumnName="total_bipari_commission" type="xs:int" minOccurs="0" />
+              <xs:element name="total_laga" msprop:Generator_ColumnVarNameInTable="columntotal_laga" msprop:Generator_ColumnPropNameInRow="total_laga" msprop:Generator_ColumnPropNameInTable="total_lagaColumn" msprop:Generator_UserColumnName="total_laga" type="xs:int" minOccurs="0" />
+              <xs:element name="total_munshiana" msprop:Generator_ColumnVarNameInTable="columntotal_munshiana" msprop:Generator_ColumnPropNameInRow="total_munshiana" msprop:Generator_ColumnPropNameInTable="total_munshianaColumn" msprop:Generator_UserColumnName="total_munshiana" type="xs:int" minOccurs="0" />
+              <xs:element name="No" msprop:Generator_ColumnVarNameInTable="columnNo" msprop:Generator_ColumnPropNameInRow="No" msprop:Generator_ColumnPropNameInTable="NoColumn" msprop:Generator_UserColumnName="No" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

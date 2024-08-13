@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Chatha" targetNamespace="http://tempuri.org/Chatha.xsd" xmlns:mstns="http://tempuri.org/Chatha.xsd" xmlns="http://tempuri.org/Chatha.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Chatha" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Chatha" msprop:Generator_UserDSName="Chatha">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Chatha" msprop:Generator_TableClassName="ChathaDataTable" msprop:Generator_TableVarName="tableChatha" msprop:Generator_TablePropName="_Chatha" msprop:Generator_RowDeletingName="ChathaRowDeleting" msprop:Generator_RowChangingName="ChathaRowChanging" msprop:Generator_RowEvHandlerName="ChathaRowChangeEventHandler" msprop:Generator_RowDeletedName="ChathaRowDeleted" msprop:Generator_UserTableName="Chatha" msprop:Generator_RowChangedName="ChathaRowChanged" msprop:Generator_RowEvArgName="ChathaRowChangeEvent" msprop:Generator_RowClassName="ChathaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="Detail" msprop:Generator_ColumnVarNameInTable="columnDetail" msprop:Generator_ColumnPropNameInRow="Detail" msprop:Generator_ColumnPropNameInTable="DetailColumn" msprop:Generator_UserColumnName="Detail" type="xs:string" minOccurs="0" />
+              <xs:element name="CategoryName" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_UserColumnName="CategoryName" type="xs:string" minOccurs="0" />
+              <xs:element name="AdminDebtIn" msprop:Generator_ColumnVarNameInTable="columnAdminDebtIn" msprop:Generator_ColumnPropNameInRow="AdminDebtIn" msprop:Generator_ColumnPropNameInTable="AdminDebtInColumn" msprop:Generator_UserColumnName="AdminDebtIn" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="AdminDebtPaidOff" msprop:Generator_ColumnVarNameInTable="columnAdminDebtPaidOff" msprop:Generator_ColumnPropNameInRow="AdminDebtPaidOff" msprop:Generator_ColumnPropNameInTable="AdminDebtPaidOffColumn" msprop:Generator_UserColumnName="AdminDebtPaidOff" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Sale" msprop:Generator_ColumnVarNameInTable="columnSale" msprop:Generator_ColumnPropNameInRow="Sale" msprop:Generator_ColumnPropNameInTable="SaleColumn" msprop:Generator_UserColumnName="Sale" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="BillPayed" msprop:Generator_ColumnVarNameInTable="columnBillPayed" msprop:Generator_ColumnPropNameInRow="BillPayed" msprop:Generator_ColumnPropNameInTable="BillPayedColumn" msprop:Generator_UserColumnName="BillPayed" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Investment" msprop:Generator_ColumnVarNameInTable="columnInvestment" msprop:Generator_ColumnPropNameInRow="Investment" msprop:Generator_ColumnPropNameInTable="InvestmentColumn" msprop:Generator_UserColumnName="Investment" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="InvestmentRecovery" msprop:Generator_ColumnVarNameInTable="columnInvestmentRecovery" msprop:Generator_ColumnPropNameInRow="InvestmentRecovery" msprop:Generator_ColumnPropNameInTable="InvestmentRecoveryColumn" msprop:Generator_UserColumnName="InvestmentRecovery" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Purchasing" msprop:Generator_ColumnVarNameInTable="columnPurchasing" msprop:Generator_ColumnPropNameInRow="Purchasing" msprop:Generator_ColumnPropNameInTable="PurchasingColumn" msprop:Generator_UserColumnName="Purchasing" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="CustomerRecovery" msprop:Generator_ColumnVarNameInTable="columnCustomerRecovery" msprop:Generator_ColumnPropNameInRow="CustomerRecovery" msprop:Generator_ColumnPropNameInTable="CustomerRecoveryColumn" msprop:Generator_UserColumnName="CustomerRecovery" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Expense" msprop:Generator_ColumnVarNameInTable="columnExpense" msprop:Generator_ColumnPropNameInRow="Expense" msprop:Generator_ColumnPropNameInTable="ExpenseColumn" msprop:Generator_UserColumnName="Expense" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="ShopExpense" msprop:Generator_ColumnVarNameInTable="columnShopExpense" msprop:Generator_ColumnPropNameInRow="ShopExpense" msprop:Generator_ColumnPropNameInTable="ShopExpenseColumn" msprop:Generator_UserColumnName="ShopExpense" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Discount" msprop:Generator_ColumnVarNameInTable="columnDiscount" msprop:Generator_ColumnPropNameInRow="Discount" msprop:Generator_ColumnPropNameInTable="DiscountColumn" msprop:Generator_UserColumnName="Discount" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="CustomerAugrai" msprop:Generator_ColumnVarNameInTable="columnCustomerAugrai" msprop:Generator_ColumnPropNameInRow="CustomerAugrai" msprop:Generator_ColumnPropNameInTable="CustomerAugraiColumn" msprop:Generator_UserColumnName="CustomerAugrai" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="CustomerOldAugrai" msprop:Generator_ColumnVarNameInTable="columnCustomerOldAugrai" msprop:Generator_ColumnPropNameInRow="CustomerOldAugrai" msprop:Generator_ColumnPropNameInTable="CustomerOldAugraiColumn" msprop:Generator_UserColumnName="CustomerOldAugrai" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="Advance" msprop:Generator_ColumnVarNameInTable="columnAdvance" msprop:Generator_ColumnPropNameInRow="Advance" msprop:Generator_ColumnPropNameInTable="AdvanceColumn" msprop:Generator_UserColumnName="Advance" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="BillRemaining" msprop:Generator_ColumnVarNameInTable="columnBillRemaining" msprop:Generator_ColumnPropNameInRow="BillRemaining" msprop:Generator_ColumnPropNameInTable="BillRemainingColumn" msprop:Generator_UserColumnName="BillRemaining" type="xs:double" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="driver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\driver1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1071" xml:space="preserve">
+    <value>Starting Balance</value>
+  </data>
+  <data name="a0035" xml:space="preserve">
+    <value>Amount Receive</value>
+  </data>
+  <data name="dollor1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1081" xml:space="preserve">
+    <value>Cash Sale</value>
+  </data>
+  <data name="a1082" xml:space="preserve">
+    <value>Please Set Backup Path.</value>
+  </data>
+  <data name="lbl_chongi" xml:space="preserve">
+    <value>Chongi</value>
+  </data>
+  <data name="a0602" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
+  <data name="a1026" xml:space="preserve">
+    <value>Commission +Chongi</value>
+  </data>
+  <data name="a1074" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="a0030" xml:space="preserve">
+    <value>Amount Received</value>
+  </data>
+  <data name="a1065" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="a0006" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="msg_database_success" xml:space="preserve">
+    <value>Data Inserted Successfully.</value>
+  </data>
+  <data name="lbl_advance" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="a1054" xml:space="preserve">
+    <value>Create Season Report</value>
+  </data>
+  <data name="del1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0007" xml:space="preserve">
+    <value>Bill Paid Date</value>
+  </data>
+  <data name="dollar4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollar4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0605" xml:space="preserve">
+    <value>Recalculate</value>
+  </data>
+  <data name="a0510" xml:space="preserve">
+    <value>Total Expense</value>
+  </data>
+  <data name="a1090" xml:space="preserve">
+    <value>Add Extra bill amount</value>
+  </data>
+  <data name="a0405" xml:space="preserve">
+    <value>Packing</value>
+  </data>
+  <data name="a0308" xml:space="preserve">
+    <value>Clerk</value>
+  </data>
+  <data name="a1053" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="a0505" xml:space="preserve">
+    <value>Total Discount</value>
+  </data>
+  <data name="a0504" xml:space="preserve">
+    <value>Total Sale</value>
+  </data>
+  <data name="a1004" xml:space="preserve">
+    <value>Augrai</value>
+  </data>
+  <data name="a1034" xml:space="preserve">
+    <value>Bipari Commission</value>
+  </data>
+  <data name="dollor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0208" xml:space="preserve">
+    <value>Bipari Setting</value>
+  </data>
+  <data name="a0013" xml:space="preserve">
+    <value>Khata #</value>
+  </data>
+  <data name="bipari_chongi" xml:space="preserve">
+    <value>Bipari Chongi</value>
+  </data>
+  <data name="a1005" xml:space="preserve">
+    <value>Cash InOut</value>
+  </data>
+  <data name="a1098" xml:space="preserve">
+    <value>Search Bipari</value>
+  </data>
+  <data name="lbl_bipari_name" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="a0034" xml:space="preserve">
+    <value>Bill Account</value>
+  </data>
+  <data name="a1019" xml:space="preserve">
+    <value>Remaining Product</value>
+  </data>
+  <data name="menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1063" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="menuwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="insertion_error" xml:space="preserve">
+    <value>Database Connection Problem.</value>
+  </data>
+  <data name="a1096" xml:space="preserve">
+    <value>Print Report</value>
+  </data>
+  <data name="lbl_customer_setting" xml:space="preserve">
+    <value>Customer Setting</value>
+  </data>
+  <data name="a1057" xml:space="preserve">
+    <value>Investment Recovery</value>
+  </data>
+  <data name="del2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bipari_commssion" xml:space="preserve">
+    <value>Bipari Commission</value>
+  </data>
+  <data name="a1064" xml:space="preserve">
+    <value>Investments</value>
+  </data>
+  <data name="lbl_bipari_setting" xml:space="preserve">
+    <value>Client Setting</value>
+  </data>
+  <data name="a0304" xml:space="preserve">
+    <value>Fright</value>
+  </data>
+  <data name="a0036" xml:space="preserve">
+    <value>Last Bill Amount</value>
+  </data>
+  <data name="a1078" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="a0104" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="insert_product" xml:space="preserve">
+    <value>Insert Your Today Products.</value>
+  </data>
+  <data name="lbl_rent" xml:space="preserve">
+    <value>Rent</value>
+  </data>
+  <data name="lbl_total_munhiana" xml:space="preserve">
+    <value>Total Munshiana</value>
+  </data>
+  <data name="a1011" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="profilex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profilex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_product_weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="a1038" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="a1060" xml:space="preserve">
+    <value>Cash Received</value>
+  </data>
+  <data name="a0511" xml:space="preserve">
+    <value>Total Chalan </value>
+  </data>
+  <data name="a1061" xml:space="preserve">
+    <value>Commission/Chongi</value>
+  </data>
+  <data name="a1055" xml:space="preserve">
+    <value>Balance Sheet</value>
+  </data>
+  <data name="a0204" xml:space="preserve">
+    <value>Bipari Name</value>
+  </data>
+  <data name="a0004" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="a0604" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="a0039" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="a0021" xml:space="preserve">
+    <value>Bill Name</value>
+  </data>
+  <data name="lbl_vehicle_no" xml:space="preserve">
+    <value>Vehicle No</value>
+  </data>
+  <data name="a0102" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_total_labour" xml:space="preserve">
+    <value>Total Labour</value>
+  </data>
+  <data name="lbl_totalitems" xml:space="preserve">
+    <value>Total Product</value>
+  </data>
+  <data name="a1042" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="cust_commission" xml:space="preserve">
+    <value>Customer Commission</value>
+  </data>
+  <data name="a2000" xml:space="preserve">
+    <value>Search Product</value>
+  </data>
+  <data name="record_delete" xml:space="preserve">
+    <value>Record Deleted.</value>
+  </data>
+  <data name="a0606" xml:space="preserve">
+    <value>Add Bill</value>
+  </data>
+  <data name="a0509" xml:space="preserve">
+    <value>Total Munshiana</value>
+  </data>
+  <data name="lbl_product_name" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="a1094" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="a1087" xml:space="preserve">
+    <value>Updated</value>
+  </data>
+  <data name="a0508" xml:space="preserve">
+    <value>Total Rent</value>
+  </data>
+  <data name="a1076" xml:space="preserve">
+    <value>Remaining Balance</value>
+  </data>
+  <data name="help1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\help1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0502" xml:space="preserve">
+    <value>Total Labour</value>
+  </data>
+  <data name="a1080" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="a0205" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="menuxxx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuxxx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0002" xml:space="preserve">
+    <value>Price Per Product</value>
+  </data>
+  <data name="previou" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previou.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0305" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="a0037" xml:space="preserve">
+    <value>Previous Amount</value>
+  </data>
+  <data name="a1052" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="a0032" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="keyboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\keyboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1086" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="a0402" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="a1028" xml:space="preserve">
+    <value>Search
+Name ,Khata# ,Bill id</value>
+  </data>
+  <data name="a0000" xml:space="preserve">
+    <value>Arthi App</value>
+  </data>
+  <data name="a1039" xml:space="preserve">
+    <value>Total Chalan</value>
+  </data>
+  <data name="closeb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closeb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1012" xml:space="preserve">
+    <value>Do you want change language?</value>
+  </data>
+  <data name="deleteitem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteitem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profilex1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profilex1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1043" xml:space="preserve">
+    <value>Eng Name</value>
+  </data>
+  <data name="a0207" xml:space="preserve">
+    <value>Landlord</value>
+  </data>
+  <data name="a1016" xml:space="preserve">
+    <value>Invoicing</value>
+  </data>
+  <data name="added_in_database" xml:space="preserve">
+    <value>Added in Database.</value>
+  </data>
+  <data name="a1091" xml:space="preserve">
+    <value>Add Extra</value>
+  </data>
+  <data name="a0307" xml:space="preserve">
+    <value>Munchiana</value>
+  </data>
+  <data name="lbl_munshiana" xml:space="preserve">
+    <value>Munshiana</value>
+  </data>
+  <data name="a0103" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="a1072" xml:space="preserve">
+    <value>Ending Balance</value>
+  </data>
+  <data name="default" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="a1022" xml:space="preserve">
+    <value>Total Expense</value>
+  </data>
+  <data name="a1014" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="a1001" xml:space="preserve">
+    <value>Point of sales</value>
+  </data>
+  <data name="a1002" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="a1089" xml:space="preserve">
+    <value>Chalan</value>
+  </data>
+  <data name="a1031" xml:space="preserve">
+    <value>Packing</value>
+  </data>
+  <data name="a0201" xml:space="preserve">
+    <value>Bipari</value>
+  </data>
+  <data name="client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="a0506" xml:space="preserve">
+    <value>Total Labour</value>
+  </data>
+  <data name="a0022" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="a1075" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="a0101" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="a1003" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="dollor3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_commisison" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="lbl_labour" xml:space="preserve">
+    <value>Labour</value>
+  </data>
+  <data name="a1041" xml:space="preserve">
+    <value>Bill Amount</value>
+  </data>
+  <data name="a0403" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="a1050" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="cust_chongi" xml:space="preserve">
+    <value>Customer Chongi</value>
+  </data>
+  <data name="a1033" xml:space="preserve">
+    <value>Customer Chongi</value>
+  </data>
+  <data name="a0009" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="dollor2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dollor2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1018" xml:space="preserve">
+    <value>Total Product</value>
+  </data>
+  <data name="a1049" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="Print" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_remaining_prodcut" xml:space="preserve">
+    <value>Remaining Product</value>
+  </data>
+  <data name="a1077" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="a0306" xml:space="preserve">
+    <value>Expense</value>
+  </data>
+  <data name="refresh1x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh1x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0005" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="a0601" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="a1073" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="a0401" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1017" xml:space="preserve">
+    <value>Total Bipari</value>
+  </data>
+  <data name="a0501" xml:space="preserve">
+    <value>Total Rent</value>
+  </data>
+  <data name="a1048" xml:space="preserve">
+    <value>Search ID/Name</value>
+  </data>
+  <data name="a1030" xml:space="preserve">
+    <value>Vehicle #</value>
+  </data>
+  <data name="a1008" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="a0206" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="a1047" xml:space="preserve">
+    <value>Investment</value>
+  </data>
+  <data name="a1037" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="a0001" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="a0023" xml:space="preserve">
+    <value>Bill Name</value>
+  </data>
+  <data name="a1010" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="a0603" xml:space="preserve">
+    <value>Add Product</value>
+  </data>
+  <data name="a0512" xml:space="preserve">
+    <value>Grand Total</value>
+  </data>
+  <data name="a1032" xml:space="preserve">
+    <value>Customer Commission</value>
+  </data>
+  <data name="a0407" xml:space="preserve">
+    <value>Remaining Quantity</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="a0038" xml:space="preserve">
+    <value>Receive Amount</value>
+  </data>
+  <data name="a1015" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="a1036" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="a0507" xml:space="preserve">
+    <value>Total Quantity</value>
+  </data>
+  <data name="a1006" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="a0008" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="a1045" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="a0302" xml:space="preserve">
+    <value>Commission</value>
+  </data>
+  <data name="lbl_total_Begs" xml:space="preserve">
+    <value>Total Products</value>
+  </data>
+  <data name="a1035" xml:space="preserve">
+    <value>Bipari Chongi</value>
+  </data>
+  <data name="a0011" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="a1095" xml:space="preserve">
+    <value>Driver Naqdi</value>
+  </data>
+  <data name="a1020" xml:space="preserve">
+    <value>Remaining Bills</value>
+  </data>
+  <data name="a0210" xml:space="preserve">
+    <value>Zamidar</value>
+  </data>
+  <data name="menu00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lbl_expense" xml:space="preserve">
+    <value>Expense</value>
+  </data>
+  <data name="closewhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\closewhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0014" xml:space="preserve">
+    <value>Customer ID</value>
+  </data>
+  <data name="lbl_landlord_name" xml:space="preserve">
+    <value>Landlord</value>
+  </data>
+  <data name="a1025" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="a0202" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1079" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="a1059" xml:space="preserve">
+    <value>Show Expenses</value>
+  </data>
+  <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1066" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="a0031" xml:space="preserve">
+    <value>Invoicing</value>
+  </data>
+  <data name="a1084" xml:space="preserve">
+    <value>Database Backup Done Successefully</value>
+  </data>
+  <data name="a1062" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="a1029" xml:space="preserve">
+    <value>Paid Out/Expense</value>
+  </data>
+  <data name="vewitem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vewitem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1097" xml:space="preserve">
+    <value>Please Add Cash in Account...</value>
+  </data>
+  <data name="a1058" xml:space="preserve">
+    <value>Profit/Loss</value>
+  </data>
+  <data name="lbl_product_packing" xml:space="preserve">
+    <value>Packing</value>
+  </data>
+  <data name="a1013" xml:space="preserve">
+    <value>Vehicle #</value>
+  </data>
+  <data name="a1067" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="a1009" xml:space="preserve">
+    <value>Calculator</value>
+  </data>
+  <data name="a1046" xml:space="preserve">
+    <value>Old/Previous Amount</value>
+  </data>
+  <data name="a1092" xml:space="preserve">
+    <value>Please Click 'Yes' to Delete the record.</value>
+  </data>
+  <data name="a1093" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="a1068" xml:space="preserve">
+    <value>First Date</value>
+  </data>
+  <data name="a0301" xml:space="preserve">
+    <value>Chongi</value>
+  </data>
+  <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="t_dollor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\t_dollor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a0033" xml:space="preserve">
+    <value>Sale Amount</value>
+  </data>
+  <data name="a1069" xml:space="preserve">
+    <value>Last Date</value>
+  </data>
+  <data name="a1040" xml:space="preserve">
+    <value>Total Bill</value>
+  </data>
+  <data name="a0406" xml:space="preserve">
+    <value>Remaining</value>
+  </data>
+  <data name="a1023" xml:space="preserve">
+    <value>Today Bipari Sale</value>
+  </data>
+  <data name="del3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\del.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1083" xml:space="preserve">
+    <value>Database  Restore Successefully</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1007" xml:space="preserve">
+    <value>Reportings</value>
+  </data>
+  <data name="a0203" xml:space="preserve">
+    <value>Customer Name</value>
+  </data>
+  <data name="a1044" xml:space="preserve">
+    <value>Urdu Name</value>
+  </data>
+  <data name="nest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1099" xml:space="preserve">
+    <value>Search Landlord</value>
+  </data>
+  <data name="a0303" xml:space="preserve">
+    <value>Labour</value>
+  </data>
+  <data name="a1070" xml:space="preserve">
+    <value>Print Report</value>
+  </data>
+  <data name="lbl_total_rent" xml:space="preserve">
+    <value>Total Rent</value>
+  </data>
+  <data name="a0209" xml:space="preserve">
+    <value>Customer Setting</value>
+  </data>
+  <data name="a0012" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="a1088" xml:space="preserve">
+    <value>SERP (Sales, Expense ,Recovery &amp; Profit)</value>
+  </data>
+  <data name="a0404" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="a0309" xml:space="preserve">
+    <value>Mazdori</value>
+  </data>
+  <data name="a1085" xml:space="preserve">
+    <value>Update Daily Sales</value>
+  </data>
+  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1027" xml:space="preserve">
+    <value>Sale Details</value>
+  </data>
+  <data name="a1021" xml:space="preserve">
+    <value>Cash Receving</value>
+  </data>
+  <data name="a0503" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="a1024" xml:space="preserve">
+    <value>Total Bill</value>
+  </data>
+  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="landlord" xml:space="preserve">
+    <value>Landlord</value>
+  </data>
+  <data name="a1051" xml:space="preserve">
+    <value>Add Landloard/Customer</value>
+  </data>
+  <data name="key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="a1056" xml:space="preserve">
+    <value>Augrai Report</value>
+  </data>
+  <data name="a0311" xml:space="preserve">
+    <value>Repayment</value>
+  </data>
+  <data name="lSquareRulerCm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lSquareRulerCm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a1200" xml:space="preserve">
+    <value>Expense/Receivings</value>
+  </data>
+  <data name="a2001" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="a2002" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="a2003" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="a2004" xml:space="preserve">
+    <value>Net Cash</value>
+  </data>
+  <data name="a2005" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="a2006" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="a2007" xml:space="preserve">
+    <value>Receving Date</value>
+  </data>
+  <data name="a2008" xml:space="preserve">
+    <value>Payment/Expense Date</value>
+  </data>
+  <data name="a2009" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="a2010" xml:space="preserve">
+    <value>Payment/Expense</value>
+  </data>
+  <data name="a2011" xml:space="preserve">
+    <value>Shop Expense</value>
+  </data>
+  <data name="a2012" xml:space="preserve">
+    <value>Last Augrai</value>
+  </data>
+  <data name="a2013" xml:space="preserve">
+    <value>Difference</value>
+  </data>
+  <data name="a2014" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="a2015" xml:space="preserve">
+    <value>Extra Amount Customer</value>
+  </data>
+  <data name="a2016" xml:space="preserve">
+    <value>Extra Amount Landlord</value>
+  </data>
+  <data name="a2017" xml:space="preserve">
+    <value>RQuantity</value>
+  </data>
+  <data name="a2018" xml:space="preserve">
+    <value>Customer Khata and Receivings</value>
+  </data>
+  <data name="a2019" xml:space="preserve">
+    <value>Augrai Difference</value>
+  </data>
+  <data name="a2020" xml:space="preserve">
+    <value>Record Saved.</value>
+  </data>
+  <data name="a2021" xml:space="preserve">
+    <value>Remaining Amount</value>
+  </data>
+  <data name="a2022" xml:space="preserve">
+    <value>Previous Amount</value>
+  </data>
+  <data name="a2023" xml:space="preserve">
+    <value>Last Bill</value>
+  </data>
+  <data name="a2024" xml:space="preserve">
+    <value>Total Sale</value>
+  </data>
+  <data name="rd1" xml:space="preserve">
+    <value>Season Report</value>
+  </data>
+  <data name="rd2" xml:space="preserve">
+    <value>Expense Report</value>
+  </data>
+  <data name="rd3" xml:space="preserve">
+    <value>BipariReport</value>
+  </data>
+  <data name="rd4" xml:space="preserve">
+    <value>Customer Report</value>
+  </data>
+  <data name="rd5" xml:space="preserve">
+    <value>Augrai Total Report</value>
+  </data>
+  <data name="marketfee" xml:space="preserve">
+    <value>Market Fee</value>
+  </data>
+</root>
