@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-using ArthiPOS.utill;
-using BAL;
-using DataMember;
-using System.Drawing.Printing;
-using DevExpress.XtraReports.UI;
-using DevExpress.XtraPrinting;
-using ArthiPOS.Reporting;
-using ArthiPOS.Utill;
-using ArthiPOS.Controls.dashboard;
-using System.IO;
+﻿using ArthiPOS.Controls.dashboard;
 using ArthiPOS.Properties;
-using ArthiPOS.Reporting.ReportView.Header;
-using ArthiPOS.Reporting.ReportView.NoHeader;
-using ArthiPOS.Reporting.ReportDataSet;
+using ArthiPOS.Reporting;
+using ArthiPOS.utill;
+using ArthiPOS.Utill;
+using BAL;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ArthiPOS.controls.dashboard
 {
@@ -56,11 +49,11 @@ namespace ArthiPOS.controls.dashboard
         bool localRecord = false;
         public void readClientDailySale(string sdate, string search)
         {
-            if(rd_both.Checked || rd_live.Checked)
+            if (rd_both.Checked || rd_live.Checked)
                 tLandlords = bal.getLandlordsList(sdate, search);
             if (tLandlords == null) tLandlords = new List<Landlord>();
 
-            if ( tLandlords.Count > 0)
+            if (tLandlords.Count > 0)
             {
                 localRecord = false;
             }
@@ -69,7 +62,7 @@ namespace ArthiPOS.controls.dashboard
                 localRecord = true;
                 if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date, Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadTodaySale();
                 if (tLandlords == null)
@@ -149,28 +142,28 @@ namespace ArthiPOS.controls.dashboard
             this.dg_invoice.Rows[count - 1].Cells[4].Value = sales.total_quantity;
             this.dg_invoice.Rows[count - 1].Cells[5].Value = sales.GetGrandTotal;
             this.dg_invoice.Rows[count - 1].Cells[6].Value = sales.RemainingAmount;
-            this.dg_invoice.Rows[count - 1].Cells[7].Value = Math.Ceiling(sales.Total_Chongi+sales.Total_Commission);
-            this.dg_invoice.Rows[count - 1].Cells[8].Value = sales.GetGrandTotal+sales.RemainingAmount;
+            this.dg_invoice.Rows[count - 1].Cells[7].Value = Math.Ceiling(sales.Total_Chongi + sales.Total_Commission);
+            this.dg_invoice.Rows[count - 1].Cells[8].Value = sales.GetGrandTotal + sales.RemainingAmount;
         }
 
         public void readCustomerDailySale(string date, string search)
         {
             //customers = bal.getCustomerBills(date, true);
             List<DataMember.CustomerSales> custSales = null;
-            if(rd_both.Checked || rd_live.Checked)
+            if (rd_both.Checked || rd_live.Checked)
                 custSales = bal.getCustomerBills(date);
             if (custSales == null) custSales = new List<DataMember.CustomerSales>();
 
-            if ( custSales.Count > 0)
+            if (custSales.Count > 0)
             {
                 localRecord = false;
             }
-            else if(rd_both.Checked || rd_local.Checked)
+            else if (rd_both.Checked || rd_local.Checked)
             {
                 localRecord = true;
                 if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date, Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadTodaySale();
 
@@ -270,10 +263,10 @@ namespace ArthiPOS.controls.dashboard
             this.bal = new BLogic();
             date = today_date.Text;
             billtype_combo.SelectedIndex = 0;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             adminlog = LogUtill.getAdminInputLog();
             getUpdateSale();
-            
+
             //readClientDailySale(date);
 
         }
@@ -298,7 +291,7 @@ namespace ArthiPOS.controls.dashboard
 
         private void callCustomerClientSales()
         {
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             string sdate = today_date.Text;
             string ldate = today_date.Text;
             string search = txt_search.Text;
@@ -339,37 +332,37 @@ namespace ArthiPOS.controls.dashboard
             string id = txt_search.Text;
             string sdate = today_date.Text;
             string ldate = today_date.Text;
-            if(chk_date.Checked)
+            if (chk_date.Checked)
             {
                 sdate = date_start.Text;
                 ldate = date_last.Text;
             }
 
-            if(dt==null)
-                dt = bal.readLandlordDailySale(sdate,ldate, id);
+            if (dt == null)
+                dt = bal.readLandlordDailySale(sdate, ldate, id);
             AllReportsCC rp = new AllReportsCC();
             rp.ClientSaleDetail(dt);
             rp.ShowDialog();
         }
 
-        private void today_date_ValueChanged(object sender, EventArgs e)
+
+
+        private void nextdate_Click(object sender, EventArgs e)
         {
+            today_date.Value = CommonUtill.ChangeDate(today_date, 1);
             date = today_date.Text;
             dg_invoice.Rows.Clear();
             dg_invoice.Refresh();
             callCustomerClientSales();
         }
 
-        private void nextdate_Click(object sender, EventArgs e)
-        {
-            today_date.Value = CommonUtill.ChangeDate(today_date, 1);
-            date = today_date.Text;
-        }
-
         private void previousdate_Click(object sender, EventArgs e)
         {
             today_date.Value = CommonUtill.ChangeDate(today_date, -1);
             date = today_date.Text;
+            dg_invoice.Rows.Clear();
+            dg_invoice.Refresh();
+            callCustomerClientSales();
         }
 
 
@@ -424,8 +417,35 @@ namespace ArthiPOS.controls.dashboard
         private DataTable bipariDt;
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            if (billtype_combo.SelectedIndex == 2)
+             if (billtype_combo.SelectedIndex == 2)
                 readLandlordClientSale(bipariDt);
+
+            if(chk_date.Checked)
+            {
+                //if (bipariDt.Rows.Count > 0)
+                {
+                    if (billtype_combo.Text == "Client")
+                    {
+
+
+                        //AllReportsCC rep = new AllReportsCC(tLandlords,date);
+                        //rep.ShowDialog();
+                        ReportPages rp = new ReportPages(true,false,null,date_start.Text,date_last.Text);
+                        rp.btn_bill_Report.Enabled = true;
+                        rp.isLocal = localRecord;
+                        rp.ShowDialog();
+
+                    }
+                    else if (billtype_combo.Text == "Customer")
+                    {
+                        ReportPages rp = new ReportPages(true, true,null, date_start.Text, date_last.Text);
+                        rp.btn_bill_Report.Enabled = true;
+                        rp.isLocal = localRecord;
+                        rp.ShowDialog();
+                    }
+                }
+                return;
+            }
 
             if (!localRecord)
             {
@@ -544,7 +564,7 @@ namespace ArthiPOS.controls.dashboard
             {
                 if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date, Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadProcessedTodaySale();
                 if (tLandlords == null)
@@ -579,7 +599,7 @@ namespace ArthiPOS.controls.dashboard
         }
 
         #region Control Keys,Events
-        int currentrow = 0, gridRow=0;
+        int currentrow = 0, gridRow = 0;
         private void selectUpRow(DataGridView grid)
         {
             DataGridView dgv = grid;
@@ -587,7 +607,7 @@ namespace ArthiPOS.controls.dashboard
             int totalRows = dgv.Rows.Count;
             if (totalRows > 0)
             {
-               
+
                 int rowIndex = currentrow;
                 if (rowIndex == 0)
                     return;
@@ -682,10 +702,11 @@ namespace ArthiPOS.controls.dashboard
         {
             if (row == dg_invoice.Rows.Count)
                 return;
-            if(row==-1)
+            if (row == -1)
             {
-                bunifuFlatButton1_Click(this,new EventArgs());
-            } else
+                bunifuFlatButton1_Click(this, new EventArgs());
+            }
+            else
             if (billtype_combo.SelectedIndex == 0)
             {
                 //Landlord land = tLandlords[row];
@@ -756,14 +777,14 @@ namespace ArthiPOS.controls.dashboard
             else if (billtype_combo.SelectedIndex == 1)
             {
                 string key = dg_invoice.Rows[row].Cells[3].Value.ToString();
-               // DataMember.CustomerSales csale = this.custSales[row];
-                previewLandlordData(null,findCustomer(key) , null);
+                // DataMember.CustomerSales csale = this.custSales[row];
+                previewLandlordData(null, findCustomer(key), null);
 
             }
         }
-        
 
-        private void previewLandlordData(Landlord landlord, DataMember.CustomerSales custSale,Customer customer)
+
+        private void previewLandlordData(Landlord landlord, DataMember.CustomerSales custSale, Customer customer)
         {
             BLogic bal = new BLogic();
             SaleDetail sd;
@@ -828,7 +849,7 @@ namespace ArthiPOS.controls.dashboard
             bool isCustomer = false;
             if (billtype_combo.SelectedIndex == 0)
             {
-                isCustomer = false ;
+                isCustomer = false;
                 //Landlord land = tLandlords[row];
                 string key = dg_invoice.Rows[row].Cells[3].Value.ToString();
                 ReportPages rp = new ReportPages(isCustomer, findLandlord(key));
@@ -868,12 +889,12 @@ namespace ArthiPOS.controls.dashboard
             string action = "";
             if (billtype_combo.SelectedIndex == 0)
                 action = "Zamidar";
-            else if(billtype_combo.SelectedIndex==1)
+            else if (billtype_combo.SelectedIndex == 1)
                 action = "Customer";
             else if (billtype_combo.SelectedIndex == 2)
                 action = "Bipari";
 
-            DataTable dt = bal.salesDisplay(action, sdate, ldate,txt_search.Text,"");
+            DataTable dt = bal.salesDisplay(action, sdate, ldate, txt_search.Text, "");
             if (billtype_combo.SelectedIndex == 2)
                 bipariDt = dt;
 
@@ -905,9 +926,18 @@ namespace ArthiPOS.controls.dashboard
             loadRefresh();
         }
 
+        private void today_date_CloseUp(object sender, EventArgs e)
+        {
+            date = today_date.Text;
+            dg_invoice.Rows.Clear();
+            dg_invoice.Refresh();
+            callCustomerClientSales();
+
+        }
+
         private void loadRefresh()
         {
-            btn_submit_Click(this,new EventArgs());
+            btn_submit_Click(this, new EventArgs());
         }
         #endregion
 

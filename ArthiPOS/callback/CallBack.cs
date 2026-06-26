@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArthiPOS.callback
+﻿namespace ArthiPOS.callback
 {
     public interface CallBackInterface
     {
@@ -12,7 +6,7 @@ namespace ArthiPOS.callback
     }
     public class CallBack : CallBackInterface
     {
-        
+
 
         public DataUpdate Product(DataUpdate data)
         {

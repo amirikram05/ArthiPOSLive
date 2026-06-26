@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ArthiPOS.Controls.dashboard;
+using ArthiPOS.newmenu;
+using ArthiPOS.Rent;
 using ArthiPOS.shop;
-using ArthiPOS.utill;
 using BAL;
-using DataMember;
-using Newtonsoft.Json;
-using ArthiPOS.Controls.dashboard;
-using ArthiPOS.Utill;
-using System.IO;
 using CommonUtilities;
-using ArthiPOS.Controls;
-using ArthiPOS.Controls.test;
-using Google.Apis.Drive.v3;
+using DataMember;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace ArthiPOS.controls
 {
@@ -30,7 +19,7 @@ namespace ArthiPOS.controls
         private Account account;
 
         private int check = 0;
-        
+
         public Login()
         {
             InitializeComponent();
@@ -42,7 +31,7 @@ namespace ArthiPOS.controls
             this.authentication = authentication;
             this.bal = new BLogic();
         }
-        public Login(Authentication authentication,int check)
+        public Login(Authentication authentication, int check)
         {
             InitializeComponent();
             this.authentication = authentication;
@@ -125,6 +114,7 @@ namespace ArthiPOS.controls
                         {
                             this.Hide();
                             MainForm sistema = new MainForm();
+                            //TestFormMain sistema = new TestFormMain();
                             sistema.ShowDialog();
                             //this.authentication.close();
                         }
@@ -206,8 +196,8 @@ namespace ArthiPOS.controls
             }*/
 
             string version = System.Windows.Forms.Application.ProductVersion;
-          
-            lbl_version.Text= String.Format("Version {0}", version);
+
+            lbl_version.Text = String.Format("Version {0}", version);
             account = new BLogic().check_User(a);
 
             if (account != null)
@@ -251,6 +241,6 @@ namespace ArthiPOS.controls
             pf.ShowDialog();
         }
 
-        
+
     }
 }

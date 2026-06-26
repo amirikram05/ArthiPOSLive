@@ -1,10 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
-using DevExpress.XtraReports.UI;
-
-namespace ArthiPOS.Reporting
+﻿namespace ArthiPOS.Reporting
 {
     public partial class BillReports : DevExpress.XtraReports.UI.XtraReport
     {
@@ -12,10 +6,10 @@ namespace ArthiPOS.Reporting
         {
             InitializeComponent();
         }
-        public BillReports(string cc_id,string bill_id,string name,string date,
-            string sale,string advance,string rent,string labour,
-            string munshiana,string tot_service,string grandtotal,
-            string commission,string chongi,string total_quantity)
+        public BillReports(string cc_id, string bill_id, string name, string date,
+            string sale, string advance, string rent, string labour,
+            string munshiana, string tot_service, string grandtotal,
+            string commission, string chongi, string total_quantity)
         {
             InitializeComponent();
             lbl_cc_id.Text = cc_id;

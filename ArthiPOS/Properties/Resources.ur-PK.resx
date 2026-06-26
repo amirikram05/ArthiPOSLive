@@ -820,7 +820,7 @@
     <value>resources.ur-pk.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="a2018" xml:space="preserve">
-    <value>كھاتہ ‌اور ‌وصولی</value>
+    <value>وصولی ‌اور ‌ادائیگی ‌رپورٹ</value>
   </data>
   <data name="a2019" xml:space="preserve">
     <value>گاہك اگراہی ‌فرق</value>
@@ -998,5 +998,35 @@
   </data>
   <data name="marketfee" xml:space="preserve">
     <value>ماركیٹ ‌فیس</value>
+  </data>
+  <data name="r1" xml:space="preserve">
+    <value>سابقہ ‌بل ‌بنام</value>
+  </data>
+  <data name="r11" xml:space="preserve">
+    <value>سابقہ ‌ایڈوانس</value>
+  </data>
+  <data name="r2" xml:space="preserve">
+    <value>تازہ ‌بنام</value>
+  </data>
+  <data name="r22" xml:space="preserve">
+    <value>تازہ ایڈوانس</value>
+  </data>
+  <data name="r3" xml:space="preserve">
+    <value>وصولی</value>
+  </data>
+  <data name="r4" xml:space="preserve">
+    <value>ٹوٹل ‌بنام</value>
+  </data>
+  <data name="r44" xml:space="preserve">
+    <value>ٹوٹل ایڈوانس</value>
+  </data>
+  <data name="rt1" xml:space="preserve">
+    <value>اوگراہی ‌‌رپورٹ</value>
+  </data>
+  <data name="rt2" xml:space="preserve">
+    <value>ایڈوانس رپورٹ</value>
+  </data>
+  <data name="rt3" xml:space="preserve">
+    <value>سیل ‌رپورٹ</value>
   </data>
 </root>

@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BAL;
-using ArthiPOS.controls;
-using DataMember;
+﻿using ArthiPOS.controls;
 using ArthiPOS.Properties;
-using ArthiPOS.utill;
-using MetroFramework.Controls;
-using ArthiPOS.shop;
 using ArthiPOS.Utill;
+using BAL;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using MetroFramework.Controls;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
-    public partial class AddVendorItem : UserControl
+    public partial class AddVendorItem : Form
     {
-       
 
-        
 
         private ViewTransport view_transport;
         private BLogic bal;
@@ -42,7 +35,7 @@ namespace ArthiPOS.Controls.dashboard
         };
         public SHOP shop = SHOP.Client;
 
-        
+
         public void initReady()
         {
             bal = new BLogic();
@@ -52,19 +45,20 @@ namespace ArthiPOS.Controls.dashboard
         }
         private int check = 0;
         private string status = "";
-        public VendorForm vForm;
-        public AddVendorItem(string date, int check,string status)
+        public VendorStock vForm;
+        public AddVendorItem(string date, int check, string status)
         {
             InitializeComponent();
             this.date = date;
             this.check = check;
             this.status = status;
             lbl_status.Text = status;
-            if (status=="Live")
+            if (status == "Live")
             {
                 lbl_status.Text = "Live";
                 lbl_status.BackColor = Color.YellowGreen;
-            }else
+            }
+            else
             {
                 lbl_status.Text = "Not Live";
                 lbl_status.BackColor = Color.DarkOrange;
@@ -81,7 +75,8 @@ namespace ArthiPOS.Controls.dashboard
             loadLastInputData();
         }
         public void updatefields(AdminLog adlog)
-        { txt_bipari_chongi.Text = adlog.client_chongi;
+        {
+            txt_bipari_chongi.Text = adlog.client_chongi;
             txt_bipari_commission.Text = adlog.client_commission;
             txt_client_munshiana.Text = adlog.munshiana;
             txt_customer_chongi.Text = adlog.customer_chongi;
@@ -126,7 +121,7 @@ namespace ArthiPOS.Controls.dashboard
 
         }*/
 
-        public  void updateRecord(Landlord land,bool updateData,VendorForm vForm)
+        public void updateRecord(Landlord land, bool updateData, VendorStock vForm)
         {
             //Edit Data
             //throw new NotImplementedException();
@@ -136,17 +131,17 @@ namespace ArthiPOS.Controls.dashboard
             this.vForm = vForm;
             if (land == null)
                 return;
-            
+
 
         }
 
         private void loaddataValues()
         {
-            if (landup==null)
+            if (landup == null)
             {
                 return;
             }
-            lbl_landlorid.Text=landup.land_person.pkey;
+            lbl_landlorid.Text = landup.land_person.pkey;
             lbl_bipariid.Text = landup.client._person_cl.pkey;
             txt_client_nameid.Text = landup.client._person_cl.pname;
             lbl_client_id.Text = landup.client._person_cl.pid;
@@ -161,6 +156,7 @@ namespace ArthiPOS.Controls.dashboard
             txt_product_type.Text = landup.land_product._type;
             txt_product_quantity.Text = landup.land_product.total_Quantity + "";
             txt_product_quantity.Enabled = false;
+            chk_quantity.Checked = false;
             txt_bipari_chongi.Text = landup.service.client_chongi + "";
             txt_bipari_commission.Text = landup.service.commission_client_product + "";
             txt_customer_chongi.Text = landup.service.customer_chongi + "";
@@ -171,7 +167,8 @@ namespace ArthiPOS.Controls.dashboard
             txt_total_rent.Text = landup.expense.total_rent + "";
             txt_client_munshiana.Text = landup.expense.total_munshiana + "";
             txt_client_advance.Text = landup.expense.total_advance_amount + "";
-            txt_driver_expense.Text = landup.expense.total_expense + "";
+            txt_mark.Text = landup.land_product.marka;
+            txt_vehicle_id.Text = landup.client._vehicle_id;
             btn_Add.LabelText = "Update";
 
         }
@@ -187,19 +184,18 @@ namespace ArthiPOS.Controls.dashboard
             lbl_labour.Text = Resources.ResourceManager.GetString("a0303");
             lbl_rent_car.Text = Resources.ResourceManager.GetString("a0304");
             lbl_vehicle_no.Text = Resources.ResourceManager.GetString("a1030");
-            lbl_bipari_name.Text = Resources.ResourceManager.GetString("a0207");
-            lbl_landlord.Text = Resources.ResourceManager.GetString("a0201");
+            lbl_bipari_name.Text = Resources.ResourceManager.GetString("a0201");
+            lbl_landlord.Text = Resources.ResourceManager.GetString("a0207");
             lbl_quantity.Text = Resources.ResourceManager.GetString("a0401");
 
             lbl_total_rent.Text = Resources.ResourceManager.GetString("a0501");
             lbl_total_labour.Text = Resources.ResourceManager.GetString("a0502");
             lbl_munshiana.Text = Resources.ResourceManager.GetString("a0307");
-            lbl_expense.Text = Resources.ResourceManager.GetString("a1095");
             lbl_product_name.Text = Resources.ResourceManager.GetString("a0206");
             lbl_product_weight.Text = Resources.ResourceManager.GetString("a0403");
             lbl_product_packing.Text = Resources.ResourceManager.GetString("a1031");
             lbl_marka.Text = Resources.ResourceManager.GetString("a2014");
-            lbl_advance.Text = Resources.ResourceManager.GetString("a305");
+            lbl_advance.Text = Resources.ResourceManager.GetString("a1025");
 
             /*lbl_total_Begs.Text = Resources.ResourceManager.GetString("a0401");
             lbl_rent.Text = Resources.ResourceManager.GetString("a0304");
@@ -228,15 +224,15 @@ namespace ArthiPOS.Controls.dashboard
             grid_landlords.Columns[9].HeaderText = Resources.ResourceManager.GetString("a1053"); // Resources.cust_commission;
 
         }
-        
+
         #endregion
 
-        
-        
+
+
 
         private void AddVendorItem_Load(object sender, EventArgs e)
         {
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
@@ -250,7 +246,6 @@ namespace ArthiPOS.Controls.dashboard
         }
         public void init()
         {
-            circularProgress1.Visible = true;
             objectIndex = 0;
             shop = SHOP.Client;
             loadLastInputData();
@@ -258,24 +253,6 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-        }
-        public async Task MyMethodAsync()
-        {
-            Task<int> longRunningTask = LongRunningOperationAsync();
-            // independent work which doesn't need the result of LongRunningOperationAsync can be done here
-
-            //and now we call await on the task 
-            int result = await longRunningTask;
-            //use the result 
-            Console.WriteLine(result);
-        }
-
-        public async Task<int> LongRunningOperationAsync() // assume we return an int from this long running operation 
-        {
-            init();
-            await Task.Delay(1000); // 1 second delay
-            circularProgress1.Visible = false;
-            return 1;
         }
 
 
@@ -315,7 +292,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-        
+
 
         #endregion
         #region Control Keys,Events
@@ -325,6 +302,9 @@ namespace ArthiPOS.Controls.dashboard
 
             switch (keyData)
             {
+                case Keys.Escape:
+                    this.Close();
+                    return true;
                 case Keys.Up:
                     if (grid_landlords.Focused)
                         selectUpRow(grid_landlords);
@@ -339,6 +319,8 @@ namespace ArthiPOS.Controls.dashboard
                     return true;
                 case Keys.Shift | Keys.Enter:
                     //Stuff
+                    checkClientIDExit();
+
                     btn_calculate_Click_1(this, new EventArgs());
                     txt_product_name.Select();
                     return true;
@@ -348,9 +330,12 @@ namespace ArthiPOS.Controls.dashboard
                 case Keys.Enter:
 
                     {
-
+                        
+                        
                         if (txt_product_quantity.ContainsFocus)
                         {
+                            string quanti = txt_product_quantity.Text;
+                            if (quanti == "" || !quanti.Any(char.IsDigit)) return true;
                             string renttxt = txt_driver_rent.Text;
                             if (renttxt == "")
                             {
@@ -366,6 +351,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
                                 calculateService();
+                                ShowTotal();
                             }
                         }
                         else
@@ -378,19 +364,25 @@ namespace ArthiPOS.Controls.dashboard
 
                                 string t_quantity = txt_product_quantity.Text;
 
-                                if (total_rent == "" || t_quantity=="")
+                                if (string.IsNullOrEmpty(t_quantity))
+                                {
+                                    txt_product_quantity.Select();
+                                }
+                                if (string.IsNullOrEmpty(total_rent))
                                 {
                                     return true;
                                 }
 
 
-                                int rent = int.Parse(total_rent);
-                                int quantity = int.Parse(t_quantity);
+                                float rent = float.Parse(total_rent);
+                                float quantity = float.Parse(t_quantity);
                                 if (txt_total_rent.Text != "")
                                 {
-                                    rent_per_product = "" + (rent / quantity);
-                                    //txt_driver_rent.Text = rent_per_product;
+                                    float frientPerProduct = (rent / quantity);
+                                    rent_per_product = "" + frientPerProduct;
+                                    txt_driver_rent.Text = "" + frientPerProduct;
                                 }
+                                ShowTotal();
                             }
                         }
                         else
@@ -444,7 +436,10 @@ namespace ArthiPOS.Controls.dashboard
         private void calculateService()
         {
             string labour_per_product = txt_labour.Text;
+            if (labour_per_product == "" || !labour_per_product.Any(char.IsDigit)) txt_labour.Focus();
             string rent_per_product = txt_driver_rent.Text;
+            if (rent_per_product == "" || !rent_per_product.Any(char.IsDigit)) txt_driver_rent.Focus();
+
             string t_quantity = txt_product_quantity.Text;
             if (t_quantity == "")
             {
@@ -482,7 +477,9 @@ namespace ArthiPOS.Controls.dashboard
             Color col_total_rent,
             Color col_driver_expense,
             Color col_client_munshiana,
-            Color col_client_advance
+            Color col_client_advance,
+            Color col_marketfee,
+            Color col_txt_city
             )
         {
             txt_customer_chongi.BackColor = col_customer_chongi;
@@ -500,49 +497,50 @@ namespace ArthiPOS.Controls.dashboard
             txt_product_weight.BackColor = col_product_weight;
             txt_total_labour.BackColor = col_total_labour;
             txt_total_rent.BackColor = col_total_rent;
-            txt_driver_expense.BackColor = col_driver_expense;
             txt_client_munshiana.BackColor = col_client_munshiana;
             txt_client_advance.BackColor = col_client_advance;
             txt_landloard_nameid.BackColor = col_landloard_nameid;
+            txt_marketfee.BackColor = col_marketfee;
+            txt_city.BackColor = col_txt_city;
         }
         public void changetxtBoxFocus()
         {
             #region Focus Change
             if (txt_bipari_chongi.ContainsFocus)
             {
-                
+
                 colorChange(Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White,
-                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, 
-                    Color.White, Color.White, Color.White, Color.White, Color.White);
+                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
+                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
 
                 txt_bipari_commission.Select();
 
             }
             else if (txt_bipari_commission.ContainsFocus)
             {
-                
+
                 colorChange(Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,
                     Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                    Color.White, Color.White, Color.White, Color.White, Color.White);
+                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
                 txt_labour.Select();
 
             }
             else if (txt_labour.ContainsFocus)
             {
-                colorChange(Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,Color.White,
+                colorChange(Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White,
                     Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                    Color.White, Color.White, Color.White, Color.White, Color.White);
-               
+                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+
                 txt_driver_rent.Select();
 
 
             }
             else if (txt_driver_rent.ContainsFocus)
             {
-                colorChange(Color.FromArgb(0xEE, 0xEE, 0xEE),Color.White, Color.White, Color.White , Color.White, Color.White,
+                colorChange(Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White, Color.White,
                    Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                   Color.White, Color.White, Color.White, Color.White, Color.White);
-                
+                   Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+
                 txt_customer_chongi.Select();
 
 
@@ -551,7 +549,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 colorChange(Color.White, Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE),
                   Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.White, Color.White, Color.White);
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
 
                 txt_customer_commission.Select();
 
@@ -559,20 +557,31 @@ namespace ArthiPOS.Controls.dashboard
             else if (txt_customer_commission.ContainsFocus)
             {
                 colorChange(Color.White, Color.White, Color.White, Color.White,
+                  Color.White, Color.White,Color.White, Color.White,
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE));
+
+                txt_city.Select();
+
+
+            }
+            else if (txt_city.ContainsFocus)
+            {
+                colorChange(Color.White, Color.White, Color.White, Color.White,
                   Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,
                   Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.White, Color.White, Color.White);
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
                 txt_vehicle_id.Select();
-                
+
 
             }
             else if (txt_vehicle_id.ContainsFocus)
             {
                 shop = SHOP.Client;
                 colorChange(Color.White, Color.White, Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), 
+                 Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE),
                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.White, Color.White);
+                 Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
                 txt_client_nameid.Select();
 
             }
@@ -582,45 +591,64 @@ namespace ArthiPOS.Controls.dashboard
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                  Color.White, Color.White, Color.White, Color.White, Color.White
                  , Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.White);
+                 Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
 
-                if (clkey == "")
-                {
-                    string idCheck = checkClientIDExit(lbl_client_id.Text, "");
-                    if (idCheck == "")
-                        clkey = bal.p_getInvoiceID("Bip", lbl_client_id.Text, date);//Bip
-                    else
-                        clkey = idCheck;
-                }
-                lbl_bipariid.Text = clkey;
+                //lbl_bipariid.Text = clkey;
+                //lbl_landlorid.Text = "";
                 txt_product_name.Select();
 
             }
             else if (txt_landloard_nameid.ContainsFocus)
             {
+
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE)
                  , Color.White, Color.White, Color.White, Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.White);
+                 Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
 
 
-                string llkey = checkClientIDExit("", lbl_ll_client_id.Text);//Zam
-                if (llkey == "")
-                    llkey = bal.p_getInvoiceID("Zam", lbl_ll_client_id.Text, date);
+                //string llkey = checkClientIDExit("", lbl_ll_client_id.Text);//Zam
+                string keycount = zamidarCount(lbl_bipariid.Text, 1);
+
+                string llkeyk = keycount;//getIDZamidar(lbl_bipariid.Text,count);
+                //if (llkeyk == "") return;
+                //if (llkeyk != "")
+                //    lbl_landlorid.Text = llkeyk;
+                //For OldCode run check false
+                /*if (false)
+                {
+                    if (llkey == "")
+                        llkey = bal.p_getInvoiceID(KEY_TAG_Zam, lbl_ll_client_id.Text, date);
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Zamidar invoice already exist. Do you want Generate New ID ?", "New Invoice", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            llkey = bal.p_getInvoiceID("Zam", lbl_ll_client_id.Text, date);
+                            lbl_landlorid.Text = llkey;
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }*/
+                if (!txt_product_quantity.Enabled)
+                    txt_total_rent.Select();
                 else
-                { 
-                    DialogResult dialogResult = MessageBox.Show("Zamidar invoice already exist. Do you want Generate New ID ?", "New Invoice", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        llkey = bal.p_getInvoiceID("Zam", lbl_ll_client_id.Text, date);
-                        lbl_landlorid.Text = llkey;
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                txt_product_quantity.Select();
+                    txt_product_quantity.Select();
+
+            }
+            else if (txt_product_name.ContainsFocus)
+            {
+
+                shop = SHOP.Weight;
+                colorChange(Color.White, Color.White, Color.White, Color.White,
+                 Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE)
+                 , Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
+                 Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+
+                txt_landloard_nameid.Select();
 
             }
             else if (txt_product_quantity.ContainsFocus)
@@ -629,7 +657,7 @@ namespace ArthiPOS.Controls.dashboard
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White,
-                Color.White, Color.White, Color.White, Color.White, Color.White);
+                Color.White, Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
                 txt_mark.Select();
 
             }
@@ -640,18 +668,27 @@ namespace ArthiPOS.Controls.dashboard
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White);
+                Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White, Color.White);
 
-                txt_total_rent.Select();
+                txt_product_weight.Select();
 
             }
+            else if (txt_product_weight.ContainsFocus)
+            {
 
+                colorChange(Color.White, Color.White, Color.White, Color.White,
+                Color.White, Color.White, Color.White, Color.White, Color.White
+                , Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White,
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+
+                txt_total_rent.Select();
+            }
             else if (txt_total_rent.ContainsFocus)
             {
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.White, Color.White, Color.White, Color.White,
-                 Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White);
+                 Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
 
 
                 txt_total_labour.Select();
@@ -663,54 +700,9 @@ namespace ArthiPOS.Controls.dashboard
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.White, Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE));
+                  Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White);
                 txt_client_advance.Select();
-
-
-            }
-            else if (txt_product_name.ContainsFocus)
-            {
-
-                shop = SHOP.Weight;
-                colorChange(Color.White, Color.White, Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE)
-                 , Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                 Color.White, Color.White, Color.White, Color.White);
-               
-                txt_landloard_nameid.Select();
-
-            }
-            else if (txt_product_weight.ContainsFocus)
-            {
-
-                colorChange(Color.White, Color.White, Color.White, Color.White,
-                Color.White, Color.White, Color.White, Color.White, Color.White
-                , Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.White, Color.White);
-
-               txt_product_type.Select();
-            }
-
-            else if (txt_client_munshiana.ContainsFocus)
-            {
-                shop = SHOP.Product;
-                colorChange(Color.White, Color.White, Color.White, Color.White,
-                Color.White, Color.White, Color.White, Color.White, Color.White
-                , Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,
-                  Color.White, Color.White, Color.White, Color.White);
-
-                txt_product_weight.Select();
-
-
-            }
-            else if (txt_product_type.ContainsFocus)
-            {
-                colorChange(Color.White,Color.White, Color.White, Color.White,
-                Color.White, Color.White, Color.White, Color.White, Color.White
-                , Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,
-                  Color.White, Color.White, Color.White, Color.White);
-
-                btn_calculate.Select();
+                ShowTotal();
 
             }
             else if (txt_client_advance.ContainsFocus)
@@ -718,23 +710,45 @@ namespace ArthiPOS.Controls.dashboard
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.White, Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White);
+                  Color.White, Color.White, Color.Wheat, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White);
+                txt_client_munshiana.Select();
+                ShowTotal();
+            }
+            else if (txt_client_munshiana.ContainsFocus)
+            {
+                colorChange(Color.White, Color.White, Color.White, Color.White,
+               Color.White, Color.White, Color.White, Color.White, Color.White
+               , Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
+                 Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White);
 
-                
-                txt_driver_expense.Select();
+                txt_marketfee.Select();
+                ShowTotal();
 
 
             }
-            else if (txt_driver_expense.ContainsFocus)
+            else if (txt_marketfee.ContainsFocus)
+            {
+
+                shop = SHOP.Product;
+                colorChange(Color.White, Color.White, Color.White, Color.White,
+                Color.White, Color.White, Color.White, Color.White, Color.White
+                , Color.White, Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White,
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+                txt_product_type.Select();
+                ShowTotal();
+            }
+
+            else if (txt_product_type.ContainsFocus)
             {
                 colorChange(Color.White, Color.White, Color.White, Color.White,
                 Color.White, Color.White, Color.White, Color.White, Color.White
                 , Color.White, Color.White, Color.White, Color.White, Color.White, Color.White,
-                  Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White);
-
-                txt_client_munshiana.Select();
+                  Color.White, Color.White, Color.White, Color.White, Color.White, Color.White);
+                btn_calculate.Select();
 
             }
+
+
             else if (btn_calculate.ContainsFocus)
             {
                 // AlertMsg.Show("Record Calclulated", AlertMsg.AlertType.info);
@@ -755,7 +769,6 @@ namespace ArthiPOS.Controls.dashboard
                 txt_product_weight.BackColor = Color.White;
                 txt_total_labour.BackColor = Color.White;
                 txt_total_rent.BackColor = Color.White;
-                txt_driver_expense.BackColor = Color.White;
                 txt_client_munshiana.BackColor = Color.White;
                 txt_client_advance.BackColor = Color.White;
                 txt_product_name.Select();
@@ -797,7 +810,31 @@ namespace ArthiPOS.Controls.dashboard
                 return landlord.land_person.pkey == key;
             };
         }
-        private string clkey="";
+        private void updateALLLandlordKey(string clkey)
+        {
+            for (int i = 0; i < Admin.GetInstance.clients.Count; i++)
+            {
+                Landlord land = Admin.GetInstance.clients[i];
+                int count = i + 1;
+                string key = clkey + count;
+                land.land_person.pkey = key;
+                land.bill_key = key;
+                Admin.GetInstance.clients[i] = land;
+                addRowingrid_landlords(land);
+            }
+        }
+        private void ShowTotal()
+        {
+
+            float _rent = string.IsNullOrEmpty(txt_total_rent.Text) ? 0 : float.Parse(txt_total_rent.Text);
+            float _labour = string.IsNullOrEmpty(txt_total_labour.Text) ? 0 : float.Parse(txt_total_labour.Text);
+            float _advance = string.IsNullOrEmpty(txt_client_advance.Text) ? 0 : float.Parse(txt_client_advance.Text);
+            float munshiana = string.IsNullOrEmpty(txt_client_munshiana.Text) ? 0 : float.Parse(txt_client_munshiana.Text);
+            float marketfee = string.IsNullOrEmpty(txt_marketfee.Text) ? 0 : float.Parse(txt_marketfee.Text);
+
+            lbl_total_exp.Text = "" + (_rent + _labour + _advance + munshiana + marketfee);
+        }
+        private string clkey = "";
         private void btn_calculate_Click_1(object sender, EventArgs e)
         {
 
@@ -814,7 +851,16 @@ namespace ArthiPOS.Controls.dashboard
                 services.commission_customer_product = float.Parse(txt_customer_commission.Text);
                 services.labour_per_product = float.Parse(txt_labour.Text);
                 services.clerk_per_bill = float.Parse(txt_client_munshiana.Text);
-                services.marketfee = float.Parse(txt_marketfee.Text);
+                float result;
+                if (float.TryParse(txt_marketfee.Text, out result))
+                {
+                    services.marketfee = result;
+                }
+                else
+                {
+                    services.marketfee = 0;
+                }
+                
                 services.rent_per_product = float.Parse(txt_driver_rent.Text);
 
             }
@@ -843,7 +889,7 @@ namespace ArthiPOS.Controls.dashboard
                 string _rent_per_product = txt_driver_rent.Text;
                 string _labour = txt_total_labour.Text;
                 string _advance = txt_client_advance.Text;
-                string _expense = txt_driver_expense.Text;
+                string _expense = "0";
                 string _weight_id = lbl_weight_id.Text;
                 string marka = txt_mark.Text;
 
@@ -902,16 +948,16 @@ namespace ArthiPOS.Controls.dashboard
                      MessageBox.Show(remainingProduct+" "+ shop.ConstMessages._TRANSPORT_MESSAGE);
                      return;
                  }*/
-               
-                if (lbl_bipariid.Text == "" ||lbl_bipariid.Text=="0") { MessageBox.Show("Bipari Invoice ID Missing"); return;}
-                if (lbl_landlorid.Text == "" || lbl_landlorid.Text=="0") { MessageBox.Show("Zamidar Invoice ID Missing"); return;}
 
-                
-                
+                if (lbl_bipariid.Text == "" || lbl_bipariid.Text == "0") { lbl_bipariid.Text = getKey(KEY_TAG_BIP, lbl_client_id.Text, date); }
+                if (lbl_landlorid.Text == "" || lbl_landlorid.Text == "0") { lbl_landlorid.Text = getKey(KEY_TAG_Zam, lbl_client_id.Text, date); }
+
+
+
 
 
                 string _pid = "";
-                string _pkey = clkey;//BillKey.getBillID(BillKey.EnumUser.Client, date, _pid, 0);
+                string _pkey = lbl_bipariid.Text;//BillKey.getBillID(BillKey.EnumUser.Client, date, _pid, 0);
                 string _pname = "";
                 string _phone = "";
                 if (tempclient == null)
@@ -922,7 +968,6 @@ namespace ArthiPOS.Controls.dashboard
                 tempclient.date = date;
                 tempclient.client.date = date;
                 tempclient.client._vehicle_id = _vehicle_id;
-
                 Product product = new Product(_product_id, _product_name,
                    _type, _weight_id, _weight, int.Parse(_quantity), marka);
 
@@ -950,13 +995,25 @@ namespace ArthiPOS.Controls.dashboard
                 //for client
                 _pid = _id;
                 _pname = _clientnameid;
-                _pkey = clkey;//BillKey.getBillID(BillKey.EnumUser.Client, date, _pid, 0);//CommongetKey(_pid, "CL", date); //Date-cl-cl_id
+                if (string.IsNullOrEmpty(lbl_bipariid.Text))
+                {
 
+                    MessageBox.Show("Bipari Key Null");
+                    if(string.IsNullOrEmpty(tempclient.client._person_cl.pkey))
+                    {
+                        lbl_bipariid.Text = clkey = bal.p_getInvoiceID(KEY_TAG_BIP, lbl_client_id.Text, date);
+                    }
+                    else
+                    {
+                        lbl_bipariid.Text = tempclient.client._person_cl.pkey;
+                    }
+                    return;
+                }
+                _pkey = lbl_bipariid.Text;//BillKey.getBillID(BillKey.EnumUser.Client, date, _pid, 0);//CommongetKey(_pid, "CL", date); //Date-cl-cl_id
                 _phone = "";
 
-                Person cl_person = new Person(_pid, _pkey, _pname, _phone, 0, int.Parse(_expense));
 
-                land.client._person_cl = cl_person;
+                land.client._person_cl = new Person(_pid, _pkey, _pname, _phone, 0, int.Parse(_expense));
                 land.client._product = product;
                 land.client._services = services;
 
@@ -982,31 +1039,41 @@ namespace ArthiPOS.Controls.dashboard
 
                     // for landlord
                     _pid = _ll_id;
+                    if (string.IsNullOrEmpty(lbl_landlorid.Text))
+                    { 
+                        MessageBox.Show("Zamidar Key Null");
+                        getKeyZamidar(lbl_bipariid.Text);
+                        return;
+                    }
                     _pname = _landloardnameid;
-                    _pkey = tpKey;//BillKey.getBillID(BillKey.EnumUser.LandLoard, date, _pid, duplicateID);//CommongetKey(_pid, "LL", date); //Date-cl-cl_id
+                    if (updateData)
+                        _pkey = lbl_landlorid.Text;
+                    else
+                        _pkey = getKeyZamidar(lbl_bipariid.Text);//BillKey.getBillID(BillKey.EnumUser.LandLoard, date, _pid, duplicateID);//CommongetKey(_pid, "LL", date); //Date-cl-cl_id
 
                     _phone = "";
-                    Person landperson = new Person(_pid, _pkey, _pname, _phone, int.Parse(_advance), 0);
-
+                    
 
                     land.service = services;
-                    land.land_person = landperson;
+                    land.land_person = new Person(_pid, _pkey, _pname, _phone, int.Parse(_advance), 0);
                     land.land_product = product;
                     if (!updateData)
                     {
                         tem_ll.Add(land);
                         Admin.GetInstance.clients.Add(land);
                         addRowingrid_landlords(land);
-                    }else
+                    }
+                    else
                     {
-                        if (tem_ll==null)
+                        if (tem_ll == null)
                         {
                             tem_ll = new List<Landlord>();
                         }
                         if (grid_landlords.Rows.Count <= 1)
                         {
                             addRowingrid_landlords(land);
-                        }else
+                        }
+                        else
                         {
                             MessageBox.Show("Add New Bipri/Landlord Not Allowed.");
                             return;
@@ -1025,16 +1092,16 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        private string checkKey(string date,string _ll_id,int dupID)
+        private string checkKey(string date, string keyid, int dupID)
         {
-            string key=BillKey.getBillID(BillKey.EnumUser.LandLoard, date, _ll_id, dupID);
+            string key = BillKey.getBillID(BillKey.EnumUser.LandLoard, date, keyid, dupID);
             Landlord templand = Admin.GetInstance.clients.Find(ByKey(key));
 
             if (templand != null)
             {
 
                 ++duplicateID;
-                key=checkKey(date,_ll_id, duplicateID);
+                key = checkKey(date, keyid, duplicateID);
             }
             return key;
         }
@@ -1053,15 +1120,15 @@ namespace ArthiPOS.Controls.dashboard
             this.grid_landlords.Rows[count - 1].Cells[5].Value = landlord.expense.total_labour;
             this.grid_landlords.Rows[count - 1].Cells[6].Value = landlord.land_person.advance;
             this.grid_landlords.Rows[count - 1].Cells[7].Value = landlord.expense.total_munshiana;
-            this.grid_landlords.Rows[count - 1].Cells[8].Value = landlord.expense.total_expense;
+            this.grid_landlords.Rows[count - 1].Cells[8].Value = landlord.expense.total_marketfee;
             this.grid_landlords.Rows[count - 1].Cells[9].Value = landlord.GetTotalService + landlord.expense.total_expense;
-            //this.grid_landlords.Rows[count - 1].Cells[10].Value = landlord.service.customer_chongi;
+            this.grid_landlords.Rows[count - 1].Cells[10].Value = landlord.land_person.pkey;
             //this.grid_landlords.Rows[count - 1].Cells[11].Value = landlord.service.commission_customer_product;
             //this.grid_landlords.Rows[count - 1].Cells[12].Value = landlord.GetTotalService+landlord.expense.total_expense;
 
 
         }
-        
+
         public void clear()
         {
             txt_landloard_nameid.Clear();
@@ -1070,9 +1137,9 @@ namespace ArthiPOS.Controls.dashboard
             txt_product_quantity.Clear();
             //txt_product_type.Clear();
             //txt_product_wight.Clear();
-            txt_driver_expense.Clear();
             txt_client_advance.Clear();
             lbl_ll_client_id.Text = "";
+            lbl_landlorid.Text = "";
 
         }
 
@@ -1219,21 +1286,27 @@ namespace ArthiPOS.Controls.dashboard
             //return;
             //}
 
-            clkey = bal.p_getInvoiceID("Bip", lbl_client_id.Text,date);
+            // clkey = bal.p_getInvoiceID("Bip", lbl_client_id.Text,date);
 
 
 
             if (updateData)
             {
 
-                if (tempclient==null)
+
+
+
+
+
+                if (tempclient == null)
                 {
                     btn_calculate_Click_1(this, new EventArgs());
                     return;
                 }
                 tempclient.expense.category = nameof(BillKey.EnumUser.Client);
-                landup.expense.category=nameof(BillKey.EnumUser.Client);
-
+                landup.expense.category = nameof(BillKey.EnumUser.Client);
+                tempclient.client._vehicle_id = txt_vehicle_id.Text;
+                tempclient.client.date = this.date;
                 int remQuantity = tempclient.land_product.sale_remaining_product - landup.land_product.sale_remaining_product;
                 if (remQuantity > 0)
                 {
@@ -1257,17 +1330,31 @@ namespace ArthiPOS.Controls.dashboard
                     //btn_calculate_Click_1(this, new EventArgs());
                     tempclient.status = EStatus.Initial;
                     saleParser.updateLandLord(landup, tempclient);
-
+                }
+                int bipari_id = int.Parse(landup.client._person_cl.pid);
+                if (bipari_id > 0)
+                {
+                    new BLogic().update_Bipariidprofile(landup.land_person.pid, bipari_id);
                 }
                 clearandLoad();
-                this.vForm.Close();
+                this.Close();
                 return;
             }
             if (tempclient != null)
             {
-                insertSales(tempclient);
+                tempclient.expense.category = nameof(BillKey.EnumUser.Client);
+                tempclient.client._vehicle_id = txt_vehicle_id.Text;
+                tempclient.client.date = this.date;
+                if (!insertSales(tempclient))
+                {
+                    return;
+                }
                 tempclient = null;
                 clkey = "";
+            }
+            else
+            {
+                MessageBox.Show("Object Null Line1274");
             }
             clearandLoad();
             clkey = "";
@@ -1279,6 +1366,8 @@ namespace ArthiPOS.Controls.dashboard
             clear();
             txt_vehicle_id.Clear();
             txt_vehicle_id.Select();
+            lbl_landlorid.Text = "";
+            lbl_bipariid.Text = "";
             loadLastInputData();
         }
 
@@ -1289,10 +1378,29 @@ namespace ArthiPOS.Controls.dashboard
         public void searchDialog(int action, string searchTxt)
         {
 
-
-            using (search = new Search(action, searchTxt,1))
+            int bipari = string.IsNullOrEmpty(lbl_client_id.Text)
+                ? 0
+                : txt_client_nameid.ContainsFocus
+                    ? 0
+                    : int.Parse(lbl_client_id.Text);
+            int cltype = 1;
+            if (txt_client_nameid.ContainsFocus)
             {
+                cltype = 111;
+            }
+            if(action==3)
+            {
+                search = new Search(action, searchTxt == "Search" ? "" : searchTxt, cltype, bipari, txt_city.Text);
+                
+            }
+            else
+            {
+                search = new Search(action, searchTxt == "Search" ? "" : searchTxt, cltype, bipari);
 
+            }
+
+            using (search)
+            {
 
                 DialogResult res = search.ShowDialog();
                 if (action == 1)
@@ -1310,7 +1418,6 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         txt_landloard_nameid.Text = search.Name;
                         lbl_ll_client_id.Text = search.Id;
-
                     }
                 }
                 else
@@ -1340,6 +1447,10 @@ namespace ArthiPOS.Controls.dashboard
                 if (action == 5)
                 {
                     txt_product_name.Text = search.Name;
+                }
+                else if(action == 102)
+                {
+                    txt_city.Text = search.Name;
                 }
                 search.Close();
 
@@ -1399,8 +1510,6 @@ namespace ArthiPOS.Controls.dashboard
          private void txt_product_name_TextChanged(object sender, EventArgs e)
          {
 
-
-
          }
          */
         private void txt_product_wight_TextChanged(object sender, EventArgs e)
@@ -1441,19 +1550,18 @@ namespace ArthiPOS.Controls.dashboard
                         lbl_msg_result.Text = Resources.record_delete;
                     }
                 }
-
             }
         }
 
 
         #region Insert and Delete
-        private void insertSales(Landlord temp)
+        private bool insertSales(Landlord temp)
         {
             //bool check = bal.addClient_Landlord(objectIndex);//Temp Comment
             bool check = true;
             if (check)
             {
-                if (Authentication.Account.local == "0" || status=="Live")
+                if (Authentication.Account.local == "" || Authentication.Account.local == "0" || status == "Live")
                 {
                     #region dbinsert
                     if (!oneTimeCheck)
@@ -1477,28 +1585,43 @@ namespace ArthiPOS.Controls.dashboard
                         }
                         tem_ll = null;
                     }
+                    else
+                    {
+                        MessageBox.Show("DB Fail To Insert 1475 Line");
+                        return false;
+                    }
                     #endregion
 
                 }
                 else
                 {
-                    
-                        #region LocalFile Insertion
-                        foreach (Landlord tland in tem_ll)
-                        {
-                            int i = 5;
-                            saleParser.writeJson(tland, "");
-                            //string key = i++ + date.Replace("-", "");
-                        }
-                        #endregion
 
+                    #region LocalFile Insertion
+                    foreach (Landlord tland in tem_ll)
+                    {
+                        int i = 5;
+                        saleParser.writeJson(tland, "");
+                        //string key = i++ + date.Replace("-", "");
+                    }
+
+                    #endregion
+
+                }
+                int bipari_id = int.Parse(temp.client._person_cl.pid);
+
+                if (bipari_id > 0)
+                {
+                    new BLogic().update_Bipariidprofile(temp.land_person.pid, bipari_id);
                 }
                 updateUIData();
                 lbl_msg_result.Text = Resources.msg_database_success;
+                return true;
             }
             else
             {
                 lbl_msg_result.Text = Resources.insertion_error;
+                return false;
+
             }
         }
 
@@ -1519,11 +1642,11 @@ namespace ArthiPOS.Controls.dashboard
             {
                 int count = land.customers.Count;//Temp Comment
                 //return bal.deleteRecordTransport(billkey, date, land, count);//Temp Comment
-                return bal.deleteRecordTransport(billkey, date, land,land.category,"17");
+                return bal.deleteRecordTransport(billkey, date, land, land.category, "17");
             }
         }
         #endregion
-       
+
         private void btn_refreshed_Click(object sender, EventArgs e)
         {
             tempclient = null;
@@ -1538,7 +1661,7 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        
+
         #region OnlyNumeric Enter
         private void Txt_Numeric_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1555,19 +1678,18 @@ namespace ArthiPOS.Controls.dashboard
         }
         #endregion
 
-     
+
         private void btn_search_Click(object sender, EventArgs e)
         {
-            if (txt_client_nameid.ContainsFocus)
+            
+            if (txt_city.ContainsFocus) 
+            {
+                searchDialog(102, txt_client_nameid.Text);//city search
+            }
+            else if (txt_client_nameid.ContainsFocus)
             {
                 //txt_client_nameid_Enter(this, new EventArgs());
                 searchDialog(1, txt_client_nameid.Text);
-                string idCheck=checkClientIDExit(lbl_client_id.Text,"");
-                if (idCheck == "")
-                    clkey = bal.p_getInvoiceID("Bip", lbl_client_id.Text,date);
-                else
-                    clkey = idCheck;
-
 
             }
             else
@@ -1575,6 +1697,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 //txt_landloard_nameid_FocusEnter(this, new EventArgs());
                 searchDialog(1, txt_landloard_nameid.Text);
+
             }
             else
             if (txt_product_name.ContainsFocus)
@@ -1595,63 +1718,178 @@ namespace ArthiPOS.Controls.dashboard
             }*/
         }
 
-        private string checkClientIDExit(string clid,string landid)
+        private bool checkZamidarExit(string key)
         {
-            if (clid != "")
-            {
-                foreach (Landlord l in Admin.GetInstance.clients)
-                {
-                    if (l.client._person_cl.pid == clid)
-                    {
-                        return l.client._person_cl.pkey;
-                    }
-
-                }
-            }
-            if (landid != "")
-            {
-                foreach (Landlord l in Admin.GetInstance.clients)
-                {
-                    if (l.land_person.pid == landid)
-                    {
-                        return l.land_person.pkey;
-                    }
-
-                }
-            }
-            return "";
+            bool keyExists = Admin.GetInstance.clients.Any(client => client.land_person.pkey == key);
+            return keyExists;
         }
+        private bool checkBipariExit(string key)
+        {
+            bool keyExists = Admin.GetInstance.clients.Any(client => client.client._person_cl.pkey == key);
+            return keyExists;
+        }
+        private string zamidarCount(string clid, int count)
+        {
+            // Base case: If the client ID (clid) is empty, return 1
+            string key = "";
+            if (string.IsNullOrEmpty(clid))
+            {
+                return clid + "-" + count;
+            }
+
+            int currentCount = count; // Start with the provided starting count
+
+            // Loop to find the next available count by checking if the key exists
+            while (true)
+            {
+                // Generate the key in the format "clid-count" (e.g., "0004-1")
+                key = clid + "-" + currentCount;
+
+                // Check if any client in Admin.GetInstance.clients already has this key
+                bool keyExists = checkZamidarExit(key);
+
+                // If the key does not exist, return the current count
+                if (!keyExists)
+                {
+                    return key;
+                }
+
+                // If the key exists, increment the count and continue the loop
+                currentCount++;
+            }
+        }
+        public string getKeyZamidar(string bipkey, int startCount = 1)
+        {
+            if (string.IsNullOrEmpty(bipkey))
+            {
+                return "";  // Return empty if bipkey is not provided
+            }
+
+            int count = startCount;
+            string lkey;
+
+            while (true)
+            {
+                // Create the composite key using bipkey and count
+                lkey = $"{bipkey}-{count}";
+
+                // Check if this lkey exists in any landlord's pkey
+                bool keyExists = Admin.GetInstance.clients.Any(land => land.land_person.pkey == lkey);
+
+                if (!keyExists)
+                {
+                    // If the key doesn't exist, it's unique; break out of the loop
+                    break;
+                }
+
+                // Increment count to check the next potential key
+                count++;
+            }
+
+            // At this point, lkey contains a unique composite key
+            return lkey;
+        }
+
+        private void checkClientIDExit()
+        {
+            string bipid = lbl_client_id.Text;
+            string zam = lbl_ll_client_id.Text;
+
+            if (!string.IsNullOrEmpty(lbl_client_id.Text))
+            {
+                if (Admin.GetInstance.clients.Count == 0 && string.IsNullOrEmpty(lbl_bipariid.Text))
+                {
+                    lbl_bipariid.Text= clkey = bal.p_getInvoiceID(KEY_TAG_BIP, lbl_client_id.Text, date);
+
+                }
+                else
+                {
+                    foreach (Landlord l in Admin.GetInstance.clients)
+                    {
+                        if (l.client._person_cl.pid == bipid && l.land_person.pid == zam && l.client._person_cl.pkey != "")
+                        {
+                            lbl_bipariid.Text = clkey = l.client._person_cl.pkey;
+                        }
+                        else
+                        if (l.client._person_cl.pid == bipid && l.land_person.pid == zam && l.client._person_cl.pkey == "")
+                        {
+                            lbl_bipariid.Text = clkey = bal.p_getInvoiceID(KEY_TAG_BIP, lbl_client_id.Text, date);
+                        }
+                    }
+                }
+            }
+            /*if (!string.IsNullOrEmpty(lbl_ll_client_id.Text) && !string.IsNullOrEmpty(lbl_bipariid.Text))
+            {
+                int count = 0;
+                foreach (Landlord l in Admin.GetInstance.clients)
+                {
+                    string zamid = lbl_bipariid.Text + "-" + (++count);
+                    // Generate a potential key
+
+                    // Check if the current landlord matches the criteria
+                    if (l.client._person_cl.pid == bipid && l.land_person.pid == zam)
+                    {
+                        // If a matching landlord has the same key, increment count and try again
+                        if (l.land_person.pkey == zamid)
+                        {
+                            // Move to the next iteration to ensure a unique key
+                            continue;
+                        }
+                        else
+                        {
+                            // Assign the unique key if it doesn’t already exist
+
+                            lbl_landlorid.Text = zamid;
+                        }
+                    }
+
+                }
+                if(!string.IsNullOrEmpty(lbl_bipariid.Text))
+                {
+                    clkey=lbl_bipariid.Text;
+                }
+                if(string.IsNullOrEmpty(lbl_landlorid.Text))
+                {
+                    lbl_landlorid.Text = lbl_bipariid.Text + "-" + (++count);
+                }
+            }*/
+        }
+        
+
+
         #region Driver
         public void ZamidarGridLocalize()
         {
-            grid_driverlist.Columns[0].HeaderText = Resources.ResourceManager.GetString("a0201");
-            grid_driverlist.Columns[1].HeaderText = Resources.ResourceManager.GetString("a0401");
-            grid_driverlist.Columns[2].HeaderText = Resources.ResourceManager.GetString("a0304");
-            grid_driverlist.Columns[3].HeaderText = Resources.ResourceManager.GetString("a0309");
-            grid_driverlist.Columns[4].HeaderText = Resources.ResourceManager.GetString("a0311");
-            grid_driverlist.Columns[5].HeaderText = Resources.ResourceManager.GetString("a0307");
-            grid_driverlist.Columns[6].HeaderText = Resources.ResourceManager.GetString("a0305");
-            grid_driverlist.Columns[7].HeaderText = Resources.ResourceManager.GetString("a1061");
-            grid_driverlist.Columns[8].HeaderText = Resources.ResourceManager.GetString("a0013");
+            grid_driverlist.Columns[0].HeaderText = Resources.ResourceManager.GetString("key");
+            grid_driverlist.Columns[1].HeaderText = Resources.ResourceManager.GetString("a0201");
+            grid_driverlist.Columns[2].HeaderText = Resources.ResourceManager.GetString("a0401");
+            grid_driverlist.Columns[3].HeaderText = Resources.ResourceManager.GetString("a0304");
+            grid_driverlist.Columns[4].HeaderText = Resources.ResourceManager.GetString("a0309");
+            grid_driverlist.Columns[5].HeaderText = Resources.ResourceManager.GetString("a0311");
+            grid_driverlist.Columns[6].HeaderText = Resources.ResourceManager.GetString("a0307");
+            grid_driverlist.Columns[7].HeaderText = Resources.ResourceManager.GetString("a0305");
+            grid_driverlist.Columns[8].HeaderText = Resources.ResourceManager.GetString("a1061");
+            grid_driverlist.Columns[9].HeaderText = Resources.ResourceManager.GetString("a0013");
 
         }
-        private void ZamidarList(string row1, string row2, string row3, string row4, string row5
+        private void ZamidarList(string key, string row1, string row2, string row3, string row4, string row5
             , string row6, string row7, string row8, string row9)
         {
             int count = this.grid_driverlist.Rows.Count;
 
             this.grid_driverlist.Rows.Add();
-            this.grid_driverlist.Rows[count - 1].Cells[0].Value = row1.ToString(); //Zamidar name;
-            this.grid_driverlist.Rows[count - 1].Cells[1].Value = row2.ToString(); //Quantity;
-            this.grid_driverlist.Rows[count - 1].Cells[2].Value = row3.ToString(); //Rent;
-            this.grid_driverlist.Rows[count - 1].Cells[3].Value = row4.ToString(); //Labour;
-            this.grid_driverlist.Rows[count - 1].Cells[4].Value = row5.ToString(); //Expense;
-            this.grid_driverlist.Rows[count - 1].Cells[5].Value = row6.ToString(); //Client id;
-            if (grid_driverlist.Columns.Count < 6)
+            this.grid_driverlist.Rows[count - 1].Cells[0].Value = key.ToString(); //key;
+            this.grid_driverlist.Rows[count - 1].Cells[1].Value = row1.ToString(); //Zamidar name;
+            this.grid_driverlist.Rows[count - 1].Cells[2].Value = row2.ToString(); //Quantity;
+            this.grid_driverlist.Rows[count - 1].Cells[3].Value = row3.ToString(); //Rent;
+            this.grid_driverlist.Rows[count - 1].Cells[4].Value = row4.ToString(); //Labour;
+            this.grid_driverlist.Rows[count - 1].Cells[5].Value = row5.ToString(); //Expense;
+            this.grid_driverlist.Rows[count - 1].Cells[6].Value = row6.ToString(); //Client id;
+            if (grid_driverlist.Columns.Count < 7)
                 return;
-            this.grid_driverlist.Rows[count - 1].Cells[6].Value = row7.ToString(); //Client id;
-            this.grid_driverlist.Rows[count - 1].Cells[7].Value = row8.ToString(); //Client id;
-            this.grid_driverlist.Rows[count - 1].Cells[8].Value = row9.ToString(); //Client id;
+            this.grid_driverlist.Rows[count - 1].Cells[7].Value = row7.ToString(); //Client id;
+            this.grid_driverlist.Rows[count - 1].Cells[8].Value = row8.ToString(); //Client id;
+            this.grid_driverlist.Rows[count - 1].Cells[9].Value = row9.ToString(); //Client id;
         }
         private void DriverList(string tdate)
         {
@@ -1663,7 +1901,7 @@ namespace ArthiPOS.Controls.dashboard
                 DataTable rdt = bal.p_maalList(tdate);
                 foreach (DataRow row in rdt.Rows)
                 {
-                    ZamidarList(row[0].ToString(),
+                    ZamidarList(row[9].ToString(), row[0].ToString(),
                         row[1].ToString(),
                         row[2].ToString(),
                         row[3].ToString(),
@@ -1674,43 +1912,89 @@ namespace ArthiPOS.Controls.dashboard
                         row[8].ToString());
 
                 }
-            }else
+            }
+            else
             {
                 List<Landlord> tclients = saleParser.LoadTodaySale();
                 if (tclients == null)
                     return;
-                int tr = 0, tl=0,te=0,tq=0,tm=0,ta=0,tcc=0 ;
+                // Create a dictionary to store grouped landlords by pid
+                Dictionary<string, List<Landlord>> groupedLandlords = new Dictionary<string, List<Landlord>>();
 
+                // First, group the landlords by their pid
                 foreach (Landlord land in tclients)
                 {
-                    ZamidarList(land.land_person.pname,
-                        land.land_product.total_Quantity.ToString(),
-                        land.expense.total_rent.ToString(),
-                        land.expense.total_labour.ToString(),
-                        land.expense.total_expense.ToString(),
-                        land.expense.total_munshiana.ToString(), land.expense.total_advance_amount.ToString(),
-                        ((int)(land.Total_Chongi+land.Total_Commission)).ToString(),
-                        land.land_person.pid);
-                    tq += land.land_product.total_Quantity;
-                    tr += land.expense.total_rent;
-                    tl += land.expense.total_labour;
-                    te += land.expense.total_expense;
-                    tm += land.expense.total_munshiana;
-                    ta += land.expense.total_advance_amount;
-                    tcc += (int)(land.Total_Chongi + land.Total_Commission);
+                    int pid = int.Parse(land.client._person_cl.pid);
+                    string pkey = land.client._person_cl.pkey;
+                    // If the pid is already in the dictionary, add this landlord to the existing list
+                    if (groupedLandlords.ContainsKey(pkey))
+                    {
+                        groupedLandlords[pkey].Add(land);
+                    }
+                    else
+                    {
+                        // Otherwise, create a new list for this pid
+                        groupedLandlords[pkey] = new List<Landlord> { land };
+                    }
+                }
+                int tr = 0, tl = 0, tmf = 0, tq = 0, tm = 0, ta = 0, tcc = 0;
+
+                // Now, iterate through each group of landlords with the same pid and aggregate their data
+                foreach (var group in groupedLandlords)
+                {
+                    string pkey = group.Key;
+                    List<Landlord> commonLandlords = group.Value;
+
+                    // Initialize variables to store aggregated values
+                    int quantity = 0, rent = 0, labour = 0, munshiana = 0, advance = 0, laga = 0, commission = 0, marketfee = 0;
+                    string pname = ""; // Placeholder for pname (assume it will be the same for all in the group)
+                    string pid = "";
+                    foreach (Landlord land in commonLandlords)
+                    {
+                        // Aggregating values from the landlords with the same pid
+                        quantity += land.land_product.total_Quantity;
+                        rent += land.expense.total_rent;
+                        labour += land.expense.total_labour;
+                        munshiana += land.expense.total_munshiana;
+                        marketfee += land.expense.total_marketfee;
+                        advance += land.expense.total_advance_amount;
+                        commission += (int)land.GetCommission;
+                        laga += (int)land.GetChongi;
+                        pid = land.client._person_cl.pid;
+                        pname = land.client._person_cl.pname; // Assuming pname is the same for landlords with the same pid
 
 
+                        tq += land.land_product.total_Quantity;
+                        tr += land.expense.total_rent;
+                        tl += land.expense.total_labour;
+                        tmf += land.expense.total_marketfee;
+                        tm += land.expense.total_munshiana;
+                        ta += land.expense.total_advance_amount;
+                        tcc += (int)(land.Total_Chongi + land.Total_Commission);
+                    }
+
+                    // Send the aggregated data to ZamidarList for each group
+                    ZamidarList(pkey, pname,
+                       quantity + "",
+                       rent.ToString(),
+                       labour.ToString(),
+                       marketfee.ToString(),
+                       munshiana.ToString(),
+                       advance.ToString(),
+                       ((int)(laga + commission)).ToString(),
+                       pid + "");
 
                 }
-                ZamidarList("Total",tq.ToString(),tr.ToString(), tl.ToString(), te.ToString(),
-                    tm.ToString(),ta.ToString(),tcc.ToString(),"");
+                ZamidarList("Total", "", tq.ToString(), tr.ToString(), tl.ToString(), tmf.ToString(),
+                    tm.ToString(), ta.ToString(), tcc.ToString(), "");
+                lbl_total_exp.Text = "000";
             }
-           
+
             //grid_driverlist.DataSource = rdt; 
         }
-        public void addZamidarColumn(string columnname,string headertext)
+        public void addZamidarColumn(string columnname, string headertext)
         {
-            this.grid_driverlist.Columns.Add(columnname,headertext);
+            this.grid_driverlist.Columns.Add(columnname, headertext);
         }
 
 
@@ -1732,18 +2016,63 @@ namespace ArthiPOS.Controls.dashboard
                 //string BipcountBill = bal.p_getInvoiceID("BipCount", lbl_client_id.Text, date);
                 //clkey = clkey + "-" + ((BipcountBill == "0" || BipcountBill == "") ? "" : BipcountBill);
                 //llkey = llkey + "-" + ((ZamcountBill == "0" || ZamcountBill == "") ? "" : ZamcountBill);
-                string llkey = bal.p_getInvoiceID("Zam", lbl_ll_client_id.Text, date);
+                string llkey = getKey(KEY_TAG_Zam, lbl_ll_client_id.Text, date);
                 lbl_landlorid.Text = llkey;
 
-                string bipkey = bal.p_getInvoiceID("Bip", lbl_ll_client_id.Text, date);
+                string bipkey = getKey(KEY_TAG_BIP, lbl_ll_client_id.Text, date);
                 lbl_bipariid.Text = bipkey;
             }
             else if (dialogResult == DialogResult.No)
             {
-                string llkey = bal.p_getInvoiceID("Zam", lbl_ll_client_id.Text, date);
+                string llkey = getKey(KEY_TAG_Zam, lbl_ll_client_id.Text, date);
                 lbl_landlorid.Text = llkey;
 
                 return;
+            }
+        }
+        private string getIDZamidar(string key, int count)
+        {
+            foreach (Landlord l in Admin.GetInstance.clients)
+            {
+                if (l.land_person.pkey == key)
+                {
+                    getIDZamidar(key, count + 1);
+                }
+                else
+                {
+                    return key + "-" + count;
+                }
+
+            }
+            return key + "-" + count;
+        }
+        private string KEY_TAG_BIP = "Other";
+        private string KEY_TAG_Zam = "Zam";
+
+        private string getKey(string type, string keyid, string date)
+        {
+            if (type == KEY_TAG_Zam)
+            {
+                if (lbl_ll_client_id.Text == "" || lbl_ll_client_id.Text == "0") { txt_landloard_nameid.Focus(); return ""; }
+            }
+            else if (type == KEY_TAG_BIP)
+            {
+                if (lbl_client_id.Text == "" || lbl_client_id.Text == "0") { txt_vehicle_id.Focus(); return ""; }
+            }
+            return bal.p_getInvoiceID(type, keyid, date);
+        }
+
+        private void chl_quantity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Authentication.Account.local == "0" || status == "Live")
+            {
+            }
+            else
+            {
+                if (chk_quantity.Checked)
+                    txt_product_quantity.Enabled = true;
+                else
+                    txt_product_quantity.Enabled = false;
             }
         }
     }

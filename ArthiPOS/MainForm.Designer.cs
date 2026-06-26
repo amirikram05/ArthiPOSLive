@@ -1,4 +1,7 @@
-﻿namespace ArthiPOS.controls
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace ArthiPOS.controls
 {
     partial class MainForm
     {
@@ -30,13 +33,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            BunifuAnimatorNS.Animation animation3 = new BunifuAnimatorNS.Animation();
-            BunifuAnimatorNS.Animation animation4 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             this.nav_menu_left = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.today_date = new MetroFramework.Controls.MetroDateTime();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.vmenu_billpaidout = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.vmenu_rent = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.lbl_aboutinfo = new System.Windows.Forms.Label();
             this.menu_signout = new Bunifu.Framework.UI.BunifuFlatButton();
             this.vmenu_dashboard = new Bunifu.Framework.UI.BunifuFlatButton();
             this.vmenu_reports = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -57,46 +62,75 @@
             this.profilesCTRL8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportCTRL9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cTRL0ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.google_btn_drive = new System.Windows.Forms.LinkLabel();
-            this.lbl_dbname = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.today_date = new MetroFramework.Controls.MetroDateTime();
-            this.combo_lang = new System.Windows.Forms.ComboBox();
             this.calcEdit1 = new DevExpress.XtraEditors.CalcEdit();
+            this.lbl_dbname = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuImageButton5 = new Bunifu.Framework.UI.BunifuImageButton();
+            this.bunifuImageButton2 = new Bunifu.Framework.UI.BunifuImageButton();
             this.lbl_header_title = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
-            this.bunifuImageButton3 = new Bunifu.Framework.UI.BunifuImageButton();
             this.bunifuImageButton4 = new Bunifu.Framework.UI.BunifuImageButton();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.urduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gdriveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shopIncomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hELPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lOGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cONTRACTSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kEYBOARDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_info = new System.Windows.Forms.Panel();
+            this.lblUserInfo = new System.Windows.Forms.Label();
             this.navigationFadeTransition1 = new Bunifu.Framework.UI.BunifuFormFadeTransition(this.components);
             this.tshow = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.miniToolStrip = new System.Windows.Forms.MenuStrip();
+            this.dropdownMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuItemReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemShopDaily = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemNotifications = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEditor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.thide = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.nav_menu_left.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.calcEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton4)).BeginInit();
+            this.menuStrip2.SuspendLayout();
+            this.panel_info.SuspendLayout();
+            this.dropdownMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // nav_menu_left
             // 
             resources.ApplyResources(this.nav_menu_left, "nav_menu_left");
             this.nav_menu_left.BackColor = System.Drawing.Color.White;
-            this.nav_menu_left.Controls.Add(this.pictureBox2);
-            this.nav_menu_left.Controls.Add(this.materialDivider1);
+            this.nav_menu_left.Controls.Add(this.panel3);
+            this.nav_menu_left.Controls.Add(this.today_date);
             this.nav_menu_left.Controls.Add(this.panel2);
-            this.nav_menu_left.Controls.Add(this.materialDivider2);
-            this.nav_menu_left.Controls.Add(this.label1);
             this.tshow.SetDecoration(this.nav_menu_left, BunifuAnimatorNS.DecorationType.None);
             this.thide.SetDecoration(this.nav_menu_left, BunifuAnimatorNS.DecorationType.None);
             this.nav_menu_left.Name = "nav_menu_left";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.thide.SetDecoration(this.panel3, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.panel3, BunifuAnimatorNS.DecorationType.None);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
             // 
             // pictureBox2
             // 
@@ -107,20 +141,20 @@
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
-            // materialDivider1
+            // today_date
             // 
-            this.materialDivider1.BackColor = System.Drawing.Color.Gray;
-            this.thide.SetDecoration(this.materialDivider1, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.materialDivider1, BunifuAnimatorNS.DecorationType.None);
-            this.materialDivider1.Depth = 0;
-            resources.ApplyResources(this.materialDivider1, "materialDivider1");
-            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider1.Name = "materialDivider1";
+            resources.ApplyResources(this.today_date, "today_date");
+            this.thide.SetDecoration(this.today_date, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.today_date, BunifuAnimatorNS.DecorationType.None);
+            this.today_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.today_date.Name = "today_date";
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.vmenu_billpaidout);
+            this.panel2.Controls.Add(this.vmenu_rent);
+            this.panel2.Controls.Add(this.lbl_aboutinfo);
             this.panel2.Controls.Add(this.menu_signout);
             this.panel2.Controls.Add(this.vmenu_dashboard);
             this.panel2.Controls.Add(this.vmenu_reports);
@@ -134,41 +168,50 @@
             this.panel2.Controls.Add(this.menuStrip1);
             this.thide.SetDecoration(this.panel2, BunifuAnimatorNS.DecorationType.None);
             this.tshow.SetDecoration(this.panel2, BunifuAnimatorNS.DecorationType.None);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
-            // vmenu_billpaidout
+            // vmenu_rent
             // 
-            this.vmenu_billpaidout.Activecolor = System.Drawing.Color.WhiteSmoke;
-            this.vmenu_billpaidout.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.vmenu_billpaidout, "vmenu_billpaidout");
-            this.vmenu_billpaidout.BorderRadius = 7;
-            this.vmenu_billpaidout.ButtonText = "Bill Paidout";
-            this.vmenu_billpaidout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tshow.SetDecoration(this.vmenu_billpaidout, BunifuAnimatorNS.DecorationType.None);
-            this.thide.SetDecoration(this.vmenu_billpaidout, BunifuAnimatorNS.DecorationType.None);
-            this.vmenu_billpaidout.DisabledColor = System.Drawing.Color.Gray;
-            this.vmenu_billpaidout.Iconcolor = System.Drawing.Color.Transparent;
-            this.vmenu_billpaidout.Iconimage = null;
-            this.vmenu_billpaidout.Iconimage_right = null;
-            this.vmenu_billpaidout.Iconimage_right_Selected = null;
-            this.vmenu_billpaidout.Iconimage_Selected = null;
-            this.vmenu_billpaidout.IconMarginLeft = 0;
-            this.vmenu_billpaidout.IconMarginRight = 0;
-            this.vmenu_billpaidout.IconRightVisible = false;
-            this.vmenu_billpaidout.IconRightZoom = 0D;
-            this.vmenu_billpaidout.IconVisible = false;
-            this.vmenu_billpaidout.IconZoom = 90D;
-            this.vmenu_billpaidout.IsTab = true;
-            this.vmenu_billpaidout.Name = "vmenu_billpaidout";
-            this.vmenu_billpaidout.Normalcolor = System.Drawing.Color.White;
-            this.vmenu_billpaidout.OnHovercolor = System.Drawing.Color.White;
-            this.vmenu_billpaidout.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(204)))), ((int)(((byte)(51)))));
-            this.vmenu_billpaidout.selected = false;
-            this.vmenu_billpaidout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.vmenu_billpaidout.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
-            this.vmenu_billpaidout.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.vmenu_billpaidout.Click += new System.EventHandler(this.vmenu_billpaidout_Click);
+            this.vmenu_rent.Activecolor = System.Drawing.Color.WhiteSmoke;
+            this.vmenu_rent.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.vmenu_rent, "vmenu_rent");
+            this.vmenu_rent.BorderRadius = 7;
+            this.vmenu_rent.ButtonText = "Rent/Shop";
+            this.vmenu_rent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tshow.SetDecoration(this.vmenu_rent, BunifuAnimatorNS.DecorationType.None);
+            this.thide.SetDecoration(this.vmenu_rent, BunifuAnimatorNS.DecorationType.None);
+            this.vmenu_rent.DisabledColor = System.Drawing.Color.Gray;
+            this.vmenu_rent.Iconcolor = System.Drawing.Color.Transparent;
+            this.vmenu_rent.Iconimage = null;
+            this.vmenu_rent.Iconimage_right = null;
+            this.vmenu_rent.Iconimage_right_Selected = null;
+            this.vmenu_rent.Iconimage_Selected = null;
+            this.vmenu_rent.IconMarginLeft = 0;
+            this.vmenu_rent.IconMarginRight = 0;
+            this.vmenu_rent.IconRightVisible = false;
+            this.vmenu_rent.IconRightZoom = 0D;
+            this.vmenu_rent.IconVisible = false;
+            this.vmenu_rent.IconZoom = 90D;
+            this.vmenu_rent.IsTab = true;
+            this.vmenu_rent.Name = "vmenu_rent";
+            this.vmenu_rent.Normalcolor = System.Drawing.Color.White;
+            this.vmenu_rent.OnHovercolor = System.Drawing.Color.White;
+            this.vmenu_rent.OnHoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(204)))), ((int)(((byte)(51)))));
+            this.vmenu_rent.selected = false;
+            this.vmenu_rent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.vmenu_rent.Textcolor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.vmenu_rent.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.vmenu_rent.Click += new System.EventHandler(this.vmenu_rent_Click);
+            // 
+            // lbl_aboutinfo
+            // 
+            resources.ApplyResources(this.lbl_aboutinfo, "lbl_aboutinfo");
+            this.lbl_aboutinfo.BackColor = System.Drawing.Color.Transparent;
+            this.tshow.SetDecoration(this.lbl_aboutinfo, BunifuAnimatorNS.DecorationType.None);
+            this.thide.SetDecoration(this.lbl_aboutinfo, BunifuAnimatorNS.DecorationType.None);
+            this.lbl_aboutinfo.ForeColor = System.Drawing.Color.DimGray;
+            this.lbl_aboutinfo.Name = "lbl_aboutinfo";
+            this.lbl_aboutinfo.Click += new System.EventHandler(this.lbl_aboutinfo_Click);
             // 
             // menu_signout
             // 
@@ -565,50 +608,35 @@
             this.cTRL0ToolStripMenuItem.Name = "cTRL0ToolStripMenuItem";
             resources.ApplyResources(this.cTRL0ToolStripMenuItem, "cTRL0ToolStripMenuItem");
             // 
-            // materialDivider2
-            // 
-            this.materialDivider2.BackColor = System.Drawing.Color.Gray;
-            this.thide.SetDecoration(this.materialDivider2, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.materialDivider2, BunifuAnimatorNS.DecorationType.None);
-            this.materialDivider2.Depth = 0;
-            resources.ApplyResources(this.materialDivider2, "materialDivider2");
-            this.materialDivider2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider2.Name = "materialDivider2";
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.tshow.SetDecoration(this.label1, BunifuAnimatorNS.DecorationType.None);
-            this.thide.SetDecoration(this.label1, BunifuAnimatorNS.DecorationType.None);
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Name = "label1";
-            // 
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.google_btn_drive);
-            this.panel1.Controls.Add(this.lbl_dbname);
-            this.panel1.Controls.Add(this.today_date);
-            this.panel1.Controls.Add(this.combo_lang);
             this.panel1.Controls.Add(this.calcEdit1);
+            this.panel1.Controls.Add(this.lbl_dbname);
+            this.panel1.Controls.Add(this.bunifuImageButton5);
+            this.panel1.Controls.Add(this.bunifuImageButton2);
             this.panel1.Controls.Add(this.lbl_header_title);
             this.panel1.Controls.Add(this.bunifuImageButton1);
-            this.panel1.Controls.Add(this.bunifuImageButton3);
             this.panel1.Controls.Add(this.bunifuImageButton4);
+            this.panel1.Controls.Add(this.menuStrip2);
             this.thide.SetDecoration(this.panel1, BunifuAnimatorNS.DecorationType.None);
             this.tshow.SetDecoration(this.panel1, BunifuAnimatorNS.DecorationType.None);
             this.panel1.Name = "panel1";
             // 
-            // google_btn_drive
+            // calcEdit1
             // 
-            this.tshow.SetDecoration(this.google_btn_drive, BunifuAnimatorNS.DecorationType.None);
-            this.thide.SetDecoration(this.google_btn_drive, BunifuAnimatorNS.DecorationType.None);
-            resources.ApplyResources(this.google_btn_drive, "google_btn_drive");
-            this.google_btn_drive.Name = "google_btn_drive";
-            this.google_btn_drive.TabStop = true;
-            this.google_btn_drive.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.google_btn_drive_LinkClicked);
+            resources.ApplyResources(this.calcEdit1, "calcEdit1");
+            this.thide.SetDecoration(this.calcEdit1, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.calcEdit1, BunifuAnimatorNS.DecorationType.None);
+            this.calcEdit1.Name = "calcEdit1";
+            this.calcEdit1.Properties.Appearance.BackColor = ((System.Drawing.Color)(resources.GetObject("calcEdit1.Properties.Appearance.BackColor")));
+            this.calcEdit1.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("calcEdit1.Properties.Appearance.Font")));
+            this.calcEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.calcEdit1.Properties.Appearance.Options.UseFont = true;
+            this.calcEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("calcEdit1.Properties.Buttons"))))});
+            this.calcEdit1.Properties.ShowCloseButton = true;
             // 
             // lbl_dbname
             // 
@@ -618,38 +646,31 @@
             this.lbl_dbname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lbl_dbname.Name = "lbl_dbname";
             // 
-            // today_date
+            // bunifuImageButton5
             // 
-            resources.ApplyResources(this.today_date, "today_date");
-            this.thide.SetDecoration(this.today_date, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.today_date, BunifuAnimatorNS.DecorationType.None);
-            this.today_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.today_date.Name = "today_date";
-            this.today_date.ValueChanged += new System.EventHandler(this.today_date_ValueChanged);
+            resources.ApplyResources(this.bunifuImageButton5, "bunifuImageButton5");
+            this.bunifuImageButton5.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImageButton5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.thide.SetDecoration(this.bunifuImageButton5, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.bunifuImageButton5, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuImageButton5.ImageActive = null;
+            this.bunifuImageButton5.Name = "bunifuImageButton5";
+            this.bunifuImageButton5.TabStop = false;
+            this.bunifuImageButton5.Zoom = 10;
+            this.bunifuImageButton5.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
-            // combo_lang
+            // bunifuImageButton2
             // 
-            resources.ApplyResources(this.combo_lang, "combo_lang");
-            this.thide.SetDecoration(this.combo_lang, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.combo_lang, BunifuAnimatorNS.DecorationType.None);
-            this.combo_lang.FormattingEnabled = true;
-            this.combo_lang.Items.AddRange(new object[] {
-            resources.GetString("combo_lang.Items"),
-            resources.GetString("combo_lang.Items1")});
-            this.combo_lang.Name = "combo_lang";
-            this.combo_lang.SelectedIndexChanged += new System.EventHandler(this.combo_lang_SelectedIndexChanged);
-            // 
-            // calcEdit1
-            // 
-            resources.ApplyResources(this.calcEdit1, "calcEdit1");
-            this.thide.SetDecoration(this.calcEdit1, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.calcEdit1, BunifuAnimatorNS.DecorationType.None);
-            this.calcEdit1.Name = "calcEdit1";
-            this.calcEdit1.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("calcEdit1.Properties.Appearance.Font")));
-            this.calcEdit1.Properties.Appearance.Options.UseFont = true;
-            this.calcEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("calcEdit1.Properties.Buttons"))))});
-            this.calcEdit1.Properties.ShowCloseButton = true;
+            resources.ApplyResources(this.bunifuImageButton2, "bunifuImageButton2");
+            this.bunifuImageButton2.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuImageButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.thide.SetDecoration(this.bunifuImageButton2, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.bunifuImageButton2, BunifuAnimatorNS.DecorationType.None);
+            this.bunifuImageButton2.ImageActive = null;
+            this.bunifuImageButton2.Name = "bunifuImageButton2";
+            this.bunifuImageButton2.TabStop = false;
+            this.bunifuImageButton2.Zoom = 10;
+            this.bunifuImageButton2.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
             // lbl_header_title
             // 
@@ -673,20 +694,6 @@
             this.bunifuImageButton1.Zoom = 10;
             this.bunifuImageButton1.Click += new System.EventHandler(this.nav_menu_Click);
             // 
-            // bunifuImageButton3
-            // 
-            resources.ApplyResources(this.bunifuImageButton3, "bunifuImageButton3");
-            this.bunifuImageButton3.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuImageButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.thide.SetDecoration(this.bunifuImageButton3, BunifuAnimatorNS.DecorationType.None);
-            this.tshow.SetDecoration(this.bunifuImageButton3, BunifuAnimatorNS.DecorationType.None);
-            this.bunifuImageButton3.Image = global::ArthiPOS.Properties.Resources.help1;
-            this.bunifuImageButton3.ImageActive = null;
-            this.bunifuImageButton3.Name = "bunifuImageButton3";
-            this.bunifuImageButton3.TabStop = false;
-            this.bunifuImageButton3.Zoom = 10;
-            this.bunifuImageButton3.Click += new System.EventHandler(this.bunifuImageButton3_Click);
-            // 
             // bunifuImageButton4
             // 
             resources.ApplyResources(this.bunifuImageButton4, "bunifuImageButton4");
@@ -694,20 +701,128 @@
             this.bunifuImageButton4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.thide.SetDecoration(this.bunifuImageButton4, BunifuAnimatorNS.DecorationType.None);
             this.tshow.SetDecoration(this.bunifuImageButton4, BunifuAnimatorNS.DecorationType.None);
-            this.bunifuImageButton4.Image = global::ArthiPOS.Properties.Resources.closeb;
             this.bunifuImageButton4.ImageActive = null;
             this.bunifuImageButton4.Name = "bunifuImageButton4";
             this.bunifuImageButton4.TabStop = false;
             this.bunifuImageButton4.Zoom = 10;
             this.bunifuImageButton4.Click += new System.EventHandler(this.bunifuImageButton4_Click);
             // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.White;
+            this.thide.SetDecoration(this.menuStrip2, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.menuStrip2, BunifuAnimatorNS.DecorationType.None);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.gdriveToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.shopIncomeToolStripMenuItem,
+            this.hELPToolStripMenuItem1});
+            resources.ApplyResources(this.menuStrip2, "menuStrip2");
+            this.menuStrip2.Name = "menuStrip2";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem,
+            this.logoutToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.urduToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // urduToolStripMenuItem
+            // 
+            this.urduToolStripMenuItem.Name = "urduToolStripMenuItem";
+            resources.ApplyResources(this.urduToolStripMenuItem, "urduToolStripMenuItem");
+            this.urduToolStripMenuItem.Click += new System.EventHandler(this.urduToolStripMenuItem_Click);
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            resources.ApplyResources(this.logoutToolStripMenuItem, "logoutToolStripMenuItem");
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.signout_bunifuFlat_Click);
+            // 
+            // gdriveToolStripMenuItem
+            // 
+            this.gdriveToolStripMenuItem.Name = "gdriveToolStripMenuItem";
+            resources.ApplyResources(this.gdriveToolStripMenuItem, "gdriveToolStripMenuItem");
+            this.gdriveToolStripMenuItem.Click += new System.EventHandler(this.google_btn_drive_LinkClicked);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.link_shopdaily_Click);
+            // 
+            // shopIncomeToolStripMenuItem
+            // 
+            this.shopIncomeToolStripMenuItem.Name = "shopIncomeToolStripMenuItem";
+            resources.ApplyResources(this.shopIncomeToolStripMenuItem, "shopIncomeToolStripMenuItem");
+            this.shopIncomeToolStripMenuItem.Click += new System.EventHandler(this.link_report_Click);
+            // 
+            // hELPToolStripMenuItem1
+            // 
+            this.hELPToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lOGToolStripMenuItem,
+            this.cONTRACTSToolStripMenuItem,
+            this.kEYBOARDToolStripMenuItem,
+            this.notificationToolStripMenuItem});
+            this.hELPToolStripMenuItem1.Name = "hELPToolStripMenuItem1";
+            resources.ApplyResources(this.hELPToolStripMenuItem1, "hELPToolStripMenuItem1");
+            // 
+            // lOGToolStripMenuItem
+            // 
+            this.lOGToolStripMenuItem.Name = "lOGToolStripMenuItem";
+            resources.ApplyResources(this.lOGToolStripMenuItem, "lOGToolStripMenuItem");
+            this.lOGToolStripMenuItem.Click += new System.EventHandler(this.btn_log_Click);
+            // 
+            // cONTRACTSToolStripMenuItem
+            // 
+            this.cONTRACTSToolStripMenuItem.Name = "cONTRACTSToolStripMenuItem";
+            resources.ApplyResources(this.cONTRACTSToolStripMenuItem, "cONTRACTSToolStripMenuItem");
+            this.cONTRACTSToolStripMenuItem.Click += new System.EventHandler(this.btn_editor_Click);
+            // 
+            // kEYBOARDToolStripMenuItem
+            // 
+            this.kEYBOARDToolStripMenuItem.Name = "kEYBOARDToolStripMenuItem";
+            resources.ApplyResources(this.kEYBOARDToolStripMenuItem, "kEYBOARDToolStripMenuItem");
+            this.kEYBOARDToolStripMenuItem.Click += new System.EventHandler(this.bunifuImageButton3_Click);
+            // 
+            // notificationToolStripMenuItem
+            // 
+            this.notificationToolStripMenuItem.Name = "notificationToolStripMenuItem";
+            resources.ApplyResources(this.notificationToolStripMenuItem, "notificationToolStripMenuItem");
+            this.notificationToolStripMenuItem.Click += new System.EventHandler(this.btnNotifications_Click);
+            // 
             // panel_info
             // 
             this.panel_info.BackColor = System.Drawing.Color.White;
+            this.panel_info.Controls.Add(this.lblUserInfo);
             this.thide.SetDecoration(this.panel_info, BunifuAnimatorNS.DecorationType.None);
             this.tshow.SetDecoration(this.panel_info, BunifuAnimatorNS.DecorationType.None);
             resources.ApplyResources(this.panel_info, "panel_info");
             this.panel_info.Name = "panel_info";
+            // 
+            // lblUserInfo
+            // 
+            resources.ApplyResources(this.lblUserInfo, "lblUserInfo");
+            this.tshow.SetDecoration(this.lblUserInfo, BunifuAnimatorNS.DecorationType.None);
+            this.thide.SetDecoration(this.lblUserInfo, BunifuAnimatorNS.DecorationType.None);
+            this.lblUserInfo.ForeColor = System.Drawing.Color.White;
+            this.lblUserInfo.Name = "lblUserInfo";
             // 
             // navigationFadeTransition1
             // 
@@ -717,22 +832,22 @@
             // 
             this.tshow.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.tshow.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
-            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
-            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            this.tshow.DefaultAnimation = animation3;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.tshow.DefaultAnimation = animation1;
             // 
             // miniToolStrip
             // 
@@ -741,32 +856,83 @@
             resources.ApplyResources(this.miniToolStrip, "miniToolStrip");
             this.miniToolStrip.Name = "miniToolStrip";
             // 
+            // dropdownMenu
+            // 
+            this.thide.SetDecoration(this.dropdownMenu, BunifuAnimatorNS.DecorationType.None);
+            this.tshow.SetDecoration(this.dropdownMenu, BunifuAnimatorNS.DecorationType.None);
+            this.dropdownMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemReports,
+            this.menuItemShopDaily,
+            this.menuItemNotifications,
+            this.menuItemLog,
+            this.menuItemEditor,
+            this.menuItemHelp});
+            this.dropdownMenu.Name = "dropdownMenu";
+            this.dropdownMenu.ShowImageMargin = false;
+            resources.ApplyResources(this.dropdownMenu, "dropdownMenu");
+            // 
+            // menuItemReports
+            // 
+            this.menuItemReports.Name = "menuItemReports";
+            resources.ApplyResources(this.menuItemReports, "menuItemReports");
+            this.menuItemReports.Click += new System.EventHandler(this.link_report_Click);
+            // 
+            // menuItemShopDaily
+            // 
+            this.menuItemShopDaily.Name = "menuItemShopDaily";
+            resources.ApplyResources(this.menuItemShopDaily, "menuItemShopDaily");
+            this.menuItemShopDaily.Click += new System.EventHandler(this.link_shopdaily_Click);
+            // 
+            // menuItemNotifications
+            // 
+            this.menuItemNotifications.Name = "menuItemNotifications";
+            resources.ApplyResources(this.menuItemNotifications, "menuItemNotifications");
+            this.menuItemNotifications.Click += new System.EventHandler(this.btnNotifications_Click);
+            // 
+            // menuItemLog
+            // 
+            this.menuItemLog.Name = "menuItemLog";
+            resources.ApplyResources(this.menuItemLog, "menuItemLog");
+            this.menuItemLog.Click += new System.EventHandler(this.btn_log_Click);
+            // 
+            // menuItemEditor
+            // 
+            this.menuItemEditor.Name = "menuItemEditor";
+            resources.ApplyResources(this.menuItemEditor, "menuItemEditor");
+            this.menuItemEditor.Click += new System.EventHandler(this.btn_editor_Click);
+            // 
+            // menuItemHelp
+            // 
+            this.menuItemHelp.Name = "menuItemHelp";
+            resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
+            this.menuItemHelp.Click += new System.EventHandler(this.bunifuImageButton3_Click);
+            // 
             // thide
             // 
             this.thide.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.thide.Cursor = null;
-            animation4.AnimateOnlyDifferences = true;
-            animation4.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.BlindCoeff")));
-            animation4.LeafCoeff = 0F;
-            animation4.MaxTime = 1F;
-            animation4.MinTime = 0F;
-            animation4.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicCoeff")));
-            animation4.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation4.MosaicShift")));
-            animation4.MosaicSize = 0;
-            animation4.Padding = new System.Windows.Forms.Padding(0);
-            animation4.RotateCoeff = 0F;
-            animation4.RotateLimit = 0F;
-            animation4.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.ScaleCoeff")));
-            animation4.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation4.SlideCoeff")));
-            animation4.TimeCoeff = 0F;
-            animation4.TransparencyCoeff = 0F;
-            this.thide.DefaultAnimation = animation4;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.thide.DefaultAnimation = animation2;
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ControlBox = false;
             this.Controls.Add(this.panel_info);
             this.Controls.Add(this.panel1);
@@ -776,9 +942,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.miniToolStrip;
             this.Name = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.nav_menu_left.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -787,9 +955,15 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.calcEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton4)).EndInit();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
+            this.panel_info.ResumeLayout(false);
+            this.panel_info.PerformLayout();
+            this.dropdownMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,23 +973,18 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel nav_menu_left;
         private System.Windows.Forms.Panel panel1;
-        private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton3;
         private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton4;
         private System.Windows.Forms.Panel panel_info;
         private Bunifu.Framework.UI.BunifuCustomLabel lbl_header_title;
         private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton1;
         private DevExpress.XtraEditors.CalcEdit calcEdit1;
-        private System.Windows.Forms.Label label1;
-        private MaterialSkin.Controls.MaterialDivider materialDivider1;
-        private MaterialSkin.Controls.MaterialDivider materialDivider2;
+        private System.Windows.Forms.Label lbl_aboutinfo;
         private BunifuAnimatorNS.BunifuTransition tshow;
         private BunifuAnimatorNS.BunifuTransition thide;
         private Bunifu.Framework.UI.BunifuFormFadeTransition navigationFadeTransition1;
-        private System.Windows.Forms.ComboBox combo_lang;
         public MetroFramework.Controls.MetroDateTime today_date;
         public Bunifu.Framework.UI.BunifuCustomLabel lbl_dbname;
         private System.Windows.Forms.Panel panel2;
-        private Bunifu.Framework.UI.BunifuFlatButton vmenu_billpaidout;
         private Bunifu.Framework.UI.BunifuFlatButton menu_signout;
         private Bunifu.Framework.UI.BunifuFlatButton vmenu_dashboard;
         private Bunifu.Framework.UI.BunifuFlatButton vmenu_reports;
@@ -837,6 +1006,31 @@
         private System.Windows.Forms.ToolStripMenuItem reportCTRL9ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cTRL0ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip miniToolStrip;
-        private System.Windows.Forms.LinkLabel google_btn_drive;
+        private Bunifu.Framework.UI.BunifuFlatButton vmenu_rent;
+        private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton5;
+        private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton2;
+        private System.Windows.Forms.Label lblUserInfo;
+        private Panel panel3;
+        private System.Windows.Forms.ContextMenuStrip dropdownMenu;
+        private System.Windows.Forms.ToolStripMenuItem menuItemReports;
+        private System.Windows.Forms.ToolStripMenuItem menuItemShopDaily;
+        private System.Windows.Forms.ToolStripMenuItem menuItemNotifications;
+        private System.Windows.Forms.ToolStripMenuItem menuItemLog;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEditor;
+        private System.Windows.Forms.ToolStripMenuItem menuItemHelp;
+        private MenuStrip menuStrip2;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem languageToolStripMenuItem;
+        private ToolStripMenuItem englishToolStripMenuItem;
+        private ToolStripMenuItem urduToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem gdriveToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem shopIncomeToolStripMenuItem;
+        private ToolStripMenuItem hELPToolStripMenuItem1;
+        private ToolStripMenuItem lOGToolStripMenuItem;
+        private ToolStripMenuItem cONTRACTSToolStripMenuItem;
+        private ToolStripMenuItem kEYBOARDToolStripMenuItem;
+        private ToolStripMenuItem notificationToolStripMenuItem;
     }
 }

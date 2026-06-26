@@ -1,13 +1,6 @@
 ﻿using BAL;
 using DataMember;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -15,14 +8,14 @@ namespace ArthiPOS.Controls.dashboard
     public partial class SalesChangeCustomer : Form
     {
         private Customer cust;
-        public SalesChangeCustomer(string date,Customer cust)
+        public SalesChangeCustomer(string date, Customer cust)
         {
             InitializeComponent();
             this.cust = cust;
             lbl_Date.Text = date;
             lbl_custid.Text = cust.customer_profile.pid;
             lbl_custname.Text = cust.customer_profile.pname;
-            lbl_quantity.Text =""+ cust.sale._sale_quantity;
+            lbl_quantity.Text = "" + cust.sale._sale_quantity;
             lbl_rate.Text = "" + cust.sale._sale_amount;
             lbl_totalsale.Text = "" + cust.sale._TotalSaleAmount;
             lbl_gtotal.Text = "" + cust.getGrandTotalCustomer();
@@ -50,7 +43,7 @@ namespace ArthiPOS.Controls.dashboard
 
                     try
                     {
-                        btn_seach_beg_Click(this, new EventArgs());  
+                        btn_seach_beg_Click(this, new EventArgs());
                     }
                     catch (NullReferenceException ex)
                     {
@@ -59,7 +52,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
                     return true;
-               
+
 
 
             }

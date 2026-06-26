@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Windows;
 
 namespace ArthiPOS.Utill
 {
@@ -43,62 +40,62 @@ namespace ArthiPOS.Utill
             }
         }
         public async Task<string> SignInWithEmailAndPassword(string email, string password)
-    {
-
-        try
         {
-            var request = new
+
+            try
             {
-                email,
-                password,
-                returnSecureToken = true
-            };
+                var request = new
+                {
+                    email,
+                    password,
+                    returnSecureToken = true
+                };
 
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(request);
-            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(request);
+                var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PostAsync($"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={apiKey}", content);
-            var responseContent = await response.Content.ReadAsStringAsync();
+                var response = await httpClient.PostAsync($"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={apiKey}", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
-            {
-                // Successful sign-in
-                var authResult = JsonConvert.DeserializeObject<FirebaseAuthResponse>(responseContent);
-                var token = authResult.idToken;
+                if (response.IsSuccessStatusCode)
+                {
+                    // Successful sign-in
+                    var authResult = JsonConvert.DeserializeObject<FirebaseAuthResponse>(responseContent);
+                    var token = authResult.idToken;
 
-                return token;
+                    return token;
+                }
+                else
+                {
+                    // Handle sign-in error
+                    var errorResponse = JsonConvert.DeserializeObject<FirebaseErrorResponse>(responseContent);
+                    throw new Exception(errorResponse.error.message);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Handle sign-in error
-                var errorResponse = JsonConvert.DeserializeObject<FirebaseErrorResponse>(responseContent);
-                throw new Exception(errorResponse.error.message);
+                // Handle network or other exceptions
+                throw new Exception("Sign-in failed.", ex);
             }
         }
-        catch (Exception ex)
+
+        private class FirebaseAuthResponse
         {
-            // Handle network or other exceptions
-            throw new Exception("Sign-in failed.", ex);
+            public string idToken { get; set; }
+            // Other properties as needed
         }
-    }
 
-    private class FirebaseAuthResponse
-    {
-        public string idToken { get; set; }
-        // Other properties as needed
-    }
+        private class FirebaseErrorResponse
+        {
+            public FirebaseError error { get; set; }
+        }
 
-    private class FirebaseErrorResponse
-    {
-        public FirebaseError error { get; set; }
-    }
-
-    private class FirebaseError
-    {
-        public string message { get; set; }
-        // Other properties as needed
-    }
+        private class FirebaseError
+        {
+            public string message { get; set; }
+            // Other properties as needed
+        }
         private class FirebaseUserLookupResponse
         {
             public List<FirebaseUser> users { get; set; }

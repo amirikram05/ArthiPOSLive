@@ -1,18 +1,11 @@
-﻿using System;
+﻿using ArthiPOS.Properties;
+using ArthiPOS.Reporting;
+using BAL;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BAL;
-using ArthiPOS.Properties;
-using ArthiPOS.Utill;
-using ArthiPOS.Reporting.ReportView;
-using ArthiPOS.Reporting;
-using DataMember;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -31,16 +24,16 @@ namespace ArthiPOS.Controls.dashboard
             BalanceSheetReport,
             AugraiReport,
             InvestmentRecovery,
-            BipariSales,BipariInvestment,BipariList,BipariProfit,
+            BipariSales, BipariInvestment, BipariList, BipariProfit,
             CustomerSale, CustomerList, CustomerProfit, SERP,
-            AugraiDiff, CustBillsandReceivings,DetailReport
+            AugraiDiff, CustBillsandReceivings, DetailReport
         }
         public enum SearchCheck
         {
-            Date,Khata,Name,City,Product
+            Date, Khata, Name, City, Product
         }
-        public  ReportMenu eMenu = ReportMenu.Default;
-       // SearchCheck eSearch;
+        public ReportMenu eMenu = ReportMenu.Default;
+        // SearchCheck eSearch;
         private BLReport bal;
         private string startdate = "", lastdate = "";
         private DataTable dt;
@@ -49,7 +42,7 @@ namespace ArthiPOS.Controls.dashboard
             InitializeComponent();
             bal = new BLReport();
             UIUpdate();
-            txt_page_size.Text = ""+pageSize;
+            txt_page_size.Text = "" + pageSize;
             chk_print_all.Visible = false;
         }
         #region Localization
@@ -74,22 +67,22 @@ namespace ArthiPOS.Controls.dashboard
         }
         public void updatemenu2()
         {
-            if (grid_report.Rows.Count==0)
+            if (grid_report.Rows.Count == 0)
             {
                 return;
             }
             changeColumnNameLocal(
-                               Resources.ResourceManager.GetString("a0013",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a2001",ci),
-                               Resources.ResourceManager.GetString("a2002",ci),
-                               Resources.ResourceManager.GetString("a2003",ci),
-                               Resources.ResourceManager.GetString("a1076",ci),
-                               Resources.ResourceManager.GetString("a0009",ci),
-                               Resources.ResourceManager.GetString("a2005",ci),
-                               Resources.ResourceManager.GetString("a2004",ci),
-                               Resources.ResourceManager.GetString("a2006",ci),
-                               Resources.ResourceManager.GetString("a1079",ci)
+                               Resources.ResourceManager.GetString("a0013", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a2001", ci),
+                               Resources.ResourceManager.GetString("a2002", ci),
+                               Resources.ResourceManager.GetString("a2003", ci),
+                               Resources.ResourceManager.GetString("a1076", ci),
+                               Resources.ResourceManager.GetString("a0009", ci),
+                               Resources.ResourceManager.GetString("a2005", ci),
+                               Resources.ResourceManager.GetString("a2004", ci),
+                               Resources.ResourceManager.GetString("a2006", ci),
+                               Resources.ResourceManager.GetString("a1079", ci)
                            );
 
             //grid_report.Columns[0].HeaderText = Resources.ResourceManager.GetString("a0013");//Khata
@@ -110,7 +103,7 @@ namespace ArthiPOS.Controls.dashboard
                                Resources.ResourceManager.GetString("a2003", ci),
                                Resources.ResourceManager.GetString("a2022", ci),
                                "",
-                                "","","",""
+                                "", "", "", ""
                            );
             chk_print_all.Visible = true;
 
@@ -124,13 +117,13 @@ namespace ArthiPOS.Controls.dashboard
         public void updatemenu13()
         {
             changeColumnNameLocal(
-                                Resources.ResourceManager.GetString("a0012",ci),
-                                Resources.ResourceManager.GetString("a0205",ci),
-                                Resources.ResourceManager.GetString("a1004",ci),
-                                Resources.ResourceManager.GetString("a0038",ci),
-                                Resources.ResourceManager.GetString("a2010",ci),
-                                Resources.ResourceManager.GetString("a2012",ci),
-                                Resources.ResourceManager.GetString("a2013",ci),
+                                Resources.ResourceManager.GetString("a0012", ci),
+                                Resources.ResourceManager.GetString("a0205", ci),
+                                Resources.ResourceManager.GetString("a1004", ci),
+                                Resources.ResourceManager.GetString("a0038", ci),
+                                Resources.ResourceManager.GetString("a2010", ci),
+                                Resources.ResourceManager.GetString("a2012", ci),
+                                Resources.ResourceManager.GetString("a2013", ci),
                                  "", "", "", ""
                             );
         }
@@ -140,15 +133,15 @@ namespace ArthiPOS.Controls.dashboard
         }
         public void updatemenu4()
         {
-            
+
         }
         public void updatemenu5()
         {
             changeColumnNameLocal(
-                               Resources.ResourceManager.GetString("a1079",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a0032",ci)
-                               ,"","","","","","","",""
+                               Resources.ResourceManager.GetString("a1079", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a0032", ci)
+                               , "", "", "", "", "", "", "", ""
                            );
             //grid_report.Columns[0].HeaderText = Resources.ResourceManager.GetString("a1079");//#
             //grid_report.Columns[1].HeaderText = Resources.ResourceManager.GetString("a0205");//Name
@@ -158,11 +151,11 @@ namespace ArthiPOS.Controls.dashboard
         public void updatemenu6()
         {
             changeColumnNameLocal(
-                              Resources.ResourceManager.GetString("a1079",ci),
-                              Resources.ResourceManager.GetString("a1077",ci),
-                              Resources.ResourceManager.GetString("a0032",ci),
-                              Resources.ResourceManager.GetString("a0013",ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
+                              Resources.ResourceManager.GetString("a1079", ci),
+                              Resources.ResourceManager.GetString("a1077", ci),
+                              Resources.ResourceManager.GetString("a0032", ci),
+                              Resources.ResourceManager.GetString("a0013", ci),
+                              Resources.ResourceManager.GetString("a0009", ci),
                               "", "", "", "", "", ""
                           );
             //grid_report.Columns[0].HeaderText = Resources.ResourceManager.GetString("a1079");//#
@@ -174,13 +167,13 @@ namespace ArthiPOS.Controls.dashboard
         public void updatemenu7()
         {
             changeColumnNameLocal(
-                              Resources.ResourceManager.GetString("a1079",ci),
-                              Resources.ResourceManager.GetString("a0205",ci),
-                              Resources.ResourceManager.GetString("a0032",ci),
-                              Resources.ResourceManager.GetString("a1078",ci),
-                              Resources.ResourceManager.GetString("a0012",ci),
-                              Resources.ResourceManager.GetString("a0013",ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
+                              Resources.ResourceManager.GetString("a1079", ci),
+                              Resources.ResourceManager.GetString("a0205", ci),
+                              Resources.ResourceManager.GetString("a0032", ci),
+                              Resources.ResourceManager.GetString("a1078", ci),
+                              Resources.ResourceManager.GetString("a0012", ci),
+                              Resources.ResourceManager.GetString("a0013", ci),
+                              Resources.ResourceManager.GetString("a0009", ci),
                                "", "", "", ""
                           );
             //grid_report.Columns[0].HeaderText = Resources.ResourceManager.GetString("a1079");//#
@@ -194,29 +187,29 @@ namespace ArthiPOS.Controls.dashboard
         public void updatemenu8()
         {
             changeColumnNameLocal(
-                               Resources.ResourceManager.GetString("a1079",ci),
-                               Resources.ResourceManager.GetString("a0032",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a1060",ci),
-                               Resources.ResourceManager.GetString("a0006",ci),
-                               Resources.ResourceManager.GetString("a2009",ci),
-                               Resources.ResourceManager.GetString("a2010",ci),
-                               Resources.ResourceManager.GetString("a2011",ci)
-                               ,"","",""
+                               Resources.ResourceManager.GetString("a1079", ci),
+                               Resources.ResourceManager.GetString("a0032", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a1060", ci),
+                               Resources.ResourceManager.GetString("a0006", ci),
+                               Resources.ResourceManager.GetString("a2009", ci),
+                               Resources.ResourceManager.GetString("a2010", ci),
+                               Resources.ResourceManager.GetString("a2011", ci)
+                               , "", "", ""
                            );
         }
         public void updatemenu9()
         {
-           
+
             changeColumnNameLocal(
                                Resources.ResourceManager.GetString("a0009", ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a0401",ci),
-                               Resources.ResourceManager.GetString("a1053",ci),
-                               Resources.ResourceManager.GetString("a1026",ci),
-                               Resources.ResourceManager.GetString("a0306",ci),
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a1080",ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a0401", ci),
+                               Resources.ResourceManager.GetString("a1053", ci),
+                               Resources.ResourceManager.GetString("a1026", ci),
+                               Resources.ResourceManager.GetString("a0306", ci),
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a1080", ci),
                                Resources.ResourceManager.GetString("a0013", ci),
                                Resources.ResourceManager.GetString("a0407", ci),
                                Resources.ResourceManager.GetString("a1079", ci)
@@ -243,15 +236,15 @@ namespace ArthiPOS.Controls.dashboard
             //grid_report.Columns[10].HeaderText = Resources.ResourceManager.GetString("a0009");//Date
             changeColumnNameLocal(
                                Resources.ResourceManager.GetString("a0009", ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a1089",ci),
-                               Resources.ResourceManager.GetString("a0401",ci),
-                               Resources.ResourceManager.GetString("a0033",ci),
-                               Resources.ResourceManager.GetString("a1053",ci),
-                               Resources.ResourceManager.GetString("a0302",ci),
-                               Resources.ResourceManager.GetString("a0301",ci),
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a0013",ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a1089", ci),
+                               Resources.ResourceManager.GetString("a0401", ci),
+                               Resources.ResourceManager.GetString("a0033", ci),
+                               Resources.ResourceManager.GetString("a1053", ci),
+                               Resources.ResourceManager.GetString("a0302", ci),
+                               Resources.ResourceManager.GetString("a0301", ci),
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a0013", ci),
                                Resources.ResourceManager.GetString("a1079", ci)
                            );
 
@@ -265,29 +258,29 @@ namespace ArthiPOS.Controls.dashboard
             //grid_report.Columns[4].HeaderText = Resources.ResourceManager.GetString("a1045");
             //grid_report.Columns[5].HeaderText = Resources.ResourceManager.GetString("a1046");
             changeColumnNameLocal(
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a1043",ci),
-                               Resources.ResourceManager.GetString("a1044",ci),
-                               Resources.ResourceManager.GetString("a1042",ci),
-                               Resources.ResourceManager.GetString("a1045",ci),
-                               Resources.ResourceManager.GetString("a1046",ci),"","","","",""
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a1043", ci),
+                               Resources.ResourceManager.GetString("a1044", ci),
+                               Resources.ResourceManager.GetString("a1042", ci),
+                               Resources.ResourceManager.GetString("a1045", ci),
+                               Resources.ResourceManager.GetString("a1046", ci), "", "", "", "", ""
                            );
 
         }
         public void updatemenu12()
         {
             changeColumnNameLocal(
-                               Resources.ResourceManager.GetString("a1079",ci),
-                               Resources.ResourceManager.GetString("a0009",ci),
-                               Resources.ResourceManager.GetString("a0401",ci),
-                               Resources.ResourceManager.GetString("a0504",ci),
-                               Resources.ResourceManager.GetString("a1041",ci),
-                               Resources.ResourceManager.GetString("a0304",ci),
-                               Resources.ResourceManager.GetString("a0303",ci),
-                               Resources.ResourceManager.GetString("a0307",ci),
-                               Resources.ResourceManager.GetString("a1034",ci),
-                               Resources.ResourceManager.GetString("a1035",ci),
-                               Resources.ResourceManager.GetString("a1032",ci)
+                               Resources.ResourceManager.GetString("a1079", ci),
+                               Resources.ResourceManager.GetString("a0009", ci),
+                               Resources.ResourceManager.GetString("a0401", ci),
+                               Resources.ResourceManager.GetString("a0504", ci),
+                               Resources.ResourceManager.GetString("a1041", ci),
+                               Resources.ResourceManager.GetString("a0304", ci),
+                               Resources.ResourceManager.GetString("a0303", ci),
+                               Resources.ResourceManager.GetString("a0307", ci),
+                               Resources.ResourceManager.GetString("a1034", ci),
+                               Resources.ResourceManager.GetString("a1035", ci),
+                               Resources.ResourceManager.GetString("a1032", ci)
                            );
             //grid_report.Columns[0].HeaderText = Resources.ResourceManager.GetString("a1079");//#
             //grid_report.Columns[1].HeaderText = Resources.ResourceManager.GetString("a0009");//Date
@@ -300,12 +293,12 @@ namespace ArthiPOS.Controls.dashboard
             //grid_report.Columns[8].HeaderText = Resources.ResourceManager.GetString("a1034");//BipariCommission
             //grid_report.Columns[9].HeaderText = Resources.ResourceManager.GetString("a1035");//Bipari Chongi
             //grid_report.Columns[10].HeaderText = Resources.ResourceManager.GetString("a1032");//Customer Commission
-            grid_report.Columns[11].HeaderText = Resources.ResourceManager.GetString("a1033",ci);//Customer Chongi
-            grid_report.Columns[12].HeaderText = Resources.ResourceManager.GetString("a0038",ci);//Receving
-            grid_report.Columns[13].HeaderText = Resources.ResourceManager.GetString("a1078",ci);//Discount
-            grid_report.Columns[14].HeaderText = Resources.ResourceManager.GetString("a0306",ci);//Expense
-            grid_report.Columns[15].HeaderText = Resources.ResourceManager.GetString("a1047",ci);//Augrai/Investment
-            grid_report.Columns[16].HeaderText = Resources.ResourceManager.GetString("a2004",ci);//NetCash
+            grid_report.Columns[11].HeaderText = Resources.ResourceManager.GetString("a1033", ci);//Customer Chongi
+            grid_report.Columns[12].HeaderText = Resources.ResourceManager.GetString("a0038", ci);//Receving
+            grid_report.Columns[13].HeaderText = Resources.ResourceManager.GetString("a1078", ci);//Discount
+            grid_report.Columns[14].HeaderText = Resources.ResourceManager.GetString("a0306", ci);//Expense
+            grid_report.Columns[15].HeaderText = Resources.ResourceManager.GetString("a1047", ci);//Augrai/Investment
+            grid_report.Columns[16].HeaderText = Resources.ResourceManager.GetString("a2004", ci);//NetCash
 
         }
 
@@ -314,9 +307,9 @@ namespace ArthiPOS.Controls.dashboard
         {
             //showChanges(false, false, false, false, false, false, false, false, false, false);
         }
-       
-      
-        public void showChanges(bool _menu_panel, bool _check_panel ,bool _txt_id, bool _chk_id,bool _txt_name, 
+
+
+        public void showChanges(bool _menu_panel, bool _check_panel, bool _txt_id, bool _chk_id, bool _txt_name,
             bool _chk_name, bool _chk_city, bool _chk_product,
             bool _date_panel, bool _chk_date)
         {
@@ -339,7 +332,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             lbl_select_name.Text = menu_admin_1.Text;
             showChanges(false, false, false, false, false, false, false, false, false, false);
-            showChanges(true, true, false, false, false, false, false,false,true,true);
+            showChanges(true, true, false, false, false, false, false, false, true, true);
             eMenu = ReportMenu.CreateSeasonReport;
         }
 
@@ -349,7 +342,7 @@ namespace ArthiPOS.Controls.dashboard
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(false, false, false, false, false, false, false, false, true, false);
             eMenu = ReportMenu.BipariInvestment;
-            loadGridData(1, "", "","");
+            loadGridData(1, "", "", "");
 
 
         }
@@ -362,7 +355,7 @@ namespace ArthiPOS.Controls.dashboard
             eMenu = ReportMenu.CashReceived;
 
 
-            loadGridData(1, "", "","");
+            loadGridData(1, "", "", "");
         }
 
         private void menu_admin_4_Click(object sender, EventArgs e)
@@ -371,7 +364,7 @@ namespace ArthiPOS.Controls.dashboard
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(true, true, false, false, false, false, false, false, true, true);
             eMenu = ReportMenu.ExpenseDetail;
-            loadGridData(1, "", "","");
+            loadGridData(1, "", "", "");
         }
 
         private void menu_admin_5_Click(object sender, EventArgs e)
@@ -380,7 +373,7 @@ namespace ArthiPOS.Controls.dashboard
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(true, true, false, false, false, false, false, false, true, true);
             eMenu = ReportMenu.ProfitLoss;
-            loadGridData(1,"","","");
+            loadGridData(1, "", "", "");
         }
 
         private void menu_admin_6_Click(object sender, EventArgs e)
@@ -392,9 +385,10 @@ namespace ArthiPOS.Controls.dashboard
             {
                 startdate = date_start.Text;
                 lastdate = date_last.Text;
-                loadGridData(1, startdate, lastdate,"");
-            }else
-                loadGridData(1,"","","");
+                loadGridData(1, startdate, lastdate, "");
+            }
+            else
+                loadGridData(1, "", "", "");
 
         }
 
@@ -404,7 +398,7 @@ namespace ArthiPOS.Controls.dashboard
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(true, true, false, false, false, false, false, false, true, true);
             eMenu = ReportMenu.AugraiReport;
-            loadGridData(1, "", "","");
+            loadGridData(1, "", "", "");
         }
 
         private void menu_admin_9_Click(object sender, EventArgs e)
@@ -421,7 +415,7 @@ namespace ArthiPOS.Controls.dashboard
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(true, true, false, false, false, false, false, false, true, true);
             eMenu = ReportMenu.BipariSales;
-            loadGridData(1,"","","");
+            loadGridData(1, "", "", "");
         }
 
         private void menu_bipari_2_Click(object sender, EventArgs e)
@@ -462,7 +456,7 @@ namespace ArthiPOS.Controls.dashboard
             lbl_select_name.Text = menu_customer_2.Text;
             showChanges(false, false, false, false, false, false, false, false, false, false);
             showChanges(true, true, true, true, true, true, true, true, true, true);
-            loadGridData(1,"","","");
+            loadGridData(1, "", "", "");
 
         }
 
@@ -476,26 +470,26 @@ namespace ArthiPOS.Controls.dashboard
 
         private void chk_name_CheckedChanged(object sender, EventArgs e)
         {
-           
+
             if (chk_name.Checked)
                 chk_id.Checked = false;
 
-           
+
         }
 
-       
+
 
 
         #region Paging
         int pageindex = 1;
         int pageSize = 18;
 
-        public void loadGridData(int index, string sdate, string ldate,string search)
+        public void loadGridData(int index, string sdate, string ldate, string search)
         {
             try
             {
                 string size = txt_page_size.Text;
-                if (size!="")
+                if (size != "")
                     pageindex = int.Parse(size);
                 else
                     pageindex = index;
@@ -505,15 +499,15 @@ namespace ArthiPOS.Controls.dashboard
                 {
                     case ReportMenu.BalanceSheetReport://Menu 2
                         {
-                            
-                            List<Object> obj = (List<object>)bal.p_balance_sheet_read( sdate, ldate,
+
+                            List<Object> obj = (List<object>)bal.p_balance_sheet_read(sdate, ldate,
                                 index, pageSize);
-                            if (obj==null)
+                            if (obj == null)
                             {
                                 return;
                             }
                             dt = (DataTable)obj[1];
-                            
+
                             /*int count = dt.Rows.Count;
                             int credit = dt.Rows.Cast<DataRow>()
                                         .Sum(t => Convert.ToInt32(t[3].ToString()));
@@ -558,7 +552,7 @@ namespace ArthiPOS.Controls.dashboard
 
                             string filter = txt_name.Text;
                             List<Object> obj = (List<object>)bal.expenseDetails(sdate, ldate,
-                                index, pageSize,filter);
+                                index, pageSize, filter);
                             dt = (DataTable)obj[1];
                             int count = dt.Rows.Count;
                             int total = dt.Rows.Cast<DataRow>()
@@ -599,10 +593,10 @@ namespace ArthiPOS.Controls.dashboard
                             break;
                         }
 
-                    
+
                     case ReportMenu.ExpenseCashReceive://Menu 8
                         {
-                           // pageSize = 18;
+                            // pageSize = 18;
                             List<Object> obj = (List<object>)bal.p_expenseCashReceive(sdate, ldate,
                                 index, pageSize);
                             if (obj == null)
@@ -620,7 +614,7 @@ namespace ArthiPOS.Controls.dashboard
                     case ReportMenu.BipariSales://Menu 9
                         {
                             //pageSize = 18;
-                            List<Object> obj = (List<object>)bal.getSalesClient(sdate, ldate, index, pageSize,search);
+                            List<Object> obj = (List<object>)bal.getSalesClient(sdate, ldate, index, pageSize, search);
                             dt = (DataTable)obj[1];
                             int count = dt.Rows.Count;
                             //int credit = dt.Rows.Cast<DataRow>()
@@ -667,27 +661,27 @@ namespace ArthiPOS.Controls.dashboard
                         {
                             //pageSize = 19;
                             List<Object> obj = (List<object>)new BLogic().searchProfile("", "SClient", "", index, pageSize);
-                             dt = (DataTable)obj[1];
+                            dt = (DataTable)obj[1];
                             int count = dt.Rows.Count;
                             int total = dt.Rows.Cast<DataRow>()
                                         .Sum(t => Convert.ToInt32(t[5].ToString()));
 
-                            
-                            object[] o = { count+1, string.Empty, string.Empty, string.Empty, Resources.ResourceManager.GetString("a1053"), total};
+
+                            object[] o = { count + 1, string.Empty, string.Empty, string.Empty, Resources.ResourceManager.GetString("a1053"), total };
                             dt.Rows.Add(o);
                             grid_report.DataSource = dt;
                             updatemenu11();
                             this.PopulatePager((int)obj[0], index);
                             break;
                         }
-                    
-                    
-                   
-                    
+
+
+
+
                     case ReportMenu.SERP://Menu 12
                         {
                             //pageSize = 18;
-                            List<Object> obj = (List<object>)bal.p_dailyProfitSalesExpense("SERP",sdate, ldate,
+                            List<Object> obj = (List<object>)bal.p_dailyProfitSalesExpense("SERP", sdate, ldate,
                                 index, pageSize);
                             dt = (DataTable)obj[1];
                             int count = dt.Rows.Count;
@@ -701,7 +695,7 @@ namespace ArthiPOS.Controls.dashboard
                         {
                             //pageSize = 18;
 
-                            List<Object> obj = (List<object>)bal.p_AugraiDateDetail( sdate, ldate,index, pageSize);
+                            List<Object> obj = (List<object>)bal.p_AugraiDateDetail(sdate, ldate, index, pageSize);
                             dt = (DataTable)obj[1];
                             int count = dt.Rows.Count;
 
@@ -711,13 +705,18 @@ namespace ArthiPOS.Controls.dashboard
                         }
                     case ReportMenu.CustBillsandReceivings:
                         {
-                            List<object>  obj = (List<object>)new BLReport().p_CustBillsandReceivings(startdate, lastdate, txt_name.Text);
+                            if(chk_date.Checked && sdate=="" && ldate=="")
+                            {
+                                sdate = date_start.Text;
+                                ldate = date_last.Text;
+                            }
+                            List<object> obj = (List<object>)new BLReport().p_CustBillsandReceivings(sdate, ldate, txt_name.Text);
                             if (obj == null)
                             {
                                 return;
                             }
                             dt = (DataTable)obj[1];
-                            
+
 
                             if (dt.Rows.Count == 0)
                             {
@@ -745,7 +744,7 @@ namespace ArthiPOS.Controls.dashboard
                                 MessageBox.Show("No Bill Receiving.");
                                 return;
                             }
-                            
+
                             grid_report.DataSource = dt;
                             updatemenu15();
                             break;
@@ -761,11 +760,11 @@ namespace ArthiPOS.Controls.dashboard
 
         private void changeColumnNameLocal(string col1, string col2, string col3
             , string col4, string col5, string col6, string col7,
-            string col8,string col9,string col10, string col11)
+            string col8, string col9, string col10, string col11)
         {
             DataTable t = dt;
             if (grid_report.Columns.Count >= 1)
-                grid_report.Columns[0].HeaderText= col1;
+                grid_report.Columns[0].HeaderText = col1;
             if (grid_report.Columns.Count >= 2)
                 grid_report.Columns[1].HeaderText = col2;
             if (grid_report.Columns.Count >= 3)
@@ -815,7 +814,7 @@ namespace ArthiPOS.Controls.dashboard
             foreach (DataColumn col in dt1.Columns)
             {
                 DataRow nrow = table.NewRow();
-                object[] o = { count + 1, col.ColumnName, dr[count].ToString()};
+                object[] o = { count + 1, col.ColumnName, dr[count].ToString() };
                 nrow.ItemArray = o;
 
                 table.Rows.Add(nrow);
@@ -950,8 +949,8 @@ namespace ArthiPOS.Controls.dashboard
         private void Page_Click(object sender, EventArgs e)
         {
             Button btnPager = (sender as Button);
-            
-            loadGridData(int.Parse(btnPager.Name),startdate,lastdate,"");
+
+            loadGridData(int.Parse(btnPager.Name), startdate, lastdate, "");
         }
 
         public class Page
@@ -964,7 +963,7 @@ namespace ArthiPOS.Controls.dashboard
         #endregion
 
 
-       
+
         private void btn_search_Click(object sender, EventArgs e)
         {
             /*if (chk_date.Checked)
@@ -998,7 +997,7 @@ namespace ArthiPOS.Controls.dashboard
             }
             if (eMenu == ReportMenu.CustBillsandReceivings)
             {
-
+                loadGridData(1, sdate, ldate, search);
                 return;
             }
             loadGridData(1, sdate, ldate, search);
@@ -1006,7 +1005,7 @@ namespace ArthiPOS.Controls.dashboard
         }
 
         #region Controls Change Arrow
-       
+
 
         private void chk_date_CheckedChanged(object sender, EventArgs e)
         {
@@ -1033,9 +1032,9 @@ namespace ArthiPOS.Controls.dashboard
 
 
         }
-       
-   
-    private void txt_name_TextChanged(object sender, EventArgs e)
+
+
+        private void txt_name_TextChanged(object sender, EventArgs e)
         {
             /*string sdate = "";
             string ldate = "";
@@ -1063,7 +1062,7 @@ namespace ArthiPOS.Controls.dashboard
             }
             loadGridData(1,sdate,ldate,search);*/
         }
-        private string name="";
+        private string name = "";
         public void searchDialog(string searchTxt)
         {
             int choice = 0;
@@ -1072,7 +1071,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 return;
             }
-            else if(eMenu== ReportMenu.BipariSales)
+            else if (eMenu == ReportMenu.BipariSales)
             {
                 choice = 1;
                 searchType = 1;
@@ -1096,7 +1095,7 @@ namespace ArthiPOS.Controls.dashboard
             if (chk_id.Checked)
                 chk_name.Checked = false;
         }
-        
+
         private void btn_print_report_Click(object sender, EventArgs e)
         {
             //GridPrintDocument doc = new GridPrintDocument(this.grid_report,this.grid_report.Font, true);
@@ -1134,7 +1133,7 @@ namespace ArthiPOS.Controls.dashboard
                 case ReportMenu.AugraiReport://Menu 3
                     {
                         updatemenu3();
-                        rp = new AllReportsCC( mydt, ReportMenu.AugraiReport, startdate, lastdate);
+                        rp = new AllReportsCC(mydt, ReportMenu.AugraiReport, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu3();
                         return;
@@ -1143,7 +1142,7 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         //doc.DocumentName = "Profit & Loss";
                         updatemenu5();
-                         rp = new AllReportsCC( mydt, ReportMenu.ProfitLoss, startdate, lastdate);
+                        rp = new AllReportsCC(mydt, ReportMenu.ProfitLoss, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu5();
                         return;
@@ -1152,7 +1151,7 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         //doc.DocumentName = "Expense";
                         updatemenu6();
-                         rp = new AllReportsCC( mydt, ReportMenu.ExpenseDetail, startdate, lastdate);
+                        rp = new AllReportsCC(mydt, ReportMenu.ExpenseDetail, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu6();
                         return;
@@ -1161,12 +1160,12 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         //doc.DocumentName = "Cash Receive";
                         updatemenu7();
-                         rp = new AllReportsCC( mydt, ReportMenu.CashReceived, startdate, lastdate);
+                        rp = new AllReportsCC(mydt, ReportMenu.CashReceived, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu7();
                         return;
                     }
-               
+
                 case ReportMenu.ExpenseCashReceive://Menu 8
                     {
                         string sdate = "";
@@ -1193,15 +1192,15 @@ namespace ArthiPOS.Controls.dashboard
                         }
                         DataTable dtrec = (DataTable)rec[1];
                         //AllReportsCC rp = new AllReportsCC(dt, ReportMenu.ExpenseCashReceive, date, date);
-                         rp = new AllReportsCC();
+                        rp = new AllReportsCC();
                         //rp.ExpenseReceiving(dt, date, date);
-                        DataRow dr = new BLogic().getLastCash(sdate, ldate) ;
+                        DataRow dr = new BLogic().getLastCash(sdate, ldate);
                         int balance = int.Parse(dr[0].ToString() == "" ? "0" : dr[0].ToString());
                         int receivings = int.Parse(dr[1].ToString() == "" ? "0" : dr[1].ToString());
                         int expense = int.Parse(dr[2].ToString() == "" ? "0" : dr[2].ToString());
                         int currentBalance = int.Parse(dr[2].ToString() == "" ? "0" : dr[3].ToString());
 
-                        rp.ExpenseRecSection(dtrec, dtexp,balance,receivings,expense, currentBalance);
+                        rp.ExpenseRecSection(dtrec, dtexp, balance, receivings, expense, currentBalance);
                         rp.ShowDialog();
 
                         //updatemenu8();
@@ -1211,7 +1210,7 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         //doc.DocumentName = "Bipari Sale";
                         updatemenu9();
-                         rp = new AllReportsCC( dt, ReportMenu.BipariSales, startdate, lastdate);
+                        rp = new AllReportsCC(dt, ReportMenu.BipariSales, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu9();
 
@@ -1221,7 +1220,7 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         //doc.DocumentName = "Customer Sale";
                         updatemenu10();
-                         rp = new AllReportsCC(dt, ReportMenu.CustomerSale, startdate, lastdate);
+                        rp = new AllReportsCC(dt, ReportMenu.CustomerSale, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu10();
                         return;
@@ -1229,28 +1228,28 @@ namespace ArthiPOS.Controls.dashboard
                 case ReportMenu.BipariInvestment://Menu 11
                     {
                         updatemenu11();
-                         rp = new AllReportsCC(dt, ReportMenu.BipariInvestment, startdate, lastdate);
+                        rp = new AllReportsCC(dt, ReportMenu.BipariInvestment, startdate, lastdate);
                         rp.ShowDialog();
                         updatemenu11();
                         return;
                     }
-                    
+
                 case ReportMenu.SERP://Menu 12
                     {
                         updatemenu12();
-                         rp = new AllReportsCC();
+                        rp = new AllReportsCC();
                         string sdate = "";
                         string ldate = "";
-                        if(chk_date.Checked)
+                        if (chk_date.Checked)
                         {
                             sdate = date_start.Text;
                             ldate = date_last.Text;
                         }
-                        
-                        rp.printSRPSUM(sdate,ldate,1,pageSize);
+
+                        rp.printSRPSUM(sdate, ldate, 1, pageSize);
                         rp.ShowDialog();
                         updatemenu12();
-                        
+
                         return;
                     }
                 case ReportMenu.AugraiDiff:
@@ -1264,7 +1263,7 @@ namespace ArthiPOS.Controls.dashboard
                 case ReportMenu.CustBillsandReceivings:
                     {
                         rp = new AllReportsCC();
-                        DataRow cr = (dt.Rows.Count == 0)? null:dt.Rows[0];
+                        DataRow cr = (dt.Rows.Count == 0) ? null : dt.Rows[0];
                         if (cr == null)
                             return;
                         int balanceR = int.Parse(cr[5].ToString());
@@ -1273,7 +1272,7 @@ namespace ArthiPOS.Controls.dashboard
 
                         int initialBalance = balanceR + receiving - bill;
 
-                        rp.BillandRecevings(null,dt, null, txt_name.Text, name, startdate, lastdate, initialBalance + "");
+                        rp.BillandRecevings(null, dt, null, txt_name.Text, name, startdate, lastdate, initialBalance + "",5);
                         rp.ShowDialog();
                         break;
                     }
@@ -1283,7 +1282,7 @@ namespace ArthiPOS.Controls.dashboard
                         DataRow cr = dt.Rows[0];
                         int acc_open = int.Parse(cr[3].ToString());
                         string datec = "";
-                        if(chk_date.Checked)
+                        if (chk_date.Checked)
                         {
                             datec = date_start.Text + " To " + date_last.Text;
                             startdate = date_start.Text;
@@ -1301,8 +1300,8 @@ namespace ArthiPOS.Controls.dashboard
                         rp.ShowDialog();
                         break;
                     }
-               
-                    
+
+
 
 
             }
@@ -1319,11 +1318,11 @@ namespace ArthiPOS.Controls.dashboard
             doc = null;*/
         }
 
-        
+
 
         private void btn_load_Click(object sender, EventArgs e)
         {
-            btn_search_Click(this,new EventArgs());
+            btn_search_Click(this, new EventArgs());
         }
 
         private bool ProcessKey(Message msg, Keys keyData)
@@ -1351,22 +1350,23 @@ namespace ArthiPOS.Controls.dashboard
             }
             else if (keyData == Keys.Left)
             {
-                if(chk_date.Checked)
+                if (chk_date.Checked)
                 {
                     startdate = date_start.Text;
                     lastdate = date_last.Text;
-                }else
+                }
+                else
                 {
                     startdate = "";
                     lastdate = "";
                 }
-               
+
                 if (pageindex > 1)
                 {
                     --pageindex;
 
                 }
-                loadGridData(pageindex, startdate, lastdate,"");
+                loadGridData(pageindex, startdate, lastdate, "");
 
             }
             else if (keyData == Keys.Right)
@@ -1385,9 +1385,9 @@ namespace ArthiPOS.Controls.dashboard
                 {
                     ++pageindex;
                 }
-                loadGridData(pageindex, startdate, lastdate,"");
+                loadGridData(pageindex, startdate, lastdate, "");
             }
-            else if (keyData==Keys.ControlKey| keyData == Keys.P)
+            else if (keyData == Keys.ControlKey | keyData == Keys.P)
             {
                 btn_print_report_Click(this, new EventArgs());
             }
@@ -1398,7 +1398,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             if (chk_print_all.Checked)
             {
-                dt = new BLogic().p_customer_CRUD("Augrai", "1",date_start.Text);
+                dt = new BLogic().p_customer_CRUD("Augrai", "1", date_start.Text);
             }
             else
             {

@@ -1,27 +1,19 @@
 ﻿using ArthiPOS.controls;
+using ArthiPOS.Controls;
 using ArthiPOS.shop;
-using ArthiPOS.utill;
 using ArthiPOS.Utill;
 using BAL;
+using CommonUtilities;
 using DataMember;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CommonUtilities;
-using ArthiPOS.Controls;
 
 namespace ArthiPOS
 {
     public partial class Authentication : Form
     {
-        bool check=false;
+        bool check = false;
         int tcheck = 0;
         public Authentication()
         {
@@ -33,21 +25,21 @@ namespace ArthiPOS
         {
             InitializeComponent();
             this.tcheck = check;
-            Login login1 = new Login(this,check);
-            panel1.Controls.Add(login1);
+            //Login login1 = new Login(this,check);
+            //panel1.Controls.Add(login1);
         }
 
         public static Account Account { get; set; }
         private void bunifuImageButton1_Click(object sender, EventArgs e)
         {
-            
+
             close();
         }
         public void close()
         {
             new BLogic().closeConnection();
             //CommonUtill.IsFileinUse();
-            if (check==false)
+            if (check == false)
             {
                 Authentication.Account = null;
                 Application.Exit();
@@ -59,7 +51,7 @@ namespace ArthiPOS
         {
             e.Cancel = true;
             try
-            { 
+            {
                 new EncrypDecrypt().EncryptDatabase(RegistryAccess.GetStringRegistryValue(Const.REGKEY, ""));
             }
             catch (IOException ex)
@@ -72,7 +64,7 @@ namespace ArthiPOS
         {
             AddConfig cnf = new AddConfig(false);
             cnf.ShowDialog();
-            Authentication_Load(this,new EventArgs());
+            Authentication_Load(this, new EventArgs());
 
         }
 

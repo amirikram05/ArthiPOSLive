@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataMember
+﻿namespace DataMember
 {
     public class ReceiveCash
     {
@@ -20,8 +14,8 @@ namespace DataMember
         public string desc;
 
         public ReceiveCash(string date, string name, int amount, string key,
-            string id,int discount,int remainingCash
-            ,string recID,string type,string desc)
+            string id, int discount, int remainingCash
+            , string recID, string type, string desc)
         {
             this.id = id;
             this.date = date;

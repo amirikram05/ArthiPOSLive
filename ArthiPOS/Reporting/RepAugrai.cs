@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ArthiPOS.Reporting.ReportView;
+﻿using ArthiPOS.Reporting.ReportView;
 using BAL;
-using DataMember;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
 {
@@ -44,7 +37,7 @@ namespace ArthiPOS.Reporting
         }
         private void RepAugrai_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void chk_printall_CheckedChanged(object sender, EventArgs e)
@@ -55,19 +48,19 @@ namespace ArthiPOS.Reporting
         private void rd_check_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = null;
-            if (rd_check.SelectedIndex==0)
+            if (rd_check.SelectedIndex == 0)
             {
                 chk_saleadvance.Enabled = false;
                 if (chk_printall.Checked)
                 {
-                        dt = new BLogic().p_customer_CRUD("Augrai", "1",date_start.Text);
-                    
+                    dt = new BLogic().p_customer_CRUD("Augrai", "1", date_start.Text);
+
                 }
                 else
                 {
-                    
-                        dt = new BLogic().p_customer_CRUD("Augrai","0", date_start.Text);
-                    
+
+                    dt = new BLogic().p_customer_CRUD("Augrai", "0", date_start.Text);
+
                 }
             }
             else
@@ -88,14 +81,14 @@ namespace ArthiPOS.Reporting
                     if (chk_saleadvance.Checked)
                         dt = new BLogic().p_customer_CRUD("ClientSale", "0", "");
                     else
-                        dt = new BLogic().p_customer_CRUD("ClientInv","0","");
+                        dt = new BLogic().p_customer_CRUD("ClientInv", "0", "");
                 }
             }
             printReport(dt);
 
         }
 
-        
+
 
         private void chk_full_detail_CheckedChanged(object sender, EventArgs e)
         {
@@ -110,7 +103,7 @@ namespace ArthiPOS.Reporting
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -124,7 +117,8 @@ namespace ArthiPOS.Reporting
             if (chk_saleadvance.Checked)
             {
                 chk_saleadvance.Text = "Sales";
-            }else
+            }
+            else
                 chk_saleadvance.Text = "Advance";
             rd_check_SelectedIndexChanged(this, new EventArgs());
 

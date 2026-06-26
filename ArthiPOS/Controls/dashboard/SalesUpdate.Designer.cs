@@ -42,23 +42,23 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.grid_all_sales = new MetroFramework.Controls.MetroGrid();
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewTextBoxColumn6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewTextBoxColumn7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn11 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn12 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.grid_processSale = new MetroFramework.Controls.MetroGrid();
-            this.dataGridViewLabelXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_all_sales)).BeginInit();
@@ -116,9 +116,9 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
-            this.dataGridViewLabelXColumn11,
-            this.dataGridViewLabelXColumn8,
-            this.dataGridViewLabelXColumn12,
+            this.DataGridViewTextBoxColumn11,
+            this.DataGridViewTextBoxColumn8,
+            this.DataGridViewTextBoxColumn12,
             this.Column10,
             this.Column1});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -199,29 +199,29 @@
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // dataGridViewLabelXColumn11
+            // DataGridViewTextBoxColumn11
             // 
-            this.dataGridViewLabelXColumn11.FillWeight = 3.959702F;
-            this.dataGridViewLabelXColumn11.HeaderText = "Total Sales";
-            this.dataGridViewLabelXColumn11.Name = "dataGridViewLabelXColumn11";
-            this.dataGridViewLabelXColumn11.ReadOnly = true;
-            this.dataGridViewLabelXColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLabelXColumn11.Text = "<font color=\"#9DBB61\"></font>";
+            this.DataGridViewTextBoxColumn11.FillWeight = 3.959702F;
+            this.DataGridViewTextBoxColumn11.HeaderText = "Total Sales";
+            this.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11";
+            this.DataGridViewTextBoxColumn11.ReadOnly = true;
+            this.DataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewTextBoxColumn11.DefaultCellStyle.NullValue = "<font color=\"#9DBB61\"></font>";
             // 
-            // dataGridViewLabelXColumn8
+            // DataGridViewTextBoxColumn8
             // 
-            this.dataGridViewLabelXColumn8.FillWeight = 7.853313F;
-            this.dataGridViewLabelXColumn8.HeaderText = "Expense";
-            this.dataGridViewLabelXColumn8.Name = "dataGridViewLabelXColumn8";
-            this.dataGridViewLabelXColumn8.ReadOnly = true;
+            this.DataGridViewTextBoxColumn8.FillWeight = 7.853313F;
+            this.DataGridViewTextBoxColumn8.HeaderText = "Expense";
+            this.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8";
+            this.DataGridViewTextBoxColumn8.ReadOnly = true;
             // 
-            // dataGridViewLabelXColumn12
+            // DataGridViewTextBoxColumn12
             // 
-            this.dataGridViewLabelXColumn12.FillWeight = 3.959702F;
-            this.dataGridViewLabelXColumn12.HeaderText = "Bill Amount";
-            this.dataGridViewLabelXColumn12.Name = "dataGridViewLabelXColumn12";
-            this.dataGridViewLabelXColumn12.ReadOnly = true;
-            this.dataGridViewLabelXColumn12.Text = "<font color=\"#9DBB61\"></font>";
+            this.DataGridViewTextBoxColumn12.FillWeight = 3.959702F;
+            this.DataGridViewTextBoxColumn12.HeaderText = "Bill Amount";
+            this.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12";
+            this.DataGridViewTextBoxColumn12.ReadOnly = true;
+            this.DataGridViewTextBoxColumn12.DefaultCellStyle.NullValue = "<font color=\"#9DBB61\"></font>";
             // 
             // Column10
             // 
@@ -230,7 +230,7 @@
             this.Column10.HeaderText = "Local To LIve";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
-            this.Column10.Text = "Not Updated";
+            this.Column10.DefaultCellStyle.NullValue = "Not Updated";
             // 
             // Column1
             // 
@@ -274,13 +274,13 @@
             this.grid_processSale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grid_processSale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_processSale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewLabelXColumn1,
-            this.dataGridViewLabelXColumn2,
-            this.dataGridViewLabelXColumn3,
-            this.dataGridViewLabelXColumn4,
-            this.dataGridViewLabelXColumn5,
-            this.dataGridViewLabelXColumn6,
-            this.dataGridViewLabelXColumn7});
+            this.DataGridViewTextBoxColumn1,
+            this.DataGridViewTextBoxColumn2,
+            this.DataGridViewTextBoxColumn3,
+            this.DataGridViewTextBoxColumn4,
+            this.DataGridViewTextBoxColumn5,
+            this.DataGridViewTextBoxColumn6,
+            this.DataGridViewTextBoxColumn7});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -318,65 +318,65 @@
             this.grid_processSale.TabIndex = 91;
             this.grid_processSale.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // dataGridViewLabelXColumn1
+            // DataGridViewTextBoxColumn1
             // 
-            this.dataGridViewLabelXColumn1.FillWeight = 15.41457F;
-            this.dataGridViewLabelXColumn1.HeaderText = "#";
-            this.dataGridViewLabelXColumn1.Name = "dataGridViewLabelXColumn1";
-            this.dataGridViewLabelXColumn1.ReadOnly = true;
-            this.dataGridViewLabelXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLabelXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DataGridViewTextBoxColumn1.FillWeight = 15.41457F;
+            this.DataGridViewTextBoxColumn1.HeaderText = "#";
+            this.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1";
+            this.DataGridViewTextBoxColumn1.ReadOnly = true;
+            this.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // dataGridViewLabelXColumn2
+            // DataGridViewTextBoxColumn2
             // 
-            this.dataGridViewLabelXColumn2.FillWeight = 26.83857F;
-            this.dataGridViewLabelXColumn2.HeaderText = "Date";
-            this.dataGridViewLabelXColumn2.Name = "dataGridViewLabelXColumn2";
-            this.dataGridViewLabelXColumn2.ReadOnly = true;
-            this.dataGridViewLabelXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLabelXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DataGridViewTextBoxColumn2.FillWeight = 26.83857F;
+            this.DataGridViewTextBoxColumn2.HeaderText = "Date";
+            this.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2";
+            this.DataGridViewTextBoxColumn2.ReadOnly = true;
+            this.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // dataGridViewLabelXColumn3
+            // DataGridViewTextBoxColumn3
             // 
-            this.dataGridViewLabelXColumn3.FillWeight = 36.70647F;
-            this.dataGridViewLabelXColumn3.HeaderText = "Quantity";
-            this.dataGridViewLabelXColumn3.Name = "dataGridViewLabelXColumn3";
-            this.dataGridViewLabelXColumn3.ReadOnly = true;
-            this.dataGridViewLabelXColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLabelXColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DataGridViewTextBoxColumn3.FillWeight = 36.70647F;
+            this.DataGridViewTextBoxColumn3.HeaderText = "Quantity";
+            this.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3";
+            this.DataGridViewTextBoxColumn3.ReadOnly = true;
+            this.DataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // dataGridViewLabelXColumn4
+            // DataGridViewTextBoxColumn4
             // 
-            this.dataGridViewLabelXColumn4.FillWeight = 26.83857F;
-            this.dataGridViewLabelXColumn4.HeaderText = "Total Sales";
-            this.dataGridViewLabelXColumn4.Name = "dataGridViewLabelXColumn4";
-            this.dataGridViewLabelXColumn4.ReadOnly = true;
-            this.dataGridViewLabelXColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLabelXColumn4.Text = "<font color=\"#9DBB61\"></font>";
+            this.DataGridViewTextBoxColumn4.FillWeight = 26.83857F;
+            this.DataGridViewTextBoxColumn4.HeaderText = "Total Sales";
+            this.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4";
+            this.DataGridViewTextBoxColumn4.ReadOnly = true;
+            this.DataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewTextBoxColumn4.DefaultCellStyle.NullValue = "<font color=\"#9DBB61\"></font>";
             // 
-            // dataGridViewLabelXColumn5
+            // DataGridViewTextBoxColumn5
             // 
-            this.dataGridViewLabelXColumn5.FillWeight = 53.22919F;
-            this.dataGridViewLabelXColumn5.HeaderText = "Expense";
-            this.dataGridViewLabelXColumn5.Name = "dataGridViewLabelXColumn5";
-            this.dataGridViewLabelXColumn5.ReadOnly = true;
+            this.DataGridViewTextBoxColumn5.FillWeight = 53.22919F;
+            this.DataGridViewTextBoxColumn5.HeaderText = "Expense";
+            this.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5";
+            this.DataGridViewTextBoxColumn5.ReadOnly = true;
             // 
-            // dataGridViewLabelXColumn6
+            // DataGridViewTextBoxColumn6
             // 
-            this.dataGridViewLabelXColumn6.FillWeight = 26.83857F;
-            this.dataGridViewLabelXColumn6.HeaderText = "Bill Amount";
-            this.dataGridViewLabelXColumn6.Name = "dataGridViewLabelXColumn6";
-            this.dataGridViewLabelXColumn6.ReadOnly = true;
-            this.dataGridViewLabelXColumn6.Text = "<font color=\"#9DBB61\"></font>";
+            this.DataGridViewTextBoxColumn6.FillWeight = 26.83857F;
+            this.DataGridViewTextBoxColumn6.HeaderText = "Bill Amount";
+            this.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6";
+            this.DataGridViewTextBoxColumn6.ReadOnly = true;
+            this.DataGridViewTextBoxColumn6.DefaultCellStyle.NullValue = "<font color=\"#9DBB61\"></font>";
             // 
-            // dataGridViewLabelXColumn7
+            // DataGridViewTextBoxColumn7
             // 
-            this.dataGridViewLabelXColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewLabelXColumn7.FillWeight = 60F;
-            this.dataGridViewLabelXColumn7.HeaderText = "Record Status";
-            this.dataGridViewLabelXColumn7.Name = "dataGridViewLabelXColumn7";
-            this.dataGridViewLabelXColumn7.ReadOnly = true;
-            this.dataGridViewLabelXColumn7.Text = "Not Updated";
+            this.DataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DataGridViewTextBoxColumn7.FillWeight = 60F;
+            this.DataGridViewTextBoxColumn7.HeaderText = "Record Status";
+            this.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7";
+            this.DataGridViewTextBoxColumn7.ReadOnly = true;
+            this.DataGridViewTextBoxColumn7.DefaultCellStyle.NullValue = "Not Updated";
             // 
             // SalesUpdate
             // 
@@ -404,21 +404,21 @@
         private System.Windows.Forms.TabPage tabPage2;
         private MetroFramework.Controls.MetroGrid grid_all_sales;
         private MetroFramework.Controls.MetroGrid grid_processSale;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn4;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewButtonColumn1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewTextBoxColumn5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewTextBoxColumn6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewTextBoxColumn7;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn11;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn8;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn12;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column10;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

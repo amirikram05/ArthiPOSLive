@@ -1,15 +1,8 @@
 ﻿using ArthiPOS.controls.dashboard;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataMember;
 using ArthiPOS.Controls.test;
+using DataMember;
+using System;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -21,7 +14,7 @@ namespace ArthiPOS.Controls.dashboard
         public Landlord land;
         public bool updateData;
 
-        public VendorForm(string date,int choice,string status)
+        public VendorForm(string date, int choice, string status)
         {
             InitializeComponent();
             this.date = date;
@@ -50,8 +43,8 @@ namespace ArthiPOS.Controls.dashboard
                 case 2:
                     AddVendorItem item = new AddVendorItem(date, 1, status);
                     if (updateData)
-                        item.updateRecord(land, updateData,this);
-                    int width = this.Width-item.Width;
+                        item.updateRecord(land, updateData, null);
+                    int width = this.Width - item.Width;
                     item.Left = width / 2;
                     panel_vendor.Controls.Add(item);
                     break;
@@ -61,11 +54,11 @@ namespace ArthiPOS.Controls.dashboard
                     break;
                 case 4:
                     Invoicing inc = new Invoicing(date);
-                    if(inc.Width> this.Width)
+                    if (inc.Width > this.Width)
                     {
                         this.Width = inc.Width;
                     }
-                    if (inc.Height>this.Height)
+                    if (inc.Height > this.Height)
                     {
                         this.Height = inc.Height;
                     }
@@ -75,7 +68,7 @@ namespace ArthiPOS.Controls.dashboard
                     break;
 
             }
-            
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

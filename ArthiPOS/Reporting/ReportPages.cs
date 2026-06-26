@@ -1,15 +1,11 @@
-﻿using ArthiPOS.Reporting.ReportView.Bills;
-using ArthiPOS.Reporting.ReportView.NoHeader;
+﻿using ArthiPOS.Reporting.ReportView.NoHeader;
+using ArthiPOS.utill;
 using BAL;
 using DataMember;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
@@ -20,7 +16,7 @@ namespace ArthiPOS.Reporting
         public Landlord landlord;
         public CustomerSales custSale;
         public Customer customer;
-        string date="";
+        string date = "";
         private List<Landlord> tclients;
         private List<Customer> customers;
         private bool checkAllReport = false;
@@ -29,20 +25,20 @@ namespace ArthiPOS.Reporting
         {
             InitializeComponent();
         }
-        
-        public ReportPages(bool isCustomer,Landlord landlord)
+
+        public ReportPages(bool isCustomer, Landlord landlord)
         {
             InitializeComponent();
             this.isCustomer = isCustomer;
             this.landlord = landlord;
-            if(isCustomer)
+            if (isCustomer)
                 btn_printA4.Enabled = true;
             else
                 btn_printA4.Enabled = false;
 
 
         }
-        public ReportPages(bool isCustomer,CustomerSales custSale, Customer customer,string date)
+        public ReportPages(bool isCustomer, CustomerSales custSale, Customer customer, string date)
         {
             InitializeComponent();
             this.isCustomer = isCustomer;
@@ -51,7 +47,7 @@ namespace ArthiPOS.Reporting
             this.date = date;
         }
         //All Report Customer
-        public ReportPages(bool checkAllReport,bool isCustomer,List<Landlord> tclients, List<Customer> customers, string date)
+        public ReportPages(bool checkAllReport, bool isCustomer, List<Landlord> tclients, List<Customer> customers, string date)
         {
             InitializeComponent();
             this.isCustomer = isCustomer;
@@ -60,7 +56,20 @@ namespace ArthiPOS.Reporting
             this.date = date;
             this.checkAllReport = checkAllReport;
         }
-       
+        private bool checkdate=false;
+        private DataTable dt_clcu;
+        private string startdate;
+        private string lastdate;
+        public ReportPages(bool checkDate, bool isCustomer, DataTable dt_clcu,string startdate, string lastdate)
+        {
+            InitializeComponent();
+            this.isCustomer = isCustomer;
+            this.checkdate = checkDate;
+            this.dt_clcu = dt_clcu;
+            this.startdate = startdate;
+            this.lastdate = lastdate;
+        }
+
 
         private void btn_A5_Click(object sender, EventArgs e)
         {
@@ -140,7 +149,8 @@ namespace ArthiPOS.Reporting
                             rc.ShowDialog();
                         }
                 }
-            }else
+            }
+            else
             {
                 if (isCustomer == false)
                 {
@@ -149,7 +159,7 @@ namespace ArthiPOS.Reporting
                 }
                 else
                 {
-                    AllReportsCC rep = new AllReportsCC(true, tclients,customers, date, 3);
+                    AllReportsCC rep = new AllReportsCC(true, tclients, customers, date, 3);
                     rep.ShowDialog();
                 }
             }
@@ -222,11 +232,11 @@ namespace ArthiPOS.Reporting
                             custSale.person.pid, date, 4, false))
                         {
                             rc.ShowDialog();
-                        }       
+                        }
                     }
                     else
                         using (AllReportsCC rc = new AllReportsCC(isCustomer,
-                        customer.customer_profile.pid, date,4, false))
+                        customer.customer_profile.pid, date, 4, false))
                         {
                             rc.ShowDialog();
                         }
@@ -260,7 +270,8 @@ namespace ArthiPOS.Reporting
                     {
                         rc.ShowDialog();
                     }
-                }else
+                }
+                else
                 {
                     using (AllReportsCC rc = new AllReportsCC(false, tclients, customers, date, 5))
                     {
@@ -273,13 +284,16 @@ namespace ArthiPOS.Reporting
 
         private void button3_Click(object sender, EventArgs e)
         {
-              using (AllReportsCC rc = new AllReportsCC())
-                {
-                    rc.printAllCustDetailRep(isCustomer, date);
-                    rc.ShowDialog();
-                }
+            using (AllReportsCC rc = new AllReportsCC())
+            {
+                if(checkdate)
+                    rc.printAllCustDetailRep(false, startdate, lastdate);
+                else
+                    rc.printAllCustDetailRep(false, date,date);
+                rc.ShowDialog();
+            }
 
-           
+
             /*
             //SalesTodayNHA7 rb = new SalesTodayNHA7();
             ReportTest rb = new ReportTest();
@@ -309,7 +323,8 @@ namespace ArthiPOS.Reporting
             if (isCustomer)
             {
 
-            }else
+            }
+            else
             {
                 ReportA5 rb = new ReportA5();
                 if (rb == null)
@@ -335,13 +350,13 @@ namespace ArthiPOS.Reporting
                 }
 
 
-                
+
             }
         }
 
         private void ReportPages_Load(object sender, EventArgs e)
         {
-            
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -350,6 +365,8 @@ namespace ArthiPOS.Reporting
             {
 
                 case Keys.Control | Keys.D0: { button3_Click(this, new EventArgs()); return true; }
+                case Keys.Control | Keys.D1: { btn_cust_rep_Click(this, new EventArgs()); return true; }
+
                 case Keys.Escape:
                     this.Close();
                     return true;
@@ -394,7 +411,7 @@ namespace ArthiPOS.Reporting
         }
 
 
-        public void printSalesClient(string date,string id)
+        public void printSalesClient(string date, string id)
         {
             DataTable dt = null;
             using (AllReportsCC rc = new AllReportsCC())
@@ -405,7 +422,7 @@ namespace ArthiPOS.Reporting
                 }
                 else
                 {
-                    dt = new BLogic().p_report_CustomerClient("sClientBill", id,date, date);
+                    dt = new BLogic().p_report_CustomerClient("sClientBill", id, date, date);
                 }
                 rc.printA4hReport(isCustomer, dt);
                 rc.ShowDialog();
@@ -425,7 +442,7 @@ namespace ArthiPOS.Reporting
                 {
                     dt = new BLogic().p_report_CustomerClient("CustomerBilling", id, date, date);
                 }
-                   
+
                 rc.printA7Report(isCustomer, dt);
                 rc.ShowDialog();
             }
@@ -468,17 +485,26 @@ namespace ArthiPOS.Reporting
                 DataTable dt = null;
                 using (AllReportsCC rc = new AllReportsCC())
                 {
-                    if (checkAllReport)
+                    if (!checkdate)
                     {
-                        dt = new BLogic().p_report_CustomerClient("sClient", date, date);
+                        if (checkAllReport)
+                        {
+                            dt = new BLogic().p_report_CustomerClient("sClient", date, date);
+                        }
+                        else
+                        {
+                            if (landlord == null)
+                                return;
+                            dt = new BLogic().p_report_CustomerClient("sClientBill", landlord.land_person.pid, landlord.date, landlord.date);
+                        }
                     }
                     else
                     {
-                        if (landlord == null)
-                            return;
-                        dt = new BLogic().p_report_CustomerClient("sClientBill", landlord.land_person.pid, landlord.date, landlord.date);
+                        dt = new BLogic().p_report_CustomerClient("sClient", startdate, lastdate);
+
+                        //dt = dt_clcu;
                     }
-                    rc.printA4hReport(isCustomer,dt);
+                    rc.printA4hReport(isCustomer, dt);
                     rc.ShowDialog();
                 }
             }
@@ -486,27 +512,35 @@ namespace ArthiPOS.Reporting
 
         private void btn_print_A7_Click(object sender, EventArgs e)
         {
-            if(isCustomer)
+            if (isCustomer)
             {
                 DataTable dt = null;
                 using (AllReportsCC rc = new AllReportsCC())
                 {
-                    if (checkAllReport)
+                    if (!checkdate)
                     {
-                        dt = new BLogic().p_report_CustomerClient("sCustomer", date, date);
-                    }
-                    else
-                    {
-                        if (custSale != null)
+                        if (checkAllReport)
                         {
-                            dt = new BLogic().p_report_CustomerClient("CustomerBilling", custSale.person.pid, date, date);
-
+                            dt = new BLogic().p_report_CustomerClient("sCustomer", date, date);
                         }
                         else
                         {
-                             dt = new BLogic().p_report_CustomerClient("CustomerBilling", "1", date, date);
-                            return;
+                            if (custSale != null)
+                            {
+                                dt = new BLogic().p_report_CustomerClient("CustomerBilling", custSale.person.pid, date, date);
+
+                            }
+                            else
+                            {
+                                dt = new BLogic().p_report_CustomerClient("CustomerBilling", "1", date, date);
+                                return;
+                            }
+
                         }
+                    }
+                    else
+                    {
+                        dt = new BLogic().p_report_CustomerClient("sCustomer", startdate, lastdate);
 
                     }
                     rc.printA7Report(isCustomer, dt);
@@ -534,6 +568,21 @@ namespace ArthiPOS.Reporting
             }
 
         }
-        
+
+        private void btn_cust_rep_Click(object sender, EventArgs e)
+        {
+            using (AllReportsCC rc = new AllReportsCC())
+            {
+                if (checkdate)
+                    rc.printAllCustDetailRep(true, startdate, lastdate);
+                else
+                    rc.printAllCustDetailRep(true, date, date);
+                rc.ShowDialog();
+            }
+        }
+
+        private void btn_browse_html_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

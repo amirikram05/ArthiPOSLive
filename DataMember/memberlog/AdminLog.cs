@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataMember.memberlog
 {
@@ -29,9 +25,12 @@ namespace DataMember.memberlog
         private string saleDir = @"\ArthiApp\";
         private string salesProccessedFolder = @"Sales\Processed\";//Not Updated
         private string salesInProccessedFolder = @"Sales\DailySales\";//Updates
+        private string rentMangment = @"Rent\";//Updates
         private string backupPath = @"Backup\";
+        private string logPath = @"Log\";
+
         private string reportDir = @"Reports\";
-       
+
 
         //private string DebugFolder=@"Debug\";
         //private string LiveFolder = @"Live\";
@@ -68,6 +67,10 @@ namespace DataMember.memberlog
             return saleDir;
         }
 
+        public void Error(string v)
+        {
+            //throw new NotImplementedException();
+        }
 
         public string DefultDIR
         {
@@ -78,6 +81,11 @@ namespace DataMember.memberlog
         {
             get { return default_DIR + saleDir + /*isLive() +*/ salesProccessedFolder; }
         }
+        public string RentMangmentFolder
+        {
+            get { return default_DIR + saleDir + rentMangment ; }
+        }
+
         public string SalesInProccessedFolder
         {
             get { return default_DIR + saleDir + /*isLive() +*/salesInProccessedFolder; }
@@ -85,6 +93,10 @@ namespace DataMember.memberlog
         public string BackupPath
         {
             get { return default_DIR + saleDir + /*isLive() +*/ backupPath; }
+        }
+        public string LogPath
+        {
+            get { return default_DIR + saleDir + /*isLive() +*/ logPath; }
         }
         public string ReportPath
         {

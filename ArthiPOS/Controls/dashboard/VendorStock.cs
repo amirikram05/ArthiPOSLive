@@ -1,27 +1,24 @@
-﻿using System;
+﻿using ArthiPOS.controls;
+using ArthiPOS.Properties;
+using ArthiPOS.shop;
+using ArthiPOS.Utill;
+using BAL;
+using CommonUtilities;
+using DataMember;
+using MetroFramework.Controls;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ArthiPOS.controls;
-using BAL;
-using DataMember;
-using ArthiPOS.Utill;
-using ArthiPOS.Properties;
-using MetroFramework.Controls;
-using ArthiPOS.shop;
-using ArthiPOS.utill;
-using CommonUtilities;
 
 namespace ArthiPOS.Controls.dashboard
 {
     public partial class VendorStock : UserControl
     {
-        
+
         private ViewTransport view_transport;
         private BLogic bal;
         private Landlord tempclient;
@@ -65,7 +62,7 @@ namespace ArthiPOS.Controls.dashboard
         }
         private int check = 0;
         private string status = "";
-        public VendorStock(string date, int check,string status)
+        public VendorStock(string date, int check, string status)
         {
             InitializeComponent();
             this.date = date;
@@ -146,7 +143,7 @@ namespace ArthiPOS.Controls.dashboard
             grid_client_detail.Columns[15].HeaderText = Resources.ResourceManager.GetString("a0407"); //Resources.date;
             grid_client_detail.Columns[16].HeaderText = Resources.ResourceManager.GetString("a1053"); //Resources.date;
         }
-       
+
 
         /*public void SearchGrid()
         {
@@ -201,7 +198,7 @@ namespace ArthiPOS.Controls.dashboard
             this.grid_client_detail.Rows.Add();
             this.grid_client_detail.Rows[count - 1].Cells[2].Value = land.land_person.pid.ToString(); //Resources.id;
             this.grid_client_detail.Rows[count - 1].Cells[3].Value = land.land_person.pkey.ToString(); //Resources.key;
-            this.grid_client_detail.Rows[count - 1].Cells[4].Value = land.land_person.pname.ToString()+ " - "+ land.land_product._product_name; //Resources.landlord;
+            this.grid_client_detail.Rows[count - 1].Cells[4].Value = land.land_product.marka+" "+land.land_person.pname.ToString() + " - " + land.land_product._product_name; //Resources.landlord;
             this.grid_client_detail.Rows[count - 1].Cells[5].Value = land.client._person_cl.pname.ToString(); //Resources.client;
             this.grid_client_detail.Rows[count - 1].Cells[6].Value = land.land_product.total_Quantity.ToString(); //Resources.lbl_quantity;
             this.grid_client_detail.Rows[count - 1].Cells[7].Value = land.expense.total_rent.ToString(); //Resources.lbl_total_rent;
@@ -219,8 +216,8 @@ namespace ArthiPOS.Controls.dashboard
 
         private void VendorStock_Load(object sender, EventArgs e)
         {
-            
-            saleParser = new SaleParser(date, Admin.SaveLog);
+
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             shop = SHOP.Client;
             //addViews();
             init();
@@ -232,7 +229,7 @@ namespace ArthiPOS.Controls.dashboard
             shop = SHOP.Client;
             //new Thread(new ThreadStart(() =>
             {
-                
+
                 readDailySale(date);
 
             }//)).Start();
@@ -262,7 +259,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-       
+
 
         #region Business Logic, init
 
@@ -275,7 +272,7 @@ namespace ArthiPOS.Controls.dashboard
         }
 
 
-        
+
 
 
         #endregion
@@ -302,7 +299,7 @@ namespace ArthiPOS.Controls.dashboard
                     //Stuff
                     btn_additems_Click(this, new EventArgs());
                     return true;
-                
+
 
             }
 
@@ -312,7 +309,9 @@ namespace ArthiPOS.Controls.dashboard
         }
         private void btn_additems_Click(object sender, EventArgs e)
         {
-            using (VendorForm vend = new VendorForm(date, 2, status))
+
+
+            using (AddVendorItem vend = new AddVendorItem(date, 1, status))
             {
                 DialogResult res = vend.ShowDialog();
                 vend.Close();
@@ -320,14 +319,14 @@ namespace ArthiPOS.Controls.dashboard
                 return;
             }
         }
-      
+
 
 
         #endregion
 
-        
 
-         private List<Landlord> tem_ll;
+
+        private List<Landlord> tem_ll;
 
         private void addRowingrid_Clients(Landlord landlord)
         {
@@ -505,7 +504,7 @@ namespace ArthiPOS.Controls.dashboard
             }
             tempclient = null;
 
-           
+
 
         }
         public int objectIndex = 0;
@@ -552,7 +551,7 @@ namespace ArthiPOS.Controls.dashboard
 
         public void addTotalRow()
         {
-            string _total="0",_quantity = "0", _rent = "0", _mazdori = "0", _munshiana = "0", _marketfee="0", _advance = "0", _naqdi = "0", _remainingitems = "0";
+            string _total = "0", _quantity = "0", _rent = "0", _mazdori = "0", _munshiana = "0", _marketfee = "0", _advance = "0", _naqdi = "0", _remainingitems = "0";
             // Thread t2 = new Thread(new ThreadStart(() =>
             {
 
@@ -560,8 +559,8 @@ namespace ArthiPOS.Controls.dashboard
 
                 if (localRecord)
                 {
-                    int v_total=0,v_quantity = 0, v_rent = 0, v_mazdori = 0, v_munshiana = 0,
-                        v_advance = 0, v_naqdi = 0, v_remainingitems = 0, v_marketfee=0;
+                    int v_total = 0, v_quantity = 0, v_rent = 0, v_mazdori = 0, v_munshiana = 0,
+                        v_advance = 0, v_naqdi = 0, v_remainingitems = 0, v_marketfee = 0;
 
                     foreach (Landlord land in Admin.GetInstance.clients)
                     {
@@ -585,16 +584,16 @@ namespace ArthiPOS.Controls.dashboard
                     _naqdi = "" + v_naqdi;
                     _total = "" + v_total;
                     int count = this.grid_client_detail.Rows.Add();
-                    this.grid_client_detail.Rows[count].Cells[4].Value="Total";
-                    this.grid_client_detail.Rows[count].Cells[6].Value=_quantity;
-                    this.grid_client_detail.Rows[count].Cells[7].Value= _rent;
-                    this.grid_client_detail.Rows[count].Cells[8].Value=_mazdori;
-                    this.grid_client_detail.Rows[count].Cells[9].Value= _advance;
-                    this.grid_client_detail.Rows[count].Cells[10].Value= _munshiana;
+                    this.grid_client_detail.Rows[count].Cells[4].Value = "Total";
+                    this.grid_client_detail.Rows[count].Cells[6].Value = _quantity;
+                    this.grid_client_detail.Rows[count].Cells[7].Value = _rent;
+                    this.grid_client_detail.Rows[count].Cells[8].Value = _mazdori;
+                    this.grid_client_detail.Rows[count].Cells[9].Value = _advance;
+                    this.grid_client_detail.Rows[count].Cells[10].Value = _munshiana;
                     this.grid_client_detail.Rows[count].Cells[11].Value = _marketfee;
-                    this.grid_client_detail.Rows[count].Cells[14].Value=_naqdi ;
-                    this.grid_client_detail.Rows[count].Cells[15].Value= _remainingitems;
-                    this.grid_client_detail.Rows[count].Cells[16].Value= _total;
+                    this.grid_client_detail.Rows[count].Cells[14].Value = _naqdi;
+                    this.grid_client_detail.Rows[count].Cells[15].Value = _remainingitems;
+                    this.grid_client_detail.Rows[count].Cells[16].Value = _total;
                     //addBipariTotalRows(newRow1);
                 }
                 else
@@ -612,7 +611,7 @@ namespace ArthiPOS.Controls.dashboard
                     _remainingitems = row[6].ToString();
                 }
 
-                
+
             }//));
             //t2.Start();
         }
@@ -624,7 +623,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-        
+
 
         #region Refresh
         public void refreshUI(List<Landlord> tclients)
@@ -724,7 +723,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 int count = land.customers.Count;//Temp Comment
                 //return bal.deleteRecordTransport(billkey, date, land, count);//Temp Comment
-                return bal.deleteRecordTransport(billkey, date, land,1,land.expense.category);
+                return bal.deleteRecordTransport(billkey, date, land, 1, land.expense.category);
             }
         }
         #endregion
@@ -746,7 +745,7 @@ namespace ArthiPOS.Controls.dashboard
                 if (Admin.GetInstance.clients.Count() > 0)
                 {
 
-                    if (Authentication.Account.local == "0" || status=="Live")
+                    if (Authentication.Account.local == "0" || status == "Live")
                     {
                         if (Admin.GetInstance.clients.Count() > 0)
                         {
@@ -764,10 +763,11 @@ namespace ArthiPOS.Controls.dashboard
                             string bill_id = grid_client_detail.Rows[index].Cells[grid_client_detail.ColumnCount - 1].Value.ToString();
 
                             Landlord land = Admin.GetInstance.clients.Find(x => x.land_person.pkey == billkey);
-                            bool check=bal.p_sales_delete("DeleteSalesAll", date, billkey);
+                            bool check = bal.p_sales_delete("DeleteSalesAll", date, billkey);
 
                             //int chk = deleteSale(billkey, land);
                             readDailySale(date);
+                            bal.post_to_journal("p_daily",land.record_id, "DELETE");
 
                         }
                     }
@@ -788,7 +788,7 @@ namespace ArthiPOS.Controls.dashboard
 
                 }
             }
-            else 
+            else
             if (e.ColumnIndex == 1)
             {
                 //Edit Details
@@ -798,10 +798,10 @@ namespace ArthiPOS.Controls.dashboard
 
                 Landlord land = Admin.GetInstance.clients.Find(x => x.land_person.pkey == billkey);
                 bool updateData = true;
-                using (VendorForm vend = new VendorForm(date, 2, status))
+                using (AddVendorItem vend = new AddVendorItem(date, 1, status))
                 {
-                    vend.updateData = true;//For Update Must be True
-                    vend.land = land;//assign landlord for update record
+                    if (updateData)
+                        vend.updateRecord(land, updateData, this);
                     DialogResult res = vend.ShowDialog();
                     vend.Close();
                     readDailySale(date);
@@ -820,7 +820,7 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-       
+
         #region OnlyNumeric Enter
         private void Txt_Numeric_KeyPress(object sender, KeyPressEventArgs e)
         {

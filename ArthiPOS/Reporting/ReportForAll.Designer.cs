@@ -37,6 +37,7 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.cm_data = new System.Windows.Forms.ComboBox();
+            this.btn_browser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,30 +123,27 @@
             // 
             this.cm_data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cm_data.FormattingEnabled = true;
-            this.cm_data.Items.AddRange(new object[] {
-            "Chatha",
-            "Advance",
-            "Season",
-            "Ledger",
-            "BalanceSheet",
-            "SERP",
-            "Daily Accounts",
-            "Fright/Expense Detail",
-            "Customer Augrai Detail",
-            "Advance/Investment Detail",
-            "Detail Net Profit/Expense",
-            "Product Sale Detail",
-            "SalePuchase"});
             this.cm_data.Location = new System.Drawing.Point(545, 15);
             this.cm_data.Name = "cm_data";
             this.cm_data.Size = new System.Drawing.Size(186, 21);
             this.cm_data.TabIndex = 125;
+            // 
+            // btn_browser
+            // 
+            this.btn_browser.Location = new System.Drawing.Point(751, 15);
+            this.btn_browser.Name = "btn_browser";
+            this.btn_browser.Size = new System.Drawing.Size(75, 27);
+            this.btn_browser.TabIndex = 126;
+            this.btn_browser.Text = "Browser";
+            this.btn_browser.UseVisualStyleBackColor = true;
+            this.btn_browser.Click += new System.EventHandler(this.btn_browser_Click);
             // 
             // ReportForAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 581);
+            this.Controls.Add(this.btn_browser);
             this.Controls.Add(this.cm_data);
             this.Controls.Add(this.date_last);
             this.Controls.Add(this.lbl_end);
@@ -172,5 +170,6 @@
         private System.Windows.Forms.Button btn_search;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.ComboBox cm_data;
+        private System.Windows.Forms.Button btn_browser;
     }
 }

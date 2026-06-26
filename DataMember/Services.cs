@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace DataMember
 {
     public class Services
@@ -15,6 +11,6 @@ namespace DataMember
         public float clerk_per_bill;
         public float marketfee;
         //public int extra_amount_per_beg;
-        
+
     }
 }

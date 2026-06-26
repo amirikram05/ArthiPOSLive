@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
-using System.Data.SqlClient;
-using System.IO;
-using System.Configuration;
-using CommonUtilities;
-using BAL;
-using DataMember.memberlog;
-using DataMember;
-using ArthiPOS.shop;
-using ArthiPOS.utill;
-using ArthiPOS.Utill;
-using Google.Apis.Drive.v3;
+﻿using ArthiPOS.Controls.dashboard;
 using ArthiPOS.Controls.test;
-using ArthiPOS.Controls.dashboard;
+using ArthiPOS.shop;
+using ArthiPOS.Utill;
+using CommonUtilities;
+using DataMember;
+using DataMember.memberlog;
+using Google.Apis.Drive.v3;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls
 {
@@ -39,7 +27,7 @@ namespace ArthiPOS.Controls
             lbl_conn.Text = db.connectionName;
             txt_localdb.Text = db.LocalDB;
             panel_config.Enabled = config;
-            if(db.Status=="Live")
+            if (db.Status == "Live")
                 db_list.SelectedIndex = 0;
             else if (db.Status == "Testing")
                 db_list.SelectedIndex = 1;
@@ -74,13 +62,13 @@ namespace ArthiPOS.Controls
             else if (db_list.SelectedIndex == 2)
                 dbname = "dbt";
 
-            #if DEBUG
-                Console.WriteLine("Running in Debug mode");
-            #else
+#if DEBUG
+            Console.WriteLine("Running in Debug mode");
+#else
                 dbname = livedb;
-            #endif
+#endif
 
-            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, lbl_conn.Text, test_db, dbname,local_db,1);
+            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, lbl_conn.Text, test_db, dbname, local_db, 1);
             DatabaseLog db = LogUtill.getDatabaseLog();
             lbl_conn.Text = db.connectionName;
 
@@ -158,8 +146,8 @@ namespace ArthiPOS.Controls
             string local_db = this.txt_localdb.Text.Trim();
 
             string dbname = livedb;
-            
-            if (db_list.SelectedIndex==0)
+
+            if (db_list.SelectedIndex == 0)
             {
                 dbname = livedb;
             }
@@ -168,7 +156,7 @@ namespace ArthiPOS.Controls
                 dbname = test_db;
             }
 
-            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, lbl_conn.Text, test_db, dbname, local_db,0);
+            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, lbl_conn.Text, test_db, dbname, local_db, 0);
             DatabaseLog db = LogUtill.getDatabaseLog();
             lbl_conn.Text = db.connectionName;
             RegistryAccess.SetStringRegistryValue("DBStatus", db.Status);
@@ -235,7 +223,7 @@ namespace ArthiPOS.Controls
                 }
 
 
-            if (configFolderId != null)
+                if (configFolderId != null)
                 {
                     List<string> ls = await GoogleDriveHelper.ListFilesInFolder(service, configFolderId);
                     // Check if config.json file exists in Config folder
@@ -260,23 +248,41 @@ namespace ArthiPOS.Controls
                         panel_config.Enabled = true;
 
 
-                        Account acc = new Account()
+                        DataMember.Account acc = new DataMember.Account()
                         {
                             username = config.user_name,
-                            password=config.password,
-                            address=config.address,
-                            shop_name=config.shop_name,
-                            propriters_name=config.propriters_name,
-                            email=config.email,
-                            trade_mark=config.trade_mark,
-                            license_exp_date=config.license_exp,
-                            license_no=config.licensekey,
-                            name1=config.name1,
-                            phone1=config.phone1,
-                            api_key_exp_date=config.registrationkey_exp
+                            password = config.password,
+                            address = config.address,
+                            shop_name = config.shop_name,
+                            propriters_name = config.propriters_name,
+                            email = config.email,
+                            trade_mark = config.trade_mark,
+                            license_exp_date = config.license_exp,
+                            license_no = txt_registration_no.Text,
+                            name1 = config.name1,
+                            phone1 = config.phone1,
+                            api_key_exp_date = config.registrationkey_exp,
+                            api_key = txt_registration_no.Text,
+                            business_type = config.business_type,
+                            local = "1",
+                            web_id=config.web_id
+
                         };
                         ProfileEdit pe = new ProfileEdit(acc);
                         pe.ShowDialog();
+                        string registration_no = txt_registration_no.Text;
+
+                        if (acc != null)
+                        {
+                            RegistryAccess.SetStringRegistryValue(Const.REGKEY, registration_no);
+                            MessageBox.Show(acc.username + " Account Activated....Please Login ");
+                            panel_config.Enabled = true;
+                            txt_servername.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Registration Key Not Valid. Please Add Valid Registration Key....");
+                        }
 
                     }
                     else
@@ -310,22 +316,29 @@ namespace ArthiPOS.Controls
             string backup = this.txt_backupdb.Text.Trim();
             string test_db = this.txt_testingdb.Text.Trim();
             string local_db = this.txt_localdb.Text.Trim();
-
-            string dbname = livedb;
             int localCheck = 0;
-            if (db_list.SelectedIndex==0)
+            string dbname = livedb;
+            if (db_list.SelectedIndex == 0)
             {
                 dbname = livedb;
+                RegistryAccess.SetStringRegistryValue("db", "Live");
             }
             else if (db_list.SelectedIndex == 1)
             {
                 dbname = test_db;
+                RegistryAccess.SetStringRegistryValue("db", "Test");
+
             }
             else if (db_list.SelectedIndex == 2)
             {
                 dbname = "Local";
                 localCheck = 1;
+                RegistryAccess.SetStringRegistryValue("db", "Local");
+
+
             }
+
+
 
             LogUtill.loadDBConfig(servername, uname, password, livedb, backup, lbl_conn.Text, test_db, dbname, local_db, localCheck);
             DatabaseLog db = LogUtill.getDatabaseLog();

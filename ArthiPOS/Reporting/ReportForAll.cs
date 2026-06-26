@@ -1,15 +1,11 @@
-﻿using ArthiPOS.Reporting.ReportView;
+﻿using ArthiPOS.utill;
 using BAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
@@ -19,17 +15,27 @@ namespace ArthiPOS.Reporting
         public ReportForAll()
         {
             InitializeComponent();
+            init();
+        }
+
+        private void init()
+        {
+            DataTable dt1 = new BLogic().p_chatha( "-1", date_start.Text, date_last.Text);
+            foreach(DataRow row in dt1.Rows)
+            {
+                cm_data.Items.Add(row["Item"].ToString());
+            }
         }
         DataTable dt;
         private void btn_search_Click(object sender, EventArgs e)
         {
 
-            if (cm_data.SelectedIndex==0)//chatha
+            if (cm_data.SelectedIndex == 0)//chatha
             {
-                dt = new BLogic().p_chatha(date_start.Text, date_last.Text);
+                dt = new BLogic().p_chatha(cm_data.SelectedIndex+"", date_start.Text, date_last.Text);
 
             }
-            else if(cm_data.SelectedIndex==1)//Advance
+            else if (cm_data.SelectedIndex == 1)//Advance
             { }
             else if (cm_data.SelectedIndex == 2)//Season
             {
@@ -70,7 +76,7 @@ namespace ArthiPOS.Reporting
                 dt = (DataTable)obj[1];
 
             }
-            else if(cm_data.SelectedIndex==10)//Detail Porofti/expense
+            else if (cm_data.SelectedIndex == 10)//Detail Porofti/expense
             {
                 List<object> obj = (List<object>)new BLReport().p_DetailReport(date_start.Text, date_last.Text, "");
                 if (obj == null)
@@ -80,12 +86,16 @@ namespace ArthiPOS.Reporting
                 dt = (DataTable)obj[1];
             }
             else if (cm_data.SelectedIndex == 11)//Product sale detail
-            { 
+            {
                 dt = new BLogic().readFardHisab("AllProduct", "", date_start.Text, date_last.Text);
             }
             else if (cm_data.SelectedIndex == 12)//Product sale detail
             {
-                dt = new BLogic().p_cashflow_SP( date_start.Text, date_last.Text);
+                dt = new BLogic().p_cashflow_SP(date_start.Text, date_last.Text);
+            }
+            else if (cm_data.SelectedIndex > 12)
+            {
+                dt = new BLogic().p_chatha(""+cm_data.SelectedIndex,date_start.Text, date_last.Text);
             }
 
             dataGridView1.DataSource = dt;
@@ -111,11 +121,11 @@ namespace ArthiPOS.Reporting
             */
 
             //Open the print preview dialog
-            if (cm_data.SelectedIndex == 0 || cm_data.SelectedIndex == 6 
+            if (cm_data.SelectedIndex == 0 || cm_data.SelectedIndex == 6
                 || cm_data.SelectedIndex == 10 || cm_data.SelectedIndex == 12)
             {
 
-                AllReportView ar = new AllReportView(dt, cm_data.SelectedIndex,date_start.Text,date_last.Text);
+                AllReportView ar = new AllReportView(dt, cm_data.SelectedIndex, date_start.Text, date_last.Text);
                 ar.ShowDialog();
 
             }
@@ -126,7 +136,7 @@ namespace ArthiPOS.Reporting
                 objPPdialog.ShowDialog();
             }
 
-            
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -157,7 +167,7 @@ namespace ArthiPOS.Reporting
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+
         #endregion
 
         #region Begin Print Event Handler
@@ -333,7 +343,18 @@ namespace ArthiPOS.Reporting
             }
         }
         #endregion
-    
+
+        private void btn_browser_Click(object sender, EventArgs e)
+        {
+            string htmlReport=CommonUtill.GenerateHTMLReportUrdu(dt, cm_data.SelectedText);
+            // Output the HTML to a file
+            string filePath = @"report.html";
+            File.WriteAllText(filePath, htmlReport);
+
+            // Open the HTML report in the default web browser
+            System.Diagnostics.Process.Start(filePath);
+            Console.WriteLine(htmlReport);
+        }
     }
 
 }

@@ -31,11 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Column6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.item_datagrid = new MetroFramework.Controls.MetroGrid();
             ((System.ComponentModel.ISupportInitialize)(this.item_datagrid)).BeginInit();
@@ -149,11 +149,11 @@
 
         #endregion
 
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
         private MetroFramework.Controls.MetroGrid item_datagrid;
     }

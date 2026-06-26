@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Web.Script.Serialization;
-using DataMember.memberlog;
+﻿using DataMember.memberlog;
 using System.Configuration;
 
 namespace CommonUtilities
@@ -9,8 +6,8 @@ namespace CommonUtilities
     public class LogUtill
     {
         public static void loadLastUseInputs_TransportForm(string bipari_chongi, string client_commission, string customer_chongi, string customer_commission, string labour
-            ,string munshiana, string product_id, string product
-            , string weight_id, string weight,string _rent_per_product,string pack,string marketfee)
+            , string munshiana, string product_id, string product
+            , string weight_id, string weight, string _rent_per_product, string pack, string marketfee)
         {
             AdminLog log = AdminLog.Load();
             log.client_chongi = bipari_chongi;
@@ -34,7 +31,7 @@ namespace CommonUtilities
             log.DefultDIR = dirPath;
             log.Save();
         }
-        
+
         /*public static void loadLastUseInputs_AccountForm(string shop_name,string username, string api_key,string address,string properiters,
             string phone,int capital_Cash,string name1,string phone1,string name2,string phone2)
         {
@@ -68,7 +65,8 @@ namespace CommonUtilities
         }*/
         public static int LoginCount
         {
-            get {
+            get
+            {
                 AccountLog log = AccountLog.Load("accounts.json");
                 return log.loginCount;
             }
@@ -79,7 +77,7 @@ namespace CommonUtilities
             }
         }
 
-        public static void setSorSearch(string id,string type)
+        public static void setSorSearch(string id, string type)
         {
             AccountLog log = AccountLog.Load();
             log.sortmostBy = id;
@@ -89,7 +87,7 @@ namespace CommonUtilities
         public static string[] getSorSearch()
         {
             AccountLog log = AccountLog.Load();
-            return new string[] { log.sortmostBy,log.sortType};
+            return new string[] { log.sortmostBy, log.sortType };
         }
 
 
@@ -113,8 +111,8 @@ namespace CommonUtilities
         {
             return LanguageLog.Load("language.json");
         }
-        public static void loadDBConfig(string servername,string username,string password,string livedb,
-            string backup,string connname,string testing_db,string currentDB,string localdb,int localCheck)
+        public static void loadDBConfig(string servername, string username, string password, string livedb,
+            string backup, string connname, string testing_db, string currentDB, string localdb, int localCheck)
         {
             DatabaseLog db = DatabaseLog.Load();
             db.ServerName = servername;
@@ -126,8 +124,8 @@ namespace CommonUtilities
             db.Testing_Database = testing_db;
             db.LocalDB = localdb;
             db.DatabaseIs = currentDB;
-            db.LocalCheck = localCheck ;
-            if(localCheck == 1)
+            db.LocalCheck = localCheck;
+            if (localCheck == 1)
             {
                 db.connectionName = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -136,7 +134,7 @@ namespace CommonUtilities
             {
                 db.connectionName = $"Data Source = {servername}; Initial Catalog = {currentDB}; Persist Security Info = True; User ID = {username}; Password = {password}";
             }
-            if(localCheck==1)
+            if (localCheck == 1)
                 db.Status = currentDB == "db_pt" ? "Testing" : "Live_Local";
             else
                 db.Status = currentDB == "db_pt" ? "Testing" : "Live";
@@ -174,11 +172,11 @@ namespace CommonUtilities
     //    public string Testing_Database;
     //    public string Backupdb;
     //    public string DatabaseIs = "";
-        
+
     //}
     //public class AccountLog : AppSettings<AccountLog>
     //{
-        
+
     //    public string Name1;
     //    public string Name2;
     //    public string Phone1;

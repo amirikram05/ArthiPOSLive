@@ -11,32 +11,30 @@
  * so that others may benefit from it. 
  * */
 using System;
-using System.Text;
-using System.ComponentModel;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
-using ArthiPOS;
 
 namespace ArthiPOS.Controls
 {
-	
+
     public class UrduTextBox : System.Windows.Forms.TextBox
-	{
-		//used to keep track of keystrokes handled by us
-		private bool handled = false;
-		
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+    {
+        //used to keep track of keystrokes handled by us
+        private bool handled = false;
 
-		public UrduTextBox()
-		{
-			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
-			this.RightToLeft = RightToLeft.Yes;
-            
+        public UrduTextBox()
+        {
+            // This call is required by the Windows.Forms Form Designer.
+            InitializeComponent();
+
+            this.RightToLeft = RightToLeft.Yes;
+
             JoinEvents(true);
 
         }
@@ -44,67 +42,67 @@ namespace ArthiPOS.Controls
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
-        protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
-
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			components = new System.ComponentModel.Container();
-		}
-		#endregion
-
-		#region Urdutextbox custom code
-	/*	protected override void OnKeyPress(KeyPressEventArgs e)
-		{		
-			//Move the caret to the end of text				
-			this.SelectionStart = this.Text.Length;
-
-			e.Handled=handled;
-
-            //We handle only the required keys checked in the key down event
-            //the rest are passed to the parent
-            if (!handled)
-                if (IsNumeric == false)
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
                 {
-                    base.OnKeyPress(e);
+                    components.Dispose();
                 }
-                else if (!handled && IsNumeric)
-                {
-                    if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                    {
-                        this.Text = "";
-                        this.SelectAll();
+            }
+            base.Dispose(disposing);
+        }
 
+        #region Component Designer generated code
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+        }
+        #endregion
+
+        #region Urdutextbox custom code
+        /*	protected override void OnKeyPress(KeyPressEventArgs e)
+            {		
+                //Move the caret to the end of text				
+                this.SelectionStart = this.Text.Length;
+
+                e.Handled=handled;
+
+                //We handle only the required keys checked in the key down event
+                //the rest are passed to the parent
+                if (!handled)
+                    if (IsNumeric == false)
+                    {
+                        base.OnKeyPress(e);
+                    }
+                    else if (!handled && IsNumeric)
+                    {
+                        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                        {
+                            this.Text = "";
+                            this.SelectAll();
+
+                        }
+                        else
+                        {
+                            base.OnKeyPress(e);
+                        }
                     }
                     else
                     {
                         base.OnKeyPress(e);
                     }
-                }
-                else
-                {
-                    base.OnKeyPress(e);
-                }
-            
 
 
-        }
-   */
-        
+
+            }
+       */
+
         /*
                 protected override void OnKeyDown(KeyEventArgs e)
                 {
@@ -502,7 +500,7 @@ namespace ArthiPOS.Controls
                         sb.Append(((keyData == Keys.Shift) ? "\u0630" : "\u0632"));
                         this.Text = sb.ToString(); this.SelectionStart = this.Text.Length; return true;
 
-                        #region Shift Alphabets
+                    #region Shift Alphabets
 
                     case Keys.Shift | Keys.A:
                         sb.Append(((true) ? "\u0622" : "\u0627"));

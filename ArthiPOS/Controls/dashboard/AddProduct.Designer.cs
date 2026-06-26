@@ -73,6 +73,12 @@
             this.txt_market_fee = new ArthiPOS.Controls.UrduTextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.txt_shop_com = new ArthiPOS.Controls.UrduTextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txt_shop_labour = new ArthiPOS.Controls.UrduTextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_code
@@ -140,7 +146,7 @@
             this.btn_add_veg.IconVisible = true;
             this.btn_add_veg.IconZoom = 70D;
             this.btn_add_veg.IsTab = false;
-            this.btn_add_veg.Location = new System.Drawing.Point(47, 454);
+            this.btn_add_veg.Location = new System.Drawing.Point(47, 521);
             this.btn_add_veg.Name = "btn_add_veg";
             this.btn_add_veg.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btn_add_veg.OnHovercolor = System.Drawing.Color.Gray;
@@ -175,7 +181,7 @@
             this.btn_del_veg.IconVisible = true;
             this.btn_del_veg.IconZoom = 85D;
             this.btn_del_veg.IsTab = false;
-            this.btn_del_veg.Location = new System.Drawing.Point(300, 454);
+            this.btn_del_veg.Location = new System.Drawing.Point(300, 521);
             this.btn_del_veg.Name = "btn_del_veg";
             this.btn_del_veg.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btn_del_veg.OnHovercolor = System.Drawing.Color.Gray;
@@ -210,7 +216,7 @@
             this.btn_update_veg.IconVisible = true;
             this.btn_update_veg.IconZoom = 60D;
             this.btn_update_veg.IsTab = false;
-            this.btn_update_veg.Location = new System.Drawing.Point(174, 454);
+            this.btn_update_veg.Location = new System.Drawing.Point(174, 521);
             this.btn_update_veg.Name = "btn_update_veg";
             this.btn_update_veg.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btn_update_veg.OnHovercolor = System.Drawing.Color.Gray;
@@ -668,12 +674,86 @@
             this.label28.TabIndex = 261;
             this.label28.Text = "ماركیٹ ‌فیس";
             // 
+            // txt_shop_com
+            // 
+            this.txt_shop_com.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_shop_com.IsNumeric = true;
+            this.txt_shop_com.LangEnglish = true;
+            this.txt_shop_com.Location = new System.Drawing.Point(110, 469);
+            this.txt_shop_com.Name = "txt_shop_com";
+            this.txt_shop_com.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_shop_com.Size = new System.Drawing.Size(119, 26);
+            this.txt_shop_com.TabIndex = 265;
+            this.txt_shop_com.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txt_shop_com.WaterMarkText = "0";
+            // 
+            // label29
+            // 
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label29.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label29.Location = new System.Drawing.Point(27, 468);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(92, 26);
+            this.label29.TabIndex = 263;
+            this.label29.Text = "Shop Product Commission";
+            // 
+            // label30
+            // 
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label30.Location = new System.Drawing.Point(107, 451);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(104, 12);
+            this.label30.TabIndex = 264;
+            this.label30.Text = "دوكان ‌كمیشن ‌نگ";
+            // 
+            // txt_shop_labour
+            // 
+            this.txt_shop_labour.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_shop_labour.IsNumeric = true;
+            this.txt_shop_labour.LangEnglish = true;
+            this.txt_shop_labour.Location = new System.Drawing.Point(300, 469);
+            this.txt_shop_labour.Name = "txt_shop_labour";
+            this.txt_shop_labour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_shop_labour.Size = new System.Drawing.Size(119, 26);
+            this.txt_shop_labour.TabIndex = 268;
+            this.txt_shop_labour.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txt_shop_labour.WaterMarkText = "0";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label31.Location = new System.Drawing.Point(244, 477);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(46, 13);
+            this.label31.TabIndex = 266;
+            this.label31.Text = "Labour";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label32.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label32.Location = new System.Drawing.Point(297, 451);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(87, 13);
+            this.label32.TabIndex = 267;
+            this.label32.Text = "مزدوری ‌دوكان";
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(473, 491);
+            this.ClientSize = new System.Drawing.Size(473, 567);
+            this.Controls.Add(this.txt_shop_com);
+            this.Controls.Add(this.txt_shop_labour);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label30);
             this.Controls.Add(this.txt_market_fee);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label28);
@@ -776,5 +856,11 @@
         private UrduTextBox txt_market_fee;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
+        private UrduTextBox txt_shop_com;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private UrduTextBox txt_shop_labour;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
     }
 }

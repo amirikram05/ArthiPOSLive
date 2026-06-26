@@ -37,15 +37,15 @@
             this._lbl_date = new System.Windows.Forms.Label();
             this.datagrid_transport_detail = new MetroFramework.Controls.MetroGrid();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column9 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_total = new System.Windows.Forms.Label();
             this._lbl_total = new System.Windows.Forms.Label();
@@ -229,7 +229,7 @@
             this.Column9.HeaderText = "Extra Amount";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
-            this.Column9.Text = "0";
+            this.Column9.DefaultCellStyle.NullValue = "0";
             // 
             // Column6
             // 
@@ -691,15 +691,15 @@
         public System.Windows.Forms.Label _lbl_total;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column4;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column9;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column7;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column8;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         public System.Windows.Forms.Label lbl_s_marketfee;
         public System.Windows.Forms.Label _lbl_marketfee;
     }

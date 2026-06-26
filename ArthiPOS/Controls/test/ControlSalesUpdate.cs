@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ArthiPOS.Properties;
+﻿using ArthiPOS.Properties;
 using ArthiPOS.shop;
-using ArthiPOS.utill;
 using ArthiPOS.Utill;
 using BAL;
-using DataMember;
-using MetroFramework.Controls;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using MetroFramework.Controls;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.test
 {
     public partial class ControlSalesUpdate : UserControl
     {
-      
+
         SaleParser saleParser;
         FileInfo[] files;
         AdminLog adminlog;
@@ -36,7 +28,7 @@ namespace ArthiPOS.Controls.test
             InitializeComponent();
             adminlog = LogUtill.getAdminInputLog();
             bal = new BLogic();
-            saleParser = new SaleParser("",Admin.SaveLog);
+            saleParser = new SaleParser("", Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
 
         }
 
@@ -145,7 +137,7 @@ namespace ArthiPOS.Controls.test
                     }
                 }
 
-                saleParser = new SaleParser(mdate, Admin.SaveLog);
+                saleParser = new SaleParser(mdate, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 string filePath = "";
                 // filePath = files[index].FullName;
                 filePath = string.Format("{0}{1}.json", adminlog.SalesInProccessedFolder, mdate.Replace("-", ""));

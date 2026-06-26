@@ -1,12 +1,6 @@
 ﻿using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -29,16 +23,16 @@ namespace ArthiPOS.Controls.dashboard
         public string date;
         public string name;
         public bool check = false;
-        public int cashType=0;
+        public int cashType = 0;
         public string transaction = "";
         public string transactionid = "";
         public string account_type = "";
         public string account_typeid = "";
         public string category_id = "";
 
-        public DeleteDailog(string id,string type,string name,string khataid,
-            string billid,string rec_id,string bill_amount,string paid_amount,
-            string discount,string date,int cashType,string tranid,string transname,string actypeid,string actype,string cateid)
+        public DeleteDailog(string id, string type, string name, string khataid,
+            string billid, string rec_id, string bill_amount, string paid_amount,
+            string discount, string date, int cashType, string tranid, string transname, string actypeid, string actype, string cateid)
         {
             InitializeComponent();
             this.ID = id;
@@ -76,7 +70,7 @@ namespace ArthiPOS.Controls.dashboard
             lbl_acctype.Text = this.account_type;
 
         }
-        public DeleteDailog(DataRow dr,int cashType)
+        public DeleteDailog(DataRow dr, int cashType)
         {
             InitializeComponent();
             this.bal = new BLogic();
@@ -87,11 +81,11 @@ namespace ArthiPOS.Controls.dashboard
             this.name = dr[4].ToString();
             this.paid_amount = dr[5].ToString();
             this.discount = dr[6].ToString();
-            this.billid = dr[7].ToString(); 
-            this.type = dr[8].ToString(); 
+            this.billid = dr[7].ToString();
+            this.type = dr[8].ToString();
             this.bill_amount = dr[9].ToString();
             this.cashType = cashType;
-            
+
             this.transactionid = dr[13].ToString();
             this.transaction = dr[12].ToString(); ;
             this.account_type = "";
@@ -119,36 +113,20 @@ namespace ArthiPOS.Controls.dashboard
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            //int chkType = 0;
-            //if (type == "Customer")
-            //{ chkType = 2; }
-            //else if (type == "ClientInvest")
-            //{ chkType = 4; }
-            //else if (type == "Admin")
-            //{ chkType = 8; }
-            //return;
             bool check = new BLogic().p_addCash("Delete", date, int.Parse(ID), name, int.Parse(paid_amount),
-                int.Parse(discount), cashType, billid, this.transaction, lbl_transid.Text, lbl_type.Text, lbl_acctypeid.Text, "","D",category_id);
+                int.Parse(discount), cashType, billid, this.transaction, lbl_transid.Text, lbl_type.Text, lbl_acctypeid.Text, "", "D", category_id);
             if (check)
             {
+                new BLogic().p_fin_BalanceSheet_CRUD("I", date, lbl_transid.Text, lbl_acctypeid.Text, int.Parse(paid_amount), "-");
                 this.check = check;
                 this.Close();
-
             }
             else
+            {
                 MessageBox.Show("Error, Contact Admin..");
-
-            /* if (type=="Customer")
-             {
-                 check = bal.p_customer_Delete("Delete",date, name, "", int.Parse(this.paid_amount) , int.Parse(this.discount), (rec_id == "" ? 0 : int.Parse(rec_id)), type, "");
-                 bal.update_today_sales(date);
-             }
-             else if(type=="ClientInvest")
-             {
-                 //check = bal.p_customer_Delete("Delete", date, name, "", int.Parse(this.paid_amount), int.Parse(this.discount), (rec_id == "" ? 0 : int.Parse(rec_id)), type, "");
-
-             }*/
-
+                this.check = check;
+                this.Close();
+            }
         }
     }
 }

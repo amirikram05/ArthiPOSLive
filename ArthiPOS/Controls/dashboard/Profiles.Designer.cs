@@ -2,7 +2,7 @@
 {
     partial class Profiles
     {
-         /// <summary> 
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -40,11 +40,11 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txt_receive_amount = new System.Windows.Forms.TextBox();
-            this.today_date = new MetroFramework.Controls.MetroDateTime();
             this.lbl_old_amount = new System.Windows.Forms.Label();
             this.lbl_amount = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btn_update_amount = new Bunifu.Framework.UI.BunifuImageButton();
+            this.today_date = new MetroFramework.Controls.MetroDateTime();
             this.txt_searchCustomer = new ArthiPOS.Controls.UrduTextBox();
             this.lbl_search = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -103,8 +103,12 @@
             this.txt_weight_search = new ArthiPOS.Controls.UrduTextBox();
             this.txt_ename = new ArthiPOS.Controls.UrduTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btn_acc_trans_exp = new System.Windows.Forms.Button();
+            this.btn_trans_account = new System.Windows.Forms.Button();
             this.btn_cat = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.lbl_acc_caid = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.txt_account_cat_id = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -117,10 +121,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txt_typename = new ArthiPOS.Controls.UrduTextBox();
             this.msg = new System.Windows.Forms.Label();
-            this.pnlPager = new System.Windows.Forms.Panel();
             this.cust_detailgrid = new System.Windows.Forms.DataGridView();
-            this.lbl_acc_caid = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detail_type.Properties)).BeginInit();
@@ -146,9 +147,10 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(10, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1183, 649);
+            this.panel1.Size = new System.Drawing.Size(1199, 656);
             this.panel1.TabIndex = 2;
             // 
             // panel2
@@ -156,13 +158,14 @@
             this.panel2.Controls.Add(this.btn_oldrec);
             this.panel2.Controls.Add(this.detail_type);
             this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.today_date);
             this.panel2.Controls.Add(this.txt_searchCustomer);
             this.panel2.Controls.Add(this.lbl_search);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1183, 72);
+            this.panel2.Size = new System.Drawing.Size(1199, 72);
             this.panel2.TabIndex = 8;
             // 
             // btn_oldrec
@@ -210,8 +213,9 @@
             this.detail_type.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
             this.detail_type.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Customer"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Client")});
-            this.detail_type.Size = new System.Drawing.Size(233, 39);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Zamidar"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Bipari")});
+            this.detail_type.Size = new System.Drawing.Size(275, 39);
             this.detail_type.TabIndex = 250;
             this.detail_type.SelectedIndexChanged += new System.EventHandler(this.rd_check_SelectedIndexChanged);
             // 
@@ -228,7 +232,6 @@
             this.pan_add_amount.Controls.Add(this.label18);
             this.pan_add_amount.Controls.Add(this.label19);
             this.pan_add_amount.Controls.Add(this.txt_receive_amount);
-            this.pan_add_amount.Controls.Add(this.today_date);
             this.pan_add_amount.Controls.Add(this.lbl_old_amount);
             this.pan_add_amount.Controls.Add(this.lbl_amount);
             this.pan_add_amount.Controls.Add(this.label14);
@@ -268,16 +271,6 @@
             this.txt_receive_amount.Name = "txt_receive_amount";
             this.txt_receive_amount.Size = new System.Drawing.Size(167, 26);
             this.txt_receive_amount.TabIndex = 204;
-            // 
-            // today_date
-            // 
-            this.today_date.CustomFormat = "yyyy-MM-dd";
-            this.today_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.today_date.Location = new System.Drawing.Point(6, -1);
-            this.today_date.MinimumSize = new System.Drawing.Size(0, 29);
-            this.today_date.Name = "today_date";
-            this.today_date.Size = new System.Drawing.Size(106, 29);
-            this.today_date.TabIndex = 249;
             // 
             // lbl_old_amount
             // 
@@ -322,6 +315,16 @@
             this.btn_update_amount.Zoom = 10;
             this.btn_update_amount.Click += new System.EventHandler(this.btn_update_amount_Click);
             // 
+            // today_date
+            // 
+            this.today_date.CustomFormat = "yyyy-MM-dd";
+            this.today_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.today_date.Location = new System.Drawing.Point(11, 40);
+            this.today_date.MinimumSize = new System.Drawing.Size(0, 29);
+            this.today_date.Name = "today_date";
+            this.today_date.Size = new System.Drawing.Size(106, 29);
+            this.today_date.TabIndex = 249;
+            // 
             // txt_searchCustomer
             // 
             this.txt_searchCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -360,10 +363,12 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.flowLayoutPanel1);
-            this.panel3.Controls.Add(this.pnlPager);
             this.panel3.Controls.Add(this.cust_detailgrid);
-            this.panel3.Location = new System.Drawing.Point(11, 74);
+            this.panel3.Location = new System.Drawing.Point(10, 74);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1169, 572);
             this.panel3.TabIndex = 7;
@@ -389,7 +394,7 @@
             this.tab4.Location = new System.Drawing.Point(3, 3);
             this.tab4.Name = "tab4";
             this.tab4.SelectedIndex = 0;
-            this.tab4.Size = new System.Drawing.Size(277, 538);
+            this.tab4.Size = new System.Drawing.Size(302, 538);
             this.tab4.TabIndex = 1;
             this.tab4.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -425,7 +430,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(269, 500);
+            this.tabPage1.Size = new System.Drawing.Size(294, 500);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Profiles";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -871,7 +876,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(269, 500);
+            this.tabPage2.Size = new System.Drawing.Size(294, 500);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Vegetables";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -966,7 +971,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(269, 500);
+            this.tabPage3.Size = new System.Drawing.Size(294, 500);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Weight";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1197,22 +1202,47 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btn_acc_trans_exp);
+            this.tabPage4.Controls.Add(this.btn_trans_account);
             this.tabPage4.Controls.Add(this.btn_cat);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(269, 500);
+            this.tabPage4.Size = new System.Drawing.Size(294, 500);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Categiory";
+            this.tabPage4.Text = "Transactions";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btn_acc_trans_exp
+            // 
+            this.btn_acc_trans_exp.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_acc_trans_exp.Location = new System.Drawing.Point(24, 18);
+            this.btn_acc_trans_exp.Name = "btn_acc_trans_exp";
+            this.btn_acc_trans_exp.Size = new System.Drawing.Size(228, 40);
+            this.btn_acc_trans_exp.TabIndex = 2;
+            this.btn_acc_trans_exp.Text = "Account Expense Transaction";
+            this.btn_acc_trans_exp.UseVisualStyleBackColor = true;
+            this.btn_acc_trans_exp.Click += new System.EventHandler(this.btn_acc_trans_exp_Click);
+            // 
+            // btn_trans_account
+            // 
+            this.btn_trans_account.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_trans_account.Location = new System.Drawing.Point(24, 110);
+            this.btn_trans_account.Name = "btn_trans_account";
+            this.btn_trans_account.Size = new System.Drawing.Size(228, 40);
+            this.btn_trans_account.TabIndex = 1;
+            this.btn_trans_account.Text = "Transaction/Account Transaction";
+            this.btn_trans_account.UseVisualStyleBackColor = true;
+            this.btn_trans_account.Click += new System.EventHandler(this.btn_trans_account_Click);
             // 
             // btn_cat
             // 
-            this.btn_cat.Location = new System.Drawing.Point(62, 36);
+            this.btn_cat.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cat.Location = new System.Drawing.Point(24, 64);
             this.btn_cat.Name = "btn_cat";
-            this.btn_cat.Size = new System.Drawing.Size(141, 40);
+            this.btn_cat.Size = new System.Drawing.Size(228, 40);
             this.btn_cat.TabIndex = 0;
-            this.btn_cat.Text = "Show";
+            this.btn_cat.Text = "Transaction Category ";
             this.btn_cat.UseVisualStyleBackColor = true;
             this.btn_cat.Click += new System.EventHandler(this.btn_cat_Click);
             // 
@@ -1234,10 +1264,33 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 34);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(269, 500);
+            this.tabPage5.Size = new System.Drawing.Size(294, 500);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Types";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold);
+            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label30.Location = new System.Drawing.Point(188, 306);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(50, 31);
+            this.label30.TabIndex = 213;
+            this.label30.Text = "كیٹگری";
+            // 
+            // lbl_acc_caid
+            // 
+            this.lbl_acc_caid.AutoSize = true;
+            this.lbl_acc_caid.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold);
+            this.lbl_acc_caid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbl_acc_caid.Location = new System.Drawing.Point(158, 275);
+            this.lbl_acc_caid.Name = "lbl_acc_caid";
+            this.lbl_acc_caid.Size = new System.Drawing.Size(44, 31);
+            this.lbl_acc_caid.TabIndex = 212;
+            this.lbl_acc_caid.Text = "xxx";
+            this.lbl_acc_caid.UseMnemonic = false;
             // 
             // label28
             // 
@@ -1420,18 +1473,14 @@
             this.msg.TabIndex = 6;
             this.msg.Text = "Messsage";
             // 
-            // pnlPager
-            // 
-            this.pnlPager.Location = new System.Drawing.Point(320, 532);
-            this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(284, 37);
-            this.pnlPager.TabIndex = 35;
-            // 
             // cust_detailgrid
             // 
             this.cust_detailgrid.AllowUserToAddRows = false;
             this.cust_detailgrid.AllowUserToDeleteRows = false;
             this.cust_detailgrid.AllowUserToOrderColumns = true;
+            this.cust_detailgrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cust_detailgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cust_detailgrid.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1466,34 +1515,11 @@
             this.cust_detailgrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.cust_detailgrid.RowTemplate.Height = 25;
             this.cust_detailgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.cust_detailgrid.Size = new System.Drawing.Size(882, 526);
+            this.cust_detailgrid.Size = new System.Drawing.Size(877, 563);
             this.cust_detailgrid.TabIndex = 0;
             this.cust_detailgrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.cust_detailgrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cust_detailgrid_KeyDown);
             this.cust_detailgrid.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cust_detailgrid_KeyUp);
-            // 
-            // lbl_acc_caid
-            // 
-            this.lbl_acc_caid.AutoSize = true;
-            this.lbl_acc_caid.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold);
-            this.lbl_acc_caid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl_acc_caid.Location = new System.Drawing.Point(158, 275);
-            this.lbl_acc_caid.Name = "lbl_acc_caid";
-            this.lbl_acc_caid.Size = new System.Drawing.Size(44, 31);
-            this.lbl_acc_caid.TabIndex = 212;
-            this.lbl_acc_caid.Text = "xxx";
-            this.lbl_acc_caid.UseMnemonic = false;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold);
-            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label30.Location = new System.Drawing.Point(188, 306);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(50, 31);
-            this.label30.TabIndex = 213;
-            this.label30.Text = "كیٹگری";
             // 
             // Profiles
             // 
@@ -1566,7 +1592,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton btn_deletei;
         private Bunifu.Framework.UI.BunifuFlatButton btn_updatei;
         private System.Windows.Forms.DataGridView cust_detailgrid;
-        private System.Windows.Forms.Panel pnlPager;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TabControl tab4;
@@ -1626,5 +1651,9 @@
         private System.Windows.Forms.TextBox txt_account_cat_id;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label lbl_acc_caid;
+        private System.Windows.Forms.Button btn_trans_account;
+        private System.Windows.Forms.Button btn_acc_trans_exp;
     }
 }
+
+

@@ -1,4 +1,5 @@
-﻿using ArthiPOS.Reporting;
+﻿using ArthiPOS.controls;
+using ArthiPOS.Reporting;
 using ArthiPOS.shop;
 using ArthiPOS.Utill;
 using BAL;
@@ -6,13 +7,9 @@ using CommonUtilities;
 using DataMember;
 using DataMember.memberlog;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,8 +17,8 @@ namespace ArthiPOS.Controls.test
 {
     public partial class AccountClosed : Form
     {
-        
-        
+
+
         private string date;
         private int Count = 0;
         public AccountClosed(string date)
@@ -29,6 +26,13 @@ namespace ArthiPOS.Controls.test
             InitializeComponent();
             this.date = date;
             lbl_date.Text = date;
+            string db = RegistryAccess.GetStringRegistryValue("db", "Test");
+            if (db == "Test")
+                testorlive = @"Test\";
+            else if (db == "Live")
+                testorlive = @"Live\";
+            else if (db == "Local")
+                testorlive = @"Local\";
 
         }
 
@@ -38,8 +42,20 @@ namespace ArthiPOS.Controls.test
         {
             if (Count > 0)
             {
+                double lStart = DateTime.Now.Ticks;
+                Admin.LogExecMang.Log("Closing Start Time->" + lStart);
+                Admin.LogExecMang.Log("\nExpense and Receivings Processing Start-> ");
                 expenseReceivingsClosing();
+               
+                Admin.LogExecMang.Log("\nEnd-> " + (DateTime.Now.Ticks- lStart) / 10000000.0);
+                Admin.LogExecMang.Log("\nSales Processing Start-> ");
+
                 vednourSalesClosing();
+                Admin.LogExecMang.Log("\nEnd-> " + (DateTime.Now.Ticks- lStart) / 10000000.0);
+
+                double lFinish = DateTime.Now.Ticks;
+                Admin.LogExecMang.Log("\nClosing Time " + (lFinish - lStart) / 10000000.0);
+
                 btn_refresh_Click(this, new EventArgs());
 
                 /*Task task1 = Task.Run(() => expenseReceivingsClosing());
@@ -63,35 +79,64 @@ namespace ArthiPOS.Controls.test
 
         private void expenseReceivingsClosing()
         {
+
+            // do something
+            long start1 = DateTime.Now.Ticks;
+            Admin.LogExecMang.Log("\n\t(expenseReceivingsClosing)Get ER Data-> ");
+
             DataTable dt = new BLogic().getCashInout("ER", date);
+            Admin.LogExecMang.Log("\n\tEnd-> " + (DateTime.Now.Ticks- start1 )/ 10000000.0);
+
+            if (dt == null) return;
+            if (dt.Rows.Count == 0) return;
+            if (dt.Rows.Count > 0)
+                new BLogic().addTodaySales(date);
+            Admin.LogExecMang.Log("\n\tAdd ER Data-> ");
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DataRow dr = dt.Rows[i];
                 addData(dr, i);
             }
-        }
+            Admin.LogExecMang.Log("\n\tEnd-> " + (DateTime.Now.Ticks- start1) / 10000000.0);
 
+            if (dt.Rows.Count > 0)
+            {
+                new BLogic().update_today_sales(date);
+
+            }
+            
+
+
+        }
+        string testorlive = @"Test\";
         private void vednourSalesClosing()
         {
             AdminLog adminlog = LogUtill.getAdminInputLog();
-            SaleParser saleParser = new SaleParser("", Admin.SaveLog);
-            FileInfo[] _files = saleParser.getAllFiles(adminlog.SalesInProccessedFolder, false);
+            SaleParser saleParser = new SaleParser("", Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
+            string db = RegistryAccess.GetStringRegistryValue("db", "Test");
+            if (db == "Test")
+                testorlive = @"Test\";
+            else if (db == "Live")
+                testorlive = @"Live\";
+            else if (db == "Local")
+                testorlive = @"Local\";
+            FileInfo[] _files = saleParser.getAllFiles(adminlog.SalesInProccessedFolder+ testorlive, false);
 
             for (int i = 0; i < _files.Length; i++)
             {
                 string file = _files[i].FullName;
                 Wrapper wraplandl = saleParser.LoadTodaySale(file);
                 string date = wraplandl.date;
-                closingSales(date,saleParser,adminlog);
+                closingSales(date, saleParser, adminlog);
             }
         }
-        private void closingSales(string mdate,SaleParser saleParser, AdminLog adminlog)
+        private void closingSales(string mdate, SaleParser saleParser, AdminLog adminlog)
         {
-            saleParser = new SaleParser(mdate, Admin.SaveLog);
+            saleParser = new SaleParser(mdate, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             string filePath = "";
             // filePath = files[index].FullName;
-            filePath = string.Format("{0}{1}.json", adminlog.SalesInProccessedFolder, mdate.Replace("-", ""));
+            filePath = string.Format("{0}{1}.json", adminlog.SalesInProccessedFolder+testorlive, mdate.Replace("-", ""));
             if (!File.Exists(filePath))
             {
                 MessageBox.Show(string.Format("{0}\n{1}", ConstMessages._FileNotExist, filePath));
@@ -123,15 +168,15 @@ namespace ArthiPOS.Controls.test
                 wrapland.data = new BLogic().updateLocalToDB(wrapland.date, wrapland.data, true);
                 if (wrapland.data == null)
                 {
+                    wrapland.db_status = "None";
+                    saleParser.updateLandLord(filePath, wrapland);
                     return;
                 }
                 if (wrapland.data.Count > 0)
                 {
                     if (wrapland.data[0].record_id != "")
                     {
-                        new BLogic().p_insert_date(date);
                         saleParser.moveSaleinProcess(filePath);
-
                     }
                 }
 
@@ -156,79 +201,72 @@ namespace ArthiPOS.Controls.test
             string entrytype = d[15].ToString();
             string datetime = d[17].ToString();
             string cateid = d[18].ToString();
-            string date= d[2].ToString();
+            string date = d[2].ToString();
 
             // return;
             bool check = false;
-
-            new BLogic().addTodaySales(date);
+            long start1 = DateTime.Now.Ticks;
             if (cate_name == "Customer" || cate_name == "ClientInvest"
                 || cate_name == "Client" || cate_name == "ClientRemReceive"
                 || cate_name == "Admin")
             {
 
-                //return;
+
+                Admin.LogExecMang.Log("\n\t(addData) Add Cash-> ");
+
                 check = new BLogic().p_addCash(cate_name, date, int.Parse(id), desc,
                     cash, discount, cashtype, key, expenseid, transactionid, ccname, acctransid, datetime, "I", cateid);
-                if (check)
-                    new BLogic().p_cashinout_Crud("D", "", "", "", 0, 0, 0, 0, "", int.Parse(idcashinout), "", "", 0, 0, "", cateid,"d");
+                Admin.LogExecMang.Log("\n\tEnd-> " + (DateTime.Now.Ticks-start1)/ 10000000.0);
 
+
+                //if (check)
+                {
+
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", date, transactionid, acctransid, cash, "+");
+                    new BLogic().p_cashinout_Crud("D", key, "", "", 0, 0, 0, 0, "", int.Parse(idcashinout), "", "", 0, 0, "", cateid, "d");
+                }
             }
             else if (cate_name == "Expense" || cate_name == "ShopExpense")
             {
-                //return;
+
+                Admin.LogExecMang.Log("\n\tExpenses Process-> ");
+
                 if (new BLogic().insertTodayExpense(date, ccname, "" + cash, key,
-                    string.Format("p_{0}_{1}", cate_name, 0), cate_name, "" + 0, expenseid, desc, transactionid, cateid,expenseid))
+                    string.Format("p_{0}_{1}", cate_name, expenseid), cate_name, "" + 0, expenseid, desc, transactionid, cateid, expenseid))
                 {
+                    Admin.LogExecMang.Log("\n\tEnd-> " + (DateTime.Now.Ticks-start1)/ 10000000.0);
+
                     check = true;
                     new BLogic().p_ledger_CRUD("Insert", transactionid, acctransid, "C", cash, int.Parse(id), cate_name, date,
                         key, expenseid, "I", cateid);
                     new BLogic().addBalanceSheetExpense(desc, "" + cash, date, cate_name, key, "credit", "Insert", "0", acctransid, cateid);
                     new BLogic().update_today_sales(date);
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", date, transactionid, acctransid, cash, "-");
                     if (check)
-                        new BLogic().p_cashinout_Crud("D", "", "", "", 0, 0, 0, 0,
-                            "", int.Parse(idcashinout), "", "", 0, 0, "", cateid, "d");
+                    {
+                        new BLogic().p_cashinout_Crud("D", key, "", "", 0, 0, 0, 0, "", int.Parse(idcashinout), "", "", 0, 0, "", cateid, "d");
+                    }
                 }
 
             }
-
-
-            if (check)
+            else if(cate_name=="Sales")
             {
-                new BLogic().p_insert_date(date);
-                btn_refresh_Click(this, new EventArgs());
 
             }
-            //else if (cate_name == "ClientInvest")
-            //{
-            //    check = new BLogic().p_addCash(cate_name, date, int.Parse(id), desc, cash,
-            //        discount, cashtype, key, expenseid, transactionid, ccname, acctransid);
-            //}
-            //else if (cate_name == "Client" || cate_name == "ClientRemReceive")
-            //{
-            //    check = new BLogic().p_addCash(cate_name, date, int.Parse(id), desc, cash,
-            //        discount, cashtype, key, expenseid, transactionid, ccname, acctransid);
-            //}
-            //else if (cate_name == "Admin")
-            //{
-            //    //return;
-            //    check = new BLogic().p_addCash(cate_name, date, int.Parse(id), desc, cash,
-            //        discount, cashtype, key, expenseid, transactionid, ccname, acctransid);
-            //}
-
-
 
         }
 
-        
+
 
         private void AccountClosed_Load(object sender, EventArgs e)
         {
+
+            
             if (rd_ex_rec.Checked)
             {
                 readExpenseReceiving(date);
             }
-            else if(rd_sales.Checked)
+            else if (rd_sales.Checked)
             {
                 salesUpdate();
             }
@@ -259,14 +297,30 @@ namespace ArthiPOS.Controls.test
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+            long start1 = DateTime.Now.Ticks;
+            Admin.LogExecMang.Log("\n*******Refresh*************");
             AccountClosed_Load(this, new EventArgs());
-           DataTable dt = new BLogic().getDates();
-           foreach (DataRow dr in dt.Rows)
-           {
-               new BLogic().p_insert_date(dr[0].ToString());
-               //break;
+            Admin.LogExecMang.Log("\n   Loading Ends-> " + (DateTime.Now.Ticks - start1) / 10000000.0);
 
-           }
+            DataTable dt = new BLogic().getDates();
+            Admin.LogExecMang.Log("\n   Get Dates-> " + (DateTime.Now.Ticks - start1) / 10000000.0);
+            Admin.LogExecMang.LogStart("p_insertStart");
+            int count = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                Task.Run(() => new BLogic().p_insert_date(dr[0].ToString()));
+                Admin.LogExecMang.LogEnd(""+count++);
+
+                //break;
+
+            }
+            Admin.LogExecMang.LogEnd("p_insertStart");
+
+            Admin.LogExecMang.Log("\n   Insertion Time Ends-> " + (DateTime.Now.Ticks - start1) / 10000000.0);
+
+            double end = (DateTime.Now.Ticks-start1)/ 10000000.0;
+            Admin.LogExecMang.Log("\n******* End Refresh*************-> "+ end);
+
         }
 
         private void print()

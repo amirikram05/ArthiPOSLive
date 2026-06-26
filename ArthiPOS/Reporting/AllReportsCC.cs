@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataMember;
+﻿using ArthiPOS.Properties;
 using ArthiPOS.Reporting.ReportView;
-using BAL;
-using CrystalDecisions.CrystalReports.Engine;
-using ArthiPOS.Reporting.ReportDataSet;
-using ArthiPOS.utill;
-using ArthiPOS.Reporting.ReportView.Header;
-using static ArthiPOS.Controls.dashboard.ReportControl;
-using ArthiPOS.Controls.dashboard;
-using ArthiPOS.Properties;
-using ArthiPOS.Reporting.ReportView.NoHeader;
-using System.IO;
-using System.Reflection;
 using ArthiPOS.Reporting.ReportView.Bills;
+using ArthiPOS.Reporting.ReportView.Header;
+using ArthiPOS.Reporting.ReportView.NoHeader;
+using ArthiPOS.Reporting.ReportView.report;
+using BAL;
 using CommonUtilities;
-using DataMember.memberlog;
+using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using DataMember;
+using DataMember.memberlog;
+using MetroFramework.Properties;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
+using static ArthiPOS.Controls.dashboard.ReportControl;
+using Resources = ArthiPOS.Properties.Resources;
 
 namespace ArthiPOS.Reporting
 {
@@ -40,7 +34,7 @@ namespace ArthiPOS.Reporting
         private string bill_key;
         private DataTable dt = null;
 
-        
+
         public AllReportsCC()
         {
             InitializeComponent();
@@ -57,7 +51,7 @@ namespace ArthiPOS.Reporting
             currentDoc = rb;
 
         }
-        public void ExpenseReceiving(DataTable dte,string sdate,string ldate)
+        public void ExpenseReceiving(DataTable dte, string sdate, string ldate)
         {
             ReportExpRec rb = new ReportExpRec();
             rb.Database.Tables["CashExpense"].SetDataSource(dte);
@@ -65,14 +59,14 @@ namespace ArthiPOS.Reporting
             //wm.Columns.Add("waterpath", typeof(string));
             //string startupPath = Environment.CurrentDirectory;
             //wm.Rows.Add(@startupPath + "\\watermark.jpg");
-           // rb.Database.Tables["Watermark"].SetDataSource(wm);
+            // rb.Database.Tables["Watermark"].SetDataSource(wm);
             crystalReportViewer1.ReportSource = rb;
             crystalReportViewer1.Refresh();
-            rb.SetParameterValue("title", Resources.ResourceManager.GetString("a2018", ci) ?? "");
+            rb.SetParameterValue("title", Properties.Resources.ResourceManager.GetString("a2018", ci) ?? "");
             currentDoc = rb;
 
         }
-        public void ExpenseRecSection(DataTable rec, DataTable exp,int balance,int receivings,int expenses,int currentBalance)
+        public void ExpenseRecSection(DataTable rec, DataTable exp, int balance, int receivings, int expenses, int currentBalance)
         {
             ReportExpRecNew rb = new ReportExpRecNew();
             //rb.Database.Tables["CashExpense"].SetDataSource(dt);
@@ -91,7 +85,7 @@ namespace ArthiPOS.Reporting
 
         }
 
-        public void printLedger(int index,DataTable dt)
+        public void printLedger(int index, DataTable dt)
         {
             ReportView.ReportLedgerJ rb = new ReportView.ReportLedgerJ();
             if (dt == null)
@@ -156,7 +150,7 @@ namespace ArthiPOS.Reporting
             crystalReportViewer1.ReportSource = rb;
             crystalReportViewer1.Refresh();
             rb.SetParameterValue("title", header ?? "");
-            rb.SetParameterValue("col1", c13??"");
+            rb.SetParameterValue("col1", c13 ?? "");
             rb.SetParameterValue("col2", c12 ?? "");
             rb.SetParameterValue("col3", c11 ?? "");
             rb.SetParameterValue("col4", c10 ?? "");
@@ -209,7 +203,7 @@ namespace ArthiPOS.Reporting
         {
             ReportDailyAccounts rb = new ReportDailyAccounts();
             DataRow dr = dt.Rows[0];
-            int balance = int.Parse(dr[7].ToString()==""?"0": dr[7].ToString());
+            int balance = int.Parse(dr[7].ToString() == "" ? "0" : dr[7].ToString());
             rb.Database.Tables["Accounts"].SetDataSource(dt);
             crystalReportViewer1.ReportSource = rb;
             crystalReportViewer1.Refresh();
@@ -218,14 +212,25 @@ namespace ArthiPOS.Reporting
 
 
         }
-        public void BillandRecevings(DataTable cldt,DataTable dt,DataTable dtprd,string cid,string cname,string sdate,string ldate,string balance)
+        public void BillandRecevings(DataTable cldt, DataTable dt, DataTable dtprd, string cid, string cname, string sdate, string ldate, string balance,int check)
         {
             //CustomReport rb = new CustomReport();
             if (dt != null || true)
             {
                 this.dt = dt;
-                ReportFardhisabClient rb = new ReportFardhisabClient();
-                rb.Database.Tables["CustBillRec"].SetDataSource(this.dt);
+                ReportClass rb = null;
+                if (check == 2 || check==1)
+                {
+                    rb = new ReportFardhisabBipZam();
+                    rb.Database.Tables["BipZim"].SetDataSource(this.dt);
+
+                }
+                else
+                {
+                    rb = new ReportFardhisabClient();
+                    rb.Database.Tables["CustBillRec"].SetDataSource(this.dt);
+                }
+
                 //rb.Subreports["ReportProductDetails"].SetDataSource(dtprd);
                 rb.Subreports[0].Database.Tables["ProductTotal"].SetDataSource(dtprd);
                 DataTable wm = new DataTable();
@@ -269,14 +274,14 @@ namespace ArthiPOS.Reporting
 
         }
 
-        public AllReportsCC(DataTable dt,ReportMenu rmenu,string sdate,string ldate)
+        public AllReportsCC(DataTable dt, ReportMenu rmenu, string sdate, string ldate)
         {
             InitializeComponent();
             bal = new BLogic();
             this.sdate = sdate;
             this.ldate = ldate;
             this.dt = dt;
-            if (dt == null && ReportMenu.CustBillsandReceivings!=rmenu)
+            if (dt == null && ReportMenu.CustBillsandReceivings != rmenu)
                 return;
             string col1 = ""
                 , col2 = ""
@@ -298,7 +303,7 @@ namespace ArthiPOS.Reporting
                 if (dt.Columns.Count > 8) col8 = this.dt.Columns[7].ColumnName;
             }
             CustomReport rb = new CustomReport();
-            string op_ac = "0", end_acc = "0", aug = "0", exp = "0", rec = "0", tot_sale = "0" ;
+            string op_ac = "0", end_acc = "0", aug = "0", exp = "0", rec = "0", tot_sale = "0";
             DataTable wm = new DataTable();
             wm.Columns.Add("waterpath", typeof(string));
             string startupPath = Environment.CurrentDirectory;
@@ -309,13 +314,13 @@ namespace ArthiPOS.Reporting
             {
                 case ReportMenu.CustBillsandReceivings:
                     {
-                        
+
                         break;
                     }
                 case ReportMenu.BalanceSheetReport:
                     {
 
-                        changeDatasetColumnName(0,1,2,3,4,5,6,8);
+                        changeDatasetColumnName(0, 1, 2, 3, 4, 5, 6, 8);
                         rb.Database.Tables["CustomData"].SetDataSource(dt);
                         updatemenu2(rb);
                         crystalReportViewer1.ReportSource = rb;
@@ -332,7 +337,7 @@ namespace ArthiPOS.Reporting
                         rb.SetParameterValue("title", Resources.ResourceManager.GetString("a1056", ci) ?? "");
                         break;
                     }
-                   
+
                 case ReportMenu.ProfitLoss://Menu 5
                     {
                         changeDatasetColumnName(0, 1, 2, 3, 4, 5, 6, 7);
@@ -347,7 +352,7 @@ namespace ArthiPOS.Reporting
                         rb.Database.Tables["CustomData"].SetDataSource(dt);
                         updatemenu6(rb);
                         rb.SetParameterValue("title", Resources.ResourceManager.GetString("a1059", ci) ?? "");
-                        
+
                         break;
                     }
                 case ReportMenu.CashReceived://Menu 7
@@ -368,7 +373,7 @@ namespace ArthiPOS.Reporting
                         rb.Database.Tables["CustomData"].SetDataSource(dt);
                         updatemenu8(rb);
                         rb.SetParameterValue("title", Resources.ResourceManager.GetString("a1200", ci) ?? "");
-                        DataTable dts = bal.p_today_totalDetails(sdate,ldate);
+                        DataTable dts = bal.p_today_totalDetails(sdate, ldate);
                         if (dts.Rows.Count > 0)
                         {
 
@@ -412,10 +417,10 @@ namespace ArthiPOS.Reporting
                         rb.SetParameterValue("title", Resources.ResourceManager.GetString("a1047", ci) ?? "");
                         break;
                     }
-                    
+
                 case ReportMenu.SERP://Menu 12
                     {
-                        
+
                         break;
                     }
                 case ReportMenu.AugraiDiff:
@@ -428,7 +433,7 @@ namespace ArthiPOS.Reporting
                     }
             }
             //rb.SetParameterValue("title", rmenu.ToString() /*Resources.ResourceManager.GetString("a1200")*/ ?? "");
-            
+
 
             rb.SetParameterValue("open_acc", op_ac ?? "");
             rb.SetParameterValue("end_acc", end_acc ?? "");
@@ -443,7 +448,7 @@ namespace ArthiPOS.Reporting
 
         }
         private DataTable cusSum = null, clSumm = null, todayDetail = null, exr = null, detReport = null;
-        public void printTodayReport(string sdate,string ldate)
+        public void printTodayReport(string sdate, string ldate)
         {
             cusSum = new BLogic().p_report_CustomerClient("sCustomerSum", sdate, ldate);
             clSumm = new BLogic().p_report_CustomerClient("sClientSum", sdate, ldate);
@@ -451,7 +456,7 @@ namespace ArthiPOS.Reporting
             List<Object> obj = (List<object>)new BLReport().p_expenseCashReceive(sdate, ldate,
                 1, 18);
             List<object> detailRep = (List<object>)new BLReport().p_DetailReport(sdate, ldate, "");
-            
+
 
             TodayReport rb = new TodayReport();
 
@@ -470,7 +475,7 @@ namespace ArthiPOS.Reporting
             }
             detReport = (DataTable)detailRep[1];
 
-            DataRow accop = (detReport.Rows.Count>0)?detReport.Rows[0]:null;
+            DataRow accop = (detReport.Rows.Count > 0) ? detReport.Rows[0] : null;
             if (accop != null)
             {
                 int acc_open = int.Parse(accop[3].ToString());
@@ -529,7 +534,7 @@ namespace ArthiPOS.Reporting
                 rb.SetParameterValue("col8", Resources.ResourceManager.GetString("a2010", ci) ?? "");
 
                 rb.SetParameterValue("title", Resources.ResourceManager.GetString("a1200", ci) ?? "");
-            currentDoc = rb;
+                currentDoc = rb;
 
             }
 
@@ -541,7 +546,7 @@ namespace ArthiPOS.Reporting
             rb.Database.Tables["Watermark"].SetDataSource(wm);
             rb.Database.Tables["SalesTotal"].SetDataSource(clSumm);
             rb.Database.Tables["SalesTotal_1"].SetDataSource(cusSum);
-            
+
             rb.SetParameterValue("startdate", sdate);
             rb.SetParameterValue("lastdate", ldate);
 
@@ -549,7 +554,7 @@ namespace ArthiPOS.Reporting
             crystalReportViewer1.ReportSource = rb;
             crystalReportViewer1.Refresh();
         }
-        internal void printAllCustDetailRep(bool isCustomer, string date)
+        internal void printAllCustDetailRep(bool isCustomer, string sdate,string ldate)
         {
             Account acc = Authentication.Account;
 
@@ -557,10 +562,10 @@ namespace ArthiPOS.Reporting
             {
                 //SalesTodayCustAllDetail rb = new SalesTodayCustAllDetail();
                 SalesCustAllDetail rb = new SalesCustAllDetail();
-                dt = new BLogic().p_report_CustomerClient("sCustomer", date, date);
+                dt = new BLogic().p_report_CustomerClient("sCustomer", sdate, ldate);
                 //rb.Database.Tables["p_report_cc"].SetDataSource(dt);
                 rb.Database.Tables["CustomerSales"].SetDataSource(dt);
-                DataTable dt1 = new BLogic().p_report_CustomerClient("sCustomerSum", date, date);
+                DataTable dt1 = new BLogic().p_report_CustomerClient("sCustomerSum", sdate, ldate);
                 rb.Database.Tables["SalesTotal"].SetDataSource(dt1);
                 DataTable wm = new DataTable();
                 wm.Columns.Add("waterpath", typeof(string));
@@ -584,8 +589,8 @@ namespace ArthiPOS.Reporting
             else
             {
                 SalesTodayAllDetail rb = new SalesTodayAllDetail();
-                dt = new BLogic().p_report_CustomerClient("sClient", date, date);
-                DataTable dt1 = new BLogic().p_report_CustomerClient("sClientSum", date, date);
+                dt = new BLogic().p_report_CustomerClient("sClient", sdate, ldate);
+                DataTable dt1 = new BLogic().p_report_CustomerClient("sClientSum", sdate, ldate);
 
                 rb.Database.Tables["Sales"].SetDataSource(dt);
                 rb.Database.Tables["SalesTotal"].SetDataSource(dt1);
@@ -602,16 +607,16 @@ namespace ArthiPOS.Reporting
                 rb.SetParameterValue("Name2", acc.name2 ?? "");
                 rb.SetParameterValue("Phone2", acc.phone2 ?? "");
                 rb.SetParameterValue("Address", acc.address ?? "");
-                rb.SetParameterValue("Business", acc.business_type ?? ""); 
-            currentDoc = rb;
+                rb.SetParameterValue("Business", acc.business_type ?? "");
+                currentDoc = rb;
 
                 crystalReportViewer1.ReportSource = rb;
             }
         }
 
-        
 
-        public void printSRPSUM(string sdate,string ldate,int index,int pageSize)
+
+        public void printSRPSUM(string sdate, string ldate, int index, int pageSize)
         {
 
 
@@ -645,20 +650,20 @@ namespace ArthiPOS.Reporting
             currentDoc = rb;
 
         }
-        public void printBillList(DataTable dt,string id,string name,string date)
+        public void printBillList(DataTable dt, string id, string name, string date)
         {
-                ReportBillListLand rb = new ReportBillListLand();
-                rb.Database.Tables["BillList"].SetDataSource(dt);
-                DataTable wm = new DataTable();
-                wm.Columns.Add("bid", typeof(string));
-                wm.Columns.Add("bname", typeof(string));
-                wm.Columns.Add("sldate", typeof(string));
-                DataRow dr = wm.NewRow();
-                dr["bid"] = id;
-                dr["bname"] = name;
-                dr["sldate"] = date;
-                wm.Rows.Add(dr);
-                rb.Database.Tables["BillName"].SetDataSource(wm);
+            ReportBillListLand rb = new ReportBillListLand();
+            rb.Database.Tables["BillList"].SetDataSource(dt);
+            DataTable wm = new DataTable();
+            wm.Columns.Add("bid", typeof(string));
+            wm.Columns.Add("bname", typeof(string));
+            wm.Columns.Add("sldate", typeof(string));
+            DataRow dr = wm.NewRow();
+            dr["bid"] = id;
+            dr["bname"] = name;
+            dr["sldate"] = date;
+            wm.Rows.Add(dr);
+            rb.Database.Tables["BillName"].SetDataSource(wm);
             currentDoc = rb;
 
             crystalReportViewer1.ReportSource = rb;
@@ -723,30 +728,46 @@ namespace ArthiPOS.Reporting
         }
         internal void printA4hReport(bool isCustomer, DataTable dt)
         {
-            if(isCustomer)
+            if (isCustomer)
             {
-               
+
 
             }
             else
             {
-                    ReportA5 rb = new ReportA5();
+                ReportA5 rb = new ReportA5();
+                DataRow row = dt.Rows[0];
+                if (row[31].ToString() == "B")
+                {
+                    ReportBipA5 rb1 = new ReportBipA5();
 
+                    if (dt == null)
+                        return;
+                    rb1.Database.Tables["Sales"].SetDataSource(dt);
+                    rb1.Subreports["SaleDetail"].SetDataSource(dt);
+                    rb1.Subreports["SaleExpense"].SetDataSource(dt);
+                    crystalReportViewer1.ReportSource = rb1;
+
+                }
+                else
+                {
                     if (dt == null)
                         return;
                     rb.Database.Tables["Sales"].SetDataSource(dt);
                     rb.Subreports["SaleDetail"].SetDataSource(dt);
                     rb.Subreports["SaleExpense"].SetDataSource(dt);
-                currentDoc = rb;
+                    currentDoc = rb;
 
-                crystalReportViewer1.ReportSource = rb;
+                    crystalReportViewer1.ReportSource = rb;
+                }
+                
             }
         }
 
-        private DataTable changeDatasetColumnName(int c1,int c2,int c3,int c4,int c5,int c6,int c7, int c8)
+        private DataTable changeDatasetColumnName(int c1, int c2, int c3, int c4, int c5, int c6, int c7, int c8)
         {
-            
-            if(this.dt.Columns.Count>=1)
+
+            if (this.dt.Columns.Count >= 1)
                 this.dt.Columns[c1].ColumnName = "Col1";
             if (this.dt.Columns.Count >= 2)
                 this.dt.Columns[c2].ColumnName = "Col2";
@@ -762,7 +783,7 @@ namespace ArthiPOS.Reporting
                 this.dt.Columns[c7].ColumnName = "Col7";
             if (this.dt.Columns.Count >= 8)
                 this.dt.Columns[7].ColumnName = "Col8";
-           
+
 
             return this.dt;
 
@@ -772,9 +793,9 @@ namespace ArthiPOS.Reporting
             , string col4, string col5, string col6, string col7,
             string col8, string col9, string col10, string col11)
         {
-            
-             rb.SetParameterValue("col1", col1??"");
-            rb.SetParameterValue("col2", col2??"");
+
+            rb.SetParameterValue("col1", col1 ?? "");
+            rb.SetParameterValue("col2", col2 ?? "");
             rb.SetParameterValue("col3", col3 ?? "");
             rb.SetParameterValue("col4", col4 ?? "");
             rb.SetParameterValue("col5", col5 ?? "");
@@ -809,40 +830,40 @@ namespace ArthiPOS.Reporting
         {
 
             changeColumnHeader(rb,
-                              Resources.ResourceManager.GetString("a0013",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a2001",ci),
-                               Resources.ResourceManager.GetString("a2002",ci),
-                               Resources.ResourceManager.GetString("a2003",ci),
-                               Resources.ResourceManager.GetString("a1076",ci),
-                               Resources.ResourceManager.GetString("a0009",ci),
-                               Resources.ResourceManager.GetString("a2005",ci),
-                               Resources.ResourceManager.GetString("a2004",ci),
-                               Resources.ResourceManager.GetString("a2006",ci),
-                               Resources.ResourceManager.GetString("a1079",ci)
+                              Resources.ResourceManager.GetString("a0013", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a2001", ci),
+                               Resources.ResourceManager.GetString("a2002", ci),
+                               Resources.ResourceManager.GetString("a2003", ci),
+                               Resources.ResourceManager.GetString("a1076", ci),
+                               Resources.ResourceManager.GetString("a0009", ci),
+                               Resources.ResourceManager.GetString("a2005", ci),
+                               Resources.ResourceManager.GetString("a2004", ci),
+                               Resources.ResourceManager.GetString("a2006", ci),
+                               Resources.ResourceManager.GetString("a1079", ci)
                            );
         }
         public void updatemenu2(CustomReport rb)
         {
-            
+
             changeColumnHeader(rb,
-                              Resources.ResourceManager.GetString("a0013",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a2001",ci),
-                               Resources.ResourceManager.GetString("a2002",ci),
-                               Resources.ResourceManager.GetString("a2003",ci),
-                               Resources.ResourceManager.GetString("a1076",ci),
-                               Resources.ResourceManager.GetString("a0009",ci),
-                               Resources.ResourceManager.GetString("a2005",ci),
-                               Resources.ResourceManager.GetString("a2004",ci),
-                               Resources.ResourceManager.GetString("a2006",ci),
-                               Resources.ResourceManager.GetString("a1079",ci)
+                              Resources.ResourceManager.GetString("a0013", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a2001", ci),
+                               Resources.ResourceManager.GetString("a2002", ci),
+                               Resources.ResourceManager.GetString("a2003", ci),
+                               Resources.ResourceManager.GetString("a1076", ci),
+                               Resources.ResourceManager.GetString("a0009", ci),
+                               Resources.ResourceManager.GetString("a2005", ci),
+                               Resources.ResourceManager.GetString("a2004", ci),
+                               Resources.ResourceManager.GetString("a2006", ci),
+                               Resources.ResourceManager.GetString("a1079", ci)
                            );
         }
         public void updatemenu3(CustomReport rb)
         {
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ur-PK");
-            
+
             changeColumnHeader(rb,
                                Resources.ResourceManager.GetString("a1079", ci),
                                Resources.ResourceManager.GetString("a0205", ci),
@@ -857,13 +878,13 @@ namespace ArthiPOS.Reporting
         private void updatemenu13(CustomReport rb)
         {
             changeColumnHeader(rb,
-                                Resources.ResourceManager.GetString("a0012",ci),
-                                Resources.ResourceManager.GetString("a0205",ci),
-                                Resources.ResourceManager.GetString("a1004",ci),
-                                Resources.ResourceManager.GetString("a0038",ci),
-                                Resources.ResourceManager.GetString("a2010",ci),
-                                Resources.ResourceManager.GetString("a2012",ci),
-                                Resources.ResourceManager.GetString("a2013",ci),
+                                Resources.ResourceManager.GetString("a0012", ci),
+                                Resources.ResourceManager.GetString("a0205", ci),
+                                Resources.ResourceManager.GetString("a1004", ci),
+                                Resources.ResourceManager.GetString("a0038", ci),
+                                Resources.ResourceManager.GetString("a2010", ci),
+                                Resources.ResourceManager.GetString("a2012", ci),
+                                Resources.ResourceManager.GetString("a2013", ci),
                                  "", "", "", ""
                             );
         }
@@ -874,50 +895,50 @@ namespace ArthiPOS.Reporting
         public void updatemenu5(CustomReport rb)
         {
             changeColumnHeader(rb,
-                              Resources.ResourceManager.GetString("a1079",ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a0032",ci)
+                              Resources.ResourceManager.GetString("a1079", ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a0032", ci)
                                , "", "", "", "", "", "", "", ""
                            );
-            
+
         }
         public void updatemenu6(CustomReport rb)
         {
             changeColumnHeader(rb,
-                              Resources.ResourceManager.GetString("a1079",ci),
-                              Resources.ResourceManager.GetString("a1077",ci),
-                              Resources.ResourceManager.GetString("a0032",ci),
-                              Resources.ResourceManager.GetString("a0013",ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
+                              Resources.ResourceManager.GetString("a1079", ci),
+                              Resources.ResourceManager.GetString("a1077", ci),
+                              Resources.ResourceManager.GetString("a0032", ci),
+                              Resources.ResourceManager.GetString("a0013", ci),
+                              Resources.ResourceManager.GetString("a0009", ci),
                               "", "", "", "", "", ""
                           );
-            
+
         }
         public void updatemenu7(CustomReport rb)
         {
             changeColumnHeader(rb,
-                               Resources.ResourceManager.GetString("a1079",ci),
-                              Resources.ResourceManager.GetString("a0205",ci),
-                              Resources.ResourceManager.GetString("a0032",ci),
-                              Resources.ResourceManager.GetString("a1078",ci),
-                              Resources.ResourceManager.GetString("a0012",ci),
-                              Resources.ResourceManager.GetString("a0013",ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
+                               Resources.ResourceManager.GetString("a1079", ci),
+                              Resources.ResourceManager.GetString("a0205", ci),
+                              Resources.ResourceManager.GetString("a0032", ci),
+                              Resources.ResourceManager.GetString("a1078", ci),
+                              Resources.ResourceManager.GetString("a0012", ci),
+                              Resources.ResourceManager.GetString("a0013", ci),
+                              Resources.ResourceManager.GetString("a0009", ci),
                                "", "", "", ""
                           );
-            
+
         }
         public void updatemenu8(CustomReport rb)
         {
             changeColumnHeader(rb,
                               Resources.ResourceManager.GetString("a0009", ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
-                              Resources.ResourceManager.GetString("a0205",ci),
-                              Resources.ResourceManager.GetString("a1060",ci),
-                              Resources.ResourceManager.GetString("a0006",ci),
-                              Resources.ResourceManager.GetString("a0009",ci),
-                              Resources.ResourceManager.GetString("a2010",ci),
-                              Resources.ResourceManager.GetString("a2009",ci)
+                              Resources.ResourceManager.GetString("a0009", ci),
+                              Resources.ResourceManager.GetString("a0205", ci),
+                              Resources.ResourceManager.GetString("a1060", ci),
+                              Resources.ResourceManager.GetString("a0006", ci),
+                              Resources.ResourceManager.GetString("a0009", ci),
+                              Resources.ResourceManager.GetString("a2010", ci),
+                              Resources.ResourceManager.GetString("a2009", ci)
                               , "", "", ""
                           );
 
@@ -935,75 +956,75 @@ namespace ArthiPOS.Reporting
         }
         public void updatemenu9(CustomReport rb)
         {
-           
+
             changeColumnHeader(rb,
                               Resources.ResourceManager.GetString("a1079", ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a0401",ci),
-                               Resources.ResourceManager.GetString("a1053",ci),
-                               Resources.ResourceManager.GetString("a1026",ci),
-                               Resources.ResourceManager.GetString("a0306",ci),
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a1080",ci),
-                               Resources.ResourceManager.GetString("a0009",ci),
-                               Resources.ResourceManager.GetString("a0013",ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a0401", ci),
+                               Resources.ResourceManager.GetString("a1053", ci),
+                               Resources.ResourceManager.GetString("a1026", ci),
+                               Resources.ResourceManager.GetString("a0306", ci),
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a1080", ci),
+                               Resources.ResourceManager.GetString("a0009", ci),
+                               Resources.ResourceManager.GetString("a0013", ci),
                                Resources.ResourceManager.GetString("a1079", ci)
                            );
 
         }
         public void updatemenu10(CustomReport rb)
         {
-            
+
             changeColumnHeader(rb,
                                Resources.ResourceManager.GetString("a0009", ci),
-                               Resources.ResourceManager.GetString("a0205",ci),
-                               Resources.ResourceManager.GetString("a1089",ci),
-                               Resources.ResourceManager.GetString("a0401",ci),
-                               Resources.ResourceManager.GetString("a0033",ci),
-                               Resources.ResourceManager.GetString("a1053",ci),
-                               Resources.ResourceManager.GetString("a0302",ci),
-                               Resources.ResourceManager.GetString("a0301",ci),
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a0013",ci),
+                               Resources.ResourceManager.GetString("a0205", ci),
+                               Resources.ResourceManager.GetString("a1089", ci),
+                               Resources.ResourceManager.GetString("a0401", ci),
+                               Resources.ResourceManager.GetString("a0033", ci),
+                               Resources.ResourceManager.GetString("a1053", ci),
+                               Resources.ResourceManager.GetString("a0302", ci),
+                               Resources.ResourceManager.GetString("a0301", ci),
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a0013", ci),
                                Resources.ResourceManager.GetString("a1079", ci)
                            );
 
         }
         public void updatemenu11(CustomReport rb)
         {
-            
+
             changeColumnHeader(rb,
-                               Resources.ResourceManager.GetString("a0012",ci),
-                               Resources.ResourceManager.GetString("a1043",ci),
-                               Resources.ResourceManager.GetString("a1044",ci),
-                               Resources.ResourceManager.GetString("a1042",ci),
-                               Resources.ResourceManager.GetString("a1045",ci),
-                               Resources.ResourceManager.GetString("a1046",ci), "", "", "", "", ""
+                               Resources.ResourceManager.GetString("a0012", ci),
+                               Resources.ResourceManager.GetString("a1043", ci),
+                               Resources.ResourceManager.GetString("a1044", ci),
+                               Resources.ResourceManager.GetString("a1042", ci),
+                               Resources.ResourceManager.GetString("a1045", ci),
+                               Resources.ResourceManager.GetString("a1046", ci), "", "", "", "", ""
                            );
 
         }
         public void updatemenu12(CustomReport rb)
         {
             changeColumnHeader(rb,
-                               Resources.ResourceManager.GetString("a0009",ci)+", "
-                               +Resources.ResourceManager.GetString("a1079",ci),//Date,ID
-                               Resources.ResourceManager.GetString("a0401",ci)+"="
-                               +Resources.ResourceManager.GetString("a1041",ci),//Qauntity=Sale
-                               Resources.ResourceManager.GetString("a0503",ci),//Total Amount
-                               Resources.ResourceManager.GetString("a0306",ci),//Expense
-                               Resources.ResourceManager.GetString("a1026",ci),//Commission+Chongi
-                               Resources.ResourceManager.GetString("a0006",ci),//Discount
-                               Resources.ResourceManager.GetString("a1047",ci),//Investment
-                               Resources.ResourceManager.GetString("a2004",ci),// Net Cash
-                               Resources.ResourceManager.GetString("",ci),
-                               Resources.ResourceManager.GetString("",ci),
-                               Resources.ResourceManager.GetString("",ci)
+                               Resources.ResourceManager.GetString("a0009", ci) + ", "
+                               + Resources.ResourceManager.GetString("a1079", ci),//Date,ID
+                               Resources.ResourceManager.GetString("a0401", ci) + "="
+                               + Resources.ResourceManager.GetString("a1041", ci),//Qauntity=Sale
+                               Resources.ResourceManager.GetString("a0503", ci),//Total Amount
+                               Resources.ResourceManager.GetString("a0306", ci),//Expense
+                               Resources.ResourceManager.GetString("a1026", ci),//Commission+Chongi
+                               Resources.ResourceManager.GetString("a0006", ci),//Discount
+                               Resources.ResourceManager.GetString("a1047", ci),//Investment
+                               Resources.ResourceManager.GetString("a2004", ci),// Net Cash
+                               Resources.ResourceManager.GetString("", ci),
+                               Resources.ResourceManager.GetString("", ci),
+                               Resources.ResourceManager.GetString("", ci)
                            );
         }
 
         #endregion
 
-        public AllReportsCC(List<Landlord> landlords,string date)
+        public AllReportsCC(List<Landlord> landlords, string date)
         {
             InitializeComponent();
             bal = new BLogic();
@@ -1014,7 +1035,7 @@ namespace ArthiPOS.Reporting
             check = 0;
             {
                 SalesTodayHA5 rb = new SalesTodayHA5();
-                DataTable dt = new BLogic().p_report_CustomerClient("sClient", date, date );
+                DataTable dt = new BLogic().p_report_CustomerClient("sClient", date, date);
                 rb.Database.Tables["Sales"].SetDataSource(dt);
                 rb.SetParameterValue("Title", acc.shop_name);
                 rb.SetParameterValue("Propriter", acc.propriters_name);
@@ -1031,7 +1052,7 @@ namespace ArthiPOS.Reporting
             crystalReportViewer1.Refresh();
 
         }
-        public AllReportsCC(bool isCustomer,string cl_id, string date,int PagePrint,bool isHeader)
+        public AllReportsCC(bool isCustomer, string cl_id, string date, int PagePrint, bool isHeader)
         {
             InitializeComponent();
             DataTable dt = null;
@@ -1092,7 +1113,7 @@ namespace ArthiPOS.Reporting
 
 
                 }
-                
+
                 else if (isCustomer)
                 {
                     if (PagePrint == 1)//A4
@@ -1346,7 +1367,7 @@ namespace ArthiPOS.Reporting
             this.landlords = landlords;
             this.customers = customers;
             this.date = date;
-           
+
             DataTable dt = null;
             Account acc = Authentication.Account;
 
@@ -1531,7 +1552,7 @@ namespace ArthiPOS.Reporting
 
         }
 
-        public void printLandlordBillDetail(string date,string id)
+        public void printLandlordBillDetail(string date, string id)
         {
             SalesTodayAllDetail rb = new SalesTodayAllDetail();
             dt = new BLogic().p_report_CustomerClient("sClient", date, date);
@@ -1624,7 +1645,7 @@ namespace ArthiPOS.Reporting
             crystalReportViewer1.ReportSource = rb;
             crystalReportViewer1.Refresh();
         }
-       
+
         private void toolCustomerA6_Click(object sender, EventArgs e)
         {
             SalesTodayCustHA6 rb = new SalesTodayCustHA6();
@@ -1657,12 +1678,12 @@ namespace ArthiPOS.Reporting
             this.dt = dt;
             ReportBalSheet rb = new ReportBalSheet();
             rb.Database.Tables["DTBalanceSheet"].SetDataSource(this.dt);
-            
+
 
             DataTable wm = new DataTable();
             wm.Columns.Add("waterpath", typeof(string));
             string startupPath = Environment.CurrentDirectory;
-            wm.Rows.Add(@startupPath+"\\watermark.jpg");
+            wm.Rows.Add(@startupPath + "\\watermark.jpg");
             rb.Database.Tables["Watermark"].SetDataSource(wm);
 
             rb.SetParameterValue("sdate", datec);
@@ -1685,11 +1706,11 @@ namespace ArthiPOS.Reporting
             rb.SetParameterValue("Title", "");
             rb.SetParameterValue("Propriter", "");
             rb.SetParameterValue("Name1", "");
-            rb.SetParameterValue("Phone1","");
+            rb.SetParameterValue("Phone1", "");
             rb.SetParameterValue("Name2", "");
-            rb.SetParameterValue("Phone2","");
-            rb.SetParameterValue("Address","");
-            rb.SetParameterValue("Business","");
+            rb.SetParameterValue("Phone2", "");
+            rb.SetParameterValue("Address", "");
+            rb.SetParameterValue("Business", "");
             currentDoc = rb;
 
             crystalReportViewer1.ReportSource = rb;
@@ -1779,7 +1800,7 @@ namespace ArthiPOS.Reporting
                 case Keys.Escape:
                     this.Close();
                     return true;
-                
+
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -1787,10 +1808,10 @@ namespace ArthiPOS.Reporting
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
-        public void DetailReport(DataTable dt, DataTable dtPro, string startdate, string lastdate,int acc_open,string datec)
+        public void DetailReport(DataTable dt, DataTable dtPro, string startdate, string lastdate, int acc_open, string datec)
         {
             this.dt = dt;
             ReportDetail rb = new ReportDetail();
@@ -1803,7 +1824,7 @@ namespace ArthiPOS.Reporting
             rb.Database.Tables["DetailReport"].SetDataSource(this.dt);
             rb.Subreports[0].Database.Tables["ProductTotal"].SetDataSource(dtPro);
 
-            rb.SetParameterValue("acc_open",acc_open);
+            rb.SetParameterValue("acc_open", acc_open);
             rb.SetParameterValue("sdate", datec);
             currentDoc = rb;
 
@@ -1826,6 +1847,6 @@ namespace ArthiPOS.Reporting
             crystalReportViewer1.Refresh();
         }
 
-       
+
     }
 }

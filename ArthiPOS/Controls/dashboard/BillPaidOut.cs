@@ -2,12 +2,7 @@
 using BAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -16,14 +11,14 @@ namespace ArthiPOS.Controls.dashboard
     {
         private BLogic bal;
         private DataTable dt;
-        private string client_id = "", amounttobepaid = "", name="";
+        private string client_id = "", amounttobepaid = "", name = "";
         private string sdate = "", ldate = "";
         private bool isCustomer = false;
         public BillPaidOut()
         {
             InitializeComponent();
         }
-        public BillPaidOut(bool isCustomer,string client_id,string name, string amounttobepaid)
+        public BillPaidOut(bool isCustomer, string client_id, string name, string amounttobepaid)
         {
             InitializeComponent();
             this.client_id = client_id;
@@ -43,7 +38,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void init()
         {
-            if(isCustomer)
+            if (isCustomer)
             {
                 dt = bal.getListLandlordBill("ReadCust", client_id, sdate, ldate, "-1", "");
             }
@@ -58,39 +53,39 @@ namespace ArthiPOS.Controls.dashboard
         {
             //refresh();
             searchData();
-            
-           
+
+
         }
-       
+
         private void searchData()
         {
             //dg_bilpaid.Rows.Clear();
             //dg_bilpaid.Refresh();
 
 
-            string idname = lbl_id.Text == "" ? "":lbl_id.Text ;
-            string sdate =chk_date_enable.Checked?date_start.Text:"";
-            string ldate = chk_date_enable.Checked ? date_last.Text : ""; 
+            string idname = lbl_id.Text == "" ? "" : lbl_id.Text;
+            string sdate = chk_date_enable.Checked ? date_start.Text : "";
+            string ldate = chk_date_enable.Checked ? date_last.Text : "";
             string status = "";
             string customer = "0";
             if (rb_customer.Checked)
             {
                 customer = "1";
             }
-            else if(rb_client.Checked)
+            else if (rb_client.Checked)
             {
                 customer = "0";
             }
-            if(chkpaid.Checked)
+            if (chkpaid.Checked)
             {
                 status = "1";
             }
-            else if(chk_unpaid.Checked)
+            else if (chk_unpaid.Checked)
             {
                 status = "0";
             }
 
-            dt =bal.searchBillDetail(customer,idname,sdate,ldate,status);
+            dt = bal.searchBillDetail(customer, idname, sdate, ldate, status);
             if (dt == null)
                 return;
 
@@ -151,10 +146,10 @@ namespace ArthiPOS.Controls.dashboard
                 p_date.Enabled = false;
             }
         }
-        
+
         private void chk_unpaid_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void dg_bilpaid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -166,12 +161,12 @@ namespace ArthiPOS.Controls.dashboard
                 if (dg_bilpaid.Rows[index].Cells[8].Value.ToString() == "Not Paid")
                 {
                     string key = dg_bilpaid.Rows[index].Cells[1].Value.ToString();
-                    string date= dg_bilpaid.Rows[index].Cells[3].Value.ToString();
+                    string date = dg_bilpaid.Rows[index].Cells[3].Value.ToString();
                     string clientid = dg_bilpaid.Rows[index].Cells[0].Value.ToString();
                     string amount = dg_bilpaid.Rows[index].Cells[6].Value.ToString();
                     string desc = dg_bilpaid.Rows[index].Cells[7].Value.ToString();
-                    string name= dg_bilpaid.Rows[index].Cells[2].Value.ToString(); 
-                    bool chk=bal.addExtraAmountClient("PaidOutAmount", today_date.Text, clientid,int.Parse(amount),key, name, 0,"14");
+                    string name = dg_bilpaid.Rows[index].Cells[2].Value.ToString();
+                    bool chk = bal.addExtraAmountClient("PaidOutAmount", today_date.Text, clientid, int.Parse(amount), key, name, 0, "14");
                     if (chk)
                     {
                         searchData();
@@ -180,13 +175,13 @@ namespace ArthiPOS.Controls.dashboard
                 }
 
             }
-            else if(e.ColumnIndex==7)
+            else if (e.ColumnIndex == 7)
             {
-                
+
                 using (UrduDailog ud = new UrduDailog())
                 {
                     ud.ShowDialog();
-                    dg_bilpaid.Rows[index].Cells[7].Value= ud.Description;
+                    dg_bilpaid.Rows[index].Cells[7].Value = ud.Description;
                 }
             }
             else if (e.ColumnIndex == 11)
@@ -197,13 +192,13 @@ namespace ArthiPOS.Controls.dashboard
                 if (isCustomer)
                     printData("CustomerBillingByID", date, date, key);
                 else
-                    printData("ClientBillingByID",date,date, key);
+                    printData("ClientBillingByID", date, date, key);
             }
         }
 
         private void btn_print_all_Click(object sender, EventArgs e)
         {
-            
+
             if (chk_date_enable.Checked)
             {
                 if (isCustomer)
@@ -217,13 +212,13 @@ namespace ArthiPOS.Controls.dashboard
             }
         }
 
-        public void printData(string action,string sdate,string ldate,string id)
+        public void printData(string action, string sdate, string ldate, string id)
         {
             DataTable dt = null;
             using (AllReportsCC rc = new AllReportsCC())
             {
                 dt = new BLogic().p_report_CustomerClient(action, id, sdate, ldate);
-                if(isCustomer)
+                if (isCustomer)
                     rc.printA7Report(isCustomer, dt);
                 else
                     rc.printA4hReport(false, dt);
@@ -259,11 +254,11 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        
+
 
         private void chk_all_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void rb_customer_CheckedChanged(object sender, EventArgs e)
@@ -275,7 +270,7 @@ namespace ArthiPOS.Controls.dashboard
                 lbl_id.Text = "";
                 lbl_name.Text = "";
 
-                btn_search_Click(this,new EventArgs());
+                btn_search_Click(this, new EventArgs());
             }
         }
 
@@ -284,7 +279,7 @@ namespace ArthiPOS.Controls.dashboard
             if (rb_client.Checked)
             {
                 rb_customer.Checked = false;
-                isCustomer = false ;
+                isCustomer = false;
                 lbl_id.Text = "";
                 lbl_name.Text = "";
 
@@ -292,7 +287,7 @@ namespace ArthiPOS.Controls.dashboard
             }
         }
 
-       
+
 
         private void chkpaid_Click(object sender, EventArgs e)
         {
@@ -301,7 +296,7 @@ namespace ArthiPOS.Controls.dashboard
                 chkpaid.Checked = true;
                 chk_unpaid.Checked = false;
             }
-           
+
         }
 
         private void chk_unpaid_Click(object sender, EventArgs e)
@@ -311,7 +306,7 @@ namespace ArthiPOS.Controls.dashboard
                 chkpaid.Checked = false;
                 chk_unpaid.Checked = true;
             }
-            
+
         }
 
         private void btn_printlist_Click(object sender, EventArgs e)
@@ -351,8 +346,8 @@ namespace ArthiPOS.Controls.dashboard
                         receiving = int.Parse(cr[3].ToString());
                         // initialBalance = int.Parse(cr[4].ToString()) ;
                     }
-                    
-                    rc.BillandRecevings(null, dt, null, lbl_id.Text, lbl_name.Text, sdate, ldate, initialBalance + "");
+
+                    rc.BillandRecevings(null, dt, null, lbl_id.Text, lbl_name.Text, sdate, ldate, initialBalance + "",5);
                     rc.ShowDialog();
 
 
@@ -361,7 +356,7 @@ namespace ArthiPOS.Controls.dashboard
                 else if (rb_client.Checked)
                 {
                     chk = false;
-                    rc.printBillList( dt, lbl_id.Text, lbl_name.Text, String.Format("{0} - {1}", date_start.Text, date_last.Text));
+                    rc.printBillList(dt, lbl_id.Text, lbl_name.Text, String.Format("{0} - {1}", date_start.Text, date_last.Text));
                     rc.ShowDialog();
                 }
             }
@@ -387,8 +382,8 @@ namespace ArthiPOS.Controls.dashboard
                 this.dg_bilpaid.Columns[10].HeaderText = "Paid Date";
             }
         }
-        private void addGridRow(string _ID,string _date, string quantity, string name, string _key, string gtotal,string status
-            ,string paidoutdate,string desc,string product,string rem_amount,string paidAmount)
+        private void addGridRow(string _ID, string _date, string quantity, string name, string _key, string gtotal, string status
+            , string paidoutdate, string desc, string product, string rem_amount, string paidAmount)
         {
             int count = this.dg_bilpaid.Rows.Count;
             this.dg_bilpaid.Rows.Add();

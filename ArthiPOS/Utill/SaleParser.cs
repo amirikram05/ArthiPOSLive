@@ -1,21 +1,14 @@
 ﻿using ArthiPOS.shop;
-using ArthiPOS.utill;
-using CrystalDecisions.Shared.Json;
+using CommonUtilities;
 using DataMember;
+using DataMember.memberlog;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 using System.Windows;
-using CommonUtilities;
-using DataMember.memberlog;
 
 namespace ArthiPOS.Utill
 {
@@ -29,17 +22,32 @@ namespace ArthiPOS.Utill
         public string filename = "";
         public bool SAVELOG = false;
         public AdminLog log;
+        public bool isTest = false;
 
 
-        public SaleParser(string filename,bool SaveLog)
+
+        public SaleParser(string filename, bool SaveLog,bool isTest)
         {
+            if (string.IsNullOrEmpty(filename))
+                return;
             this.filename = filename;
             this.SAVELOG = SaveLog;
+            this.isTest = isTest;
             log = LogUtill.getAdminInputLog();
-            string folder= log.SalesInProccessedFolder;
-            string filederProcess = log.SaleProcessedDir;
-            filePath = string.Format("{0}{1}.json", folder, filename.Replace("-",""));
-            fileProcessPath = string.Format("{0}{1}.json", filederProcess, filename.Replace("-",""));
+            string db=RegistryAccess.GetStringRegistryValue("db", "Test");
+            string testorlive = @"Test\";
+            if (db=="Test")
+                testorlive =@"Test\";
+            else if(db == "Live")
+                testorlive = @"Live\";
+            else if(db == "Local")
+                testorlive = @"Local\";
+
+
+            string folder = log.SalesInProccessedFolder+ testorlive;
+            string filederProcess = log.SaleProcessedDir+ testorlive;
+            filePath = string.Format("{0}{1}.json", folder, filename.Replace("-", ""));
+            fileProcessPath = string.Format("{0}{1}.json", filederProcess, filename.Replace("-", ""));
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
             if (!Directory.Exists(folder))
@@ -47,7 +55,8 @@ namespace ArthiPOS.Utill
                 MessageBox.Show(ConstMessages._FolderNotCreated);
             }
         }
-        public bool updateLandLord(Landlord oldLand,Landlord newLand)
+        
+        public bool updateLandLord(Landlord oldLand, Landlord newLand)
         {
             using (StreamReader f = File.OpenText(filePath))
             {
@@ -62,16 +71,16 @@ namespace ArthiPOS.Utill
                     {
 
                         newLand.land_product.sale_remaining_product = oldLand.land_product.sale_remaining_product;
-                        oldLand.bill_key=newLand.land_person.pkey;
+                        oldLand.bill_key = newLand.land_person.pkey;
                         oldLand.land_product = newLand.land_product;
                         oldLand.land_person = newLand.land_person;
                         oldLand.client = newLand.client;
                         oldLand.service = newLand.service;
                         oldLand.expense = newLand.expense;
-                        for(int j=0;j<oldLand.customers.Count;j++)
+                        for (int j = 0; j < oldLand.customers.Count; j++)
                         {
                             oldLand.customers[j].product = newLand.land_product;
-                            item.customers[j].product= newLand.land_product;
+                            item.customers[j].product = newLand.land_product;
                         }
 
                         list.data[i].customers = item.customers;
@@ -124,7 +133,7 @@ namespace ArthiPOS.Utill
                 }
 
                 //open file stream
-                var convertedJson= JsonConvert.SerializeObject(list, Formatting.Indented,
+                var convertedJson = JsonConvert.SerializeObject(list, Formatting.Indented,
                         new JsonSerializerSettings()
                         {
                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -139,7 +148,7 @@ namespace ArthiPOS.Utill
             }
 
         }
-        public bool updateLandLord(string _file,Wrapper wrapper)
+        public bool updateLandLord(string _file, Wrapper wrapper)
         {
             if (File.Exists(_file))
             {
@@ -175,7 +184,7 @@ namespace ArthiPOS.Utill
                     var list = JsonConvert.DeserializeObject<Wrapper>(json);
                     foreach (var item in list.data)
                     {
-                        if (item.land_person.pkey== bill)
+                        if (item.land_person.pkey == bill)
                         {
                             list.data.Remove(item);
                             break;
@@ -202,7 +211,7 @@ namespace ArthiPOS.Utill
 
         }
 
-        public bool writeJsonWrapper(Wrapper wrap,string dbstatus)
+        public bool writeJsonWrapper(Wrapper wrap, string dbstatus)
         {
             //var list = JsonConvert.DeserializeObject<List<Person>>(myJsonString);
             //list.Add(new Person(1234, "carl2");
@@ -231,7 +240,7 @@ namespace ArthiPOS.Utill
             }
         }
 
-        public bool writeJson(Landlord land,string dbStatus)
+        public bool writeJson(Landlord land, string dbStatus)
         {
             //var list = JsonConvert.DeserializeObject<List<Person>>(myJsonString);
             //list.Add(new Person(1234, "carl2");
@@ -250,12 +259,12 @@ namespace ArthiPOS.Utill
                 else
                 {
 
-                    using (StreamReader f= File.OpenText(filePath))
+                    using (StreamReader f = File.OpenText(filePath))
                     {
                         string json = f.ReadToEnd();
                         f.Close();//close before writing file
-                        if (json == "") 
-                        { 
+                        if (json == "")
+                        {
                             File.Delete(filePath);
                             return createJsonFile(land, dbStatus) ? true : false;
                         }
@@ -263,7 +272,7 @@ namespace ArthiPOS.Utill
                         {
                             Wrapper wraper = LoadTodaySale(filePath);
                             wraper.data.Add(land);
-                            return updateLandLord(filePath,wraper);
+                            return updateLandLord(filePath, wraper);
                         }
                         //return createJsonFile(land, dbStatus)?true:false;
 
@@ -271,7 +280,7 @@ namespace ArthiPOS.Utill
 
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -282,7 +291,7 @@ namespace ArthiPOS.Utill
 
 
         }
-        private bool createJsonFile(Landlord land,string dbStatus)
+        private bool createJsonFile(Landlord land, string dbStatus)
         {
             Wrapper w = new Wrapper();
             if (dbStatus != "")
@@ -304,7 +313,7 @@ namespace ArthiPOS.Utill
                 return true;
             }
         }
-        public  DataSet JsonToDataSet(List<ReportData> rp)
+        public DataSet JsonToDataSet(List<ReportData> rp)
         {
             //Wrapper w = new Wrapper();
             //w.reportData=rp;
@@ -315,7 +324,7 @@ namespace ArthiPOS.Utill
             DataSet myDataSet = JsonConvert.DeserializeObject<DataSet>(jsonObject);
             return myDataSet;
         }
-       
+
         public DataTable LoadDataTableTodaySale()
         {
             try
@@ -361,7 +370,7 @@ namespace ArthiPOS.Utill
 
                 }
             }
-            catch(FileNotFoundException e) { return null; }
+            catch (FileNotFoundException e) { return null; }
             catch (Exception ex)
             {
                 //Console.Write(ex);
@@ -477,7 +486,7 @@ namespace ArthiPOS.Utill
 
             }
         }
-    
+
 
         public bool DeleteCustomer(string billkey)
         {
@@ -513,11 +522,11 @@ namespace ArthiPOS.Utill
                 }
                 return true;
             }
-           
+
         }
-        public bool DeleteCustomer(string landBillKey,int index)
+        public bool DeleteCustomer(string landBillKey, int index)
         {
-            if(File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 using (StreamReader f = File.OpenText(filePath))
                 {
@@ -525,7 +534,7 @@ namespace ArthiPOS.Utill
                     f.Close();//close before writing file
                     var list = JsonConvert.DeserializeObject<Wrapper>(json);
                     int i = 0;
-                    
+
                     foreach (var item in list.data)
                     {
                         if (item.land_person.pkey == landBillKey)
@@ -563,15 +572,15 @@ namespace ArthiPOS.Utill
             return false;
 
         }
-        public FileInfo[] getAllFiles(string pathDir,bool desc)
+        public FileInfo[] getAllFiles(string pathDir, bool desc)
         {
             //Defaultpath + folderSales
             DirectoryInfo dir = new DirectoryInfo(pathDir);
 
             if (!dir.Exists)
-                return  null;
+                return null;
             //FileInfo[] files = dir.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
-            if(desc)
+            if (desc)
                 return dir.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
             else
                 return dir.GetFiles().OrderBy(p => p.CreationTime).ToArray();
@@ -622,7 +631,7 @@ namespace ArthiPOS.Utill
             {
                 mFile.MoveTo(log.SalesInProccessedFolder + "\\" + mFile.Name);
             }
-           
+
         }
         public void moveSaleinProcess(string sourceFile)
         {
@@ -636,7 +645,7 @@ namespace ArthiPOS.Utill
             if (dirInfo.Exists == false)
                 Directory.CreateDirectory(directoryName);
 
-            
+
             FileInfo mFile = new FileInfo(sourceFile);
 
             if (File.Exists(dirInfo + "\\" + mFile.Name))
@@ -663,7 +672,7 @@ namespace ArthiPOS.Utill
         {
             Wrapper processIn = LoadTodaySale(filePath);
             Wrapper processfile = LoadTodaySale(fileProcessPath);
-            if(processfile!=null)
+            if (processfile != null)
                 processIn.data.AddRange(processfile.data);
             return processIn;
         }
@@ -678,11 +687,11 @@ namespace ArthiPOS.Utill
                 foreach (var item in list.data)
                 {
 
-                        list.data[i].isRecordSaleInserted =dbstatus;
+                    list.data[i].isRecordSaleInserted = dbstatus;
                 }
 
                 //open file stream
-                var convertedJson= JsonConvert.SerializeObject(list, Formatting.Indented,
+                var convertedJson = JsonConvert.SerializeObject(list, Formatting.Indented,
                         new JsonSerializerSettings()
                         {
                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -717,7 +726,7 @@ namespace ArthiPOS.Utill
         public string db_status = "None";
 
         public List<Landlord> data = new List<Landlord>();
-        public Expense totalexpense=new Expense();
+        public Expense totalexpense = new Expense();
         public List<ShopExpense> lsExpense = new List<ShopExpense>();
         public List<ReportData> reportData = new List<ReportData>();
     }

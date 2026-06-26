@@ -1,14 +1,6 @@
 ﻿using ArthiPOS.Utill;
-using BAL;
 using DataMember;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -27,7 +19,7 @@ namespace ArthiPOS.Controls.dashboard
             InitializeComponent();
         }
 
-        public AddExtraAmount(Landlord landlord,Customer customer,int row,string status)
+        public AddExtraAmount(Landlord landlord, Customer customer, int row, string status)
         {
             InitializeComponent();
             this.landlord = landlord;
@@ -41,27 +33,28 @@ namespace ArthiPOS.Controls.dashboard
 
         private void updateExtraAmount()
         {
-            if (landlord!=null)
+            if (landlord != null)
             {
                 lbl_s_name.Text = landlord.land_person.pname;
                 lbl_s_id.Text = landlord.land_person.pkey;
-                lbl_grand_total.Text = landlord.GetGrandTotal+"";
+                lbl_grand_total.Text = landlord.GetGrandTotal + "";
 
-                if (customer!=null)
+                if (customer != null)
                 {
-                    txt_add_land_extra_amount.Text = customer.sale.add_extra_amount_Landlord+"";
-                    txt_customer_extra_amount.Text = customer.sale.add_extra_amount_Customer+"";
-                    lbl_list_sale.Text = customer.sale._sale_quantity +" X "+
+                    txt_add_land_extra_amount.Text = customer.sale.add_extra_amount_Landlord + "";
+                    txt_customer_extra_amount.Text = customer.sale.add_extra_amount_Customer + "";
+                    lbl_list_sale.Text = customer.sale._sale_quantity + " X " +
                         (customer.sale._sale_amount + customer.sale.add_extra_amount_Landlord) +
-                        " = "+(customer.sale._sale_quantity * customer.sale._sale_amount+ customer.sale._sale_quantity * customer.sale.add_extra_amount_Landlord)+""
-                        +"\n"
-                        + customer.sale._sale_quantity + " X " + 
+                        " = " + (customer.sale._sale_quantity * customer.sale._sale_amount + customer.sale._sale_quantity * customer.sale.add_extra_amount_Landlord) + ""
+                        + "\n"
+                        + customer.sale._sale_quantity + " X " +
                         (customer.sale._sale_amount + customer.sale.add_extra_amount_Customer) +
-                        " = " + (customer.sale._sale_quantity * customer.sale._sale_amount 
-                        + customer.sale._sale_quantity*customer.sale.add_extra_amount_Customer) + "";
+                        " = " + (customer.sale._sale_quantity * customer.sale._sale_amount
+                        + customer.sale._sale_quantity * customer.sale.add_extra_amount_Customer) + "";
                 }
 
-            }else if (cs!=null)
+            }
+            else if (cs != null)
             {
                 lbl_s_name.Text = cs.person.pname;
                 lbl_s_id.Text = cs.person.pkey;
@@ -70,13 +63,13 @@ namespace ArthiPOS.Controls.dashboard
                 if (customer != null)
                 {
                     txt_add_land_extra_amount.Text = customer.sale.add_extra_amount_Landlord + "";
-                    lbl_list_sale.Text = customer.sale._sale_quantity + " X " + (customer.sale._sale_amount+customer.sale.add_extra_amount_Customer) +
+                    lbl_list_sale.Text = customer.sale._sale_quantity + " X " + (customer.sale._sale_amount + customer.sale.add_extra_amount_Customer) +
                         " = " + (customer.sale._sale_quantity * (customer.sale._sale_amount + customer.sale.add_extra_amount_Customer)) + "";
                 }
             }
         }
 
-        public AddExtraAmount(CustomerSales cs, Customer customer,int row,string status)
+        public AddExtraAmount(CustomerSales cs, Customer customer, int row, string status)
         {
             InitializeComponent();
             this.cs = cs;
@@ -89,7 +82,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void AddExtraAmount_Load(object sender, EventArgs e)
         {
-            saleParser = new SaleParser(this.date,Admin.SaveLog);
+            saleParser = new SaleParser(this.date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
         }
         public Customer getCustomer()
         {
@@ -102,7 +95,7 @@ namespace ArthiPOS.Controls.dashboard
             string amount = txt_add_land_extra_amount.Text;
             int ex_amount = amount == "" ? 0 : int.Parse(amount);
 
-            if (landlord!=null)
+            if (landlord != null)
             {
                 customer.sale.add_extra_amount_Landlord = ex_amount;
                 customer.sale.updateSale();
@@ -114,7 +107,8 @@ namespace ArthiPOS.Controls.dashboard
                 if (acc.local == "0" || status == "Live")
                 {
                     check = true;
-                }else
+                }
+                else
                 {
                     check = saleParser.updateLandLord(this.landlord);
                 }
@@ -124,13 +118,13 @@ namespace ArthiPOS.Controls.dashboard
                     updateExtraAmount();
                 }
             }
-            else if (cs!=null)
+            else if (cs != null)
             {
                 customer.sale.add_extra_amount_Customer = ex_amount;
                 customer.updateTotal();
                 customer.sale.updateSale();
                 cs.customers[row] = customer;
-                lbl_grand_total.Text = (cs.getGrandTotal())+ "";
+                lbl_grand_total.Text = (cs.getGrandTotal()) + "";
                 updateExtraAmount();
                 //new BLogic().addExtraAmountCustomer();
             }

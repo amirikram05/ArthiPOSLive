@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
@@ -16,7 +9,7 @@ namespace ArthiPOS.Reporting
         {
             InitializeComponent();
             documentViewer1.Size = new Size(1218, 530);
-            documentViewer1.Location=new Point(0,141);
+            documentViewer1.Location = new Point(0, 141);
         }
         public ReportAugrai(CustomerAugrai obj_src)
         {

@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ArthiPOS.shop;
-using ArthiPOS.utill;
-using BAL;
-using DevComponents.DotNetBar;
-using DataMember;
-using ArthiPOS.Controls.dashboard;
+﻿using ArthiPOS.Controls.dashboard;
 using ArthiPOS.Properties;
-using ArthiPOS.Utill;
-using static ArthiPOS.Controls.dashboard.ReportControl;
 using ArthiPOS.Reporting;
-using ArthiPOS.Reporting.ReportView;
+using ArthiPOS.utill;
+using ArthiPOS.Utill;
+using BAL;
 using CommonUtilities;
-using System.Threading;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Windows.Forms;
+using DataMember;
 using DataMember.memberlog;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.test
 {
@@ -53,7 +49,7 @@ namespace ArthiPOS.Controls.test
             updateUI();
             lrc = new List<ReceiveCash>();
             this.date = date;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
@@ -89,7 +85,7 @@ namespace ArthiPOS.Controls.test
             if (!closeingform)
             {
                 date = ledger_date.Text;
-                saleParser = new SaleParser(date, Admin.SaveLog);
+                saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 if (Authentication.Account.local == "1")
                 {
                     saleParser.SAVELOG = true;
@@ -145,7 +141,7 @@ namespace ArthiPOS.Controls.test
             date_start = ledger_date;
             grid_expense.Rows.Clear();
             grid_expense.Refresh();
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
@@ -215,7 +211,7 @@ namespace ArthiPOS.Controls.test
 
                         total_expense += int.Parse(_amount);
                         addGridRow(_date, _name, _amount, _key, _type);
-                        
+
 
                     }
                     if (total_expense > 0)
@@ -393,23 +389,23 @@ namespace ArthiPOS.Controls.test
 
                 int chkType = 0;
                 if (type == "Client")
-                {chkType = 1;}
+                { chkType = 1; }
                 else if (type == "ClientInvest")
                 { chkType = 5; }
                 else if (type == "Admin")
                 { chkType = 7; }
                 else if (type == "Expense")
                 { chkType = 12; }
-                else if(type == "ShopExpense")
+                else if (type == "ShopExpense")
                 { chkType = 14; }
-                DeleteDailog dd = new DeleteDailog(id,type,name,id,billkey, expid, oldAmount, amount,discount,date, chkType,transid,expenseid,actypeid,actype,cateid);
+                DeleteDailog dd = new DeleteDailog(id, type, name, id, billkey, expid, oldAmount, amount, discount, date, chkType, transid, expenseid, actypeid, actype, cateid);
 
                 dd.ShowDialog();
                 if (dd.check)
                 {
                     //grid_cash.Rows.RemoveAt(index);
                     new BLogic().p_insert_date(date);
-                    ToastNotification.Show(this, "Cash Deleted..");
+                   // ToastNotification.Show(this, "Cash Deleted..");
                     init();
                 }
 
@@ -471,7 +467,7 @@ namespace ArthiPOS.Controls.test
 
             }
         }
-        
+
         private void UpdateGridCash(string date)
         {
             //update grid
@@ -509,13 +505,13 @@ namespace ArthiPOS.Controls.test
                     else if (temp.type == "ClientRemReceive")
                     { chkType = 15; }
 
-                    DeleteDailog dd = new DeleteDailog(dtrec.Rows[index],chkType);
+                    DeleteDailog dd = new DeleteDailog(dtrec.Rows[index], chkType);
 
                     dd.ShowDialog();
                     if (dd.check)
                     {
                         new BLogic().p_insert_date(temp.date);
-                        ToastNotification.Show(this, "Cash Deleted..");
+                        //ToastNotification.Show(this, "Cash Deleted..");
                         init();
                     }
                 }
@@ -530,7 +526,7 @@ namespace ArthiPOS.Controls.test
         private void btn_print_closeing_Click(object sender, EventArgs e)
         {
             // pageSize = 18;
-            List<Object> obj = (List<object>)new BLReport().p_expenseCashReceive(date, date,1, 18);
+            List<Object> obj = (List<object>)new BLReport().p_expenseCashReceive(date, date, 1, 18);
 
             //List<Object> exp = (List<object>)new BLReport().p_reporting_CRUD("ExpenseCash", date_start.Text, date_last.Text, 1, 18,"");
             //List<Object> rec = (List<object>)new BLReport().p_reporting_CRUD("ReceivingCash", date_start.Text, date_last.Text, 1, 18, "");
@@ -547,21 +543,40 @@ namespace ArthiPOS.Controls.test
             //AllReportsCC rp = new AllReportsCC(dt, ReportMenu.ExpenseCashReceive, date, date);
             AllReportsCC rp = new AllReportsCC();
             //rp.ExpenseReceiving(dt, date, date);
-            DataRow dr = new BLogic().getLastCash(date_start.Text,date_last.Text);
+            DataRow dr = new BLogic().getLastCash(date_start.Text, date_last.Text);
 
-            int balance = int.Parse(dr[0].ToString() == "" || dr==null ? "0" : dr[0].ToString());
-            int receivings = int.Parse(dr[1].ToString() == "" || dr == null ? "0" : dr[1].ToString());
-            int expense = int.Parse(dr[2].ToString() == "" || dr == null ? "0" : dr[2].ToString());
-            int cbalance = int.Parse(dr[3].ToString() == "" ? "0" : dr[3].ToString());
-
-
+            int balance = GetInt(dr, 0);
+            int receivings = GetInt(dr, 1);
+            int expense = GetInt(dr, 2);
+            int cbalance = (int)GetDecimal(dr, 3);
 
 
-            rp.ExpenseRecSection(dtrec, dtexp,balance,receivings,expense, cbalance);
+
+            rp.ExpenseRecSection(dtrec, dtexp, balance, receivings, expense, cbalance);
             rp.ShowDialog();
 
         }
+        private int GetInt(DataRow dr, int index)
+        {
+            if (dr == null || index >= dr.Table.Columns.Count)
+                return 0;
 
+            decimal value;
+            return decimal.TryParse(dr[index]?.ToString(), out value)
+                ? (int)value
+                : 0;
+        }
+
+        private decimal GetDecimal(DataRow dr, int index)
+        {
+            if (dr == null || index >= dr.Table.Columns.Count)
+                return 0;
+
+            decimal value;
+            return decimal.TryParse(dr[index]?.ToString(), out value)
+                ? value
+                : 0;
+        }
         private void btn_savedata_Click(object sender, EventArgs e)
         {
             //AddExpense exp = new AddExpense(ledger_date.Text, grid_expense.Rows.Count);
@@ -588,13 +603,14 @@ namespace ArthiPOS.Controls.test
                     btn_dailysales_Click(this, new EventArgs());
                     return true;
                 case Keys.Control | Keys.R:
-                    //MetroButton4_Click(this, new EventArgs());
+                    btn_report_Click(this, new EventArgs());
                     return true;
                 case Keys.Control | Keys.E:
                     btn_savedata_Click(this, new EventArgs());
                     return true;
                 case Keys.Control | Keys.C:
                     btn_closing_today_Click(this, new EventArgs());
+
                     return true;
                 case Keys.Control | Keys.B:
                     //btn_billings_Click(this, new EventArgs());
@@ -640,7 +656,7 @@ namespace ArthiPOS.Controls.test
             AllReportsCC rp = new AllReportsCC();
             DataTable dtprd = new BLogic().readFardHisab("AllProduct", "", date_start.Text, date_last.Text);
 
-            rp.DetailReport(dt,dtprd, ledger_date.Text, ledger_date.Text, acc_open, datec);
+            rp.DetailReport(dt, dtprd, ledger_date.Text, ledger_date.Text, acc_open, datec);
             rp.ShowDialog();
         }
 
@@ -757,7 +773,7 @@ namespace ArthiPOS.Controls.test
         private void accountclosingcall()
         {
 
-           
+
             try
             {
                 //AccountClosing ac = new AccountClosing(date);
@@ -774,11 +790,18 @@ namespace ArthiPOS.Controls.test
                     init();
                 }
             }
-            catch (NullReferenceException e) { }
+            catch (NullReferenceException e) {
+                Admin.LogExecMang.LogException(e, e.Message);
+            }
             catch (ThreadStateException e)
-            { }
+            {
+                Admin.LogExecMang.LogException(e, e.Message);
+
+            }
             catch (InvalidOperationException e)
             {
+                Admin.LogExecMang.LogException(e, e.Message);
+
             }
         }
 
@@ -792,6 +815,15 @@ namespace ArthiPOS.Controls.test
             DailySales ds = new DailySales(date);
             ds.ShowDialog();
         }
+
+        private void btn_report_Click(object sender, EventArgs e)
+        {
+            ReportAllData rp = new ReportAllData();
+            rp.ShowDialog();
+
+        }
+
+        
 
         public void refreshReceving(DataTable dt)
         {
@@ -807,7 +839,7 @@ namespace ArthiPOS.Controls.test
                 string recid = rw[1].ToString();//discount
                 string custclientid = rw[3].ToString();
                 string type = rw[8].ToString();//Type
-                int remainging_cash = int.Parse(rw[5].ToString()==""?"0": rw[5].ToString()); // Remainging amount 
+                int remainging_cash = int.Parse(rw[5].ToString() == "" ? "0" : rw[5].ToString()); // Remainging amount 
                 ReceiveCash rc = new ReceiveCash(tdate, name, amountpaid, billid, custclientid, discount, remainging_cash, recid, type, "");
 
                 addGridRow(tdate, name, amountpaid, billid, "" + discount, type);

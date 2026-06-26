@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ArthiPOS.Properties;
+﻿using ArthiPOS.Properties;
 using ArthiPOS.shop;
-using ArthiPOS.utill;
 using ArthiPOS.Utill;
 using BAL;
-using DataMember;
-using MetroFramework.Controls;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using MetroFramework.Controls;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -37,17 +29,17 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        internal void initSalesUpdate(SaleParser saleParser,string path,string  _grid)
+        internal void initSalesUpdate(SaleParser saleParser, string path, string _grid)
         {
             this.saleParser = saleParser;
             this.path = path;
             this._grid = _grid;
-            if (_grid== "Default")
+            if (_grid == "Default")
             {
                 files = saleParser.getAllFiles(path, true);
                 addFiles(files, grid_all_sales);
             }
-            else if(_grid== "Proccessed")
+            else if (_grid == "Proccessed")
             {
                 files = saleParser.getAllFiles(path, true);
                 if (files == null)
@@ -58,7 +50,7 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        private void addFiles(FileInfo[] _files,MetroGrid grid)
+        private void addFiles(FileInfo[] _files, MetroGrid grid)
         {
             string tstatus = "";
 
@@ -72,19 +64,19 @@ namespace ArthiPOS.Controls.dashboard
                     quantity += land.land_product.total_Quantity;
                     total += land.total_sale;
                     bill += (int)land.GetGrandTotal;
-                    expense += (int)(land.GetTotalService+land.GetCommission+land.GetChongi);
+                    expense += (int)(land.GetTotalService + land.GetCommission + land.GetChongi);
                     //if (land.status == EStatus.Complete)
                     {
                         tstatus = Enum.GetName(typeof(EStatus), land.status);
                     }
                 }
 
-                addRowAllSales(grid,wraplandl.date, quantity + "", "" + total, "" + expense, "" + bill, wraplandl.db_status, tstatus);
+                addRowAllSales(grid, wraplandl.date, quantity + "", "" + total, "" + expense, "" + bill, wraplandl.db_status, tstatus);
 
             }
         }
-        public void addRowAllSales(MetroGrid grid, string date,string quantity,
-            string totalSale,string expense,string billamount,string status,string salestatus)
+        public void addRowAllSales(MetroGrid grid, string date, string quantity,
+            string totalSale, string expense, string billamount, string status, string salestatus)
         {
             int count = grid.Rows.Count;
             if (count == 0)
@@ -102,7 +94,7 @@ namespace ArthiPOS.Controls.dashboard
             grid.Rows[count - 1].Cells[4].Value = totalSale;
             grid.Rows[count - 1].Cells[5].Value = expense;
             grid.Rows[count - 1].Cells[6].Value = billamount;
-            if (status=="Updated")
+            if (status == "Updated")
             {
                 grid.Rows[count - 1].Cells[7].Value = Resources.ResourceManager.GetString("a1087");
             }
@@ -124,9 +116,9 @@ namespace ArthiPOS.Controls.dashboard
 
             if (e.ColumnIndex == 0)
             {
-                string mdate= grid_all_sales.Rows[index].Cells[2].Value.ToString();
-                string tstatus= grid_all_sales.Rows[index].Cells[8].Value.ToString();
-                if (tstatus=="InComplete")
+                string mdate = grid_all_sales.Rows[index].Cells[2].Value.ToString();
+                string tstatus = grid_all_sales.Rows[index].Cells[8].Value.ToString();
+                if (tstatus == "InComplete")
                 {
                     DialogResult dialogResult = MessageBox.Show("InComplete Sales", "Are You Sure?", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
@@ -141,30 +133,30 @@ namespace ArthiPOS.Controls.dashboard
                     }
                 }
 
-                saleParser = new SaleParser(mdate, Admin.SaveLog);
+                saleParser = new SaleParser(mdate, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 string filePath = "";
-               // filePath = files[index].FullName;
+                // filePath = files[index].FullName;
                 filePath = string.Format("{0}{1}.json", adminlog.SalesInProccessedFolder, mdate.Replace("-", ""));
                 if (!File.Exists(filePath))
                 {
                     MessageBox.Show(string.Format("{0}\n{1}", ConstMessages._FileNotExist, filePath));
                 }
-                
+
                 //return;
 
                 Wrapper wrapland = saleParser.LoadTodaySale(filePath);
-                if (wrapland==null)
+                if (wrapland == null)
                 {
                     return;
                 }
-                if (wrapland.db_status=="Updated")
+                if (wrapland.db_status == "Updated")
                 {
                     return;
                 }
                 wrapland.db_status = "Updated";
-                if(saleParser.updateLandLord(filePath, wrapland))//Updating status sale 
+                if (saleParser.updateLandLord(filePath, wrapland))//Updating status sale 
                 {
-                    
+
                     bool oneTimeCheck = false;
                     #region AddProducts
                     if (!oneTimeCheck)
@@ -173,19 +165,19 @@ namespace ArthiPOS.Controls.dashboard
                         oneTimeCheck = true;
                     }
 
-                    wrapland.data = bal.updateLocalToDB(wrapland.date, wrapland.data,true);
-                    if (wrapland.data==null)
+                    wrapland.data = bal.updateLocalToDB(wrapland.date, wrapland.data, true);
+                    if (wrapland.data == null)
                     {
                         return;
                     }
-                    if (wrapland.data.Count>0)
+                    if (wrapland.data.Count > 0)
                     {
-                        if (wrapland.data[0].record_id!="")
+                        if (wrapland.data[0].record_id != "")
                         {
                             saleParser.moveSaleinProcess(filePath);
                             this.grid_all_sales.Rows[index].Cells[7].Value = Resources.ResourceManager.GetString("a1087");
                             this.grid_all_sales.Rows.RemoveAt(index);
-                            
+
                         }
                     }
 
@@ -201,13 +193,13 @@ namespace ArthiPOS.Controls.dashboard
             {
                 grid_all_sales.Rows.Clear();
                 grid_all_sales.Refresh();
-                initSalesUpdate(saleParser,adminlog.SalesInProccessedFolder, "Default");
+                initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder, "Default");
             }
             else
             {
                 grid_processSale.Rows.Clear();
                 grid_processSale.Refresh();
-                initSalesUpdate(saleParser,adminlog.SaleProcessedDir,"Proccessed");
+                initSalesUpdate(saleParser, adminlog.SaleProcessedDir, "Proccessed");
             }
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -218,7 +210,7 @@ namespace ArthiPOS.Controls.dashboard
                 case Keys.Escape:
                     this.Close();
                     return true;
-                
+
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }

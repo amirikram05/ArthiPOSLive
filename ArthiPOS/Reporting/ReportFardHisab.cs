@@ -1,21 +1,15 @@
 ﻿using ArthiPOS.Controls.dashboard;
 using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
 {
     public partial class ReportFardHisab : Form
     {
-        private DataTable dt,dtprd;
-        private int count=1;
+        private DataTable dt, dtprd;
+        private int count = 1;
         public ReportFardHisab()
         {
             InitializeComponent();
@@ -32,9 +26,10 @@ namespace ArthiPOS.Reporting
             rb_admin.Checked = false;
             rb_client.Checked = false;
             rb_advance.Checked = false;
+            rb_bipari.Checked = false;
         }
 
-       
+
 
         private void rb_admin_Click(object sender, EventArgs e)
         {
@@ -77,7 +72,7 @@ namespace ArthiPOS.Reporting
                     return true;
                 case Keys.Control | Keys.P:
                     //Stuff
-                    btn_print_Click(this,new EventArgs());
+                    btn_print_Click(this, new EventArgs());
                     return true;
                 case Keys.Control | Keys.N:
                     return true;
@@ -85,9 +80,9 @@ namespace ArthiPOS.Reporting
                     updateFocus();
                     searchUser();
                     return true;
-             
+
                 case Keys.Control | Keys.Enter:
-                    
+
                     return true;
                 case Keys.Alt | Keys.Enter:
 
@@ -104,9 +99,9 @@ namespace ArthiPOS.Reporting
         private void downChangeFocus()
         {
             count++;
-            if (count >= 9)
-                count = 9;
-            if (count>=1 && count<=9)
+            if (count >= 10)
+                count = 10;
+            if (count >= 1 && count <= 10)
             {
                 changeFocus();
             }
@@ -117,11 +112,14 @@ namespace ArthiPOS.Reporting
             if (rb_customer.Focused)
             { setChecked(); rb_customer.Checked = true; txt_nameid.Focus(); type = "Customer"; count = 5; }
             else if (rb_client.Focused)
-            {  setChecked(); rb_client.Checked = true; ; txt_nameid.Focus(); type = "Client"; count = 5; }
+            { setChecked(); rb_client.Checked = true; ; txt_nameid.Focus(); type = "Client"; count = 5; }
             else if (rb_advance.Focused)
-            {  setChecked(); rb_advance.Checked = true; type = "Advance" ; txt_nameid.Focus(); count = 5; }
+            { setChecked(); rb_advance.Checked = true; type = "Advance"; txt_nameid.Focus(); count = 5; }
             else if (rb_admin.Focused)
-            { setChecked(); rb_admin.Checked = true; type = "Admin";  txt_nameid.Focus(); count = 5; }
+            { setChecked(); rb_admin.Checked = true; type = "Admin"; txt_nameid.Focus(); count = 5; }
+            else if (rb_admin.Focused)
+            { setChecked(); rb_bipari.Checked = true; type = "Bipari"; txt_nameid.Focus(); count = 5; }
+
             else if (txt_nameid.Focused)
             { date_start.Focus(); count = 6; }
             else if (date_start.Focused)
@@ -136,7 +134,7 @@ namespace ArthiPOS.Reporting
         public void changeFocus()
         {
             if (count == 1)
-            { rb_customer.Focus();}
+            { rb_customer.Focus(); }
             else if (count == 2)
             { rb_client.Focus(); }
             else if (count == 3)
@@ -144,14 +142,16 @@ namespace ArthiPOS.Reporting
             else if (count == 4)
             { rb_admin.Focus(); }
             else if (count == 5)
-            { txt_nameid.Focus(); }
+            { rb_bipari.Focus(); }
             else if (count == 6)
-            { date_start.Focus(); }
+            { txt_nameid.Focus(); }
             else if (count == 7)
-            { date_last.Focus(); }
+            { date_start.Focus(); }
             else if (count == 8)
-            { btn_search.Focus(); }
+            { date_last.Focus(); }
             else if (count == 9)
+            { btn_search.Focus(); }
+            else if (count == 10)
             { btn_print.Focus(); }
 
 
@@ -160,10 +160,10 @@ namespace ArthiPOS.Reporting
         private void upChangeFocus()
         {
             count--;
-            if (count <=1)
+            if (count <= 1)
                 count = 1;
 
-            if (count >= 1 && count <= 9)
+            if (count >= 1 && count <= 10)
             {
                 changeFocus();
             }
@@ -173,6 +173,12 @@ namespace ArthiPOS.Reporting
         {
             int action = 1;
             int chk = 1;
+            if (rb_bipari.Checked)
+            {
+                action = 1;
+                chk = 111;
+            }
+            else
             if (rb_client.Checked)
             {
                 action = 1;
@@ -183,7 +189,7 @@ namespace ArthiPOS.Reporting
                 action = 1;
                 chk = 4;
             }
-            else if (rb_admin.Checked )
+            else if (rb_admin.Checked)
             {
                 action = 1;
                 chk = 7;
@@ -195,10 +201,10 @@ namespace ArthiPOS.Reporting
             }
             searchDialog(action, txt_nameid.Text, chk);
         }
-        private int amount=0;
-        public void searchDialog(int action, string searchTxt,int chk)
+        private int amount = 0;
+        public void searchDialog(int action, string searchTxt, int chk)
         {
-            using (search = new Search(action, searchTxt,chk))
+            using (search = new Search(action, searchTxt, chk))
             {
                 DialogResult res = search.ShowDialog();
                 if (action == 1)
@@ -222,7 +228,7 @@ namespace ArthiPOS.Reporting
 
         private void readCustomerFard()
         {
-            string id= lbl_id.Text;
+            string id = lbl_id.Text;
             string name = txt_nameid.Text;
             string sdate = date_start.Text;
             string ldate = date_last.Text;
@@ -238,16 +244,21 @@ namespace ArthiPOS.Reporting
             else if (rb_client.Checked) type = "Client";
             else if (rb_advance.Checked) type = "ClientInvest";
             else if (rb_admin.Checked) type = "Admin";
+            else if (rb_bipari.Checked) type = "Bipari";
             if (txt_nameid.Text == "")
                 return;
 
             dt = new BLogic().readFardHisab(type, id, sdate, ldate);
             string ptype = "";
-            if (type == "Client")
+            if(type == "Bipari")
+            {
+                ptype = "BipariProduct";
+            }
+            else if (type == "Client")
             {
                 ptype = "ClientProduct";
             }
-            else if(type=="Customer")
+            else if (type == "Customer")
             {
                 ptype = "CustomerProduct";
             }
@@ -261,22 +272,25 @@ namespace ArthiPOS.Reporting
             dg_invoice.Columns.Clear();
             dg_invoice.DataSource = dt;
         }
-        public void showReport(DataTable dtr,string id,string name,string sdate,string ldate)
+        public void showReport(DataTable dtr, string id, string name, string sdate, string ldate)
         {
             AllReportsCC rp = new AllReportsCC();
             int initialBalance = 0;
+            int check = 0;
             if (dtr != null)
             {
                 if (dtr.Rows.Count > 0)
                 {
                     DataRow dr = dtr.Rows[0];
-                    if (rb_customer.Checked) initialBalance = int.Parse(dr[7].ToString());
-                    else if (rb_client.Checked) initialBalance = int.Parse(dr[8].ToString());
-                    else if (rb_advance.Checked) initialBalance = int.Parse(dr[8].ToString());
-                    else if (rb_admin.Checked) initialBalance = int.Parse(dr[8].ToString());
+                    if (rb_client.Checked) { check = 1; initialBalance = int.Parse(dr[8].ToString()); }
+                    else if (rb_bipari.Checked) { check = 2; initialBalance = int.Parse(dr[10].ToString()); }
+                    else if (rb_advance.Checked) { check = 3; initialBalance = int.Parse(dr[8].ToString()); }
+                    else if (rb_admin.Checked) { check = 4; initialBalance = int.Parse(dr[8].ToString()); }
+                    else if (rb_customer.Checked) { check = 5; initialBalance = int.Parse(dr[7].ToString()); }
+                    
                 }
             }
-            rp.BillandRecevings(null, dtr, dtprd, id, name, sdate, ldate, initialBalance + "");
+            rp.BillandRecevings(null, dtr, dtprd, id, name, sdate, ldate, initialBalance + "",check);
             rp.ShowDialog();
         }
 

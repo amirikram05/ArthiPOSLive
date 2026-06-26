@@ -1,4 +1,6 @@
-﻿namespace ArthiPOS.Controls.test
+﻿using System.Windows.Forms;
+
+namespace ArthiPOS.Controls.test
 {
     partial class ControlSalesExpRec
     {
@@ -33,15 +35,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dg_SER = new System.Windows.Forms.DataGridView();
             this.Column6 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column9 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dg_SER)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,23 +102,23 @@
             this.Column1.FillWeight = 66.38017F;
             this.Column1.HeaderText = "Date";
             this.Column1.Name = "Column1";
-            this.Column1.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column2
             // 
             this.Column2.FillWeight = 130F;
             this.Column2.HeaderText = "Description";
             this.Column2.Name = "Column2";
-            this.Column2.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             this.Column2.Width = 250;
-            this.Column2.WordWrap = true;
+            this.Column2.DefaultCellStyle.WrapMode =DataGridViewTriState.True;
             // 
             // Column3
             // 
             this.Column3.FillWeight = 66.38017F;
             this.Column3.HeaderText = "Amount";
             this.Column3.Name = "Column3";
-            this.Column3.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             this.Column3.Width = 120;
             // 
             // Column7
@@ -147,14 +149,14 @@
             this.Column4.FillWeight = 66.38017F;
             this.Column4.HeaderText = "Type";
             this.Column4.Name = "Column4";
-            this.Column4.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column5
             // 
             this.Column5.FillWeight = 66.38017F;
             this.Column5.HeaderText = "Key";
             this.Column5.Name = "Column5";
-            this.Column5.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             this.Column5.Width = 143;
             // 
             // ControlSalesExpRec
@@ -174,14 +176,14 @@
 
         private System.Windows.Forms.DataGridView dg_SER;
         private System.Windows.Forms.DataGridViewImageColumn Column6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column7;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column8;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column9;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column10;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column4;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

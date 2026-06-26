@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ArthiPOS.Properties;
+using ArthiPOS.Reporting;
+using CommonUtilities;
+using DataMember;
+using DataMember.memberlog;
+using System;
 using System.Windows.Forms;
 using static ArthiPOS.Controls.dashboard.ReportControl;
-using ArthiPOS.Properties;
-using DataMember;
-using ArthiPOS.Reporting;
-using BAL;
-using DataMember.memberlog;
-using CommonUtilities;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -24,7 +16,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             InitializeComponent();
         }
-        
+
         private void Reports_Load(object sender, EventArgs e)
         {
             UpdateLocalization();
@@ -32,7 +24,7 @@ namespace ArthiPOS.Controls.dashboard
             DatabaseLog db = LogUtill.getDatabaseLog();
 
 
-            if (db.DatabaseIs == "db_pt" && db.LocalCheck==0)
+            if (db.DatabaseIs == "db_pt" && db.LocalCheck == 0)
             {
                 comboBox1.SelectedIndex = 0;
                 comboBox1.Text = "Testing";
@@ -114,7 +106,7 @@ namespace ArthiPOS.Controls.dashboard
             rp.showChanges(false, false, false, false, false, false, false, false, false, false);
             rp.showChanges(true, true, false, false, true, false, false, false, true, true);
             rp.eMenu = ReportMenu.ExpenseDetail;
-            rp.loadGridData(1, Admin.Date, Admin.Date,"");
+            rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu6();
             rp.Text = btn_menu4.LabelText;
             rp.ShowDialog();
@@ -126,7 +118,7 @@ namespace ArthiPOS.Controls.dashboard
             rp.showChanges(false, false, false, false, false, false, false, false, false, false);
             rp.showChanges(true, true, false, false, false, false, false, false, true, true);
             rp.eMenu = ReportMenu.ProfitLoss;
-            rp.loadGridData(1, Admin.Date, Admin.Date,"");
+            rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu5();
             rp.Text = btn_menu5.LabelText;
             rp.ShowDialog();
@@ -137,7 +129,7 @@ namespace ArthiPOS.Controls.dashboard
             rp = new ReportControl();
             rp.showChanges(true, true, false, false, false, false, false, false, true, true);
             rp.eMenu = ReportMenu.BalanceSheetReport;
-            rp.loadGridData(1, Admin.Date, Admin.Date,"");
+            rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu2();
             rp.Text = btn_menu6.LabelText;
             rp.ShowDialog();
@@ -164,7 +156,7 @@ namespace ArthiPOS.Controls.dashboard
             rp.showChanges(true, true, false, false, false, false, false, false, true, true);
             //rp.eMenu = ReportMenu.InvestmentRecovery;
             rp.updatemenu4();
-           // rp.Text = btn_menu9.LabelText;
+            // rp.Text = btn_menu9.LabelText;
             ReportForAll a = new ReportForAll();
             a.ShowDialog();
         }
@@ -176,7 +168,7 @@ namespace ArthiPOS.Controls.dashboard
             //rp.showChanges(true, true, false, false, false, false, false, false, true, true);
             rp.showChanges(true, true, true, true, true, true, true, true, true, true);
             rp.eMenu = ReportMenu.BipariSales;
-            rp.loadGridData(1, Admin.Date, Admin.Date,"");
+            rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu9();
             rp.Text = btn_menu10.LabelText;
             rp.ShowDialog();
@@ -222,7 +214,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             rp = new ReportControl();
             rp.eMenu = ReportMenu.CustomerSale;
-            rp.showChanges(true, true, true, true, true, true, true, true, true, true); 
+            rp.showChanges(true, true, true, true, true, true, true, true, true, true);
             rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu10();
             rp.Text = btn_menu10.LabelText;
@@ -234,7 +226,7 @@ namespace ArthiPOS.Controls.dashboard
             rp = new ReportControl();
             rp.showChanges(true, true, false, false, false, false, false, false, true, true);
             rp.eMenu = ReportMenu.ExpenseCashReceive;
-            rp.loadGridData(1, Admin.Date, Admin.Date,"");
+            rp.loadGridData(1, Admin.Date, Admin.Date, "");
             rp.updatemenu8();
             rp.Text = btn_menu8.LabelText;
             rp.ShowDialog();
@@ -310,7 +302,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             DatabaseLog db = LogUtill.getDatabaseLog();
             string conName = db.connectionName;
-            string servername =db.ServerName;
+            string servername = db.ServerName;
             string uname = db.UserName;
             string password = db.Password;
             string livedb = db.LiveDB;
@@ -318,24 +310,32 @@ namespace ArthiPOS.Controls.dashboard
             string test_db = db.Testing_Database;
             string dbname = livedb;
             string localdb = db.LocalDB;
-
-            if (comboBox1.SelectedIndex == 0)
+            string currentDB = RegistryAccess.GetStringRegistryValue("DBStatus", "");
+            if (currentDB == "Testing")
             {
-                if(db.DatabaseIs=="Local" ||  db.LocalCheck == 1)
-                {
-                    dbname = "Local";
-                }
-                else
-                {
-                    dbname = livedb;
-                }
+                dbname = test_db;
             }
             else
             {
-                dbname = backup;
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    if (db.DatabaseIs == "Local" || db.LocalCheck == 1)
+                    {
+                        dbname = "Local";
+                    }
+                    else
+                    {
+                        dbname = livedb;
+                    }
+                }
+                else
+                {
+                    dbname = backup;
+                }
             }
 
-            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, db.connectionName, test_db, dbname, localdb, db.LocalCheck);
+
+            LogUtill.loadDBConfig(servername, uname, password, livedb, backup, conName, test_db, dbname, localdb, db.LocalCheck);
             DatabaseLog dbx = LogUtill.getDatabaseLog();
             RegistryAccess.SetStringRegistryValue("DBStatus", dbx.Status);
             RegistryAccess.SetStringRegistryValue("DBString", dbx.connectionName);

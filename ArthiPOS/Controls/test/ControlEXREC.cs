@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
+﻿using BAL;
+using System;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BAL;
 
 namespace ArthiPOS.Controls.test
 {
@@ -49,7 +44,7 @@ namespace ArthiPOS.Controls.test
             dt_receive.Columns[10].Visible = false;
             dt_receive.Columns[11].Visible = false;
             dt_receive.Columns[12].Visible = false;
-            CountRec=dt_receive.Rows.Count;
+            CountRec = dt_receive.Rows.Count;
         }
         private void dt_expense_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -92,15 +87,15 @@ namespace ArthiPOS.Controls.test
 
         private void ControlExRec_Load(object sender, EventArgs e)
         {
-                readExpense(date);
-                DataRow dr = new BLogic().getLastCash(date, date);
+            readExpense(date);
+            DataRow dr = new BLogic().getLastCash(date, date);
 
-                int balance = int.Parse(dr[0].ToString() == "" || dr == null ? "0" : dr[0].ToString());
-                int receivings = int.Parse(lbl_receive.Text);
-                int expense = int.Parse(lbl_expense.Text);
-                int cbalance = int.Parse(dr[3].ToString() == "" ? "0" : dr[3].ToString());
-                lbl_cash.Text = "" + balance;
-                lbl_total.Text = "" + (balance + receivings - expense);
+            int balance = int.Parse(dr[0].ToString() == "" || dr == null ? "0" : dr[0].ToString());
+            int receivings = int.Parse(lbl_receive.Text);
+            int expense = int.Parse(lbl_expense.Text);
+            int cbalance = int.Parse(dr[3].ToString() == "" ? "0" : dr[3].ToString());
+            lbl_cash.Text = "" + balance;
+            lbl_total.Text = "" + (balance + receivings - expense);
         }
         private void readReceiving(string date)
         {
@@ -114,7 +109,7 @@ namespace ArthiPOS.Controls.test
             exp = new BLogic().getCashInout("Exp", date);
             readExpenseGrid(exp);
             lbl_expense.Text = "" + exp.AsEnumerable().Sum(row => row.Field<int>("ExpenseAmount"));
-            
+
 
         }
     }

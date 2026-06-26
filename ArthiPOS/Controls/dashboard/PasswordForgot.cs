@@ -1,12 +1,5 @@
 ﻿using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -26,15 +19,16 @@ namespace ArthiPOS.Controls.dashboard
             string oldpass = txt_last_password.Text;
 
             string newpass = txt_new_password.Text;
-            if (bal.passwordChange(key,oldpass,newpass))
+            if (bal.passwordChange(key, oldpass, newpass))
             {
                 MessageBox.Show("Password Change Successfully..");
                 this.Close();
-            }else
+            }
+            else
             {
                 MessageBox.Show("Key or Last Password Not Correct. If you forgot both Please Contact Admin..");
             }
-            
+
 
         }
     }

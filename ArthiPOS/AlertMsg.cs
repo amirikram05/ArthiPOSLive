@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS
 {
     public partial class AlertMsg : Form
     {
-        
+
         public AlertMsg(string message1, AlertType type)
         {
             InitializeComponent();
@@ -37,7 +31,7 @@ namespace ArthiPOS
             }
             message.Text = message1;
         }
-        
+
         public enum AlertType
         {
             success, info, warning, error
@@ -63,7 +57,7 @@ namespace ArthiPOS
         int interval = 0;
         private void show_Tick(object sender, EventArgs e)
         {
-            if (this.Top<60)
+            if (this.Top < 60)
             {
                 this.Top += interval;
                 interval += 1;
@@ -81,14 +75,15 @@ namespace ArthiPOS
         }
         private void close_Tick(object sender, EventArgs e)
         {
-            if (this.Opacity>0)
+            if (this.Opacity > 0)
             {
-                this.Opacity-=0.5;
-            }else
+                this.Opacity -= 0.5;
+            }
+            else
             {
                 this.Close();
             }
         }
     }
-   
+
 }

@@ -70,6 +70,8 @@
             this.bunifuCustomLabel19 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.btn_update = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.lbl_trade_mark = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.txt_trade_mark = new ArthiPOS.Controls.UrduTextBox();
             this.txt_trade_name = new ArthiPOS.Controls.UrduTextBox();
             this.bunifuCustomLabel20 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel22 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -77,8 +79,8 @@
             this.txt_business_type = new ArthiPOS.Controls.UrduTextBox();
             this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel21 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.txt_trade_mark = new ArthiPOS.Controls.UrduTextBox();
-            this.lbl_trade_mark = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel23 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.lbl_webid = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -181,6 +183,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.lbl_webid);
+            this.panel6.Controls.Add(this.bunifuCustomLabel23);
             this.panel6.Controls.Add(this.txt_user_name);
             this.panel6.Controls.Add(this.bunifuCustomLabel5);
             this.panel6.Controls.Add(this.bunifuCustomLabel7);
@@ -194,7 +198,7 @@
             this.txt_user_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txt_user_name.IsNumeric = false;
             this.txt_user_name.LangEnglish = false;
-            this.txt_user_name.Location = new System.Drawing.Point(117, 19);
+            this.txt_user_name.Location = new System.Drawing.Point(118, 27);
             this.txt_user_name.Name = "txt_user_name";
             this.txt_user_name.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txt_user_name.Size = new System.Drawing.Size(210, 26);
@@ -559,6 +563,28 @@
             this.panel8.Size = new System.Drawing.Size(332, 65);
             this.panel8.TabIndex = 24;
             // 
+            // lbl_trade_mark
+            // 
+            this.lbl_trade_mark.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_trade_mark.Location = new System.Drawing.Point(241, 35);
+            this.lbl_trade_mark.Name = "lbl_trade_mark";
+            this.lbl_trade_mark.Size = new System.Drawing.Size(77, 28);
+            this.lbl_trade_mark.TabIndex = 25;
+            this.lbl_trade_mark.Text = "ٹریڈ ‌مارك";
+            // 
+            // txt_trade_mark
+            // 
+            this.txt_trade_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txt_trade_mark.IsNumeric = false;
+            this.txt_trade_mark.LangEnglish = true;
+            this.txt_trade_mark.Location = new System.Drawing.Point(108, 34);
+            this.txt_trade_mark.Name = "txt_trade_mark";
+            this.txt_trade_mark.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_trade_mark.Size = new System.Drawing.Size(90, 26);
+            this.txt_trade_mark.TabIndex = 24;
+            this.txt_trade_mark.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txt_trade_mark.WaterMarkText = "";
+            // 
             // txt_trade_name
             // 
             this.txt_trade_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -636,27 +662,27 @@
             this.bunifuCustomLabel21.TabIndex = 7;
             this.bunifuCustomLabel21.Text = "Business Type";
             // 
-            // txt_trade_mark
+            // bunifuCustomLabel23
             // 
-            this.txt_trade_mark.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txt_trade_mark.IsNumeric = false;
-            this.txt_trade_mark.LangEnglish = true;
-            this.txt_trade_mark.Location = new System.Drawing.Point(108, 34);
-            this.txt_trade_mark.Name = "txt_trade_mark";
-            this.txt_trade_mark.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_trade_mark.Size = new System.Drawing.Size(90, 26);
-            this.txt_trade_mark.TabIndex = 24;
-            this.txt_trade_mark.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txt_trade_mark.WaterMarkText = "";
+            this.bunifuCustomLabel23.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel23.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bunifuCustomLabel23.Location = new System.Drawing.Point(115, 4);
+            this.bunifuCustomLabel23.Name = "bunifuCustomLabel23";
+            this.bunifuCustomLabel23.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.bunifuCustomLabel23.Size = new System.Drawing.Size(60, 20);
+            this.bunifuCustomLabel23.TabIndex = 24;
+            this.bunifuCustomLabel23.Text = "Web ID";
             // 
-            // lbl_trade_mark
+            // lbl_webid
             // 
-            this.lbl_trade_mark.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_trade_mark.Location = new System.Drawing.Point(241, 35);
-            this.lbl_trade_mark.Name = "lbl_trade_mark";
-            this.lbl_trade_mark.Size = new System.Drawing.Size(77, 28);
-            this.lbl_trade_mark.TabIndex = 25;
-            this.lbl_trade_mark.Text = "ٹریڈ ‌مارك";
+            this.lbl_webid.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_webid.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_webid.Location = new System.Drawing.Point(177, 4);
+            this.lbl_webid.Name = "lbl_webid";
+            this.lbl_webid.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.lbl_webid.Size = new System.Drawing.Size(151, 20);
+            this.lbl_webid.TabIndex = 25;
+            this.lbl_webid.Text = "xxxxxxxxx";
             // 
             // ProfileEdit
             // 
@@ -756,5 +782,7 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel21;
         private Bunifu.Framework.UI.BunifuCustomLabel lbl_trade_mark;
         private UrduTextBox txt_trade_mark;
+        private Bunifu.Framework.UI.BunifuCustomLabel lbl_webid;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel23;
     }
 }

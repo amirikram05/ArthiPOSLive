@@ -1,17 +1,11 @@
 ﻿using ArthiPOS.Properties;
 using ArthiPOS.Reporting;
 using ArthiPOS.utill;
-using ArthiPOS.Utilllll;
 using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -31,7 +25,7 @@ namespace ArthiPOS.Controls.dashboard
             DataTable dt = new BLogic().getCashInoutAccount();
             DataRow dr = dt.Rows[0];
             string cashinoutStatus = dr[0].ToString();
-            if(cashinoutStatus=="" || cashinoutStatus=="0")
+            if (cashinoutStatus == "" || cashinoutStatus == "0")
             {
                 AccountStatus = false;
             }
@@ -44,8 +38,8 @@ namespace ArthiPOS.Controls.dashboard
         private string temp = "";
         public void searchDialog(int action, string searchTxt)
         {
-            
-            int ck = int.Parse(lbl_cate_id.Text==""?"0": lbl_cate_id.Text);
+
+            int ck = int.Parse(lbl_cate_id.Text == "" ? "0" : lbl_cate_id.Text);
 
 
 
@@ -53,7 +47,7 @@ namespace ArthiPOS.Controls.dashboard
             using (search = new Search(action, searchTxt, ck))
             {
 
-                
+
                 DialogResult res = search.ShowDialog();
                 if (action == 2)
                 {
@@ -61,7 +55,7 @@ namespace ArthiPOS.Controls.dashboard
                     lbl_id.Text = search.Id;
                     lbl_augrai.Text = "" + search.RAmount;
                 }
-                else if (action == 1|| action == 4  || action == 6 || action == 7 )
+                else if (action == 1 || action == 4 || action == 6 || action == 7)
                 {
                     txt_nameid.Text = search.Name;
                     lbl_id.Text = search.Id;
@@ -69,8 +63,11 @@ namespace ArthiPOS.Controls.dashboard
                     lbl_msg.AppendText("Augrai = " + search.RAmount + "<br />");
 
                 }
-                else if (action == 5)
+                else
+
+                if (action == 5)
                 {
+                    lbl_augrai.Text = "0";
                     //if (string.IsNullOrEmpty(txt_desc.Text))
                     {
                         txt_desc.Text = search.Name;
@@ -81,16 +78,37 @@ namespace ArthiPOS.Controls.dashboard
                         txt_desc.AppendText(" ("+search.Name+") ");
 
                     }*/
-                    txt_cate.Text = search.ExpenseID;
-                    lbl_expid.Text = search.Id;
-                    //lbl_account_trans_name.Text = search.TransName;
-                    //lbl_transaction.Text = search.Transid;
-                    //lbl_account_trans_id.Text = search.AccountTransactionid;
-                    
-                    search.Close();
-                    if (search.isEscapePress)
+                    if (search == null)
                         return;
-                    txt_desc.Focus();
+                    try
+                    {
+                        txt_cate.Text = search.ItemsD.cateUrdu;
+                        lbl_expid.Text = search.Id;
+
+                        lbl_cate_id.Text = search.ItemsD.cate_id;
+                        lbl_cate_name.Text = search.ItemsD.cate_name;
+
+                        lbl_transaction_id.Text = search.ItemsD.transaction_id;
+                        lbl_transname.Text = search.ItemsD.transname;
+                        lbl_account_trans_id.Text = search.ItemsD.account_trans_id;
+                        lbl_account_trans_name.Text = search.ItemsD.account_trans_name;
+                        lbl_catedetail.Text = search.ItemsD.cashtype;
+
+                        search.Close();
+                        if (search.isEscapePress)
+                            return;
+                        txt_desc.Focus();
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        txt_desc.Text = "";
+                        search.Close();
+                        if (search.isEscapePress)
+                            return;
+                        txt_desc.Focus();
+                    }
+
+                    
                 }
                 else if (action == 8)
                 {
@@ -109,34 +127,34 @@ namespace ArthiPOS.Controls.dashboard
                     search.Close();
 
                 }
-                
+
                 search.Close();
-              
+
 
                 return;
             }
         }
 
-        
-       
-       
+
+
+
         private void btnAddcash_Click(object sender, EventArgs e)
         {
 
-             if (!checkCondtionaMatch())
+            if (!checkCondtionaMatch())
                 return;
             string date = ledger_date.Text;
-            string desc = txt_desc.Text;
+            string desc = txt_details.Text+" - "+txt_desc.Text;
             string id = lbl_id.Text;
             string name = txt_nameid.Text;
             int cash = int.Parse(txt_cash.Text == "" ? "" + 0 : txt_cash.Text);
             int discount = int.Parse(txt_discount.Text == "" ? "" + 0 : txt_discount.Text);
             string expensetypeid = lbl_expid.Text;
             string transactionid = lbl_transaction_id.Text;
-            string acctransid=lbl_account_trans_id.Text;
+            string acctransid = lbl_account_trans_id.Text;
             string cateid = lbl_cate_id.Text;
             if (expensetypeid == "" || expensetypeid == "xxx") { MessageBox.Show("Transaction ID Empty. Please update."); return; }
-            if ((lbl_cate_name.Text != "Expense" && lbl_cate_name.Text != "ShopExpense") && (id == "" || name=="") )
+            if ((lbl_cate_name.Text != "Expense" && lbl_cate_name.Text != "ShopExpense") && (id == "" || name == ""))
             {
                 txt_nameid.Focus();
                 return;
@@ -145,28 +163,26 @@ namespace ArthiPOS.Controls.dashboard
             {
                 string txt = txt_desc.Text;
                 if (txt != "")
-                    txt = ", " + txt;
+                    txt = ", " + desc;
 
 
-               
+
                 //string action = "Customer";
                 //if (rb_client.Checked)
                 //{ 
                 //    action = "Client";
                 //    if (checkSelection == 2 || checkSelection==3)
                 //        action = "ClientInvest";
-                    
+
                 //}
 
 
 
 
-                string lkey = lbl_key.Text;
-                if (lkey == "")
+                //if (lkey == "")
                 {
-                    MessageBox.Show("Refreshing Invoice ID...");
+                    //MessageBox.Show("Refreshing Invoice ID...");
                     btn_refreshkey_Click(this, new EventArgs());
-                    lkey = lbl_key.Text;
                 }
 
 
@@ -180,27 +196,27 @@ namespace ArthiPOS.Controls.dashboard
                 else
                 {
                     string tid = lbl_cate_id.Text;
-                    if (tid=="1" || tid == "2" || tid == "5" || tid == "8")
+                    if (tid == "1" || tid == "2" || tid == "5" || tid == "8")
                         augrait = "" + (int.Parse(lbl_augrai.Text) - (int.Parse(txt_cash.Text) + (txt_discount.Text == "" ? 0 : int.Parse(txt_discount.Text))));
                     else
                         augrait = "" + (int.Parse(lbl_augrai.Text) + (int.Parse(txt_cash.Text) + (txt_discount.Text == "" ? 0 : int.Parse(txt_discount.Text))));
                 }
 
-                if(txt_discount.Text=="")
+                if (txt_discount.Text == "")
                 {
                     txt_discount.Text = "0";
 
                 }
 
-                    desc = string.Format("{3} = {2} ({1}) {0}",
-                        txt_desc.Text,
-                        lbl_key.Text
-                    , name == "" ? "" : name+"-"+lbl_id.Text
-                    //, Resources.ResourceManager.GetString("a2021", ci)+"="+ augrait
-                    //, Resources.ResourceManager.GetString("a0006", ci) + "=" + txt_discount.Text
-                    ,  txt_cash.Text
-                    );
-                lbl_msg.Text = desc;
+                desc = string.Format("{3} = {2} ({1}) {0}",
+                    txt_desc.Text,
+                    key
+                , name == "" ? "" : name + "-" + lbl_id.Text
+                //, Resources.ResourceManager.GetString("a2021", ci)+"="+ augrait
+                //, Resources.ResourceManager.GetString("a0006", ci) + "=" + txt_discount.Text
+                , txt_cash.Text
+                );
+                //lbl_msg.Text = desc;
                 bool check = false;
                 /*if (AccountStatus)
                 {
@@ -260,14 +276,14 @@ namespace ArthiPOS.Controls.dashboard
                     string action = lbl_cate_name.Text;
                     int cashtype = int.Parse(lbl_cate_id.Text);
                     string nametem = "";
-                    
+
                     if (action == "Customer")
                     {
                         entrytype = "R";
                         nametem = txt_nameid.Text;
 
                     }
-                    else if (action == "Expense" || action=="ShopExpense")
+                    else if (action == "Expense" || action == "ShopExpense")
                     {
                         entrytype = "E";
                         nametem = txt_desc.Text;
@@ -288,24 +304,31 @@ namespace ArthiPOS.Controls.dashboard
 
                         }
                     }
-                    check=new BLogic().p_cashinout_Crud("I", lbl_key.Text, date, lbl_cate_name.Text, int.Parse(lbl_cate_id.Text), 
-                        int.Parse(transactionid),int.Parse(acctransid), int.Parse(lbl_expid.Text), lbl_cate_id.Text, 
-                        int.Parse(lbl_id.Text=="" ? "0": lbl_id.Text), nametem, desc, cash, discount, entrytype,cateid,"i");
+                    check = new BLogic().p_cashinout_Crud("I", lbl_key.Text, date, lbl_cate_name.Text, int.Parse(lbl_cate_id.Text),
+                        int.Parse(transactionid), int.Parse(acctransid), int.Parse(lbl_expid.Text), lbl_cate_id.Text,
+                        int.Parse(lbl_id.Text == "" ? "0" : lbl_id.Text), nametem, desc, cash, discount, entrytype, cateid, "i");
 
 
 
                 }
                 if (check)
                 {
-                    lbl_msg.AppendText(Resources.ResourceManager.GetString("recevingcash", ci));
+                    //lbl_msg.AppendText(Resources.ResourceManager.GetString("recevingcash", ci));
                     //txt_desc.Text ="";
                     txt_nameid.Focus();
-                    lbl_key.Text = "";
                     txt_cash.Text = "0";
                     txt_discount.Text = "0";
                     lbl_id.Text = "";
                     txt_nameid.Text = "";
-                    btn_refreshkey_Click(this,new EventArgs());
+                    //lbl_key.Text = "";
+                    //btn_refreshkey_Click(this,new EventArgs());
+                    lbl_msg.Text = desc;
+                    txt_details.Text = "";
+                    lbl_augrai.Text = "0";
+                    if ((lbl_cate_name.Text == "Expense" || lbl_cate_name.Text == "ShopExpense"))
+                    {
+                        txt_desc.Focus();
+                    }
                 }
             }
         }
@@ -315,14 +338,24 @@ namespace ArthiPOS.Controls.dashboard
             {
                 if (txt_desc.Text == "Search")
                     txt_desc.Text = "";
-                if (search!=null && search.isEscapePress)
+                if (search != null && search.isEscapePress)
                 {
                     txt_desc.Text = "";
                     return;
                 }
-                txt_cate.Focus();
+                //txt_cate.Focus();
+                if ((lbl_cate_name.Text == "Expense" || lbl_cate_name.Text  == "ShopExpense"))
+                {
+                    txt_cash.Focus();
+                    return;
+
+                }
+                else
+                    txt_nameid.Focus();
+                return;
+
             }
-            else
+            /*else
             if (txt_cate.Focused)
             {
                 if (txt_cate.Text == "Search")
@@ -332,8 +365,8 @@ namespace ArthiPOS.Controls.dashboard
                 if (!txt_nameid.Enabled)
                     txt_cash.Focus();
                 txt_nameid.Focus();
-            }
-            else if(txt_nameid.Focused )
+            }*/
+            else if (txt_nameid.Focused)
             {
                 if (txt_nameid.Text == "Search")
                     txt_nameid.Text = "";
@@ -346,18 +379,26 @@ namespace ArthiPOS.Controls.dashboard
                 if (search.isEscapePress)
                     return;
                 txt_discount.Focus();
-            }else
+            }
+            else
             if (txt_discount.Focused)
+            {
+
+                txt_details.Focus();
+            }
+            else
+            if (txt_details.Focused)
             {
 
                 btnAddcash.Focus();
             }
+            
 
 
         }
 
         private int item = 0;
-        
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
 
@@ -385,15 +426,22 @@ namespace ArthiPOS.Controls.dashboard
                     return true;
                 case Keys.Enter:
 
-                    if (txt_cate.Focused)
+                    if (txt_cate.Focused || txt_desc.Focused)
                     {
-                        searchDialog(8, txt_cate.Text);
-                        if(lbl_cate_id.Text=="12" || lbl_cate_id.Text == "14")
+                        if(txt_cate.Focused)
+                            searchDialog(8, txt_cate.Text);
+                        if (lbl_cate_id.Text == "12" || lbl_cate_id.Text == "14")
+                        {
                             txt_nameid.Enabled = false;
+                            //txt_cash.Focus();
+                        
+                        }
                         else
+                        {
                             txt_nameid.Enabled = true;
+                        }
                     }
-                    else if(txt_nameid.Focused)
+                    else if (txt_nameid.Focused)
                     {
                         if (lbl_cate_id.Text != "")
                         {
@@ -402,7 +450,8 @@ namespace ArthiPOS.Controls.dashboard
                             if (cid == 2)
                             { act = 2; }
                             else if (cid == 8)
-                            { act = 1;
+                            {
+                                act = 1;
                             }
 
                             searchDialog(act, txt_nameid.Text);
@@ -414,6 +463,8 @@ namespace ArthiPOS.Controls.dashboard
                     }*/
 
                     changeFocus();
+                   
+                    
 
 
 
@@ -424,7 +475,7 @@ namespace ArthiPOS.Controls.dashboard
                 case Keys.Control | Keys.Enter:
                     if (txt_nameid.ContainsFocus)
                     {
-                        lbl_key.Text = new BLogic().p_getInvoiceID("Other", "0", ledger_date.Text);
+                        //lbl_key.Text = new BLogic().p_getInvoiceID("Other", "0", ledger_date.Text);
 
                         btn_bipari_search_Click(this, new EventArgs());
                     }
@@ -471,18 +522,18 @@ namespace ArthiPOS.Controls.dashboard
         private void btn_bipari_search_Click(object sender, EventArgs e)
         {
             int action = 1;
-            if (lbl_cate_name.Text=="Client")
+            if (lbl_cate_name.Text == "Client")
             {
 
                 action = 1;
-                
-                
+
+
             }
             else if (lbl_cate_name.Text == "Customer")
             {
                 action = 6;
             }
-           
+
 
             if (txt_desc.ContainsFocus)
             {
@@ -501,13 +552,13 @@ namespace ArthiPOS.Controls.dashboard
         private void txt_cash_TextChanged(object sender, EventArgs e)
         {
 
-            int aug = lbl_augrai.Text==""?0: int.Parse(lbl_augrai.Text) ;
+            int aug = lbl_augrai.Text == "" ? 0 : int.Parse(lbl_augrai.Text);
             int cash = 0;
             int discount = 0;
 
             try
             {
-                cash= txt_cash.Text == "" ? 0 : int.Parse(txt_cash.Text);
+                cash = txt_cash.Text == "" ? 0 : int.Parse(txt_cash.Text);
                 discount = txt_discount.Text == "" ? 0 : int.Parse(txt_discount.Text);
 
             }
@@ -516,12 +567,12 @@ namespace ArthiPOS.Controls.dashboard
                 return;
             }
             int total = 0;
-            if(lbl_cate_id.Text=="1" || lbl_cate_id.Text == "2" || lbl_cate_id.Text == "5" || lbl_cate_id.Text == "7")
+            if (lbl_cate_id.Text == "1" || lbl_cate_id.Text == "2" || lbl_cate_id.Text == "5" || lbl_cate_id.Text == "8")
             {
                 total = aug - (cash + discount);
-                
+
             }
-            else if (lbl_cate_id.Text == "15" || lbl_cate_id.Text == "4" || lbl_cate_id.Text == "8")
+            else if (lbl_cate_id.Text == "15" || lbl_cate_id.Text == "4" || lbl_cate_id.Text == "7" || lbl_cate_id.Text == "14")
             {
                 total = aug + (cash + discount);
 
@@ -532,11 +583,13 @@ namespace ArthiPOS.Controls.dashboard
                 total = (cash + discount);
             }*/
             lbl_remaining_amount.Text = "" + total;
-            lbl_msg.Text = ""+total;
+            lbl_msg.Text = "" + total;
         }
+        private string key = "";
         private void btn_refreshkey_Click(object sender, EventArgs e)
         {
-            lbl_key.Text = new BLogic().p_getInvoiceID("Other", "0", ledger_date.Text);
+            key = new BLogic().p_getInvoiceID("Other", "0", ledger_date.Text);
+            lbl_key.Text = key;
         }
 
         private void rb_customer_CheckedChanged(object sender, EventArgs e)
@@ -553,7 +606,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void AddExpenseCash_Load(object sender, EventArgs e)
         {
-            btn_refreshkey_Click(this,new EventArgs());
+            //btn_refreshkey_Click(this,new EventArgs());
         }
 
         private void btn_ndate_Click(object sender, EventArgs e)

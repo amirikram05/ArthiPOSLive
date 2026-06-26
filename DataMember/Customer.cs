@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DataMember
 {
@@ -24,7 +22,7 @@ namespace DataMember
         private Person landlordProfile;
         public bool isCustomerBill = false;
         public string status = "0";
-            
+
         public Person _LandlordProfile
         {
             get
@@ -49,7 +47,7 @@ namespace DataMember
         }
 
 
-        public Customer(string date,Services services,bool isCustomerBill,Sale sale,Person landlordProfile)
+        public Customer(string date, Services services, bool isCustomerBill, Sale sale, Person landlordProfile)
         {
             customer_profile = new Person();
             this.sale = sale;
@@ -59,7 +57,7 @@ namespace DataMember
             this.landlordProfile = landlordProfile;
             this.date = date;
         }
-        
+
 
 
         /* public float GetExtraCustomer
@@ -117,19 +115,19 @@ namespace DataMember
 
         public int getGrandTotalCustomer()
         {
-            return GrandTotalCustomer=(int)(sale.getTotalSale() + sale.getTotalExtraAmountCustomer()  + getCommission() + getChongi());
+            return GrandTotalCustomer = (int)(sale.getTotalSale() + sale.getTotalExtraAmountCustomer() + getCommission() + getChongi());
 
         }
         public int getGrandTotalLandlord()
         {
             return GrandTotalLandlord = (int)(sale.getTotalSale()
-                +sale.getTotalExtraAmountLandlord()  
+                + sale.getTotalExtraAmountLandlord()
                 //+ getCommission() + getChongi())
                 );
         }
         public float getCommission()
         {
-            int totsale = sale.getTotalSale()+ sale.getTotalExtraAmountCustomer();
+            int totsale = sale.getTotalSale() + sale.getTotalExtraAmountCustomer();
             Total_Commission = ((totsale) * services.commission_customer_product) / 100;
             return (float)Math.Ceiling(Total_Commission);
         }

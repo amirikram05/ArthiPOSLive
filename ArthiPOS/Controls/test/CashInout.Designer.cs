@@ -1,4 +1,6 @@
-﻿namespace ArthiPOS.Controls.test
+﻿using System.Windows.Forms;
+
+namespace ArthiPOS.Controls.test
 {
     partial class CashInout
     {
@@ -37,7 +39,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_dailysales = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_closing_today = new Bunifu.Framework.UI.BunifuTileButton();
@@ -60,21 +64,21 @@
             this.lbl_status = new System.Windows.Forms.Label();
             this.grid_cash = new MetroFramework.Controls.MetroGrid();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewLabelXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grid_expense = new MetroFramework.Controls.MetroGrid();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewLabelXColumn5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btn_dailysales = new System.Windows.Forms.Button();
+            this.DataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_report = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.date_panel.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -86,6 +90,8 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.btn_report);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btn_dailysales);
@@ -106,6 +112,19 @@
             this.panel1.Size = new System.Drawing.Size(1192, 100);
             this.panel1.TabIndex = 94;
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(906, 81);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label4.Size = new System.Drawing.Size(112, 20);
+            this.label4.TabIndex = 229;
+            this.label4.Text = "CTRL + D";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,6 +135,17 @@
             this.button1.Text = "Accounts";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_dailysales
+            // 
+            this.btn_dailysales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_dailysales.Location = new System.Drawing.Point(872, 50);
+            this.btn_dailysales.Name = "btn_dailysales";
+            this.btn_dailysales.Size = new System.Drawing.Size(146, 43);
+            this.btn_dailysales.TabIndex = 228;
+            this.btn_dailysales.Text = "Daily Sales Shop";
+            this.btn_dailysales.UseVisualStyleBackColor = true;
+            this.btn_dailysales.Click += new System.EventHandler(this.btn_dailysales_Click);
             // 
             // label6
             // 
@@ -385,9 +415,9 @@
             this.grid_cash.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_cash.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewImageColumn1,
-            this.dataGridViewLabelXColumn1,
-            this.dataGridViewLabelXColumn2,
-            this.dataGridViewLabelXColumn3,
+            this.DataGridViewTextBoxColumn1,
+            this.DataGridViewTextBoxColumn2,
+            this.DataGridViewTextBoxColumn3,
             this.Column3,
             this.Column2,
             this.Column5});
@@ -435,42 +465,42 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // dataGridViewLabelXColumn1
+            // DataGridViewTextBoxColumn1
             // 
-            this.dataGridViewLabelXColumn1.HeaderText = "Date";
-            this.dataGridViewLabelXColumn1.Name = "dataGridViewLabelXColumn1";
-            this.dataGridViewLabelXColumn1.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DataGridViewTextBoxColumn1.HeaderText = "Date";
+            this.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1";
+            this.DataGridViewTextBoxColumn1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 
-            // dataGridViewLabelXColumn2
+            // DataGridViewTextBoxColumn2
             // 
-            this.dataGridViewLabelXColumn2.HeaderText = "Description";
-            this.dataGridViewLabelXColumn2.Name = "dataGridViewLabelXColumn2";
-            this.dataGridViewLabelXColumn2.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.dataGridViewLabelXColumn2.WordWrap = true;
+            this.DataGridViewTextBoxColumn2.HeaderText = "Description";
+            this.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2";
+            this.DataGridViewTextBoxColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridViewTextBoxColumn2.DefaultCellStyle.WrapMode =DataGridViewTriState.True;
             // 
-            // dataGridViewLabelXColumn3
+            // DataGridViewTextBoxColumn3
             // 
-            this.dataGridViewLabelXColumn3.HeaderText = "Cash Recived";
-            this.dataGridViewLabelXColumn3.Name = "dataGridViewLabelXColumn3";
-            this.dataGridViewLabelXColumn3.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DataGridViewTextBoxColumn3.HeaderText = "Cash Recived";
+            this.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3";
+            this.DataGridViewTextBoxColumn3.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Discount";
             this.Column3.Name = "Column3";
-            this.Column3.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Cash ID";
             this.Column2.Name = "Column2";
-            this.Column2.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Type";
             this.Column5.Name = "Column5";
-            this.Column5.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // grid_expense
             // 
@@ -494,9 +524,9 @@
             this.grid_expense.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_expense.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewImageColumn2,
-            this.dataGridViewLabelXColumn5,
-            this.dataGridViewLabelXColumn6,
-            this.dataGridViewLabelXColumn8,
+            this.DataGridViewTextBoxColumn5,
+            this.DataGridViewTextBoxColumn6,
+            this.DataGridViewTextBoxColumn8,
             this.Column1,
             this.Column4});
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
@@ -543,60 +573,59 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // dataGridViewLabelXColumn5
+            // DataGridViewTextBoxColumn5
             // 
-            this.dataGridViewLabelXColumn5.HeaderText = "Date";
-            this.dataGridViewLabelXColumn5.Name = "dataGridViewLabelXColumn5";
-            this.dataGridViewLabelXColumn5.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DataGridViewTextBoxColumn5.HeaderText = "Date";
+            this.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5";
+            this.DataGridViewTextBoxColumn5.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 
-            // dataGridViewLabelXColumn6
+            // DataGridViewTextBoxColumn6
             // 
-            this.dataGridViewLabelXColumn6.HeaderText = "Description";
-            this.dataGridViewLabelXColumn6.Name = "dataGridViewLabelXColumn6";
-            this.dataGridViewLabelXColumn6.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.dataGridViewLabelXColumn6.WordWrap = true;
+            this.DataGridViewTextBoxColumn6.HeaderText = "Description";
+            this.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6";
+            this.DataGridViewTextBoxColumn6.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridViewTextBoxColumn6.DefaultCellStyle.WrapMode =DataGridViewTriState.True;
             // 
-            // dataGridViewLabelXColumn8
+            // DataGridViewTextBoxColumn8
             // 
-            this.dataGridViewLabelXColumn8.HeaderText = "Amount";
-            this.dataGridViewLabelXColumn8.Name = "dataGridViewLabelXColumn8";
-            this.dataGridViewLabelXColumn8.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DataGridViewTextBoxColumn8.HeaderText = "Amount";
+            this.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8";
+            this.DataGridViewTextBoxColumn8.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Key";
             this.Column1.Name = "Column1";
-            this.Column1.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Type";
             this.Column4.Name = "Column4";
-            this.Column4.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
-            // label4
+            // btn_report
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(906, 81);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(112, 20);
-            this.label4.TabIndex = 229;
-            this.label4.Text = "CTRL + D";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_report.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_report.Location = new System.Drawing.Point(285, 0);
+            this.btn_report.Name = "btn_report";
+            this.btn_report.Size = new System.Drawing.Size(144, 35);
+            this.btn_report.TabIndex = 230;
+            this.btn_report.Text = "Reports";
+            this.btn_report.UseVisualStyleBackColor = true;
+            this.btn_report.Click += new System.EventHandler(this.btn_report_Click);
             // 
-            // btn_dailysales
+            // label5
             // 
-            this.btn_dailysales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dailysales.Location = new System.Drawing.Point(872, 50);
-            this.btn_dailysales.Name = "btn_dailysales";
-            this.btn_dailysales.Size = new System.Drawing.Size(146, 43);
-            this.btn_dailysales.TabIndex = 228;
-            this.btn_dailysales.Text = "Daily Sales Shop";
-            this.btn_dailysales.UseVisualStyleBackColor = true;
-            this.btn_dailysales.Click += new System.EventHandler(this.btn_dailysales_Click);
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(385, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 12);
+            this.label5.TabIndex = 231;
+            this.label5.Text = "CTRL + R";
             // 
             // CashInout
             // 
@@ -633,22 +662,22 @@
         private MetroFramework.Controls.MetroGrid grid_expense;
         private MetroFramework.Controls.MetroDateTime ledger_date;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn8;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn dataGridViewLabelXColumn3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label lbl_title;
         private System.Windows.Forms.Label label6;
         private Bunifu.Framework.UI.BunifuImageButton btn_print_closeing;
         private System.Windows.Forms.Label lbl_status;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private Bunifu.Framework.UI.BunifuTileButton btn_AddExpense;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_todayreportdet;
@@ -663,6 +692,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_dailysales;
+        private System.Windows.Forms.Button btn_report;
+        private System.Windows.Forms.Label label5;
     }
 
    

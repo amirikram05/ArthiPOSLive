@@ -172,6 +172,7 @@
     <Compile Include="OleDbHandler.cs" />
     <Compile Include="ProfilesDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\LogMaintain.csproj">

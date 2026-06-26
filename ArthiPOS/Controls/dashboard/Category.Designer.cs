@@ -30,8 +30,8 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.dg_cate = new System.Windows.Forms.DataGridView();
-            this.text_cat = new ArthiPOS.Controls.UrduTextBox();
             this.Column4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.text_cat = new ArthiPOS.Controls.UrduTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dg_cate)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +48,9 @@
             // 
             // dg_cate
             // 
+            this.dg_cate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dg_cate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_cate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4});
@@ -56,6 +59,13 @@
             this.dg_cate.Size = new System.Drawing.Size(603, 338);
             this.dg_cate.TabIndex = 2;
             this.dg_cate.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_cate_CellContentClick);
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Update";
+            this.Column4.Image = global::ArthiPOS.Properties.Resources.edit;
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // text_cat
             // 
@@ -69,13 +79,6 @@
             this.text_cat.TabIndex = 1;
             this.text_cat.WaterMarkColor = System.Drawing.Color.Gray;
             this.text_cat.WaterMarkText = "Add";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Update";
-            this.Column4.Image = global::ArthiPOS.Properties.Resources.edit;
-            this.Column4.Name = "Column4";
-            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Category
             // 

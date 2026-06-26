@@ -51,6 +51,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.DXCore.Platform, Version=15.1.5.0, Culture=neutral, PublicKeyToken=35c9f04b7764aa3d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -70,11 +71,13 @@
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="Expense.cs" />
     <Compile Include="Landlord.cs" />
+    <Compile Include="LogExecManager.cs" />
     <Compile Include="memberlog\AccountLog.cs" />
     <Compile Include="memberlog\AdminLog.cs" />
     <Compile Include="memberlog\AppSettings.cs" />
     <Compile Include="memberlog\DatabaseLog.cs" />
     <Compile Include="memberlog\LanguageLog.cs" />
+    <Compile Include="Models.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

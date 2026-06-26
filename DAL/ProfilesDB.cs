@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DAL
@@ -22,8 +18,9 @@ namespace DAL
         }
 
         public bool p_product_CRUD(string action, string code, string uName, string eName,
-            string freight, string labour, string bipcommi, string pcode, 
-            string pack, string cuscommi1, string location, string laga, string chongi,string munshiana,string marketfee)
+            string freight, string labour, string bipcommi, string pcode,
+            string pack, string cuscommi1, string location, string laga,
+            string chongi, string munshiana, string marketfee, string shopcomm, string shoplabour = "")
         {
             try
             {
@@ -36,17 +33,20 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@Code", code);
                     cmd.Parameters.AddWithValue("@UName", uName);
                     cmd.Parameters.AddWithValue("@EName", eName);
-                    cmd.Parameters.AddWithValue("@Freight", freight);
-                    cmd.Parameters.AddWithValue("@Labour", labour);
-                    cmd.Parameters.AddWithValue("@BipCommi", bipcommi);
+                    cmd.Parameters.Add("@Freight", SqlDbType.Int).Value = freight;
+                    cmd.Parameters.Add("@Labour", SqlDbType.Int).Value = labour;
+                    cmd.Parameters.Add("@BipCommi", SqlDbType.Float).Value = bipcommi;
                     cmd.Parameters.AddWithValue("@PCode", pcode);
                     cmd.Parameters.AddWithValue("@Pack", pack);
-                    cmd.Parameters.AddWithValue("@CUSCommi1", cuscommi1);
+                    cmd.Parameters.Add("@CUSCommi1", SqlDbType.Float).Value = cuscommi1;
                     cmd.Parameters.AddWithValue("@Location", location);
-                    cmd.Parameters.AddWithValue("@ChongiLaga", laga);
-                    cmd.Parameters.AddWithValue("@ChongiCust", chongi);
-                    cmd.Parameters.AddWithValue("@Munshiana", munshiana);
-                    cmd.Parameters.AddWithValue("@Marketfee", marketfee);
+                    cmd.Parameters.Add("@ChongiLaga", SqlDbType.Int).Value = laga;
+                    cmd.Parameters.Add("@ChongiCust", SqlDbType.Int).Value = chongi;
+                    cmd.Parameters.Add("@Munshiana", SqlDbType.Int).Value = munshiana;
+                    cmd.Parameters.Add("@Marketfee", SqlDbType.Int).Value = marketfee;
+                    cmd.Parameters.Add("@ShopComm", SqlDbType.Int).Value = shopcomm;
+                    cmd.Parameters.Add("@ShopLabour", SqlDbType.Int).Value = shoplabour;
+
                     int chk = cmd.ExecuteNonQuery();
                     connection.Close();
                     connection.Dispose();
@@ -64,7 +64,7 @@ namespace DAL
             }
         }
 
-        public bool p_old_reacord(string action,string id, string name, string date, int amount,string address)
+        public bool p_old_reacord(string action, string id, string name, string date, int amount, string address)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace DAL
             }
         }
 
-        public bool p_weigt_CRUD(string action,string id,string uname,string ename)
+        public bool p_weigt_CRUD(string action, string id, string uname, string ename)
         {
             try
             {
@@ -230,49 +230,49 @@ namespace DAL
         }
         */
 
-        public bool p_profile_CRUD(string action,string tlb, int id ,string uname, string cname, 
-            string cphone, string caddress, int amount,string key,
-            string date,string detail,string type)
+        public bool p_profile_CRUD(string action, string tlb, int id, string uname, string cname,
+            string cphone, string caddress, int amount, string key,
+            string date, string detail, string type)
         {
-           // try
-           // {
-                using (SqlConnection connection = new SqlConnection(Connection))
-                {
-                    connection.Open();
-                    cmd = new SqlCommand("p_profile_CRUD", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@action",SqlDbType.NVarChar).Value= action;
-                    cmd.Parameters.Add("@table", SqlDbType.NVarChar).Value = tlb;
-                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                    cmd.Parameters.Add("@cname", SqlDbType.NVarChar).Value = cname;
-                    cmd.Parameters.Add("@uname", SqlDbType.NVarChar).Value = uname;
-                    cmd.Parameters.Add("@cphone", SqlDbType.NVarChar).Value = cphone;
-                    cmd.Parameters.Add("@caddress", SqlDbType.NVarChar).Value = caddress;
-                    cmd.Parameters.Add("@amount", SqlDbType.Int).Value = amount;
-                    cmd.Parameters.Add("@clkey", SqlDbType.NVarChar).Value = key;
-                    cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-                    cmd.Parameters.Add("@detail", SqlDbType.NVarChar).Value = detail;
-                    cmd.Parameters.Add("@type", SqlDbType.NVarChar).Value = type;
-                    int chk = cmd.ExecuteNonQuery();
+            // try
+            // {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                cmd = new SqlCommand("p_profile_CRUD", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+                cmd.Parameters.Add("@table", SqlDbType.NVarChar).Value = tlb;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@cname", SqlDbType.NVarChar).Value = cname;
+                cmd.Parameters.Add("@uname", SqlDbType.NVarChar).Value = uname;
+                cmd.Parameters.Add("@cphone", SqlDbType.NVarChar).Value = cphone;
+                cmd.Parameters.Add("@caddress", SqlDbType.NVarChar).Value = caddress;
+                cmd.Parameters.Add("@amount", SqlDbType.Int).Value = amount;
+                cmd.Parameters.Add("@clkey", SqlDbType.NVarChar).Value = key;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                cmd.Parameters.Add("@detail", SqlDbType.NVarChar).Value = detail;
+                cmd.Parameters.Add("@type", SqlDbType.NVarChar).Value = type;
+                int chk = cmd.ExecuteNonQuery();
 
-                    connection.Close();
-                    if (chk != 0)
-                    {
-                        return true;
-                    }
-                    return false;
+                connection.Close();
+                if (chk != 0)
+                {
+                    return true;
                 }
+                return false;
+            }
             //}
             //catch(SqlException e)
             //{
             //    MessageBox.Show(e.ToString());
             //    return false;
             //}
-           
+
         }
         public object p_profile_CRUD(string action, string tlb)
         {
-            
+
             using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
@@ -352,8 +352,8 @@ namespace DAL
                 }
             }
         }
-        public bool p_investment(string @action,string key ,string @cl_id , int @amount ,string @amount_date , 
-            int @amount_receive ,string @receive_date )
+        public bool p_investment(string @action, string key, string @cl_id, int @amount, string @amount_date,
+            int @amount_receive, string @receive_date)
         {
             StringBuilder errorMessages = new StringBuilder();
 

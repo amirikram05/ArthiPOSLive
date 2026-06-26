@@ -1,19 +1,21 @@
-﻿using System;
-using System.IO;
-using System.Threading;
-using System.Windows.Forms;
-using Google.Apis.Auth.OAuth2;
+﻿using DataMember.memberlog;
 using Google.Apis.Drive.v3;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
 using Google.Apis.Upload;
-using File = Google.Apis.Drive.v3.Data.File;
-using System.Threading.Tasks;
-using DataMember.memberlog;
-using ArthiPOS.Utill;
-using DataMember;
+using System;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using File = Google.Apis.Drive.v3.Data.File;
+using Firebase.Storage;
+using DevExpress.XtraReports.Design;
+using Google.Cloud.Firestore;
+using System.Web.Services.Description;
+using Google.Apis.Auth.OAuth2;
+using ArthiPOS.Utill;
+using FirebaseAdmin;
+using BAL;
+using System.Data;
 namespace ArthiPOS.Controls.test
 {
     public partial class GDriveUploadDoc : Form
@@ -31,7 +33,9 @@ namespace ArthiPOS.Controls.test
             string reportsFolderName = "Reports";
             string backupFolderName = "Backup";
             string configFolderName = "Config";
-            DriveService service =await GoogleDriveHelper.GetServiceAsync();
+            progressBar.Value = 0;
+            statusLabel.Text = "Initializing....";
+            DriveService service = await GoogleDriveHelper.GetServiceAsync();
 
             // Check if root folder exists
             string rootFolderId = await GoogleDriveHelper.GetFolderIdByName(service, rootFolderName);
@@ -72,7 +76,7 @@ namespace ArthiPOS.Controls.test
 
 
 
-            await UploadFileToDriveAsync(service,targetFolderId, textBoxFilePath.Text);
+            await UploadFileToDriveAsync(service, targetFolderId, textBoxFilePath.Text);
         }
         private string GetMimeType(string fileName)
         {
@@ -211,10 +215,10 @@ namespace ArthiPOS.Controls.test
             }
 
         }
-        private async void UploadFile(DriveService service, string filePath, string mimeType,string result)
+        private async void UploadFile(DriveService service, string filePath, string mimeType, string result)
         {
-           
-            
+
+
             // Get or create the "Documents" folder ID
             string folderId = await GetOrCreateFolderId(service, result);
 
@@ -271,7 +275,7 @@ namespace ArthiPOS.Controls.test
                 {
                     statusLabel.Text = "Uploading...";
                     int progressPercentage = (int)(progress.BytesSent * 100 / fileSize);
-                    lbl_prog.Text = progressPercentage+"";
+                    lbl_prog.Text = progressPercentage + "";
                     progressBar.Value = progressPercentage;
                     statusLabel.Text = $"{progress.Status}: {progressPercentage}% ({progress.BytesSent / 1024} KB sent)";
                 }));
@@ -288,6 +292,71 @@ namespace ArthiPOS.Controls.test
             }));
         }
 
+        private async void btn_upload_server_ClickAsync(object sender, EventArgs e)
+        {
+            progressBar.Value = 0;
+            statusLabel.Text = "Initializing....";
+            // Determine which folder to upload the file to
+            
 
+            try
+            {
+                btn_upload_server.Enabled = false;
+                progressBar.Value = 0;
+
+                FirestoreUploader uploader =
+                    new FirestoreUploader();
+                DataTable dt = new BLogic().p_augrai_read("1", current_date.Text, "30");
+
+                statusLabel.Text = "Processed";
+                progressBar.Value = 0;
+                string json=Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+                await uploader.SaveJsonWithProgress(json);
+                
+
+                MessageBox.Show("All customer data saved successfully!");
+                statusLabel.Text = "Completed";
+            }
+            catch (Exception ex)
+            {
+                statusLabel.Text = "Error";
+
+                MessageBox.Show(ex.Message, "Upload Error");
+            }
+            finally
+            {
+                btn_upload_server.Enabled = true;
+            }
+
+        }
+       
+        /*async Task UploadReport(string filePath, string reportName)
+        {
+            {
+                var storage = new FirebaseStorage("arthiapp-5d72b.appspot.com");
+
+
+                using (var stream = System.IO.File.OpenRead(filePath))
+                {
+                    statusLabel.Text = "Preparing...";
+
+                    try
+                    {
+
+                        await storage
+                            .Child("pages")
+                            .Child(reportName+".html")
+                            .PutAsync(stream);
+                    }
+                    catch (Exception uploadEx)
+                    {
+                        MessageBox.Show("File upload failed: " + uploadEx.Message);
+                        return;
+                    }
+                    
+                }
+            }
+        }
+    */
     }
 }

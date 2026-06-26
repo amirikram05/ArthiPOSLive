@@ -35,6 +35,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.lbl_prog = new System.Windows.Forms.Label();
             this.current_date = new MetroFramework.Controls.MetroDateTime();
+            this.btn_upload_server = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxFilePath
@@ -59,11 +60,11 @@
             // buttonUpload
             // 
             this.buttonUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUpload.Location = new System.Drawing.Point(173, 60);
+            this.buttonUpload.Location = new System.Drawing.Point(62, 60);
             this.buttonUpload.Name = "buttonUpload";
-            this.buttonUpload.Size = new System.Drawing.Size(119, 29);
+            this.buttonUpload.Size = new System.Drawing.Size(148, 29);
             this.buttonUpload.TabIndex = 2;
-            this.buttonUpload.Text = "Upload";
+            this.buttonUpload.Text = "Upload Drive";
             this.buttonUpload.UseVisualStyleBackColor = true;
             this.buttonUpload.Click += new System.EventHandler(this.buttonUpload_Click);
             // 
@@ -105,11 +106,23 @@
             this.current_date.Size = new System.Drawing.Size(198, 29);
             this.current_date.TabIndex = 121;
             // 
+            // btn_upload_server
+            // 
+            this.btn_upload_server.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_upload_server.Location = new System.Drawing.Point(232, 60);
+            this.btn_upload_server.Name = "btn_upload_server";
+            this.btn_upload_server.Size = new System.Drawing.Size(135, 29);
+            this.btn_upload_server.TabIndex = 122;
+            this.btn_upload_server.Text = "Upload Server";
+            this.btn_upload_server.UseVisualStyleBackColor = true;
+            this.btn_upload_server.Click += new System.EventHandler(this.btn_upload_server_ClickAsync);
+            // 
             // GDriveUploadDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 129);
+            this.Controls.Add(this.btn_upload_server);
             this.Controls.Add(this.current_date);
             this.Controls.Add(this.lbl_prog);
             this.Controls.Add(this.progressBar);
@@ -134,5 +147,6 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lbl_prog;
         private MetroFramework.Controls.MetroDateTime current_date;
+        private System.Windows.Forms.Button btn_upload_server;
     }
 }

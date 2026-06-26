@@ -1,9 +1,5 @@
 ﻿using DAL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 
 namespace BAL
@@ -27,6 +23,22 @@ namespace BAL
         {
             return db.p_reporting_CRUD("CustBillsandReceivings", stardate, lastdate, 0, 0, search);
         }
+
+        public DataTable getRpName(string action)
+        {
+            return db.p_report_data_all(action, "", "", "", "", "");
+        }
+        public DataTable getReportDataAll(string action, string reportno, string search, string stardate, string lastdate, string filter)
+        {
+            return db.p_report_data_all(action, reportno, search, stardate, lastdate, filter);
+
+        }
+        public DataTable GetShopExpenseReport(string stardate, string lastdate, int section)
+        {
+            return db.GetShopExpenseReport(stardate, lastdate, section);
+
+        }
+
         public object p_DetailReport(string @stardate, string @lastdate, string search)
         {
             return db.p_reporting_CRUD("DetailReport", stardate, lastdate, 0, 0, search);
@@ -45,25 +57,25 @@ namespace BAL
             return db.p_reporting_CRUD("ExpenseCashReceive", stardate, lastdate, index, pageSize, "");
 
         }
-        public object cashReceving(string @stardate, string @lastdate, int pageIndex, int PageSize,string search)
+        public object cashReceving(string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
         {
             return db.p_reporting_CRUD("CashReceive", stardate, lastdate, pageIndex, PageSize, search);
         }
-        public object expenseDetails(string @stardate, string @lastdate, int pageIndex, int PageSize,string search)
+        public object expenseDetails(string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
         {
-            return db.p_reporting_CRUD("SalesExpense", stardate, lastdate, pageIndex, PageSize, search); 
+            return db.p_reporting_CRUD("SalesExpense", stardate, lastdate, pageIndex, PageSize, search);
         }
-        public object getSalesLandlord(string @stardate, string @lastdate, int pageIndex, int PageSize,string search)
+        public object getSalesLandlord(string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
         {
             return db.p_reporting_CRUD("GetLandloard", stardate, lastdate, pageIndex, PageSize, search);
         }
 
         public DataTable getProfiftLossDetails(string sdate, string ldate)
         {
-            return (DataTable)db.p_all_sale_profit_details("Date",sdate,ldate);
+            return (DataTable)db.p_all_sale_profit_details("Date", sdate, ldate);
         }
 
-        public object getSalesClient(string @stardate, string @lastdate, int pageIndex, int PageSize,string search)
+        public object getSalesClient(string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
         {
             return db.p_reporting_CRUD("BSales", stardate, lastdate, pageIndex, PageSize, search);
         }
@@ -73,15 +85,15 @@ namespace BAL
             return db.p_reporting_CRUD("CustomerSales", stardate, lastdate, pageIndex, PageSize, search);
         }
 
-        public List<object> p_dailyProfitSalesExpense(string action,string sdate, string ldate, int index, int pageSize)
+        public List<object> p_dailyProfitSalesExpense(string action, string sdate, string ldate, int index, int pageSize)
         {
-            return db.p_dailyProfitSalesExpense(action,sdate, ldate, index, pageSize);
+            return db.p_dailyProfitSalesExpense(action, sdate, ldate, index, pageSize);
         }
-        public List<object> p_reporting_CRUD(string action,string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
+        public List<object> p_reporting_CRUD(string action, string @stardate, string @lastdate, int pageIndex, int PageSize, string search)
         {
             return (List<object>)db.p_reporting_CRUD(action, stardate, lastdate, pageIndex, PageSize, search);
         }
 
-        
+
     }
 }

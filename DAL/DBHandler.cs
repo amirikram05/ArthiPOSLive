@@ -1,19 +1,18 @@
 ﻿using DataMember;
 using LogMaintain;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.XEvent;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
-using System.Reflection;
+using System.Windows.Forms.VisualStyles;
+using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace DAL
 {
@@ -28,10 +27,11 @@ namespace DAL
 
         public int oldAmount { get; private set; }
 
-        public DataTable dt_client, dt_customer, dt_product, dt_weight, dt_sale, dt_augrai,dt_fright, dt_expense;
+        public DataTable dt_client, dt_customer, dt_product, dt_weight, dt_sale, dt_augrai, dt_fright, dt_expense;
         public SqlCommand cmd;
-        public DataTable p_chatha(string sdate, string ldate)
+        public DataTable p_chatha(string action,string sdate, string ldate)
         {
+
             using (SqlConnection conn = GetConnection())
             {
                 if (conn == null)
@@ -40,18 +40,148 @@ namespace DAL
                 }
                 SqlCommand cmd = new SqlCommand("p_chatha", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
                 cmd.Parameters.Add("@startdate", SqlDbType.NVarChar).Value = sdate;
                 cmd.Parameters.Add("@lastdate", SqlDbType.NVarChar).Value = ldate;
 
-               
-                    adapt = new SqlDataAdapter(cmd);
 
+                adapt = new SqlDataAdapter(cmd);
+
+                DataTable data_tbl = new DataTable();
+                adapt.Fill(data_tbl);
+                CloseConnection(conn);
+
+                return data_tbl;
+            }
+        }
+
+        public DataTable p_daily_temp_table_crud(
+    string action,
+    string date,
+    int zamidar_id,
+    int bipari_id,
+    int total_quantity,
+    float total_rent,
+    int total_labour,
+    int total_advance,
+    float bipcommission,
+    int biplaga,
+    float cust_commission,
+    int cust_chongi,
+    int munshiana,
+    int marketfee,
+    int cust_id,
+    int quantity,
+    int rate,
+    int total_sale_amount,
+    float grand_total,
+    float bipari_grand_total,
+    int extra_cust,
+    int extra_vendour,
+    int product_id,
+    string product_name,
+    string product_marka,
+    int beg_weight_id,
+    string beg_weight_name,
+    string bipkey,
+    string zamidarkey,
+    string custkey,
+    int weight_id,
+    string weight_name,
+    string billtype,
+    int bikri_quantity = 0,
+    int bikri_rate = 0,
+    string vehicle_no = null,
+    string bag_type = null,
+    int crud = 1,
+    float c_commission = 0,
+    float bz_commission = 0,
+    float laga_per_item = 0,
+    float chongi_per_item = 0,
+    float freight_per_item = 0,
+    float labour_per_item = 0)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                if (conn == null)
+                {
+                    return null;
+                }
+
+
+                SqlCommand cmd = new SqlCommand("p_daily_temp_table_crud", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                cmd.Parameters.Add("@zamidar_id", SqlDbType.Float).Value = zamidar_id;
+                cmd.Parameters.Add("@bipari_id", SqlDbType.Float).Value = bipari_id;
+                cmd.Parameters.Add("@total_quantity", SqlDbType.Float).Value = total_quantity;
+                cmd.Parameters.Add("@total_rent", SqlDbType.Float).Value = total_rent;
+                cmd.Parameters.Add("@total_labour", SqlDbType.Float).Value = total_labour;
+                cmd.Parameters.Add("@total_advance", SqlDbType.Float).Value = total_advance;
+                cmd.Parameters.Add("@bipcommission", SqlDbType.Float).Value = bipcommission;
+                cmd.Parameters.Add("@biplaga", SqlDbType.Float).Value = biplaga;
+                cmd.Parameters.Add("@cust_commission", SqlDbType.Float).Value = cust_commission;
+                cmd.Parameters.Add("@cust_chongi", SqlDbType.Float).Value = cust_chongi;
+                cmd.Parameters.Add("@munshiana", SqlDbType.Float).Value = munshiana;
+                cmd.Parameters.Add("@marketfee", SqlDbType.Float).Value = marketfee;
+                cmd.Parameters.Add("@cust_id", SqlDbType.Float).Value = cust_id;
+                cmd.Parameters.Add("@quantity", SqlDbType.Float).Value = quantity;
+                cmd.Parameters.Add("@rate", SqlDbType.Float).Value = rate;
+                cmd.Parameters.Add("@total_sale_amount", SqlDbType.Float).Value = total_sale_amount;
+                cmd.Parameters.Add("@grand_total", SqlDbType.Float).Value = grand_total;
+                cmd.Parameters.Add("@bipari_grand_total", SqlDbType.Float).Value = bipari_grand_total;
+                cmd.Parameters.Add("@extra_cust", SqlDbType.Float).Value = extra_cust;
+                cmd.Parameters.Add("@extra_vendour", SqlDbType.Float).Value = extra_vendour;
+                cmd.Parameters.Add("@product_id", SqlDbType.Float).Value = product_id;
+                cmd.Parameters.Add("@product_name", SqlDbType.NVarChar).Value = product_name;
+                cmd.Parameters.Add("@product_marka", SqlDbType.NVarChar).Value = product_marka;
+                cmd.Parameters.Add("@beg_weight_id", SqlDbType.Float).Value = beg_weight_id;
+                cmd.Parameters.Add("@beg_weight_name", SqlDbType.NVarChar).Value = beg_weight_name;
+                cmd.Parameters.Add("@bipkey", SqlDbType.NVarChar).Value = bipkey;
+                cmd.Parameters.Add("@zamidarkey", SqlDbType.NVarChar).Value = zamidarkey;
+                cmd.Parameters.Add("@custkey", SqlDbType.NVarChar).Value = custkey;
+                cmd.Parameters.Add("@weight_id", SqlDbType.Float).Value = weight_id;
+                cmd.Parameters.Add("@weight_name", SqlDbType.NVarChar).Value = weight_name;
+                cmd.Parameters.Add("@billtype", SqlDbType.NVarChar).Value = billtype;
+                cmd.Parameters.Add("@bikri_quantity", SqlDbType.Float).Value = bikri_quantity;
+                cmd.Parameters.Add("@bikri_rate", SqlDbType.Float).Value = bikri_rate;
+                cmd.Parameters.Add("@vehicle_no", SqlDbType.NVarChar).Value = vehicle_no;
+                cmd.Parameters.Add("@bag_type", SqlDbType.NVarChar).Value = bag_type;
+                cmd.Parameters.Add("@c_commission ", SqlDbType.NVarChar).Value = c_commission;
+                cmd.Parameters.Add("@bz_commission ", SqlDbType.NVarChar).Value = bz_commission;
+                cmd.Parameters.Add("@laga_per_item ", SqlDbType.NVarChar).Value = labour_per_item;
+                cmd.Parameters.Add("@chongi_per_item  ", SqlDbType.NVarChar).Value = chongi_per_item;
+                cmd.Parameters.Add("@freight_per_item ", SqlDbType.NVarChar).Value = freight_per_item;
+                cmd.Parameters.Add("@labour_per_item", SqlDbType.NVarChar).Value = labour_per_item;
+
+
+                if (crud != 4) // INSERT, UPDATE, DELETE
+                {
+                    int rowsAffected = executeQueryCommand(cmd);
+                    CloseConnection(conn);
+
+                    return rowsAffected > 0 ? new DataTable() : null;
+
+                }
+                else // SELECT
+                {
+
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
                     DataTable data_tbl = new DataTable();
                     adapt.Fill(data_tbl);
                     CloseConnection(conn);
+
                     return data_tbl;
+                }
             }
         }
+
+
+
         public DataTable p_balancesheet_Read(string action, string sdate, string ldate)
         {
             using (SqlConnection conn = GetConnection())
@@ -68,7 +198,7 @@ namespace DAL
 
                 if (action == "UPbs")
                 {
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -91,7 +221,51 @@ namespace DAL
             }
         }
 
-        public object createSeason(string action,string sdate, string ldate)
+
+        public DataTable p_acc_transcation_crud(string action, int crud, string name, string urduname, int transid = 0, int id = 0)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                if (conn == null)
+                {
+                    return null;
+                }
+                SqlCommand cmd = new SqlCommand("p_acc_transcation_crud", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+                cmd.Parameters.Add("@crud", SqlDbType.NVarChar).Value = crud;
+                cmd.Parameters.Add("@engname", SqlDbType.NVarChar).Value = name;
+                cmd.Parameters.Add("@urduname", SqlDbType.NVarChar).Value = urduname;
+                cmd.Parameters.Add("@transid", SqlDbType.NVarChar).Value = transid;
+                cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
+
+
+                if (crud != 4)
+                {
+                    int rowsAffected = executeQueryCommand(cmd);
+                    if (rowsAffected != 0)
+                    {
+                        CloseConnection(conn);
+                        return new DataTable();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    adapt = new SqlDataAdapter(cmd);
+
+                    DataTable data_tbl = new DataTable();
+                    adapt.Fill(data_tbl);
+                    CloseConnection(conn);
+                    return data_tbl;
+                }
+            }
+        }
+
+        public object createSeason(string action, string sdate, string ldate)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -106,12 +280,12 @@ namespace DAL
                 cmd.Parameters.Add("@lastdate", SqlDbType.NVarChar).Value = ldate;
                 List<Object> obj = new List<object>();
 
-               
-                if (action=="Create" || action=="Delete")
-                {
-                    int rowsAffected = cmd.ExecuteNonQuery();
 
-                    
+                if (action == "Create" || action == "Delete")
+                {
+                    int rowsAffected = executeQueryCommand(cmd);
+
+
                     if (rowsAffected != 0)
                     {
                         obj.Add(rowsAffected);
@@ -141,7 +315,7 @@ namespace DAL
                     return obj;
                 }
                 return null;
-                
+
             }
         }
 
@@ -169,7 +343,34 @@ namespace DAL
                 return data_tbl;
             }
         }
-        
+
+        public bool update_Bipariidprofile(string id, int bipari_id)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                if (conn == null)
+                {
+                    return false;
+                }
+                SqlCommand cmd = new SqlCommand("p_update_Bipariidprofile", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@zamidar_id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@bipari_id", SqlDbType.Int).Value = bipari_id;
+
+
+                int rowsAffected = executeQueryCommand(cmd);
+                if (rowsAffected != 0)
+                {
+                    CloseConnection(conn);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public DataTable getCashInout(string action, string date)
         {
             using (SqlConnection conn = GetConnection())
@@ -191,9 +392,9 @@ namespace DAL
                 return data_tbl;
             }
         }
-        public bool p_cashinout_Crud(string action,string keyid,string date,string catename,int cateid,int transactionid, int account_transaction_id
-            ,int typeid,string cash_type,int uid,string uname,string detialdesp,
-            int amount,int discount,string entrytype,string category_id,string action_type)
+        public bool p_cashinout_Crud(string action, string keyid, string date, string catename, int cateid, int transactionid, int account_transaction_id
+            , int typeid, string cash_type, int uid, string uname, string detialdesp,
+            int amount, int discount, string entrytype, string category_id, string action_type)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -222,7 +423,7 @@ namespace DAL
                 cmd.Parameters.Add("@action_type", SqlDbType.NVarChar).Value = action_type;
 
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     CloseConnection(conn);
@@ -235,7 +436,40 @@ namespace DAL
             }
         }
 
-        public bool p_update_editcustomersales(string date,string saleid,string newCustid)
+        public bool p_fin_BalanceSheet_CRUD(string action, string date, string transactionid,
+            string acctransid, int cash, string inout)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                if (conn == null)
+                {
+                    return false;
+                }
+                SqlCommand cmd = new SqlCommand("p_fin_BalanceSheet_CRUD", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                cmd.Parameters.Add("@transactionid", SqlDbType.Int).Value = transactionid;
+                cmd.Parameters.Add("@account_id", SqlDbType.Int).Value = acctransid;
+                cmd.Parameters.Add("@amount", SqlDbType.Int).Value = cash;
+                cmd.Parameters.Add("@Inout", SqlDbType.NVarChar).Value = inout;
+
+
+                int rowsAffected = executeQueryCommand(cmd);
+                if (rowsAffected != 0)
+                {
+
+                    CloseConnection(conn);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool p_update_editcustomersales(string date, string saleid, string newCustid)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -248,9 +482,9 @@ namespace DAL
                 cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@saleid", SqlDbType.NVarChar).Value = saleid;
                 cmd.Parameters.Add("@changeinto_custId", SqlDbType.NVarChar).Value = newCustid;
-                cmd.Parameters.Add("@newkey", SqlDbType.NVarChar).Value = p_getInvoiceID("Other",newCustid,date);
+                cmd.Parameters.Add("@newkey", SqlDbType.NVarChar).Value = p_getInvoiceID("Other", newCustid, date);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     CloseConnection(conn);
@@ -281,7 +515,9 @@ namespace DAL
         }
         public bool p_insert_date(string date)
         {
-            try {
+            try
+            {
+
                 using (SqlConnection conn = GetConnection())
                 {
 
@@ -290,7 +526,7 @@ namespace DAL
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                     cmd.Parameters.Add("@id", SqlDbType.Int).Value = 0;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
 
                     if (rowsAffected != 0)
                     {
@@ -306,10 +542,14 @@ namespace DAL
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex,"InsertDate");
+
                 return false;
             }
-            catch(InvalidArgumentException e)
+            catch (InvalidArgumentException e)
             {
+                Admin.LogExecMang.LogException(e, "InsertDate");
+
                 return false;
             }
 
@@ -320,7 +560,7 @@ namespace DAL
         #region SQL
         private SqlTransaction trans;
 
-       public bool ConnectionTesting()
+        public bool ConnectionTesting()
         {
             using (SqlConnection connx = GetConnection())
             {
@@ -344,24 +584,31 @@ namespace DAL
                     return null;
 
                 SqlConnection conn = new SqlConnection(GeneralConst.ConnectionSTring);
+                conn.InfoMessage += Conn_InfoMessage;
+                conn.FireInfoMessageEventOnUserErrors = true;
                 conn.Open();
                 return conn;
             }
             catch (SqlException ex)
             {
+
+                Admin.LogExecMang.LogException(ex, "Connection Eror");
+
                 Console.WriteLine("An error occurred while establishing a connection to the SQL Server:");
                 Console.WriteLine(ex.Message);
                 return null;
             }
             catch (Exception e)
             {
+                Admin.LogExecMang.LogException(e, "Conection Error");
+
                 Console.WriteLine("An error occurred:");
                 Console.WriteLine(e.ToString());
                 return null;
             }
         }
 
-        public DataTable p_BillingPayingDetail(string action, string client_id, string sdate, string ldate, string status,string desc)
+        public DataTable p_BillingPayingDetail(string action, string client_id, string sdate, string ldate, string status, string desc)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -386,7 +633,7 @@ namespace DAL
                 return data_tbl;
             }
         }
-        public bool p_BillingPayingDetail(string action, string client_id, string key, string date,int amount, string desc)
+        public bool p_BillingPayingDetail(string action, string client_id, string key, string date, int amount, string desc)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -403,7 +650,7 @@ namespace DAL
                 cmd.Parameters.Add("@status", SqlDbType.Int).Value = amount;
                 cmd.Parameters.Add("@desc", SqlDbType.NVarChar).Value = desc;
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     CloseConnection(conn);
@@ -427,7 +674,7 @@ namespace DAL
 
                     SqlCommand cmd = new SqlCommand("p_updateALLIDS", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -442,6 +689,8 @@ namespace DAL
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Update AllIDS");
+
                 return false;
             }
         }
@@ -485,7 +734,7 @@ namespace DAL
         }
 
 
-        public DataTable p_ledger_Read(string action,string sdate, string ldate)
+        public DataTable p_ledger_Read(string action, string sdate, string ldate)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -518,26 +767,29 @@ namespace DAL
             return false;
         }
 
-        
 
-        public bool backupDB(string path,int localCheck)
+
+        public bool backupDB(string path, int localCheck)
         {
             bool isDebug = false;
-            #if DEBUG
-               isDebug = false;
-            #else
+#if DEBUG
+            isDebug = false;
+#else
                isDebug=true;
-            #endif
+#endif
             using (SqlConnection conn = GetConnection())
             {
+                Admin.LogExecMang.LogStart("DB Backup Start");
+
                 string db = getLiveDB();
                 string database = conn.Database.ToString();
                 string name = "";
+
                 if (db == "Testing")
                 {
                     name = "Testing";
                     path = path + "Test\\";
-                    
+
                 }
                 else
                 {
@@ -560,72 +812,75 @@ namespace DAL
                 string version = System.Windows.Forms.Application.ProductVersion;
                 name = name + " " + version;
                 string query = "BACKUP DATABASE [" + database + "] TO DISK='"
-                            + path + "\\" + name 
+                            + path + "\\" + name
                             //+ "database" 
-                            + "-"+ DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss") + ".bak'";
+                            + "-" + DateTime.Now.ToString("yyyy-MM-dd--HH-mm-ss") + ".bak'";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.ExecuteNonQuery();
+                executeQueryCommand(cmd);
                 CloseConnection(conn);
+                Admin.LogExecMang.LogEnd("DB Backup "+ query);
                 return true;
             }
         }
 
-        public object p_Category_CRUD(string action, string name, string id,string key)
+        public object p_Category_CRUD(string action, string name, string id, string key)
         {
             try
             {
 
-            
-            using (SqlConnection conn = GetConnection())
-            {
 
-                SqlCommand cmd = new SqlCommand("p_Category_CRUD", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
-                cmd.Parameters.Add("@cate_name", SqlDbType.NVarChar).Value = name;
-                cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
-                cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
-                List<Object> obj = new List<object>();
-                
-                if (action=="Read" || action == "ReadSear" || action == "CateDetail")
+                using (SqlConnection conn = GetConnection())
                 {
-                    adapt = new SqlDataAdapter(cmd);
-                    DataTable data_tbl = new DataTable();
-                    adapt.Fill(data_tbl);
 
-                    obj.Add(0);
-                    obj.Add(data_tbl);
-                    CloseConnection(conn);
-                    return obj;
-                }
-                else
-                if (action == "Update")
-                {
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected != 0)
+                    SqlCommand cmd = new SqlCommand("p_Category_CRUD", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+                    cmd.Parameters.Add("@cate_name", SqlDbType.NVarChar).Value = name;
+                    cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
+                    cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
+                    List<Object> obj = new List<object>();
+
+                    if (action == "Read" || action == "ReadSear" || action == "CateDetail")
                     {
+                        adapt = new SqlDataAdapter(cmd);
+                        DataTable data_tbl = new DataTable();
+                        adapt.Fill(data_tbl);
+
+                        obj.Add(0);
+                        obj.Add(data_tbl);
                         CloseConnection(conn);
-                        obj.Add(rowsAffected);
-                        obj.Add(null);
+                        return obj;
                     }
-                }
-                else
-                {
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected != 0)
+                    else
+                    if (action == "Update")
                     {
-                        CloseConnection(conn);
-                        obj.Add(rowsAffected);
-                        obj.Add(null);
+                        int rowsAffected = executeQueryCommand(cmd);
+                        if (rowsAffected != 0)
+                        {
+                            CloseConnection(conn);
+                            obj.Add(rowsAffected);
+                            obj.Add(null);
+                        }
                     }
+                    else
+                    {
+                        int rowsAffected = executeQueryCommand(cmd);
+                        if (rowsAffected != 0)
+                        {
+                            CloseConnection(conn);
+                            obj.Add(rowsAffected);
+                            obj.Add(null);
+                        }
+                    }
+
+
                 }
-
-
-            }
             }
             catch (SqlException ex)
             {
-                return null ;
+                Admin.LogExecMang.LogException(ex, "CategoryCrud");
+
+                return null;
             }
             return null;
         }
@@ -639,7 +894,7 @@ namespace DAL
                 cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
                 cmd.Parameters.Add("@oldpass", SqlDbType.NVarChar).Value = oldpass;
                 cmd.Parameters.Add("@newpass", SqlDbType.NVarChar).Value = newpass;
-                /*int rowsAffected = cmd.ExecuteNonQuery();
+                /*int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     CloseConnection(conn);
@@ -705,13 +960,14 @@ namespace DAL
 
         public DataTable p_accountCrud(string action, Account acc)
         {
-            
+
             using (SqlConnection conn = GetConnection())
             {
-                if (conn==null)
+                if (conn == null)
                 {
                     return null;
                 }
+                if (acc == null) return null;
                 SqlCommand cmd = new SqlCommand("p_account_CRUD", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
@@ -735,7 +991,7 @@ namespace DAL
                 cmd.Parameters.Add("@isdb", SqlDbType.Int).Value = int.Parse(acc.isdb);
                 cmd.Parameters.Add("@account_closing", SqlDbType.NVarChar).Value = acc.accountclosing;
                 cmd.Parameters.Add("@trade_mark", SqlDbType.NVarChar).Value = acc.trade_mark;
-
+                cmd.Parameters.Add("@web_id", SqlDbType.NVarChar).Value = acc.web_id;
                 adapt = new SqlDataAdapter(cmd);
 
                 DataTable data_tbl = new DataTable();
@@ -745,7 +1001,7 @@ namespace DAL
             }
         }
 
-        public DataTable p_today_totalDetails(string sdate,string ldate)
+        public DataTable p_today_totalDetails(string sdate, string ldate)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -783,7 +1039,7 @@ namespace DAL
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
                 cmd.Parameters.Add("@labour", SqlDbType.Int).Value = 0;
                 cmd.Parameters.Add("@rent", SqlDbType.Int).Value = 0;
-                cmd.Parameters.Add("@munshiana", SqlDbType.Int).Value =0;
+                cmd.Parameters.Add("@munshiana", SqlDbType.Int).Value = 0;
                 cmd.Parameters.Add("@laga", SqlDbType.Int).Value = 0;
                 cmd.Parameters.Add("@bip_comm", SqlDbType.Int).Value = 0;
                 cmd.Parameters.Add("@cust_chongi", SqlDbType.Int).Value = 0;
@@ -798,7 +1054,7 @@ namespace DAL
             return null;
         }
 
-        public bool p_pagetSetting(string action,int labour, int rent, int munshiana, int bip_commission, int bip_laga, int cust_commission, int cust_chongi)
+        public bool p_pagetSetting(string action, int labour, int rent, int munshiana, int bip_commission, int bip_laga, int cust_commission, int cust_chongi)
         {
             try
             {
@@ -818,7 +1074,7 @@ namespace DAL
                     cmd.Parameters.Add("@cust_chongi", SqlDbType.NVarChar).Value = cust_chongi;
                     cmd.Parameters.Add("@cust_comm", SqlDbType.NVarChar).Value = cust_commission;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -833,32 +1089,37 @@ namespace DAL
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return false;
             }
         }
 
         public DataTable dataBackupMove(string action, string sdate, string ldate, string detail)
         {
-            try { 
-            using (SqlConnection conn = GetConnection())
+            try
             {
+                using (SqlConnection conn = GetConnection())
+                {
 
-                SqlCommand cmd = new SqlCommand("BackupDatabase_db_pt", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@action",action);
-                cmd.Parameters.AddWithValue("@start_date",sdate);
-                cmd.Parameters.AddWithValue("@last_date",ldate);
-                cmd.Parameters.AddWithValue("@detail",detail);
+                    SqlCommand cmd = new SqlCommand("BackupDatabase_db_pt", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@action", action);
+                    cmd.Parameters.AddWithValue("@start_date", sdate);
+                    cmd.Parameters.AddWithValue("@last_date", ldate);
+                    cmd.Parameters.AddWithValue("@detail", detail);
 
-                adapt = new SqlDataAdapter(cmd);
-                DataTable data_tbl = new DataTable();
-                adapt.Fill(data_tbl);
-                return data_tbl;
+                    adapt = new SqlDataAdapter(cmd);
+                    DataTable data_tbl = new DataTable();
+                    adapt.Fill(data_tbl);
+                    return data_tbl;
 
-            }
+                }
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return null;
             }
         }
@@ -879,7 +1140,7 @@ namespace DAL
                     cmd.Parameters.Add("@last_date", SqlDbType.NVarChar).Value = ldate;
                     cmd.Parameters.Add("@detail", SqlDbType.NVarChar).Value = detail;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -894,6 +1155,8 @@ namespace DAL
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return false;
             }
         }
@@ -931,9 +1194,11 @@ namespace DAL
                     cmd.Parameters.Add("@isdb", SqlDbType.Int).Value = int.Parse(acc.isdb);
                     cmd.Parameters.Add("@account_closing", SqlDbType.NVarChar).Value = acc.accountclosing;
                     cmd.Parameters.Add("@trade_mark", SqlDbType.NVarChar).Value = acc.trade_mark;
+                    cmd.Parameters.Add("@web_id", SqlDbType.NVarChar).Value = acc.web_id;
 
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -948,6 +1213,8 @@ namespace DAL
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return false;
             }
         }
@@ -968,7 +1235,7 @@ namespace DAL
                 cmd.Transaction = trans;
                 cmd.Parameters.AddRange(param.ToArray());
                 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     return true;
@@ -986,7 +1253,7 @@ namespace DAL
                 cmd.Transaction = trans;
                 cmd.Parameters.AddRange(param.ToArray());
                
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 
                 return rowsAffected;
             }
@@ -1006,7 +1273,7 @@ namespace DAL
 
         }
 
-       
+
 
         public DataTable ExecuteAdapter(SqlCommand command)
         {
@@ -1019,7 +1286,7 @@ namespace DAL
         }
         public int ExecuteInt(SqlCommand command)
         {
-            return cmd.ExecuteNonQuery();
+            return executeQueryCommand(cmd);
         }
         public bool Executebool(SqlCommand command)
         {
@@ -1045,6 +1312,8 @@ namespace DAL
                     }
                     catch (Exception ex)
                     {
+                        Admin.LogExecMang.LogException(ex, "Execption");
+
                         trans.Rollback();
                         /* log exception and the fact that rollback succeeded */
                         ExceptionLogging.SendErrorToText(ex);
@@ -1055,6 +1324,7 @@ namespace DAL
             catch (Exception ex)
             {
                 /* log or whatever */
+                Admin.LogExecMang.LogException(ex, "Execption");
 
                 Console.WriteLine(ex.ToString());
                 MessageBox.Show("DataBase Insert Not Success \n" + ex.StackTrace);
@@ -1077,6 +1347,8 @@ namespace DAL
                     }
                     catch (Exception ex)
                     {
+                        Admin.LogExecMang.LogException(ex, "Execption");
+
                         trans.Rollback();
                         /* log exception and the fact that rollback succeeded */
                         ExceptionLogging.SendErrorToText(ex);
@@ -1087,6 +1359,7 @@ namespace DAL
             catch (Exception ex)
             {
                 /* log or whatever */
+                Admin.LogExecMang.LogException(ex, "Execption");
 
                 Console.WriteLine(ex.ToString());
                 MessageBox.Show("DataBase Insert Not Success \n" + ex.StackTrace);
@@ -1127,12 +1400,12 @@ namespace DAL
                 cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@bipari_key", SqlDbType.NVarChar).Value = billkey;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected != 0)
-                    {
-                        CloseConnection(conn);
+                int rowsAffected = executeQueryCommand(cmd);
+                if (rowsAffected != 0)
+                {
+                    CloseConnection(conn);
                     return true;
-                    }
+                }
 
                 CloseConnection(conn);
                 return false;
@@ -1150,7 +1423,7 @@ namespace DAL
                 cmd.Parameters.Add("@currentdate", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@moveto", SqlDbType.NVarChar).Value = move2date;
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
                 if (rowsAffected != 0)
                 {
                     CloseConnection(conn);
@@ -1163,7 +1436,7 @@ namespace DAL
             }
         }
 
-        public int p_cashamount_CRUD(string action, string date, string adminid,string cash,string type,string desc,string key)
+        public int p_cashamount_CRUD(string action, string date, string adminid, string cash, string type, string desc, string key)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1171,23 +1444,24 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand("p_cashamount_CRUD", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
-                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value =date;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
                 cmd.Parameters.Add("@amount", SqlDbType.NVarChar).Value = cash;
                 cmd.Parameters.Add("@atype", SqlDbType.NVarChar).Value = type;
                 cmd.Parameters.Add("@detail", SqlDbType.NVarChar).Value = desc;
                 cmd.Parameters.Add("@id", SqlDbType.Int).Value = adminid;
 
-                if (@action== "DeleteCashById")
+                if (@action == "DeleteCashById")
                 {
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
                         return 1;
                     }
-                }else 
-                if(action== "CashInsert")
+                }
+                else
+                if (action == "CashInsert")
                 {
                     Int32 newId = (Int32)cmd.ExecuteScalar();
                     if (newId != 0)
@@ -1219,6 +1493,8 @@ namespace DAL
                     }
                     catch (Exception ex)
                     {
+                        Admin.LogExecMang.LogException(ex, "Execption");
+
                         trans.Rollback();
                         /* log exception and the fact that rollback succeeded */
                         ExceptionLogging.SendErrorToText(ex);
@@ -1229,6 +1505,7 @@ namespace DAL
             catch (Exception ex)
             {
                 /* log or whatever */
+                Admin.LogExecMang.LogException(ex, "Execption");
 
                 Console.WriteLine(ex.ToString());
                 MessageBox.Show("DataBase Insert Not Success \n" + ex.StackTrace);
@@ -1260,7 +1537,7 @@ namespace DAL
                     //cmd.Parameters.AddWithValue("@commission", "" + extraAmount.Commission);
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@id"].Value.ToString();
 
                     //int recordCount = Convert.ToInt32(cmd.Parameters["@id"].Value);
@@ -1282,6 +1559,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1333,7 +1612,7 @@ namespace DAL
                 cmd.Parameters.Add("@text", SqlDbType.NVarChar).Value = status;
                 cmd.Parameters.Add("@refrence", SqlDbType.NVarChar).Value = refrence;
 
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = executeQueryCommand(cmd);
 
                 if (rowsAffected != 0)
                 {
@@ -1378,8 +1657,8 @@ namespace DAL
 
             }
         }
-        
-        public DataTable getCapitalCash(string api_key, string action, string sdate,string ldate)
+
+        public DataTable getCapitalCash(string api_key, string action, string sdate, string ldate)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1399,10 +1678,10 @@ namespace DAL
             return null;
         }
 
-        public string p_getInvoiceID(string action,string id,string date)
+        public string p_getInvoiceID(string action, string id, string date)
         {
             try
-            { 
+            {
                 using (SqlConnection conn = GetConnection())
                 {
 
@@ -1423,14 +1702,20 @@ namespace DAL
             }
             catch (IndexOutOfRangeException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return "";
             }
             catch (FormatException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return "";
             }
             catch (SqlException ex)
             {
+                Admin.LogExecMang.LogException(ex, "Execption");
+
                 return "";
             }
         }
@@ -1447,7 +1732,7 @@ namespace DAL
 
                 SqlCommand cmd = new SqlCommand("p_InvoiceIncrment", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@type", SqlDbType.NVarChar).Value=type;
+                cmd.Parameters.Add("@type", SqlDbType.NVarChar).Value = type;
                 adapt = new SqlDataAdapter(cmd);
 
                 DataTable data_tbl = new DataTable();
@@ -1466,7 +1751,7 @@ namespace DAL
             return null;
         }
 
-        public DataTable p_report_CustomerClient(string id,string @startdate, string @lastdate, string action)
+        public DataTable p_report_CustomerClient(string id, string @startdate, string @lastdate, string action)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1512,7 +1797,7 @@ namespace DAL
             using (SqlConnection conn = GetConnection())
             {
                 try
-                { 
+                {
                     SqlCommand cmd = new SqlCommand("p_all_sale_profit_details", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
@@ -1526,6 +1811,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1538,7 +1824,7 @@ namespace DAL
                     ExceptionLogging.SendErrorToText(ex);
                     return null;
                 }
-        }
+            }
             return null;
         }
 
@@ -1573,9 +1859,9 @@ namespace DAL
             }
         }
 
-        
 
-        public bool p_weigt_CRUD(string action, string id, string name,string catid,string acc_catid)
+
+        public bool p_weigt_CRUD(string action, string id, string name, string catid, string acc_catid)
         {
             StringBuilder errorMessages = new StringBuilder();
             using (SqlConnection conn = GetConnection())
@@ -1591,7 +1877,7 @@ namespace DAL
                     cmd.Parameters.Add("@catid", SqlDbType.NVarChar).Value = catid;
                     cmd.Parameters.Add("@acc_catid", SqlDbType.NVarChar).Value = acc_catid;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -1602,6 +1888,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1650,7 +1937,7 @@ namespace DAL
                     cmd.Parameters.Add("@custid", SqlDbType.Int).Value = custid;
                     cmd.Parameters.Add("@recid", SqlDbType.Int).Value = rec_custid;
 
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         CloseConnection(conn);
@@ -1661,6 +1948,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1676,7 +1965,7 @@ namespace DAL
             }
         }
 
-        public object p_report_cash_expense(string startdate,string lastdate)
+        public object p_report_cash_expense(string startdate, string lastdate)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1695,7 +1984,7 @@ namespace DAL
             return null;
         }
 
-        public DataRow getLastBalance(string sdate,string ldate)
+        public DataRow getLastBalance(string sdate, string ldate)
         {
             string sp = "p_lastbalance";
             using (SqlConnection conn = GetConnection())
@@ -1704,7 +1993,7 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand(sp, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@sdate", SqlDbType.NVarChar).Value = sdate;
-                cmd.Parameters.Add("@ldate", SqlDbType.NVarChar).Value =ldate;
+                cmd.Parameters.Add("@ldate", SqlDbType.NVarChar).Value = ldate;
                 adapt = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapt.Fill(dt);
@@ -1737,7 +2026,7 @@ namespace DAL
 
         }
 
-        public DataTable salesDisplay(string action, string sdate, string ldate, string search,string key)
+        public DataTable salesDisplay(string action, string sdate, string ldate, string search, string key)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1757,7 +2046,7 @@ namespace DAL
             return null;
         }
 
-        public DataTable getRecivedCash(string action,string date,string id,string key)
+        public DataTable getRecivedCash(string action, string date, string id, string key)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -1805,7 +2094,7 @@ namespace DAL
             }
             return false;
         }
-        public bool p_ud_cust_sale_product(string bill_key, string id, string cust_id, string date, int quantity, int wana_Delete,string type)
+        public bool p_ud_cust_sale_product(string bill_key, string id, string cust_id, string date, int quantity, int wana_Delete, string type)
         {
             StringBuilder errorMessages = new StringBuilder();
             using (SqlConnection conn = GetConnection())
@@ -1821,7 +2110,7 @@ namespace DAL
                     cmd.Parameters.Add("@cust_id", SqlDbType.Int).Value = cust_id;
                     cmd.Parameters.Add("@isDelete", SqlDbType.Int).Value = wana_Delete;
                     cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = quantity;
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         //p_expense_CRUD("DeleteCL", date, "", 0, bill_key, new Expense(),type);
@@ -1834,6 +2123,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1861,7 +2152,7 @@ namespace DAL
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                     cmd.Parameters.Add("@landkey", SqlDbType.NVarChar).Value = landkey;
                     cmd.Parameters.Add("@newLandid", SqlDbType.Int).Value = landid;
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
                         //p_expense_CRUD("DeleteCL", date, "", 0, bill_key, new Expense(),type);
@@ -1874,6 +2165,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1890,7 +2183,7 @@ namespace DAL
         }
 
         public bool addSaleLandlord(string action, string date, string client_id,
-            int billAmount, string key,string name,int discount)
+            int billAmount, string key, string name, int discount)
         {
             StringBuilder errorMessages = new StringBuilder();
             using (SqlConnection conn = GetConnection())
@@ -1906,11 +2199,9 @@ namespace DAL
                     cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
                     cmd.Parameters.Add("@discount", SqlDbType.Int).Value = discount;
                     cmd.Parameters.Add("@gtotal", SqlDbType.Int).Value = billAmount;
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     if (rowsAffected != 0)
                     {
-                        //p_expense_CRUD("DeleteCL", date, "", 0, bill_key, new Expense(),type);
-                        //p_expensenew_CRUD("Delete", date, "", 0, bill_key);
                         CloseConnection(conn);
                         return true;
                     }
@@ -1919,6 +2210,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -1954,7 +2247,7 @@ namespace DAL
                     cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                     cmd.Parameters.Add("@cust_id", SqlDbType.NVarChar).Value = cust_id;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
 
                     CloseConnection(conn);
                     return check;
@@ -1998,7 +2291,7 @@ namespace DAL
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                     //cmd.Parameters.AddWithValue("@id", id);
                     //cmd.Parameters.AddWithValue("@date", date);
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
 
                     CloseConnection(conn);
                     return check;*/
@@ -2010,13 +2303,15 @@ namespace DAL
                     cmd.Parameters.Add("@billkey", SqlDbType.NVarChar).Value = bill_key;
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                     cmd.Parameters.Add("@type", SqlDbType.NVarChar).Value = type;
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = executeQueryCommand(cmd);
                     CloseConnection(conn);
                     return rowsAffected;
 
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2055,7 +2350,7 @@ namespace DAL
             }
             return null;
         }
-        public DataTable p_customer_sale_record(string action,string date,string key)
+        public DataTable p_customer_sale_record(string action, string date, string key)
         {
             string sp = "p_customer_sale_record";
             using (SqlConnection conn = GetConnection())
@@ -2086,10 +2381,10 @@ namespace DAL
                     int check = 0;
                     SqlCommand cmd = new SqlCommand(procedure, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id",pid);
+                    cmd.Parameters.AddWithValue("@id", pid);
                     cmd.Parameters.AddWithValue("@gtotal", grandTotal);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2102,6 +2397,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2132,7 +2429,7 @@ namespace DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@date", date);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2145,6 +2442,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2171,7 +2469,7 @@ namespace DAL
                     cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
                     cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
                     cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-                    int check = cmd.ExecuteNonQuery();
+                    int check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2196,12 +2494,12 @@ namespace DAL
                 cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = cid;
                 adapt = new SqlDataAdapter(cmd);
-                DataTable dt= new DataTable();
+                DataTable dt = new DataTable();
                 adapt.Fill(dt);
 
                 if (dt.Rows.Count == 0) return null;
                 DataRow cr = dt.Rows[0];
-               // string balance = cr[2].ToString();
+                // string balance = cr[2].ToString();
                 //string balance = (dr[0].ToString()==""? "0" : dr[0].ToString());
                 return cr;
             }
@@ -2233,7 +2531,7 @@ namespace DAL
 
         }
         public string[] p_customer_CRUD(string @table_name, string @key, string @date, int @bill_amount
-            , int @cust_id, int @cash_rec_id, int @cashinout, int @discount, int @localdb,string @crtype,string @crdetail)
+            , int @cust_id, int @cash_rec_id, int @cashinout, int @discount, int @localdb, string @crtype, string @crdetail)
         {
             string[] str = new string[2];
             if (@table_name == "SaleIn" || @table_name == "CashIn" || @table_name == "Delete" || @table_name == "DeleteRec")
@@ -2257,7 +2555,7 @@ namespace DAL
                     cmd.Parameters.Add("@localdb", SqlDbType.NVarChar).Value = localdb;
                     cmd.Parameters.Add("@rid", SqlDbType.Int, 4);
                     cmd.Parameters["@rid"].Direction = ParameterDirection.Output;
-                    int check = cmd.ExecuteNonQuery();
+                    int check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@rid"].Value.ToString();
 
                     if (check != 0)
@@ -2280,7 +2578,7 @@ namespace DAL
 
         }
 
-        public bool updateCusomerAmountandBalanceShet(string date, string clKey, string custKey, string pid,int check,string custbillid)
+        public bool updateCusomerAmountandBalanceShet(string date, string clKey, string custKey, string pid, int check, string custbillid)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -2293,7 +2591,7 @@ namespace DAL
                 cmd.Parameters.Add("@cust_id", SqlDbType.NVarChar).Value = pid;
                 cmd.Parameters.Add("@check", SqlDbType.Int).Value = check;
                 cmd.Parameters.Add("@custbillid", SqlDbType.NVarChar).Value = custbillid;
-                int chk = cmd.ExecuteNonQuery();
+                int chk = executeQueryCommand(cmd);
                 if (chk != 0)
                 {
                     CloseConnection(conn);
@@ -2313,8 +2611,8 @@ namespace DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
                 cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-                
-                int check = cmd.ExecuteNonQuery();
+
+                int check = executeQueryCommand(cmd);
                 if (check != 0)
                 {
                     CloseConnection(conn);
@@ -2325,7 +2623,7 @@ namespace DAL
             return false;
 
         }
-        public DataTable p_customer_CRUD(string action,string name,string date)
+        public DataTable p_customer_CRUD(string action, string name, string date)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -2355,6 +2653,36 @@ namespace DAL
 
             return null;
         }
+        public static void Conn_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            // EACH PRINT or RAISERROR(..., severity < 11) shows up here.
+            List<string> sqlMessages = new List<string>();
+            foreach (SqlError err in e.Errors)
+            {
+                sqlMessages.Add(err.Message);
+            }
+            Admin.LogExecMang.Log($"[SQL Message]{string.Join(", ", sqlMessages)}");
+        }
+        public DataTable p_augrai_read(string isprintall, string date,string def_year)
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+
+                SqlCommand cmd = new SqlCommand("p_augrai_read", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                //cmd.Parameters.Add("@def_year", SqlDbType.NVarChar).Value = def_year;
+
+                cmd.Parameters.Add("@isPrintAll", SqlDbType.Int).Value = isprintall;
+                adapt = new SqlDataAdapter(cmd);
+
+                dt_client = new DataTable();
+                adapt.Fill(dt_client);
+                return dt_client;
+            }
+
+            return null;
+        }
 
         public DataTable getExpenseLabels()
         {
@@ -2369,7 +2697,7 @@ namespace DAL
             }
         }
 
-        public object p_customersbills_augrai(string action,string customer_id,string key, int pageIndex, int PageSize)
+        public object p_customersbills_augrai(string action, string customer_id, string key, int pageIndex, int PageSize)
         {
             using (SqlConnection conn = GetConnection())
             {
@@ -2465,7 +2793,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@total_biparil_chongi", "" );
                     cmd.Parameters.AddWithValue("@total_customer_commission",);
                     cmd.Parameters.AddWithValue("@total_customer_chongi", "");*/
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2478,6 +2806,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2492,7 +2822,7 @@ namespace DAL
             }
         }
 
-        
+
 
         public bool addClient_Landlord(int objectindex)
         {
@@ -2543,10 +2873,14 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@total_sale_amount", land.total_sale);
                         cmd.Parameters.AddWithValue("@status", land.status);
                         cmd.Parameters.AddWithValue("@product_marka", land.land_product.marka);
-                        //cmd.Parameters.AddWithValue("@id", "0");
+                        cmd.Parameters.AddWithValue("@marketfee", land.expense.total_marketfee);
+
+                        cmd.Parameters.AddWithValue("@bill_type", land.bill_type);
+                        cmd.Parameters.AddWithValue("@bikri_quantity", land.bikri_quantity);
+                        cmd.Parameters.AddWithValue("@bikri_rate", land.bikri_rate);
                         cmd.Parameters.Add("@id", SqlDbType.Int);
                         cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                        check = cmd.ExecuteNonQuery();
+                        check = executeQueryCommand(cmd);
                         string id = cmd.Parameters["@id"].Value.ToString();
                         Admin.GetInstance.clients[i].record_id = id;
                     }
@@ -2562,6 +2896,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2630,11 +2966,9 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@bill_type", land.bill_type);
                     cmd.Parameters.AddWithValue("@bikri_quantity", land.bikri_quantity);
                     cmd.Parameters.AddWithValue("@bikri_rate", land.bikri_rate);
-
-                    //cmd.Parameters.AddWithValue("@id", "0");
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@id"].Value.ToString();
 
                     //int recordCount = Convert.ToInt32(cmd.Parameters["@id"].Value);
@@ -2656,6 +2990,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "SQLExcption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2668,40 +3004,176 @@ namespace DAL
                     ExceptionLogging.SendErrorToText(ex);
                     return "key-dup";
                 }
+                catch (Exception ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+                    return null;
+
+                }
             }
         }
-
-
-        public string[] p_singlesaleadd(Customer customer, Services service, Product product, Person person, string date, string recordid,string status)
+        public DataTable p_sales_customer_View(int clientid, int customer_id, string date)
         {
-            StringBuilder errorMessages = new StringBuilder();
-            string[] str = new string[2];
             using (SqlConnection conn = GetConnection())
             {
 
-                try
+                SqlCommand cmd = new SqlCommand("p_sales_customer_View", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@client_id", SqlDbType.Int).Value = clientid;
+                cmd.Parameters.Add("@cust_id", SqlDbType.Int).Value = customer_id;
+                cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                adapt = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                adapt.Fill(dt);
+                return dt;
+            }
+
+            return null;
+        }
+        public string[] p_singleupdateadd_landlord_customer(
+             int entity_id,
+            string t_date ,
+            int source_id ,
+            string table ,
+            string amount,
+            string balance,
+            int is_last,
+            string type
+            )
+        {
+            var result = new string[2];
+            try
+            {
+                using (SqlConnection conn = GetConnection())
+                using (SqlCommand cmd = new SqlCommand("dbo.p_singleupdateadd_landlord_customer", conn))
                 {
-
-                    string procedure = "dbo.p_singlesaleadd";
-
-
-                    int check = 0;
-                    SqlCommand cmd = new SqlCommand(procedure, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    float services =
-                        customer.sale._sale_quantity * service.labour_per_product +
-                        customer.sale._sale_quantity * service.rent_per_product +
-                        person.advance +
-                        service.clerk_per_bill;
+                    cmd.Parameters.AddWithValue("@entity_id", entity_id);
+                    cmd.Parameters.AddWithValue("@t_date", t_date);
+                    cmd.Parameters.AddWithValue("@source_id", source_id);
+                    cmd.Parameters.AddWithValue("@table", table);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@balance", balance);
+                    cmd.Parameters.AddWithValue("@is_last", is_last);
+                    cmd.Parameters.AddWithValue("@type", type);
 
-                    float total_chongi = customer.sale._sale_quantity * (int)service.client_chongi;
-                    float total_commission = ((customer.sale.getTotalSale() + customer.sale.getTotalExtraAmountLandlord()) / 100) * service.commission_client_product;
-                    float commis_chongi = total_chongi + total_commission;
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    result[0] = "OK";
+                    result[1] = "1";
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                var sb = new StringBuilder();
+                foreach (SqlError err in ex.Errors)
+                {
+                    sb.AppendLine($"⚠ Index #{err.Number}  Line {err.LineNumber}  Procedure {err.Procedure}");
+                    sb.AppendLine(err.Message);
+                }
+
+                Admin.LogExecMang.LogException(ex, "SQL Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                Admin.LogExecMang.LogException(ex, "General Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = ex.Message;
+            }
+
+            return result;
+        }
+        public string[] p_singlesaleupdate_landlord_customer(string date,string landlordid,string customerid)
+        {
+            var result = new string[2];
+            try
+            {
+                //string sql = "dbo.p_singlesaleupdate_landlord_customer";
+                string sql = "dbo.p_singlesaleupdate_landlord_customer2";
+
+                using (SqlConnection conn = GetConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@_date",date);
+                    cmd.Parameters.AddWithValue("@client_id", landlordid);
+                    cmd.Parameters.AddWithValue("@cust_id", customerid);
+                    try
+                    {
+                        int c = cmd.ExecuteNonQuery();
+                    }
+                    catch(SqlException e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    result[0] = "OK";
+                    result[1] = "1";
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                var sb = new StringBuilder();
+                foreach (SqlError err in ex.Errors)
+                {
+                    sb.AppendLine($"⚠ Index #{err.Number}  Line {err.LineNumber}  Procedure {err.Procedure}");
+                    sb.AppendLine(err.Message);
+                }
+
+                Admin.LogExecMang.LogException(ex, "SQL Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                Admin.LogExecMang.LogException(ex, "General Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = ex.Message;
+            }
+
+            return result;
+        }
+        public string[] p_singlesaleadd(Customer customer, Services service, Product product,
+                                Person person, string date, string recordId, string status,
+            string billtype="",float bikri_quantity=0,float bikri_rate=0)
+        {
+            var result = new string[2];
+
+            // computed totals
+            float servicesAmt = customer.sale._sale_quantity * service.labour_per_product
+                              + customer.sale._sale_quantity * service.rent_per_product
+                              + person.advance + service.clerk_per_bill;
+
+            try
+            {
+                using (SqlConnection conn = GetConnection())
+                using (SqlCommand cmd = new SqlCommand("dbo.p_singlesaleadd", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@bill_key", person.pkey);
-                    cmd.Parameters.AddWithValue("@_date", date);
-                    cmd.Parameters.AddWithValue("@p_daily_id", recordid);
+                    cmd.Parameters.Add("@_date", SqlDbType.Date).Value = DateTime.Parse(date);
+                    cmd.Parameters.AddWithValue("@p_daily_id", recordId);
                     cmd.Parameters.AddWithValue("@client_id", person.pid);
                     cmd.Parameters.AddWithValue("@cust_id", customer.customer_profile.pid);
                     cmd.Parameters.AddWithValue("@_quantity", customer.sale._sale_quantity);
@@ -2713,84 +3185,100 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@sale_amount_customer", customer.sale._TotalExtraAmountCustomer);
                     cmd.Parameters.AddWithValue("@commission", customer.Total_Commission);
                     cmd.Parameters.AddWithValue("@chongi", customer.Total_Chongi);
-                    cmd.Parameters.AddWithValue("@grand_total", (customer.getGrandTotalCustomer()));
-                    cmd.Parameters.AddWithValue("@bipari_grand_total", (customer.getGrandTotalLandlord() - services));
+                    cmd.Parameters.AddWithValue("@grand_total", customer.getGrandTotalCustomer());
+                    cmd.Parameters.AddWithValue("@bipari_grand_total",
+                                                 customer.getGrandTotalLandlord() - servicesAmt);
                     cmd.Parameters.AddWithValue("@cust_bill_key", customer.customer_profile.pkey);
                     cmd.Parameters.AddWithValue("@product_id", product._product_id);
                     cmd.Parameters.AddWithValue("@product_name", product._product_name);
                     cmd.Parameters.AddWithValue("@beg_weight_id", product._weight_id);
                     cmd.Parameters.AddWithValue("@beg_weight_name", product._weight);
                     cmd.Parameters.AddWithValue("@product_marka", product.marka);
-
-
-                    cmd.Parameters.Add("@id", SqlDbType.Int, 4);
-                    cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
-                    string id = cmd.Parameters["@id"].Value.ToString();
-                    int gtotal = customer.getGrandTotalCustomer();
-                    p_cashReceivingAfterDelete(customer.customer_profile.pid, date, gtotal);
-                    str[0] = "" + check;
-                    str[1] = id;
-
-                    CloseConnection(conn);
-
-                    return str;
-                }
-                catch (SqlException ex)
-                {
-                    for (int i = 0; i < ex.Errors.Count; i++)
+                    //@bill_type nvarchar(1),@bikri_quantity int, @bikri_rate float,
+                    cmd.Parameters.AddWithValue("@bill_type", billtype);
+                    cmd.Parameters.AddWithValue("@bikri_quantity", bikri_quantity);
+                    cmd.Parameters.AddWithValue("@bikri_rate", bikri_rate);
+                    // ✅ add the missing output parameter
+                    var idParam = new SqlParameter("@id", SqlDbType.Int)
                     {
-                        errorMessages.Append("Index #" + i + "\n" +
-                            "Message: " + ex.Errors[i].Message + "\n" +
-                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
-                            "Source: " + ex.Errors[i].Source + "\n" +
-                            "Procedure: " + ex.Errors[i].Procedure + "\n");
-                    }
-                    Console.WriteLine(errorMessages.ToString());
-                    ExceptionLogging.SendErrorToText(ex);
-                    return null;
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(idParam);
+
+                    cmd.ExecuteNonQuery();
+
+                    result[0] = "OK";
+                    result[1] = idParam.Value != DBNull.Value ? idParam.Value.ToString() : "0";
+
+                    p_cashReceivingAfterDelete(customer.customer_profile.pid,
+                                               date,
+                                               customer.getGrandTotalCustomer());
                 }
             }
+            catch (SqlException ex)
+            {
+                var sb = new StringBuilder();
+                foreach (SqlError err in ex.Errors)
+                {
+                    sb.AppendLine($"⚠ Index #{err.Number}  Line {err.LineNumber}  Procedure {err.Procedure}");
+                    sb.AppendLine(err.Message);
+                }
+
+                Admin.LogExecMang.LogException(ex, "SQL Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                Admin.LogExecMang.LogException(ex, "General Exception");
+                ExceptionLogging.SendErrorToText(ex);
+
+                result[0] = "ERROR";
+                result[1] = ex.Message;
+            }
+
+            return result;
         }
-        private int p_cashReceivingAfterDelete(string custid,string date,int amount)
+        private int p_cashReceivingAfterDelete(string custId, string date, int amount)
         {
             StringBuilder errorMessages = new StringBuilder();
-            string[] str = new string[2];
-            using (SqlConnection conn = GetConnection())
+
+            try
             {
-
-                try
+                using (SqlConnection conn = GetConnection())
+                using (SqlCommand cmd = new SqlCommand("dbo.p_cashReceivingAfterDelete", conn))
                 {
-
-                    string procedure = "dbo.p_cashReceivingAfterDelete";
-
-
-                    int check = 0;
-                    SqlCommand cmd = new SqlCommand(procedure, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+                    cmd.Parameters.Add("@cust_id", SqlDbType.NVarChar, 50).Value = custId;
+                    cmd.Parameters.Add("@amount", SqlDbType.Int).Value = amount;
 
-                    cmd.Parameters.AddWithValue("@date", date);
-                    cmd.Parameters.AddWithValue("@cust_id", custid);
-                    cmd.Parameters.AddWithValue("@amount", amount);
-                    check = cmd.ExecuteNonQuery();
-                    CloseConnection(conn);
 
-                    return check;
+                    int rows = cmd.ExecuteNonQuery();
+                    CloseConnection(conn);// do it directly; no helper needed
+                    return rows;                         // connection auto‑closes at end of using
                 }
-                catch (SqlException ex)
+            }
+            catch (SqlException ex)
+            {
+                foreach (SqlError err in ex.Errors)
                 {
-                    for (int i = 0; i < ex.Errors.Count; i++)
-                    {
-                        errorMessages.Append("Index #" + i + "\n" +
-                            "Message: " + ex.Errors[i].Message + "\n" +
-                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
-                            "Source: " + ex.Errors[i].Source + "\n" +
-                            "Procedure: " + ex.Errors[i].Procedure + "\n");
-                    }
-                    Console.WriteLine(errorMessages.ToString());
-                    ExceptionLogging.SendErrorToText(ex);
-                    return 0;
+                    errorMessages.AppendLine(
+                        $"• {err.Message} (Line {err.LineNumber}, Procedure {err.Procedure})");
                 }
+
+                Console.WriteLine(errorMessages.ToString());
+                Admin.LogExecMang.LogException(ex, "SQL Exception in p_cashReceivingAfterDelete");
+                ExceptionLogging.SendErrorToText(ex);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Admin.LogExecMang.LogException(ex, "General Exception in p_cashReceivingAfterDelete");
+                ExceptionLogging.SendErrorToText(ex);
+                return 0;
             }
         }
 
@@ -2821,30 +3309,9 @@ namespace DAL
                     float total_commission = ((customer.sale.getTotalSale() + customer.sale.getTotalExtraAmountLandlord()) / 100) * service.commission_client_product;
                     float commis_chongi = total_chongi + total_commission;
 
-                    /*cmd.Parameters.AddWithValue("@p0", person.pkey);
-                      cmd.Parameters.AddWithValue("@p1", date);
-                      cmd.Parameters.AddWithValue("@p2", recordid);
-                      cmd.Parameters.AddWithValue("@p3", person.pid);
-                      cmd.Parameters.AddWithValue("@p13", product._product_id);
-                      cmd.Parameters.AddWithValue("@p14", product._product_name);
-                      cmd.Parameters.AddWithValue("@p15", product._weight_id);
-                      cmd.Parameters.AddWithValue("@p16", product._weight);
-
-                      cmd.Parameters.AddWithValue("@p4", customer.customer_profile.pid);
-                      cmd.Parameters.AddWithValue("@p5", customer.sale._sale_quantity);
-                      cmd.Parameters.AddWithValue("@p6", customer.sale._sale_amount);
-                      cmd.Parameters.AddWithValue("@p7", customer.sale.GetTotalSaleCustomer);
-                      cmd.Parameters.AddWithValue("@p8", customer.Total_Commission);
-                      cmd.Parameters.AddWithValue("@p9", customer.Total_Chongi);
-                      cmd.Parameters.AddWithValue("@p10", (customer.sale.GetTotalSaleCustomer 
-                          + customer.Total_Commission + customer.Total_Chongi));
-                      cmd.Parameters.AddWithValue("@p11", (customer.sale.GetTotalSale 
-                          - services - commis_chongi));
-                      cmd.Parameters.AddWithValue("@p12", customer.customer_profile.pkey);*/
-
                     cmd.Parameters.AddWithValue("@bill_key", person.pkey);
                     cmd.Parameters.AddWithValue("@_date", date);
-                    cmd.Parameters.AddWithValue("@p_daily_id", recordid);
+                    cmd.Parameters.AddWithValue("@p_daily_id", 0);
                     cmd.Parameters.AddWithValue("@client_id", person.pid);
                     cmd.Parameters.AddWithValue("@cust_id", customer.customer_profile.pid);
                     cmd.Parameters.AddWithValue("@_quantity", customer.sale._sale_quantity);
@@ -2869,13 +3336,11 @@ namespace DAL
 
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
-                    string id = cmd.Parameters["@id"].Value.ToString();
-
-                    //check = cmd.ExecuteNonQuery();
-                    //string id = cmd.Parameters["@id"].Value.ToString();
+                    check = executeQueryCommand(cmd);
+                    string id = cmd.Parameters["@id"].Value==null?"-1": cmd.Parameters["@id"].Value.ToString();
                     str[0] = "" + check;
                     str[1] = id;
+
                     //Customer Bill Make
                     p_customer_sale_CRUD("Insert", customer.customer_profile.pkey, date, customer.customer_profile.pid);
                     //insertCustomerifnotExist(customer.customer_profile.pkey, customer.customer_profile.pid, landlord.client.date);
@@ -2887,6 +3352,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2902,7 +3369,7 @@ namespace DAL
             }
         }
 
-        public bool p_addsaleclient(string action,string date, object clid, int gamount)
+        public bool p_addsaleclient(string action, string date, object clid, int gamount)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -2920,7 +3387,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@clid", clid);
                     cmd.Parameters.AddWithValue("@grand_total", gamount);
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2933,6 +3400,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -2947,8 +3416,8 @@ namespace DAL
             }
         }
         public bool p_addCash(string action, string date, int id,
-            string desc, int amount, int discount,int cashtype,string key,string acc_cat_id,
-            string trid,string name,string datetime,string category_id,string expenseid)
+            string desc, int amount, int discount, int cashtype, string key, string acc_cat_id,
+            string trid, string name, string datetime, string category_id, string expenseid)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -2979,7 +3448,7 @@ namespace DAL
 
 
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -2992,6 +3461,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3008,8 +3479,8 @@ namespace DAL
         }
 
         public bool p_ledger_CRUD(string action, string transaction_id, string acc_trans_id,
-            string entry_type,int amount,int userid,string usertype,string date
-            ,string key,string expenseid,string entry_action,string category_id)
+            string entry_type, int amount, int userid, string usertype, string date
+            , string key, string expenseid, string entry_action, string category_id)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -3037,7 +3508,7 @@ namespace DAL
                     cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = category_id;
 
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -3050,6 +3521,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3100,7 +3573,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@total_commission", total_commission);
                     cmd.Parameters.AddWithValue("@key", @key);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -3113,6 +3586,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3171,7 +3646,7 @@ namespace DAL
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@date", templandlord.date);
 
-                        check = cmd.ExecuteNonQuery();
+                        check = executeQueryCommand(cmd);
                         if (check != 0)
                         {
                             CloseConnection(conn);
@@ -3239,7 +3714,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@date", landlord.date);
                     cmd.Parameters.AddWithValue("@apikey", api_key);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -3252,6 +3727,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3289,7 +3766,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@cl_Chongi", templandlord.Total_Chongi);
                     cmd.Parameters.AddWithValue("@acc_key", templandlord.Total_Chongi);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -3302,6 +3779,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3517,7 +3996,7 @@ namespace DAL
             return null;
         }
 
-        
+
         #region CommonMethod Used
         public object searchRecords(string date, string tag, string text, int pageIndex, int PageSize)
         {
@@ -3535,7 +4014,7 @@ namespace DAL
                 cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
                 adapt = new SqlDataAdapter(cmd);
 
-                if (tag.Equals("SRClient"))
+               if (tag.Equals("SRClient"))
                 {
                     dt_client = new DataTable();
                     adapt.Fill(dt_client);
@@ -3565,7 +4044,18 @@ namespace DAL
                     obj.Add(dt_customer);
                     return obj;
                 }
-                if (tag.Equals("Client"))
+                if (tag.Equals("ClBipari"))
+                {
+                    dt_client = new DataTable();
+                    adapt.Fill(dt_client);
+                    int recordCount =0;
+                    List<Object> obj = new List<object>();
+                    obj.Add(recordCount);
+                    obj.Add(dt_client);
+                    return obj;
+                }
+                else
+               if (tag.Equals("Client"))
                 {
                     dt_client = new DataTable();
                     adapt.Fill(dt_client);
@@ -3584,7 +4074,7 @@ namespace DAL
                     adapt.Fill(dt_product);
                     return dt_product;
                 }
-                else if(tag.Equals("p_product"))
+                else if (tag.Equals("p_product"))
                 {
                     dt_product = new DataTable();
                     adapt.Fill(dt_product);
@@ -3639,6 +4129,18 @@ namespace DAL
                     return obj;
                 }
                 else if (tag.Equals("Fright"))
+                {
+                    dt_fright = new DataTable();
+                    adapt.Fill(dt_fright);
+                    return dt_fright;
+                }
+                else if (tag.Equals("City"))
+                {
+                    dt_fright = new DataTable();
+                    adapt.Fill(dt_fright);
+                    return dt_fright;
+                }
+                else if(tag.Equals("ExpType"))
                 {
                     dt_fright = new DataTable();
                     adapt.Fill(dt_fright);
@@ -3740,7 +4242,8 @@ namespace DAL
             return null;
 
         }
-        public int insertDataCPW(int v, string data,string address)
+
+        public int insertDataCPW(int v, string data, string address)
         {
 
 
@@ -3754,6 +4257,12 @@ namespace DAL
                     string procedure = "p_insert_CCPW";
 
                     string tag = "Client";
+                    if (v == 111)
+                    {
+                        tag = "ClBipari";
+                        //procedure = "Insert into tbl_client(client_name) output INSERTED.client_id values (@data) ";
+                    }
+                    else
                     if (v == 1)
                     {
                         tag = "Client";
@@ -3801,6 +4310,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3866,7 +4377,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@date", date);
                     cmd.Parameters.AddWithValue("@desc", desc);
                     cmd.Parameters.AddWithValue("@amount", amount);
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     CloseConnection(conn);
 
                     if (check != 0)
@@ -3877,6 +4388,8 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -3891,57 +4404,58 @@ namespace DAL
             }
         }
 
-         public bool p_expense_CRUD(string @action, string @date, string @name, int @amount, string @key, Expense @expense,string @type)
-         {
-             StringBuilder errorMessages = new StringBuilder();
-             using (SqlConnection conn = GetConnection())
-             {
+        public bool p_expense_CRUD(string @action, string @date, string @name, int @amount, string @key, Expense @expense, string @type)
+        {
+            StringBuilder errorMessages = new StringBuilder();
+            using (SqlConnection conn = GetConnection())
+            {
 
-                 try
-                 {
+                try
+                {
 
-                     string procedure = "p_expense_CRUD";
-                     int check = 0;
-                     SqlCommand cmd = new SqlCommand(procedure, conn);
-                     cmd.CommandType = CommandType.StoredProcedure;
-                     cmd.Parameters.AddWithValue("@action", action);
-                     cmd.Parameters.AddWithValue("@key", key);
-                     cmd.Parameters.AddWithValue("@date", date);
-                     cmd.Parameters.AddWithValue("@name", name);
-                     cmd.Parameters.AddWithValue("@amount", amount);
-                     cmd.Parameters.AddWithValue("@extra", 0/*expense.total_expense*/);
-                     cmd.Parameters.AddWithValue("@rent", expense.total_rent);
-                     cmd.Parameters.AddWithValue("@labour", expense.total_labour);
-                     cmd.Parameters.AddWithValue("@munshiana", 0/*expense.total_munshiana*/);
-                     cmd.Parameters.AddWithValue("@advance", expense.total_advance_amount);
-                     cmd.Parameters.AddWithValue("@type", type);
-                     check = cmd.ExecuteNonQuery();
-                     CloseConnection(conn);
+                    string procedure = "p_expense_CRUD";
+                    int check = 0;
+                    SqlCommand cmd = new SqlCommand(procedure, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@action", action);
+                    cmd.Parameters.AddWithValue("@key", key);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@extra", 0/*expense.total_expense*/);
+                    cmd.Parameters.AddWithValue("@rent", expense.total_rent);
+                    cmd.Parameters.AddWithValue("@labour", expense.total_labour);
+                    cmd.Parameters.AddWithValue("@munshiana", 0/*expense.total_munshiana*/);
+                    cmd.Parameters.AddWithValue("@advance", expense.total_advance_amount);
+                    cmd.Parameters.AddWithValue("@type", type);
+                    check = executeQueryCommand(cmd);
+                    CloseConnection(conn);
 
-                     if (check != 0)
-                     {
-                         return true;
-                     }
-                     return false;
-                 }
-                 catch (SqlException ex)
-                 {
-                     for (int i = 0; i < ex.Errors.Count; i++)
-                     {
-                         errorMessages.Append("Index #" + i + "\n" +
-                             "Message: " + ex.Errors[i].Message + "\n" +
-                             "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
-                             "Source: " + ex.Errors[i].Source + "\n" +
-                             "Procedure: " + ex.Errors[i].Procedure + "\n");
-                     }
-                     Console.WriteLine(errorMessages.ToString());
-                     return false;
-                 }
-             }
-         }
+                    if (check != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                catch (SqlException ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        errorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + ex.Errors[i].Message + "\n" +
+                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                            "Source: " + ex.Errors[i].Source + "\n" +
+                            "Procedure: " + ex.Errors[i].Procedure + "\n");
+                    }
+                    Console.WriteLine(errorMessages.ToString());
+                    return false;
+                }
+            }
+        }
         public bool addBalanceSheetExpense(string expensename, string total_amount,
             string date, string type, string key, string inout, string crud_action,
-            string update,string account_transaction_id,string category_id)
+            string update, string account_transaction_id, string category_id)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -3967,7 +4481,7 @@ namespace DAL
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
 
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@id"].Value.ToString();
 
 
@@ -3985,6 +4499,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4001,14 +4516,14 @@ namespace DAL
 
 
 
-        public bool addBalanceSheet(string @inout, int @update, Landlord landlord, 
-            string bill_type, string action, string key, int oldAmount,string desc,string account_transaction_id)
+        public bool addBalanceSheet(string @inout, int @update, Landlord landlord,
+            string bill_type, string action, string key, int oldAmount, string desc, string account_transaction_id)
         {
             this.oldAmount = oldAmount;
-            return addBalanceSheet(@inout, @update, landlord, bill_type, action, key,desc,account_transaction_id);
+            return addBalanceSheet(@inout, @update, landlord, bill_type, action, key, desc, account_transaction_id);
         }
 
-        public bool addAmountBalanceSheet(string @inout, int @update, string name, string bill_type, string action, string key, string desc,string date,int amount,string account_transaction_id)
+        public bool addAmountBalanceSheet(string @inout, int @update, string name, string bill_type, string action, string key, string desc, string date, int amount, string account_transaction_id)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -4044,7 +4559,7 @@ namespace DAL
                     }
                     else if (bill_type == nameof(BillKey.EnumUser.Expense))
                     {
-                        
+
                         cmd.Parameters.AddWithValue("@bill_type", bill_type);
 
                         cmd.Parameters.AddWithValue("@key", key);
@@ -4094,7 +4609,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@account_transaction_id", account_transaction_id);
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@id"].Value.ToString();
 
 
@@ -4111,6 +4626,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4128,7 +4644,7 @@ namespace DAL
 
 
         public bool addBalanceSheet(string @inout, int @update, Landlord landlord,
-            string bill_type, string action, string key,string desc,string account_transaction_id)
+            string bill_type, string action, string key, string desc, string account_transaction_id)
         {
             StringBuilder errorMessages = new StringBuilder();
 
@@ -4136,7 +4652,7 @@ namespace DAL
             {
 
                 try
-                    {
+                {
 
 
                     string procedure = "p_balnce_sheet_CRUD";
@@ -4160,7 +4676,7 @@ namespace DAL
                         desc = string.Format("{0}, {1}, {2}", landlord.land_person.pname, bill_type + " " + action, cash);
                         cmd.Parameters.AddWithValue("@desc", desc);
                         cmd.Parameters.AddWithValue("@bill_type", nameof(BillKey.EnumUser.Client));
-                        
+
                     }
                     else if (bill_type == nameof(BillKey.EnumUser.Expense))
                     {
@@ -4216,7 +4732,7 @@ namespace DAL
 
                     cmd.Parameters.Add("@id", SqlDbType.Int, 4);
                     cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     string id = cmd.Parameters["@id"].Value.ToString();
 
 
@@ -4233,6 +4749,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4247,59 +4764,99 @@ namespace DAL
 
             }
         }
+        public string isuserNoExist(string id,string name,string table,string address)
+        {
+            int check = 0;
+            try
+            {
 
-        public bool insertCustomerSale(Landlord landlord,int custIndex)
+
+                using (SqlConnection conn = GetConnection())
+                {
+
+                    SqlCommand cmd = new SqlCommand("p_isusernotexist", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@uid", SqlDbType.Int).Value = id;
+                    cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+                    cmd.Parameters.Add("@table", SqlDbType.NVarChar).Value = table;
+                    cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = table;
+
+                    cmd.Parameters.Add("@id", SqlDbType.Int, 4);
+                    cmd.Parameters["@id"].Direction = ParameterDirection.Output;
+                    check = executeQueryCommand(cmd);
+                    string uid = cmd.Parameters["@id"].Value.ToString();
+                    if (check == -1)
+                    {
+                        Admin.LogExecMang.Log("User Inserted " + id + "->" + name + "->" + table + "->>" + uid);
+                        CloseConnection(conn);
+                        return uid;
+                    }
+
+                }
+            }
+            catch(Exception e)
+            {
+                Admin.LogExecMang.LogException(e, "UserInserttion");
+                return "0";
+            }
+            return "0";
+        }
+        public bool insertCustomerSale(Landlord landlord, int custIndex)
         {
             StringBuilder errorMessages = new StringBuilder();
             int check = 0;
             string[] rs;
+
             for (int i = 0; i < landlord.customers.Count(); i++)
             {
                 Customer customer = landlord.customers[i];
+                //string id=isuserNoExist(customer.customer_profile.pid, customer.customer_profile.pname, "Customer","");
+                //if (id == "0")
+                //    return false;
+
+                //customer.customer_profile.pid = id;
+
                 rs = addCustomerSales(customer, landlord.service, landlord.land_product, landlord.land_person, landlord.date, landlord.record_id);
                 if (rs != null)
                 {
                     check = int.Parse(rs[0]);
                     landlord.customers[i].cust_bill_id = rs[1];
+
+                    decimal gtotal = customer.getGrandTotalCustomer();
                     p_update_customerbill("UpdateAugrai", landlord.date, customer.customer_profile.pkey
-                        , customer.customer_profile.pid, customer.getGrandTotalCustomer(),customer.cust_bill_id);
-                    
-                    // p_customer_CRUD("SaleIn", customer.customer_profile.pkey, landlord.date,
-                    //   customer.getGrandTotalCustomer()
-                    //  , int.Parse(customer.customer_profile.pid), 0, 0, 0,1) ;
-                    //p_customer_sale_CRUD("UpdateCust", customer.customer_profile.pkey,
-                    //    landlord.client.date, customer.customer_profile.pid);
+                        , customer.customer_profile.pid, (int)gtotal, customer.cust_bill_id);
                 }
             }
 
-            p_update_customerbill("CustomerSale",landlord.date,"","",0,"");
+            p_update_customerbill("CustomerSale", landlord.date, "", "", 0, "");
 
             for (int i = custIndex; i < landlord.customers.Count(); i++)
             {
                 Customer customer = landlord.customers[i];
-                int Cgtotal = customer.getGrandTotalCustomer();
-                 p_update_customerbill("UpCustomersaleAugrai", landlord.date, customer.customer_profile.pkey
-                         , customer.customer_profile.pid, Cgtotal,"");
+                decimal Cgtotal = customer.getGrandTotalCustomer();
+                p_update_customerbill("UpCustomersaleAugrai", landlord.date, customer.customer_profile.pkey
+                        , customer.customer_profile.pid, Cgtotal, "");
             }
+            
 
             return true;
 
         }
 
-        public bool p_update_customerbill(string action,string date,string key,string id,int amount,string billid)
+        public bool p_update_customerbill(string action, string date, string key, string id, decimal amount, string billid)
         {
             using (SqlConnection conn = GetConnection())
             {
 
                 SqlCommand cmd = new SqlCommand("p_update_customerbill", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value =action;
+                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
                 cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
                 cmd.Parameters.Add("@key", SqlDbType.NVarChar).Value = key;
                 cmd.Parameters.Add("@cust_id", SqlDbType.NVarChar).Value = id;
                 cmd.Parameters.Add("@amount", SqlDbType.NVarChar).Value = amount;
                 cmd.Parameters.Add("@dsid", SqlDbType.NVarChar).Value = billid;
-                int check = cmd.ExecuteNonQuery();
+                int check = executeQueryCommand(cmd);
                 if (check != 0)
                 {
                     CloseConnection(conn);
@@ -4326,7 +4883,7 @@ namespace DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@date", date);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -4339,6 +4896,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4375,7 +4933,7 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@status", templandlord.status);
                     cmd.Parameters.AddWithValue("@gtotal", templandlord.GetGrandTotal);
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -4388,6 +4946,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4409,7 +4968,7 @@ namespace DAL
 
                 try
                 {
-                   
+
                     string procedure = "p_update_salesexpenses";
                     int check = 0;
                     SqlCommand cmd = new SqlCommand(procedure, conn);
@@ -4421,11 +4980,13 @@ namespace DAL
                     cmd.Parameters.AddWithValue("@labour", templandlord.expense.total_labour);
                     cmd.Parameters.AddWithValue("@advance", templandlord.expense.total_advance_amount);
                     cmd.Parameters.AddWithValue("@munshiana", templandlord.expense.total_munshiana);
+                    cmd.Parameters.AddWithValue("@marketfee", templandlord.expense.total_marketfee);
+
                     cmd.Parameters.AddWithValue("@commission", templandlord.Total_Commission);
                     cmd.Parameters.AddWithValue("@chongi", templandlord.Total_Chongi);
 
 
-                    check = cmd.ExecuteNonQuery();
+                    check = executeQueryCommand(cmd);
                     if (check != 0)
                     {
                         CloseConnection(conn);
@@ -4438,6 +4999,7 @@ namespace DAL
                 }
                 catch (SqlException ex)
                 {
+                    Admin.LogExecMang.LogException(ex, "Execption");
                     for (int i = 0; i < ex.Errors.Count; i++)
                     {
                         errorMessages.Append("Index #" + i + "\n" +
@@ -4477,7 +5039,10 @@ namespace DAL
             }
             return null;
         }
-
+        public DataTable getExpenseType(string name)
+        {
+            return (DataTable)searchRecords("", "ExpType", name, 1, 100);
+        }
         public System.Windows.Forms.AutoCompleteStringCollection autoCompleteData()
         {
             using (SqlConnection conn = GetConnection())
@@ -4500,8 +5065,9 @@ namespace DAL
             return null;
         }
         public bool insertTodayExpense(string date, string expense, string amount, string refid, string expense_from,
-            string type,string id,string accid,string detail,string trid,string cateid,string expenseId)
+            string type, string id, string accid, string detail, string trid, string cateid, string expenseId)
         {
+            int check = 0;
             using (SqlConnection conn = GetConnection())
             {
 
@@ -4520,9 +5086,12 @@ namespace DAL
                 cmd.Parameters.Add("@category_id", SqlDbType.Int).Value = cateid;
                 cmd.Parameters.Add("@expenseId", SqlDbType.Int).Value = expenseId;
 
-                int check = cmd.ExecuteNonQuery();
-                CloseConnection(conn);
-                return true;
+                check = executeQueryCommand(cmd);
+                if (check == -1 || check >0)
+                {
+                    CloseConnection(conn);
+                    return true;
+                }
 
             }
             return false;
@@ -4537,7 +5106,7 @@ namespace DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@expense_name", SqlDbType.NVarChar).Value = txt;
                 cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = "Insert";
-                int check = cmd.ExecuteNonQuery();
+                int check = executeQueryCommand(cmd);
                 CloseConnection(conn);
             }
         }
@@ -4555,115 +5124,393 @@ namespace DAL
         public object p_shop_sales_crud(string action, string sdate, string ldate
         , string name, string userid,
         string quantity, string rate, string size, string product
-        , string t_date, string total_amount, string ispaid, int sort, int record_id, int labour,string productid)
+        , string t_date, string total_amount, string ispaid, int sort, int record_id, int labour, string productid,string details,int check)
         {
             using (SqlConnection conn = GetConnection())
             {
                 if (conn == null)
                 {
-                    return false;
+                    return null;
                 }
+
                 SqlCommand cmd = new SqlCommand("p_shop_sales_crud", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
-                cmd.Parameters.Add("@startdate", SqlDbType.NVarChar).Value = sdate;
-                cmd.Parameters.Add("@lastdate", SqlDbType.NVarChar).Value = ldate;
-                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
-                cmd.Parameters.Add("@quantity", SqlDbType.NVarChar).Value = quantity;
-                cmd.Parameters.Add("@product", SqlDbType.NVarChar).Value = product;
-                cmd.Parameters.Add("@t_date", SqlDbType.NVarChar).Value = t_date;
-                cmd.Parameters.Add("@total_amount", SqlDbType.NVarChar).Value = total_amount == "" ? "0" : total_amount;
-                cmd.Parameters.Add("@userid", SqlDbType.Int).Value = userid == "" ? "0" : userid;
-                cmd.Parameters.Add("@ispaid", SqlDbType.Int).Value = ispaid;
-                cmd.Parameters.Add("@orderby", SqlDbType.Int).Value = sort;
-                cmd.Parameters.Add("@rate", SqlDbType.Int).Value = rate == "" ? "0" : rate;
-                cmd.Parameters.Add("@size", SqlDbType.NVarChar).Value = size;
-                cmd.Parameters.Add("@record_id", SqlDbType.Int).Value = record_id;
-                cmd.Parameters.Add("@labour", SqlDbType.Int).Value = labour;
-                cmd.Parameters.Add("@product_id", SqlDbType.Int).Value = productid;
 
+                cmd.Parameters.AddWithValue("@action", action);
+                cmd.Parameters.AddWithValue("@startdate", sdate ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@lastdate", ldate ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@name", name ?? "");
+                cmd.Parameters.AddWithValue("@quantity", quantity ?? "0");
+                cmd.Parameters.AddWithValue("@product", product ?? "");
+                cmd.Parameters.AddWithValue("@t_date", t_date ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@total_amount", string.IsNullOrEmpty(total_amount) ? 0 : Convert.ToInt32(total_amount));
+                cmd.Parameters.AddWithValue("@userid", string.IsNullOrEmpty(userid) ? 0 : Convert.ToInt32(userid));
+                cmd.Parameters.AddWithValue("@ispaid", ispaid);
+                cmd.Parameters.AddWithValue("@orderby", sort);
+                cmd.Parameters.AddWithValue("@rate", string.IsNullOrEmpty(rate) ? 0 : Convert.ToInt32(rate));
+                cmd.Parameters.AddWithValue("@size", size ?? "");
+                cmd.Parameters.AddWithValue("@record_id", record_id);
+                cmd.Parameters.AddWithValue("@labour", labour);
+                cmd.Parameters.AddWithValue("@product_id", productid);
+                cmd.Parameters.AddWithValue("@remarks", details ?? "");
 
-                List<Object> obj = new List<object>();
+                // ❗❗❗ THIS WAS MISSING – VERY IMPORTANT ❗❗❗
+                cmd.Parameters.AddWithValue("@check", check);
 
+                List<object> obj = new List<object>();
 
                 if (action == "I" || action == "D" || action == "U")
                 {
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    //return null;
+                    int rowsAffected = executeQueryCommand(cmd);
 
-                    if (rowsAffected != 0)
-                    {
-                        obj.Add(rowsAffected);
-                        obj.Add(null);
-                    }
-                    else
-                    {
-                        obj.Add(rowsAffected);
-                        obj.Add(null);
-                    }
+                    obj.Add(rowsAffected);
+                    obj.Add(null);
+
                     CloseConnection(conn);
-
                     return obj;
-
-
-
                 }
                 else if (action == "R")
                 {
-                    adapt = new SqlDataAdapter(cmd);
-
+                    SqlDataAdapter adapt = new SqlDataAdapter(cmd);
                     DataTable data_tbl = new DataTable();
-
                     adapt.Fill(data_tbl);
+
                     obj.Add(0);
                     obj.Add(data_tbl);
-                    CloseConnection(conn);
-                    //return null;
 
+                    CloseConnection(conn);
                     return obj;
                 }
+
                 return null;
+            }
+
+        }
+        //public DataTable shopSalesRead(string action, string sdate, string ldate
+        //, string name, string userid,
+        //string quantity, string rate, string size, string product
+        //, string t_date, string total_amount, int ispaid, int sort, int record_id,string remarks,string check="")
+        //{
+        //    using (SqlConnection conn = GetConnection())
+        //    {
+
+        //        SqlCommand cmd = new SqlCommand("p_shop_sales_crud", conn);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
+        //        cmd.Parameters.Add("@startdate", SqlDbType.NVarChar).Value = sdate;
+        //        cmd.Parameters.Add("@lastdate", SqlDbType.NVarChar).Value = ldate;
+        //        cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+        //        cmd.Parameters.Add("@quantity", SqlDbType.NVarChar).Value = quantity;
+        //        cmd.Parameters.Add("@product", SqlDbType.NVarChar).Value = product;
+        //        cmd.Parameters.Add("@t_date", SqlDbType.NVarChar).Value = t_date;
+        //        cmd.Parameters.Add("@total_amount", SqlDbType.NVarChar).Value = total_amount;
+        //        cmd.Parameters.Add("@userid", SqlDbType.Int).Value = userid == "" ? "0" : userid;
+        //        cmd.Parameters.Add("@ispaid", SqlDbType.Int).Value = ispaid;
+        //        cmd.Parameters.Add("@orderby", SqlDbType.Int).Value = sort;
+        //        cmd.Parameters.Add("@rate", SqlDbType.Int).Value = sort;
+        //        cmd.Parameters.Add("@size", SqlDbType.NVarChar).Value = sort;
+        //        cmd.Parameters.Add("@record_id", SqlDbType.Int).Value = record_id;
+        //        cmd.Parameters.Add("@labour", SqlDbType.Int).Value = 0;
+        //        cmd.Parameters.Add("@product_id", SqlDbType.Int).Value = "0";
+        //        cmd.Parameters.Add("@remarks", SqlDbType.NVarChar).Value = remarks;
+        //        cmd.Parameters.Add("@check", SqlDbType.NVarChar).Value = check;
+
+        //        adapt = new SqlDataAdapter(cmd);
+
+        //        DataTable data_tbl = new DataTable();
+        //        adapt.Fill(data_tbl);
+        //        CloseConnection(conn);
+        //        return data_tbl;
+        //    }
+        //    return null;
+        //}
+        private int executeQueryCommand(SqlCommand cmd)
+        {
+            try
+            {
+                Admin.LogExecMang.Log(cmd.CommandText);
+
+                int chk = cmd.ExecuteNonQuery();
+
+
+                return chk;
+            }
+            catch (Exception e)
+            {
+                Admin.LogExecMang.LogException(e, e.Message);
+                return 0;
 
             }
         }
-        public DataTable shopSalesRead(string action, string sdate, string ldate
-        , string name, string userid,
-        string quantity, string rate, string size, string product
-        , string t_date, string total_amount, int ispaid, int sort, int record_id)
+
+        public object crudSettings(string action,string path)
         {
+            StringBuilder errorMessages = new StringBuilder();
+
             using (SqlConnection conn = GetConnection())
             {
 
-                SqlCommand cmd = new SqlCommand("p_shop_sales_crud", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@action", SqlDbType.NVarChar).Value = action;
-                cmd.Parameters.Add("@startdate", SqlDbType.NVarChar).Value = sdate;
-                cmd.Parameters.Add("@lastdate", SqlDbType.NVarChar).Value = ldate;
-                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
-                cmd.Parameters.Add("@quantity", SqlDbType.NVarChar).Value = quantity;
-                cmd.Parameters.Add("@product", SqlDbType.NVarChar).Value = product;
-                cmd.Parameters.Add("@t_date", SqlDbType.NVarChar).Value = t_date;
-                cmd.Parameters.Add("@total_amount", SqlDbType.NVarChar).Value = total_amount;
-                cmd.Parameters.Add("@userid", SqlDbType.Int).Value = userid == "" ? "0" : userid;
-                cmd.Parameters.Add("@ispaid", SqlDbType.Int).Value = ispaid;
-                cmd.Parameters.Add("@orderby", SqlDbType.Int).Value = sort;
-                cmd.Parameters.Add("@rate", SqlDbType.Int).Value = sort;
-                cmd.Parameters.Add("@size", SqlDbType.NVarChar).Value = sort;
-                cmd.Parameters.Add("@record_id", SqlDbType.Int).Value = record_id;
-                cmd.Parameters.Add("@labour", SqlDbType.Int).Value = 0;
-                cmd.Parameters.Add("@product_id", SqlDbType.Int).Value = "0";
+                try
+                {
+
+                    string procedure = "p_settings_default";
+                    int check = 0;
+                    SqlCommand cmd = new SqlCommand(procedure, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@crud", action);
+                    cmd.Parameters.AddWithValue("@path", path);
+
+                    List<Object> obj = new List<object>();
 
 
-                adapt = new SqlDataAdapter(cmd);
+                    if (action == "U_Path")
+                    {
+                        int rowsAffected = executeQueryCommand(cmd);
+                        //return null;
 
-                DataTable data_tbl = new DataTable();
-                adapt.Fill(data_tbl);
-                CloseConnection(conn);
-                return data_tbl;
+                        if (rowsAffected != 0)
+                        {
+                            obj.Add(rowsAffected);
+                            obj.Add(null);
+                        }
+                        else
+                        {
+                            obj.Add(rowsAffected);
+                            obj.Add(null);
+                        }
+                        CloseConnection(conn);
+
+                        return obj;
+
+
+
+                    }
+                    else if (action == "R")
+                    {
+                        adapt = new SqlDataAdapter(cmd);
+
+                        DataTable data_tbl = new DataTable();
+
+                        adapt.Fill(data_tbl);
+                        obj.Add(0);
+                        obj.Add(data_tbl);
+                        CloseConnection(conn);
+                        //return null;
+
+                        return obj;
+                    }
+                    return null;
+                }
+                catch (SqlException ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        errorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + ex.Errors[i].Message + "\n" +
+                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                            "Source: " + ex.Errors[i].Source + "\n" +
+                            "Procedure: " + ex.Errors[i].Procedure + "\n");
+                    }
+                    Console.WriteLine(errorMessages.ToString());
+                    return null;
+                }
             }
             return null;
         }
 
+        /// <summary>
+        /// post_to_journal_sales
+        /// </summary>
+        /// <param name="type">S,P,S_ALL,P_ALL</param>
+        /// <param name="key"> key should be unqiue</param>
+        /// <param name="date">data should be posted to journal that date requeired</param>
+        /// <returns></returns>
+        public object post_to_journal_sales(string type, string key,string date)
+        {
+            StringBuilder errorMessages = new StringBuilder();
+
+            using (SqlConnection conn = GetConnection())
+            {
+
+                try
+                {
+
+                    string procedure = "post_to_journal_sales";
+                    int check = 0;
+                    SqlCommand cmd = new SqlCommand(procedure, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@type", type);
+                    cmd.Parameters.AddWithValue("@key", key);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    int rowsAffected = executeQueryCommand(cmd);
+                    CloseConnection(conn);
+                    
+                    return rowsAffected;
+                }
+                catch (SqlException ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        errorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + ex.Errors[i].Message + "\n" +
+                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                            "Source: " + ex.Errors[i].Source + "\n" +
+                            "Procedure: " + ex.Errors[i].Procedure + "\n");
+                    }
+                    Console.WriteLine(errorMessages.ToString());
+                    return null;
+                }
+            }
+        }
+        public object post_to_journal(string source_table, string source_id, string action)
+        {
+            StringBuilder errorMessages = new StringBuilder();
+
+            using (SqlConnection conn = GetConnection())
+            {
+
+                try
+                {
+
+                    string procedure = "post_to_journal";
+                    int check = 0;
+                    SqlCommand cmd = new SqlCommand(procedure, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@p_source_table", source_table);
+                    cmd.Parameters.AddWithValue("@p_source_id", source_id);
+                    cmd.Parameters.AddWithValue("@p_action", action);
+                    cmd.Parameters.AddWithValue("@p_created_by", "admin");
+
+                    int rowsAffected = executeQueryCommand(cmd);
+                    CloseConnection(conn);
+
+                    return rowsAffected;
+                }
+                catch (SqlException ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        errorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + ex.Errors[i].Message + "\n" +
+                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                            "Source: " + ex.Errors[i].Source + "\n" +
+                            "Procedure: " + ex.Errors[i].Procedure + "\n");
+                    }
+                    Console.WriteLine(errorMessages.ToString());
+                    return null;
+                }
+            }
+        }
+
+        public object CancelJournalEntry(string source_id)
+        {
+            StringBuilder errorMessages = new StringBuilder();
+
+            using (SqlConnection conn = GetConnection())
+            {
+
+                try
+                {
+
+                    string procedure = "CancelJournalEntry";
+                    int check = 0;
+                    SqlCommand cmd = new SqlCommand(procedure, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SourceID", source_id);
+
+                    int rowsAffected = executeQueryCommand(cmd);
+                    CloseConnection(conn);
+
+                    return rowsAffected;
+                }
+                catch (SqlException ex)
+                {
+                    Admin.LogExecMang.LogException(ex, "Execption");
+
+                    for (int i = 0; i < ex.Errors.Count; i++)
+                    {
+                        errorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + ex.Errors[i].Message + "\n" +
+                            "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                            "Source: " + ex.Errors[i].Source + "\n" +
+                            "Procedure: " + ex.Errors[i].Procedure + "\n");
+                    }
+                    Console.WriteLine(errorMessages.ToString());
+                    return null;
+                }
+            }
+        }
+
+
+
+        //    #region Call DB SP
+        //    // Function to execute stored procedures that return a DataTable (for SELECTs)
+        //    public DataTable ExecuteStoredProcedure(string storedProcedureName, SqlParameter[] parameters)
+        //    {
+        //        DataTable dt = new DataTable();
+
+        //        using (SqlConnection conn = GetConnection())
+        //        {
+        //            try
+        //            {
+        //                using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
+        //                {
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+
+        //                    if (parameters != null)
+        //                    {
+        //                        cmd.Parameters.AddRange(parameters);
+        //                    }
+
+        //                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+        //                    {
+        //                        da.Fill(dt);  // Fill DataTable with the result set
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Admin.LogExecMang.LogException(ex, "Execption");
+        //                // Handle exceptions
+        //                Console.WriteLine("An error occurred: " + ex.Message);
+        //            }
+        //        }
+
+        //        return dt;
+        //    }
+
+        //    // Function to execute stored procedures for non-query operations (like INSERT, UPDATE)
+        //    public void ExecuteNonQueryStoredProcedure(string storedProcedureName, SqlParameter[] parameters)
+        //    {
+        //        using (SqlConnection conn = GetConnection())
+        //        {
+        //            try
+        //            {
+        //                using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
+        //                {
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    if (parameters != null)
+        //                    {
+        //                        cmd.Parameters.AddRange(parameters);
+        //                    }
+        //                    executeQueryCommand(cmd);  // Execute the query
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Admin.LogExecMang.LogException(ex, "Execption");
+        //                // Handle exceptions
+        //                Console.WriteLine("An error occurred: " + ex.Message);
+        //            }
+        //        }
+        //    }
+        //        #endregion
 
         #endregion
         ///*****************************************************************///

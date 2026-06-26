@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataMember;
-using BAL;
+﻿using ArthiPOS.Properties;
 using ArthiPOS.Reporting;
-using System.IO;
-using DevExpress.XtraReports.UI;
-using System.Drawing.Printing;
-using DevExpress.XtraPrinting;
-using ArthiPOS.Properties;
-using ArthiPOS.utill;
 using ArthiPOS.Utill;
-using ArthiPOS.Reporting.ReportView.Header;
+using BAL;
+using DataMember;
+using DevExpress.XtraReports.UI;
+using System;
+using System.Windows.Forms;
 
 namespace ArthiPOS.controls.dashboard
 {
@@ -27,7 +15,7 @@ namespace ArthiPOS.controls.dashboard
         private Customer customer;
         private CustomerSales custSale;
         private SaleParser saleParser;
-        private string date="";
+        private string date = "";
         public bool isLocal = false;
 
 
@@ -61,7 +49,7 @@ namespace ArthiPOS.controls.dashboard
             _lbl_chongi.Text = Resources.ResourceManager.GetString("a0301");
 
         }
-        public InvoiceControl(Landlord landlord, CustomerSales custSales, Customer customer,string date)
+        public InvoiceControl(Landlord landlord, CustomerSales custSales, Customer customer, string date)
         {
             InitializeComponent();
             updateUI();
@@ -81,7 +69,7 @@ namespace ArthiPOS.controls.dashboard
             UpdateData();
 
         }
-        
+
 
 
         public void UpdateData()
@@ -100,7 +88,7 @@ namespace ArthiPOS.controls.dashboard
 
             if (this.customer != null)
             {
-                saleParser = new SaleParser(date, Admin.SaveLog);
+                saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 lbl_invoice_no.Text = this.customer.customer_profile.pkey;
                 lbl_name.Text = this.customer.customer_profile.pname;
                 lbl_total_amount.Text = "" + (this.customer.GrandTotalCustomer);
@@ -111,7 +99,7 @@ namespace ArthiPOS.controls.dashboard
             }
             else if (this.landlord != null)
             {
-                saleParser = new SaleParser(this.landlord.date, Admin.SaveLog);
+                saleParser = new SaleParser(this.landlord.date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
 
                 lbl_invoice_no.Text = this.landlord.land_person.pkey;
                 lbl_name.Text = this.landlord.land_person.pname;
@@ -133,18 +121,18 @@ namespace ArthiPOS.controls.dashboard
         {
             BLogic bal = new BLogic();
             SaleDetail sd;
-            if (landlord!=null)
+            if (landlord != null)
             {
                 sd = new SaleDetail(landlord);
                 sd.ShowDialog();
                 this.landlord = sd.getLandlord();
                 UpdateData();
             }
-            else if(custSale != null)
+            else if (custSale != null)
             {
                 if (isLocal)
                 {
-                    sd = new SaleDetail(isLocal,custSale);
+                    sd = new SaleDetail(isLocal, custSale);
                     sd.date = this.date;
                 }
                 else
@@ -166,15 +154,15 @@ namespace ArthiPOS.controls.dashboard
             bool isCustomer = false;
             if (landlord != null)
             {
-                
+
                 /*using (RCBilling rc = new RCBilling(landlord, landlord.date))
                 {
                     rc.ShowDialog();
                 }*/
-                 isCustomer = false;
+                isCustomer = false;
 
 
-                ReportPages rp = new ReportPages(isCustomer,landlord);
+                ReportPages rp = new ReportPages(isCustomer, landlord);
                 rp.ShowDialog();
 
             }
@@ -185,12 +173,12 @@ namespace ArthiPOS.controls.dashboard
                     rc.ShowDialog();
                 }*/
                 isCustomer = true;
-                ReportPages rp = new ReportPages(isCustomer,custSale, customer, custSale.date);
+                ReportPages rp = new ReportPages(isCustomer, custSale, customer, custSale.date);
                 rp.ShowDialog();
             }
 
-           // publishReport(bill);
-            
+            // publishReport(bill);
+
             /*AugraiDetailReport myForm = new AugraiDetailReport(bill);
             myForm.TopLevel = true;
             myForm.ShowInTaskbar = false;
@@ -203,5 +191,5 @@ namespace ArthiPOS.controls.dashboard
             printtool.ShowPreviewDialog();
         }
 
-      }
+    }
 }

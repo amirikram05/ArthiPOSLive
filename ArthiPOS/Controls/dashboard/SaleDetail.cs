@@ -4,15 +4,9 @@ using ArthiPOS.Utill;
 using BAL;
 using DataMember;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.controls.dashboard
@@ -22,7 +16,7 @@ namespace ArthiPOS.controls.dashboard
         public Landlord landlord;
         public CustomerSales cs;
         public Customer customerIc;
-        public string key,date;
+        public string key, date;
         private BLogic bal;
         SaleParser saleParser;
         private bool isLocal = false;
@@ -50,7 +44,7 @@ namespace ArthiPOS.controls.dashboard
             bal = new BLogic();
         }
 
-        public SaleDetail(string key,string date,Customer custIc)
+        public SaleDetail(string key, string date, Customer custIc)
         {
             InitializeComponent();
             updateUI();
@@ -60,7 +54,7 @@ namespace ArthiPOS.controls.dashboard
             bal = new BLogic();
         }
 
-        public SaleDetail(bool isLocal,CustomerSales cs)
+        public SaleDetail(bool isLocal, CustomerSales cs)
         {
             InitializeComponent();
             updateUI();
@@ -71,8 +65,8 @@ namespace ArthiPOS.controls.dashboard
 
         public void updateUI()
         {
-            _lbl_title_sale_detail.Text= Resources.ResourceManager.GetString("a1027");
-            _lbl_date.Text= Resources.ResourceManager.GetString("a0009");
+            _lbl_title_sale_detail.Text = Resources.ResourceManager.GetString("a1027");
+            _lbl_date.Text = Resources.ResourceManager.GetString("a0009");
             _lbl_khata.Text = Resources.ResourceManager.GetString("a0013");
             _lbl_bipari.Text = Resources.ResourceManager.GetString("a0201");
             _lbl_total_quantity.Text = Resources.ResourceManager.GetString("a0507");
@@ -104,7 +98,7 @@ namespace ArthiPOS.controls.dashboard
 
             if (landlord != null)
             {
-                saleParser = new SaleParser(landlord.date, Admin.SaveLog);
+                saleParser = new SaleParser(landlord.date,Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
 
                 showSale(landlord.land_person.pkey,
                     landlord.land_person.pname, landlord.client._person_cl.pname,
@@ -118,17 +112,17 @@ namespace ArthiPOS.controls.dashboard
                     (int)landlord.GetCommission,
                     (int)landlord.GetChongi,
                     (int)landlord.GetGrandTotal,
-                    ((int)landlord.expense.total_rent+
+                    ((int)landlord.expense.total_rent +
                     (int)landlord.expense.total_labour +
-                    (int)landlord.service.clerk_per_bill+(int)landlord.service.marketfee+
-                    landlord.land_person.advance+
-                    (int)landlord.GetCommission+
+                    (int)landlord.service.clerk_per_bill + (int)landlord.service.marketfee +
+                    landlord.land_person.advance +
+                    (int)landlord.GetCommission +
                     (int)landlord.GetChongi));
                 addSaleClient(landlord);
             }
             else
             {
-            saleParser = new SaleParser(this.date, Admin.SaveLog);
+                saleParser = new SaleParser(this.date,Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 readCustomerSale(key, this.date);
             }
 
@@ -147,20 +141,20 @@ namespace ArthiPOS.controls.dashboard
                         cust.customer_profile.pid,
                         cust.customer_profile.pname,
                         "" + cust.sale._sale_quantity,
-                        "" + (int)(cust.sale._sale_amount+cust.sale.add_extra_amount_Landlord
-                                        //+cust.sale.add_extra_amount_Landlord
+                        "" + (int)(cust.sale._sale_amount + cust.sale.add_extra_amount_Landlord
+                        //+cust.sale.add_extra_amount_Landlord
                         ),
                         "" + (int)(cust.sale.getTotalSale() + cust.sale.getTotalExtraAmountLandlord()
                         //+cust.sale._sale_quantity*landlord.ExtraAmountLandlord.Extra_Amount
                         ),
-                        cust.product._product_name,cust.product._weight,cust.sale.add_extra_amount_Landlord,
+                        cust.product._product_name, cust.product._weight, cust.sale.add_extra_amount_Landlord,
                         cust.product.marka);
                 }
                 if (total > 0)
                 {
                     addRowTransportDetail("", "", "", "", "" + (total
                         //+landlord.ExtraAmountLandlord.Total_Amount_extra
-                        ), "", "",0,"");
+                        ), "", "", 0, "");
                 }
                 //Records.AddCustomerUnique(item.customerID,item.customername, userkey, item.previous_amount);
 
@@ -173,7 +167,7 @@ namespace ArthiPOS.controls.dashboard
             }
         }
 
-        public void readCustomerSale(string key,string date)
+        public void readCustomerSale(string key, string date)
         {
             if (key != null)
             {
@@ -186,7 +180,7 @@ namespace ArthiPOS.controls.dashboard
 
                 }
             }
-            
+
             else
             {
                 if (isLocal)
@@ -222,7 +216,7 @@ namespace ArthiPOS.controls.dashboard
                     showSale(cs.person.pkey, cs.person.pname,
                         "",
                         date, cs.total_quantity,
-                        0,0, 0, 0, cs.total_chalan, 0,
+                        0, 0, 0, 0, cs.total_chalan, 0,
                         (int)cs.Total_Commission, (int)cs.Total_Chongi,
                         (int)(cs.getGrandTotal()),
                         (int)(cs.Total_Commission + cs.Total_Chongi));
@@ -230,9 +224,9 @@ namespace ArthiPOS.controls.dashboard
                 {
 
                     addRowTransportDetail(cu._LandlordProfile.pid, cu._LandlordProfile.pname,
-                        "" + cu.sale._sale_quantity, "" + (int)(cu.sale._sale_amount+cu.sale.add_extra_amount_Customer),
+                        "" + cu.sale._sale_quantity, "" + (int)(cu.sale._sale_amount + cu.sale.add_extra_amount_Customer),
                         "" + (cu.sale.getTotalSale() + cu.sale.getTotalExtraAmountCustomer()),
-                        cu.product._product_name, cu.product._weight, cu.sale.add_extra_amount_Customer,cu.product.marka);
+                        cu.product._product_name, cu.product._weight, cu.sale.add_extra_amount_Customer, cu.product.marka);
                 }
             }
             catch (IOException ex)
@@ -241,15 +235,15 @@ namespace ArthiPOS.controls.dashboard
             }
         }
 
-        public void addRowTransportDetail(string id,string name, string quantity, string peramount,
-            string total_amount,string product_name,string product_type,int extraamount,string marka)
+        public void addRowTransportDetail(string id, string name, string quantity, string peramount,
+            string total_amount, string product_name, string product_type, int extraamount, string marka)
         {
             int count = this.datagrid_transport_detail.Rows.Count;
 
             this.datagrid_transport_detail.Rows.Add();
             this.datagrid_transport_detail.Rows[count].Cells[1].Value = id;
             this.datagrid_transport_detail.Rows[count].Cells[2].Value = name;
-            this.datagrid_transport_detail.Rows[count].Cells[3].Value =""+ quantity;
+            this.datagrid_transport_detail.Rows[count].Cells[3].Value = "" + quantity;
             this.datagrid_transport_detail.Rows[count].Cells[4].Value = peramount;
             this.datagrid_transport_detail.Rows[count].Cells[5].Value = extraamount;
             this.datagrid_transport_detail.Rows[count].Cells[6].Value = total_amount;
@@ -265,8 +259,9 @@ namespace ArthiPOS.controls.dashboard
                 return;
             if (e.ColumnIndex == 0)
             {
-                if (landlord!=null) {
-                    AddExtraAmount extra = new AddExtraAmount(landlord, landlord.customers[index], index,"");
+                if (landlord != null)
+                {
+                    AddExtraAmount extra = new AddExtraAmount(landlord, landlord.customers[index], index, "");
                     extra.ShowDialog();
                     if (extra.getCustomer().sale.add_extra_amount_Landlord > 0)
                     {
@@ -279,14 +274,14 @@ namespace ArthiPOS.controls.dashboard
                         datagrid_transport_detail.Rows.Clear();
                         datagrid_transport_detail.Refresh();
 
-                        UCTransport_Detail_Load(this,new EventArgs());
+                        UCTransport_Detail_Load(this, new EventArgs());
 
                     }
                 }
                 else
                 {
                     cs.customers[index].isCustomerBill = true;
-                    AddExtraAmount extra = new AddExtraAmount(cs, cs.customers[index], index,"");
+                    AddExtraAmount extra = new AddExtraAmount(cs, cs.customers[index], index, "");
                     extra.ShowDialog();
                     if (extra.getCustomer().sale.add_extra_amount_Customer > 0)
                     {
@@ -308,9 +303,9 @@ namespace ArthiPOS.controls.dashboard
             }
         }
 
-        public void showSale(string id,string bill_name,string biapri,string date,int quantity,
-            int rent,int labour, int munshiana,int marketfee,int chalan,
-            int advance,int commission,int chongi,int grand_total,
+        public void showSale(string id, string bill_name, string biapri, string date, int quantity,
+            int rent, int labour, int munshiana, int marketfee, int chalan,
+            int advance, int commission, int chongi, int grand_total,
             int total_service)
         {
             this.lbl_s_id.Text = "" + id;

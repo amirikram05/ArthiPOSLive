@@ -1,10 +1,6 @@
 ﻿
-using System;
-using Newtonsoft.Json;
-using System.IO;
-using DataMember;
-using System.Configuration;
 using Microsoft.Win32;
+using System;
 
 namespace DAL
 {
@@ -24,7 +20,8 @@ namespace DAL
 
         // public static string ConnectionSTring = ConfigurationManager.ConnectionStrings["c"].ConnectionString;
         //LocalDb
-        public static string ConnectionSTring {
+        public static string ConnectionSTring
+        {
             get
             {
                 try
@@ -39,7 +36,7 @@ namespace DAL
                     string conn = GetStringRegistryValue("DBString", "");
                     return conn;
                 }
-                catch(NullReferenceException e)
+                catch (NullReferenceException e)
                 {
                     return "";
                 }
@@ -48,7 +45,7 @@ namespace DAL
                 //#endif
 
             }
-            
+
         }
         static public string GetStringRegistryValue(string key, string defaultValue)
         {

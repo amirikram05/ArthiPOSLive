@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 namespace DataMember
 {
     public class BillKey
@@ -16,11 +12,11 @@ namespace DataMember
             Client, Customer, LandLoard, ClientInvest, ClientInvestRec, CustInvest,
             Admin, Cash, PaymentSale, FoodUtillity, Expense,
             Discount,
-            Shop,PaidOut
+            Shop, PaidOut
         }
 
-        
-        
+
+
         public static EnumUser e_User = EnumUser.Client;
         // return its first 20 values (= 40 characters) as a final result
         public static string ReturnUniqueValue(DateTime date, string ID)
@@ -54,12 +50,12 @@ namespace DataMember
         }
         public static string getDateKey(string date)
         {
-            
+
             return date.Replace("-", "");
         }
         public static string getDB_BillID(string catid, string date, string userid, int multiplebill_id)
         {
-            return string.Format("{0}{1}{2}{3}",catid, date, userid, multiplebill_id);
+            return string.Format("{0}{1}{2}{3}", catid, date, userid, multiplebill_id);
         }
         public static string getBillID(EnumUser euser, string date, string userid, int multiplebill_id)
         {
@@ -108,7 +104,7 @@ namespace DataMember
             else
             {
                 string type = nameof(euser);
-                return string.Format("{0}{1}{2}{3}", (type[0]+ type[1]).ToString().ToUpper(), cdate, userid, multiplebill_id);
+                return string.Format("{0}{1}{2}{3}", (type[0] + type[1]).ToString().ToUpper(), cdate, userid, multiplebill_id);
             }
             /*string id = new BLogic().p_getInvoiceID()+ multiplebill_id;
             return id;*/

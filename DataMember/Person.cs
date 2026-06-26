@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace DataMember
 {
     public class Person
@@ -13,6 +9,7 @@ namespace DataMember
         public string pname;
         public int advance;
         public int expense;
+        //public int CountNo;
 
         public Person() { }
         public Person(string pid, string pkey, string pname, string phone, int advance, int expense)

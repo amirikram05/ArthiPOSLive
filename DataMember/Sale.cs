@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace DataMember
 {
     public class Sale
     {
         #region Sale
-        public int _sale_quantity=0;
-        public int add_extra_amount_Landlord=0;
-        public int add_extra_amount_Customer=0;
+        public int _sale_quantity = 0;
+        public int add_extra_amount_Landlord = 0;
+        public int add_extra_amount_Customer = 0;
         private int amount = 0;
         private int tsale = 0;
         private int _total_extra_amount_cust;
         private int _total_extra_amount_land;
 
 
-        public Sale(int quantity,int amount)
+        public Sale(int quantity, int amount)
         {
             this._sale_quantity = quantity;
             this.amount = amount;
@@ -38,7 +34,7 @@ namespace DataMember
             }
             set
             {
-                amount =(int) value;
+                amount = (int)value;
             }
         }
 
@@ -54,7 +50,7 @@ namespace DataMember
                 this.tsale = value;
             }
         }
-        
+
         public int _TotalExtraAmountCustomer
         {
             get
@@ -76,7 +72,7 @@ namespace DataMember
             {
                 _total_extra_amount_land = value;
             }
-            
+
         }
 
 
@@ -90,7 +86,7 @@ namespace DataMember
 
         public int getTotalExtraAmountCustomer()
         {
-            return _TotalExtraAmountCustomer=_sale_quantity * add_extra_amount_Customer;
+            return _TotalExtraAmountCustomer = _sale_quantity * add_extra_amount_Customer;
 
         }
         public int getTotalExtraAmountLandlord()

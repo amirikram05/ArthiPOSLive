@@ -34,9 +34,6 @@ namespace ArthiPOS
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authentication));
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
-            this.home1 = new ArthiPOS.Controls.dashboard.Dashboard1();
-            this.dashboard1 = new ArthiPOS.Controls.dashboard.Dashboard1();
-            this.setting1 = new ArthiPOS.controls.AdminProfile();
             this.login1 = new ArthiPOS.controls.Login();
             this.click_file_security = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
@@ -63,31 +60,7 @@ namespace ArthiPOS
             this.bunifuImageButton1.TabStop = false;
             this.bunifuImageButton1.Zoom = 10;
             this.bunifuImageButton1.Click += new System.EventHandler(this.bunifuImageButton1_Click);
-            // 
-            // home1
-            // 
-            this.home1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.home1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.home1.Location = new System.Drawing.Point(34, 105);
-            this.home1.Name = "home1";
-            this.home1.Size = new System.Drawing.Size(799, 522);
-            this.home1.TabIndex = 14;
-            // 
-            // dashboard1
-            // 
-            this.dashboard1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dashboard1.Location = new System.Drawing.Point(34, 105);
-            this.dashboard1.Name = "dashboard1";
-            this.dashboard1.Size = new System.Drawing.Size(799, 522);
-            this.dashboard1.TabIndex = 14;
-            // 
-            // setting1
-            // 
-            this.setting1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.setting1.Location = new System.Drawing.Point(34, 105);
-            this.setting1.Name = "setting1";
-            this.setting1.Size = new System.Drawing.Size(799, 522);
-            this.setting1.TabIndex = 14;
+          
             // 
             // login1
             // 
@@ -131,10 +104,7 @@ namespace ArthiPOS
         }
 
         #endregion
-        private Dashboard1 home1;
         private Login login1;
-        private AdminProfile setting1;
-        private Dashboard1 dashboard1;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuImageButton bunifuImageButton1;
         private System.Windows.Forms.LinkLabel click_file_security;

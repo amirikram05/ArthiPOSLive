@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DataMember
 {
-    
+
     public class Admin
     {
         //public List<Landlord> list_landlords = new List<Landlord>();
         public List<Landlord> clients = new List<Landlord>();
-        public int remainingStock=0;
+        public int remainingStock = 0;
         public static bool SaveLog = false;
         public static System.Globalization.CultureInfo cultinfo = new System.Globalization.CultureInfo("ur-PK");
-        
+
+        public static LogExecManager LogExecMang = getLogexecMang();
+
+        private static LogExecManager getLogexecMang()
+        {
+            
+            return new LogExecManager("c:\\arthilog", 10);
+        }
+
 
         //Private Constructor.  
         private static Admin instance = null;

@@ -974,4 +974,211 @@ Name ,Khata# ,Bill id</value>
   <data name="marketfee" xml:space="preserve">
     <value>Market Fee</value>
   </data>
+  <data name="r1" xml:space="preserve">
+    <value>سابقہ ‌بل ‌بنام</value>
+  </data>
+  <data name="r11" xml:space="preserve">
+    <value>سابقہ ‌ایڈوانس</value>
+  </data>
+  <data name="r2" xml:space="preserve">
+    <value>تازہ ‌بنام</value>
+  </data>
+  <data name="r22" xml:space="preserve">
+    <value>تازہ ایڈوانس</value>
+  </data>
+  <data name="r3" xml:space="preserve">
+    <value>وصولی</value>
+  </data>
+  <data name="r4" xml:space="preserve">
+    <value>ٹوٹل ‌بنام</value>
+  </data>
+  <data name="r44" xml:space="preserve">
+    <value>ٹوٹل ایڈوانس</value>
+  </data>
+  <data name="rt1" xml:space="preserve">
+    <value>اوگراہی ‌‌رپورٹ</value>
+  </data>
+  <data name="rt2" xml:space="preserve">
+    <value>ایڈوانس رپورٹ</value>
+  </data>
+  <data name="rt3" xml:space="preserve">
+    <value>سیل ‌رپورٹ</value>
+  </data>
+  <data name="Resources_ur_PK" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resources_ur_PK_Designer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ad9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="bd6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cd9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ex1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ex2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ex3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ex4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ex5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="sa9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="af8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="desc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="recevingcash" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cio6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="laga" xml:space="preserve">
+    <value>لاگا</value>
+  </data>
+  <data name="efreight" xml:space="preserve">
+    <value>كرایاء</value>
+  </data>
+  <data name="elabour" xml:space="preserve">
+    <value>مزدوری</value>
+  </data>
+  <data name="emunshiana" xml:space="preserve">
+    <value>منشیانہ</value>
+  </data>
+  <data name="emarketfee" xml:space="preserve">
+    <value>ماركیٹ ‌فیس</value>
+  </data>
+  <data name="ecommission" xml:space="preserve">
+    <value>كمیشن</value>
+  </data>
+  <data name="elaga" xml:space="preserve">
+    <value>لاگا</value>
+  </data>
+  <data name="eadvance" xml:space="preserve">
+    <value>ایڈوانس</value>
+  </data>
+  <data name="eextra" xml:space="preserve">
+    <value>اكسٹرا</value>
+  </data>
 </root>

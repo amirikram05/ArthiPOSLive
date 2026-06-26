@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BAL;
-using MetroFramework.Controls;
+﻿using ArthiPOS.Controls.dashboard;
 using ArthiPOS.Properties;
-using ArthiPOS.Controls.dashboard;
+using BAL;
 using DataMember;
-using static ArthiPOS.utill.CommonUtill;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace ArthiPOS.controls.dashboard
 {
@@ -31,7 +24,7 @@ namespace ArthiPOS.controls.dashboard
             UIUpdate();
         }
 
-        
+
         public void UIUpdate()
         {
             lbl_search.Text = Resources.ResourceManager.GetString("a1048");
@@ -48,7 +41,7 @@ namespace ArthiPOS.controls.dashboard
             cust_detailgrid.Columns[4].HeaderText = Resources.ResourceManager.GetString("a1045");
             //cust_detailgrid.Columns[5].HeaderText = Resources.ResourceManager.GetString("a1046");
         }
-       
+
         //ID variable used in Updating and Deleting Record   
         int ID = 0;
 
@@ -64,19 +57,21 @@ namespace ArthiPOS.controls.dashboard
 
 
 
-     
+
         private void btn_update_Click_1(object sender, EventArgs e)
         {
-            if (ID != 0 &&( u_txt_name.Text != "" || txt_name.Text != "" ) || txt_phone.Text != "" || txt_address.Text != "")
-            {
-                
-                
+            if(detail_type.SelectedIndex==2)
+                tableName = "ClBipari";
+            
 
-                if (pbl.update_CC(tableName, ID, u_txt_name.Text, txt_name.Text, txt_phone.Text, txt_address.Text,txt_old_amount.Text==""?"0": txt_old_amount.Text, chk_admin.Text))
+            if (ID != 0 && (u_txt_name.Text != "" || txt_name.Text != "") || txt_phone.Text != "" || txt_address.Text != "")
+            {
+                if (pbl.update_CC(tableName, ID, u_txt_name.Text, txt_name.Text, txt_phone.Text, txt_address.Text, txt_old_amount.Text == "" ? "0" : txt_old_amount.Text, chk_admin.Text))
                 {
                     MessageBox.Show("Record Updated Successfully");
-                    DisplayData();
                     ClearData();
+                    DisplayData();
+                    
                     txt_searchCustomer.Focus();
                     if (txt_old_amount.Enabled)
                     {
@@ -93,9 +88,9 @@ namespace ArthiPOS.controls.dashboard
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-           
 
-            if (pbl.delete_CC(tableName,txt_id.Text))
+
+            if (pbl.delete_CC(tableName, txt_id.Text))
             {
                 msg.Text = "Record Deleted Successfully!";
                 DisplayData();
@@ -104,14 +99,14 @@ namespace ArthiPOS.controls.dashboard
             }
 
         }
-       
+
         private void DisplayData()
         {
 
             msg.Text = "";
 
             // cust_detailgrid.DataSource = dt;
-            if (cust_detailgrid.Columns["col_update"]!=null)
+            if (cust_detailgrid.Columns["col_update"] != null)
                 cust_detailgrid.Columns.Remove("col_update");
             if (cust_detailgrid.Columns["col_delete"] != null)
                 cust_detailgrid.Columns.Remove("col_delete");
@@ -121,12 +116,19 @@ namespace ArthiPOS.controls.dashboard
 
             if (tab4.SelectedIndex == 0)
             {
-                tbl = "SCustomer";
-                if (tableName == "tbl_client")
+                if(detail_type.SelectedIndex==0)
+                    tbl = "SCustomer";
+                else if (detail_type.SelectedIndex == 1)
                 {
-                    pageindex = 1;
-                    tbl = "SClient";
+                    if (tableName == "tbl_client")
+                    {
+                        pageindex = 1;
+                        tbl = "SClient";
+                    }
                 }
+                else if (detail_type.SelectedIndex == 2)
+                    tbl = "ClBipari";
+                
                 //addGridButton("col_delete", "Delete", "Delete", cust_detailgrid.Rows.Count + 1);
 
             }
@@ -162,8 +164,8 @@ namespace ArthiPOS.controls.dashboard
             //dt = new BLogic().searchRecords("", tbl, "",pageindex,pageSize);
             //cust_detailgrid.DataSource = dt;
 
-            loadGridData(pageindex,"",tbl);
-            
+            loadGridData(pageindex, "", tbl);
+
 
 
 
@@ -187,7 +189,7 @@ namespace ArthiPOS.controls.dashboard
             if (index < 0)
                 return;
             if (cust_detailgrid.Columns["col_update"] != null && e.ColumnIndex == cust_detailgrid.Columns["col_update"].Index)
-                {
+            {
                 if (tab4.SelectedIndex == 1)
                 {
                     productDisplay(index);
@@ -211,7 +213,7 @@ namespace ArthiPOS.controls.dashboard
                     string acccatname = cust_detailgrid.Rows[index].Cells[5].Value.ToString();
                     txt_typeid.Text = code;
                     txt_typename.Text = uname;
-                    txt_catid.Text=catid;
+                    txt_catid.Text = catid;
                     txt_account_cat_id.Text = acccatname;
                     lbl_acc_caid.Text = acccatid;
 
@@ -220,7 +222,7 @@ namespace ArthiPOS.controls.dashboard
             else if (cust_detailgrid.Columns["col_delete"] != null && e.ColumnIndex == cust_detailgrid.Columns["col_delete"].Index)
             {
                 //Do something with your button.
-                if (tab4.SelectedIndex==0)
+                if (tab4.SelectedIndex == 0)
                 {
                     string tbl = "tbl_customer";
                     if (tableName == "tbl_client")
@@ -234,14 +236,16 @@ namespace ArthiPOS.controls.dashboard
                     {
                         cust_detailgrid.Rows.RemoveAt(index);
                     }
-                }else if (tab4.SelectedIndex==1)
+                }
+                else if (tab4.SelectedIndex == 1)
                 {
                     string code = cust_detailgrid.Rows[index].Cells[2].Value.ToString();
                     if (pbl.p_product_Delete(code))
                     {
                         cust_detailgrid.Rows.RemoveAt(index);
                     }
-                }else if (tab4.SelectedIndex == 2)
+                }
+                else if (tab4.SelectedIndex == 2)
                 {
                     string code = cust_detailgrid.Rows[index].Cells[2].Value.ToString();
                     if (pbl.p_weight_Delete(code))
@@ -261,7 +265,7 @@ namespace ArthiPOS.controls.dashboard
         string clkey = "";
         public void showDatainFields(int index)
         {
-            if (tab4.SelectedIndex==0)
+            if (tab4.SelectedIndex == 0)
             {
 
                 ID = Convert.ToInt32(cust_detailgrid.Rows[index].Cells[0].Value.ToString());
@@ -271,9 +275,11 @@ namespace ArthiPOS.controls.dashboard
                 u_txt_name.Text = selectedRow.Cells[2].Value.ToString();
                 txt_phone.Text = selectedRow.Cells[3].Value.ToString();
                 txt_address.Text = selectedRow.Cells[4].Value.ToString();
-                txt_old_amount.Text = selectedRow.Cells[5].Value.ToString();
-                lbl_old_amount.Text = selectedRow.Cells[5].Value.ToString();
-
+                if (detail_type.SelectedIndex != 2)
+                {
+                    txt_old_amount.Text = selectedRow.Cells[5].Value.ToString();
+                    lbl_old_amount.Text = selectedRow.Cells[5].Value.ToString();
+                }
                 if (detail_type.SelectedIndex == 1)
                 {
                     string admin = selectedRow.Cells[7].Value.ToString();
@@ -293,15 +299,15 @@ namespace ArthiPOS.controls.dashboard
 
 
             }
-            else if (tab4.SelectedIndex==2)
+            else if (tab4.SelectedIndex == 2)
             {
                 ID = Convert.ToInt32(cust_detailgrid.Rows[index].Cells[0].Value.ToString());
                 txt_id.Text = "" + ID;
                 DataGridViewRow selectedRow = cust_detailgrid.Rows[index];
                 txt_ename.Text = selectedRow.Cells[1].Value.ToString();
                 txt_uname.Text = selectedRow.Cells[2].Value.ToString();
-                
-                
+
+
 
             }
             else if (tab4.SelectedIndex == 2)
@@ -317,13 +323,14 @@ namespace ArthiPOS.controls.dashboard
             }
             else if (tab4.SelectedIndex == 4)
             {
-                ID = Convert.ToInt32(cust_detailgrid.Rows[index].Cells[0].Value.ToString());
+                ID = Convert.ToInt32(cust_detailgrid.Rows[index].Cells[9].Value.ToString());
                 txt_typeid.Text = "" + ID;
                 DataGridViewRow selectedRow = cust_detailgrid.Rows[index];
-                txt_typename.Text = selectedRow.Cells[1].Value.ToString();
-                txt_catid.Text = selectedRow.Cells[3].Value.ToString();
-                string acccatid = cust_detailgrid.Rows[index].Cells[4].Value.ToString() == "" ?cust_detailgrid.Rows[index].Cells[4].Value.ToString():"-1";
+                txt_typename.Text = selectedRow.Cells[0].Value.ToString();
+                txt_catid.Text = selectedRow.Cells[10].Value.ToString();
+                string acccatid = selectedRow.Cells[8].Value.ToString();
                 lbl_acc_caid.Text = acccatid;
+                txt_account_cat_id.Text = selectedRow.Cells[4].Value.ToString();
 
 
 
@@ -347,8 +354,11 @@ namespace ArthiPOS.controls.dashboard
             string chongi = cust_detailgrid.Rows[index].Cells[11].Value.ToString();
             string munshiana = cust_detailgrid.Rows[index].Cells[12].Value.ToString();
             string marketFee = cust_detailgrid.Rows[index].Cells[13].Value.ToString();
+            string shopcomm = cust_detailgrid.Rows[index].Cells[14].Value.ToString();
+            string shoplabour = cust_detailgrid.Rows[index].Cells[15].Value.ToString();
 
-            AddProduct ap = new AddProduct(1, code, vegname, vegname_ur, pack, loc, freight, labour, bip_comm, cust_comm, laga, chongi, munshiana,marketFee);
+
+            AddProduct ap = new AddProduct(1, code, vegname, vegname_ur, pack, loc, freight, labour, bip_comm, cust_comm, laga, chongi, munshiana, marketFee, shopcomm, shoplabour);
             ap.ShowDialog();
 
         }
@@ -356,8 +366,8 @@ namespace ArthiPOS.controls.dashboard
 
         private void detail_type_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            
+
+
             //DisplayData();
         }
 
@@ -404,7 +414,8 @@ namespace ArthiPOS.controls.dashboard
             if (txt_searchCustomer.ContainsFocus)
             {
                 search = txt_searchCustomer.Text;
-            } if(cc_txt_name.ContainsFocus)
+            }
+            if (cc_txt_name.ContainsFocus)
             {
                 search = cc_txt_name.Text;
             }
@@ -413,10 +424,14 @@ namespace ArthiPOS.controls.dashboard
             if (tab4.SelectedIndex == 0)
             {
                 tbl = "SCustomer";
-                if (tableName == "tbl_client")
+                if (detail_type.SelectedIndex == 1)
                 {
                     pageindex = 1;
                     tbl = "SClient";
+                }else if ( detail_type.SelectedIndex == 2)
+                {
+                    pageindex = 1;
+                    tbl = "ClBipari";
                 }
             }
             else if (tab4.SelectedIndex == 1)
@@ -431,12 +446,12 @@ namespace ArthiPOS.controls.dashboard
             {
                 tbl = "ExpenseType";
             }
-                // DataTable dt= bal.searchRecords("", tbl, search,pageindex,pageSize);
-                // cust_detailgrid.DataSource = dt;
+            // DataTable dt= bal.searchRecords("", tbl, search,pageindex,pageSize);
+            // cust_detailgrid.DataSource = dt;
 
-                loadGridData(pageindex, search,tbl);
+            loadGridData(pageindex, search, tbl);
 
-            
+
         }
 
 
@@ -552,7 +567,7 @@ namespace ArthiPOS.controls.dashboard
         int indexDel = -1;
         private void DeleteSelectedCell()
         {
-            
+
             int index = cust_detailgrid.SelectedRows[2].Index;// get the Row Index
             indexDel = index;
             cust_detailgrid.Rows.RemoveAt(index);
@@ -563,7 +578,7 @@ namespace ArthiPOS.controls.dashboard
             showDatainFields(index);
         }
 
-        int currentrow = 0, gridRow=0;
+        int currentrow = 0, gridRow = 0;
         /* private void selectUpRow(DataGridView grid)
          {
              DataGridView dgv = grid;
@@ -693,7 +708,7 @@ namespace ArthiPOS.controls.dashboard
                     selectCellValue();
 
                 }
-                if (e.KeyCode.Equals(Keys.Control) | e.KeyCode.Equals(Keys.Delete) )
+                if (e.KeyCode.Equals(Keys.Control) | e.KeyCode.Equals(Keys.Delete))
                 {
                     DeleteSelectedCell();
 
@@ -739,12 +754,12 @@ namespace ArthiPOS.controls.dashboard
                     }
                 }
             }
-           /* else if (cc_txt_name.Focused && (keyData & Keys.Enter) == Keys.Enter && (keyData & Keys.M) != Keys.M)
-            {
-                cc_txt_name_Click(this, new EventArgs());
+            /* else if (cc_txt_name.Focused && (keyData & Keys.Enter) == Keys.Enter && (keyData & Keys.M) != Keys.M)
+             {
+                 cc_txt_name_Click(this, new EventArgs());
 
-            }*/
-            
+             }*/
+
             else if (txt_searchCustomer.Focused && (keyData & Keys.Enter) == Keys.Enter)
             {
                 txt_name.Focus();
@@ -757,15 +772,23 @@ namespace ArthiPOS.controls.dashboard
                 cust_detailgrid.FirstDisplayedScrollingRowIndex = 0;
                 cust_detailgrid.Focus();
             }
-            else if((txt_searchCustomer.Focused || cust_detailgrid.Focused) && keyData == Keys.Left)
+            else if ((txt_searchCustomer.Focused || cust_detailgrid.Focused) && keyData == Keys.Left)
             {
                 string searchx = txt_searchCustomer.Text;
                 string tbl = "SCustomer";
-                if (tableName == "tbl_client")
+                if (detail_type.SelectedIndex == 0)
+                {
+                    tbl = "SCustomer";
+                }
+                else if(detail_type.SelectedIndex==1)
                 {
                     tbl = "SClient";
                 }
-                if (pageindex>1)
+                else if(detail_type.SelectedIndex==2)
+                {
+                    tbl = "ClBipari";
+                }
+                if (pageindex > 1)
                 {
                     --pageindex;
 
@@ -781,16 +804,16 @@ namespace ArthiPOS.controls.dashboard
                 {
                     tbl = "SClient";
                 }
-                if (pageindex< totalPage)
+                if (pageindex < totalPage)
                 {
                     ++pageindex;
                 }
                 loadGridData(pageindex, searchx, tbl);
 
             }
-            else if((cc_txt_name.Focused || txt_quick_amount.Focused) && (keyData==(Keys.Control | Keys.Enter)))
+            else if ((cc_txt_name.Focused || txt_quick_amount.Focused) && (keyData == (Keys.Control | Keys.Enter)))
             {
-                cc_txt_name_Click(this,new EventArgs());
+                cc_txt_name_Click(this, new EventArgs());
                 txt_name.Focus();
             }
 
@@ -814,7 +837,7 @@ namespace ArthiPOS.controls.dashboard
             }
             else
             {
-                if(keyData == Keys.Enter)
+                if (keyData == Keys.Enter)
                     changeFocus();
             }
 
@@ -843,22 +866,29 @@ namespace ArthiPOS.controls.dashboard
 
         private void cc_txt_name_Click(object sender, EventArgs e)
         {
-            if (tab4.SelectedIndex==0)
+            if (detail_type.SelectedIndex == 2)
+                tableName = "tbl_client_bipari";
+            else if (detail_type.SelectedIndex == 1)
+                tableName = "tbl_client";
+            else
+                tableName = "tbl_customer";
+            if (tab4.SelectedIndex == 0)
             {
                 if (cc_txt_name.Text == "")
                 {
                     return;
                 }
-                if (txt_quick_amount.Text=="")
+                if (txt_quick_amount.Text == "")
                 {
                     txt_quick_amount.Text = "0";
                 }
 
 
-                bool chk= pbl.insert_CC_OldRecord(tableName, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text), Admin.Date);
-                
+                bool chk = pbl.insert_CC_OldRecord(tableName, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text), Admin.Date);
 
-            }else if (tab4.SelectedIndex == 1)
+
+            }
+            else if (tab4.SelectedIndex == 1)
             {
                 if (cc_txt_name.Text == "")
                 {
@@ -871,15 +901,27 @@ namespace ArthiPOS.controls.dashboard
 
 
 
-                bool chk = pbl.insert_CC_OldRecord(tableName, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text),Admin.Date);
+                bool chk = pbl.insert_CC_OldRecord(tableName, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text), Admin.Date);
 
 
             }
             else if (tab4.SelectedIndex == 2)
             {
+                if (cc_txt_name.Text == "")
+                {
+                    return;
+                }
+                if (txt_quick_amount.Text == "")
+                {
+                    txt_quick_amount.Text = "0";
+                }
+
+
+
+                bool chk = pbl.insert_CC_OldRecord(tableName, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text), Admin.Date);
 
             }
-            
+
             DisplayData();
 
             cc_txt_name.Clear();
@@ -904,8 +946,8 @@ namespace ArthiPOS.controls.dashboard
         {
             if (ID != 0 && (u_txt_name.Text != "" || txt_name.Text != "") || txt_phone.Text != "" || txt_address.Text != "")
             {
-                int oldamount = 0, amount=0;
-                if (txt_receive_amount.Text=="")
+                int oldamount = 0, amount = 0;
+                if (txt_receive_amount.Text == "")
                 {
                     MessageBox.Show("Unable to Update");
                     return;
@@ -915,8 +957,8 @@ namespace ArthiPOS.controls.dashboard
 
                 oldamount = int.Parse(txt_old_amount.Text);
                 amount = int.Parse(txt_receive_amount.Text);
-                
-                if (pbl.AddClAmount(tableName,"client", ID, u_txt_name.Text, txt_name.Text, txt_phone.Text, txt_address.Text, amount, today_date.Text,key,"", nameof(BillKey.EnumUser.ClientInvest)))
+
+                if (pbl.AddClAmount(tableName, "client", ID, u_txt_name.Text, txt_name.Text, txt_phone.Text, txt_address.Text, amount, today_date.Text, key, "", nameof(BillKey.EnumUser.ClientInvest)))
                 {
                     bal.addTodaySales(date);
                     bal.update_today_sales(date);
@@ -936,29 +978,38 @@ namespace ArthiPOS.controls.dashboard
         int pageindex = 1;
         int pageSize = 20;
 
-        public void loadGridData(int index,string search,string action)
+        public void loadGridData(int index, string search, string action)
         {
             try
             {
                 pageindex = index;
                 cust_detailgrid.DataSource = null;
                 List<Object> obj = (List<object>)new BLogic().searchProfile("", action, search, index, pageSize);
-                DataTable dt = (DataTable)obj[1];
-                //if (tabControl1.SelectedIndex == 0)
+                DataTable dt = null;
+                if (detail_type.SelectedIndex==2)
                 {
-                    
+                    dt = (DataTable)obj[1];
 
                 }
-                
+                else
+                {
+                    dt = (DataTable)obj[1];
+                }
+                //if (tabControl1.SelectedIndex == 0)
+                {
 
-               cust_detailgrid.DataSource = dt;
 
-               
-                if (tab4.SelectedIndex==0)
+                }
+
+
+                cust_detailgrid.DataSource = dt;
+
+
+                if (tab4.SelectedIndex == 0)
                     updateGrid();
 
                 this.PopulatePager((int)obj[0], index);
-               
+
             }
             catch (Exception ex)
             {
@@ -1035,7 +1086,7 @@ namespace ArthiPOS.controls.dashboard
             }
 
             //Clear existing Pager Buttons.
-            pnlPager.Controls.Clear();
+            //pnlPager.Controls.Clear();
 
             //Loop and add Buttons for Pager.
             int count = 0;
@@ -1048,7 +1099,7 @@ namespace ArthiPOS.controls.dashboard
                 btnPage.Text = page.Text;
                 btnPage.Enabled = !page.Selected;
                 btnPage.Click += new System.EventHandler(this.Page_Click);
-                pnlPager.Controls.Add(btnPage);
+                //pnlPager.Controls.Add(btnPage);
                 count++;
             }
 
@@ -1065,7 +1116,7 @@ namespace ArthiPOS.controls.dashboard
                 pageindex = 1;
                 tbl = "SClient";
             }
-            loadGridData(int.Parse(btnPager.Name),"",tbl);
+            loadGridData(int.Parse(btnPager.Name), "", tbl);
         }
 
         public class Page
@@ -1092,7 +1143,7 @@ namespace ArthiPOS.controls.dashboard
             }
             else if (tab4.SelectedIndex == 2)
             {
-                panel5.Enabled = false ;
+                panel5.Enabled = false;
                 DisplayData();
             }
             else if (tab4.SelectedIndex == 3)
@@ -1115,7 +1166,7 @@ namespace ArthiPOS.controls.dashboard
         }
 
 
-        private void addGridButton(string id,string header,string text,int columnPosition)
+        private void addGridButton(string id, string header, string text, int columnPosition)
         {
             /*DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.Name = id;
@@ -1159,14 +1210,15 @@ namespace ArthiPOS.controls.dashboard
 
         private void btn_addinv_Click(object sender, EventArgs e)
         {
+
             string id = txt_id.Text;
-            string name = u_txt_name.Text ;
+            string name = u_txt_name.Text;
             string amount = txt_old_amount.Text;
-            if (id=="")
+            if (id == "")
             {
                 return;
             }
-            AddInvestment add = new AddInvestment(today_date.Text, id, name, amount == "" ? 0 : int.Parse(amount),txt_phone.Text,txt_address.Text,txt_ename.Text);
+            AddInvestment add = new AddInvestment(today_date.Text, id, name, amount == "" ? 0 : int.Parse(amount), txt_phone.Text, txt_address.Text, txt_ename.Text);
             add.ShowDialog();
             DisplayData();
             txt_searchCustomer.Focus();
@@ -1187,6 +1239,7 @@ namespace ArthiPOS.controls.dashboard
 
             }
             else
+            if (detail_type.SelectedIndex == 1)
             {
                 detail_typeenum = DetailType.Client;
                 tableName = "tbl_client";
@@ -1195,6 +1248,17 @@ namespace ArthiPOS.controls.dashboard
                 btn_addinv.Enabled = true;
                 loadGridData(pageindex, "", "SClient");
             }
+            else
+            if (detail_type.SelectedIndex == 2)
+            {
+                detail_typeenum = DetailType.Client;
+                tableName = "tbl_client_bipari";
+                pan_add_amount.Enabled = true;
+                chk_admin.Enabled = true;
+                btn_addinv.Enabled = true;
+                loadGridData(pageindex, "", "ClBipari");
+            }
+
             txt_searchCustomer.Focus();
             txt_id.Text = "";
             txt_name.Text = "";
@@ -1230,7 +1294,7 @@ namespace ArthiPOS.controls.dashboard
 
         private void btn_oldrec_Click(object sender, EventArgs e)
         {
-            ProfileCCAdd pr = new ProfileCCAdd(detail_type.SelectedIndex,tableName);
+            ProfileCCAdd pr = new ProfileCCAdd(detail_type.SelectedIndex, tableName);
             pr.ShowDialog();
             DisplayData();
         }
@@ -1265,7 +1329,7 @@ namespace ArthiPOS.controls.dashboard
             if (name == "")
                 return;
 
-            bal.p_weigt_CRUD("ExpTypeUPDATE", id,name, catid, accid);
+            bal.p_weigt_CRUD("ExpTypeUPDATE", id, name, catid, accid);
             DisplayData();
 
         }
@@ -1278,13 +1342,13 @@ namespace ArthiPOS.controls.dashboard
             if (name == "")
                 return;
 
-            bal.p_weigt_CRUD("ExpTypeDel", id, name,"","");
+            bal.p_weigt_CRUD("ExpTypeDel", id, name, "", "");
             DisplayData();
         }
 
         private void txt_catid_TextChanged(object sender, EventArgs e)
         {
-             
+
         }
 
         private void txt_catid_KeyDown(object sender, KeyEventArgs e)
@@ -1299,7 +1363,7 @@ namespace ArthiPOS.controls.dashboard
         private string temp = "";
         public void searchDialog(int action, string searchTxt)
         {
-            
+
 
 
 
@@ -1330,6 +1394,18 @@ namespace ArthiPOS.controls.dashboard
             {
                 searchDialog(9, txt_account_cat_id.Text);
             }
+        }
+
+        private void btn_trans_account_Click(object sender, EventArgs e)
+        {
+            TransactionEntryUpdate t = new TransactionEntryUpdate();
+            t.ShowDialog();
+        }
+
+        private void btn_acc_trans_exp_Click(object sender, EventArgs e)
+        {
+            AccountExpenseTransactionForm t = new AccountExpenseTransactionForm();
+            t.ShowDialog();
         }
 
         private void btn_del_weight_Click(object sender, EventArgs e)

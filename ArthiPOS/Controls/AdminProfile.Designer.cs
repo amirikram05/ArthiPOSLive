@@ -32,19 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chk_security = new System.Windows.Forms.CheckBox();
             this.chk_accClosing = new System.Windows.Forms.CheckBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.prog_exce = new System.Windows.Forms.ProgressBar();
-            this.dg_backupdetails = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_passcode = new ArthiPOS.Controls.UrduTextBox();
-            this.btn_datamove = new Bunifu.Framework.UI.BunifuImageButton();
-            this.txt_detail = new ArthiPOS.Controls.UrduTextBox();
-            this.last_date = new MetroFramework.Controls.MetroDateTime();
-            this.date_start = new MetroFramework.Controls.MetroDateTime();
-            this.label2 = new System.Windows.Forms.Label();
             this.chk_db = new System.Windows.Forms.ComboBox();
             this.btn_billpagesetting = new Bunifu.Framework.UI.BunifuFlatButton();
             this.chk_savelocal = new System.Windows.Forms.CheckBox();
@@ -105,11 +92,8 @@
             this.lbl_license = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
+            this.lbl_path_default = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_backupdetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_datamove)).BeginInit();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -130,9 +114,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbl_path_default);
             this.panel1.Controls.Add(this.chk_security);
             this.panel1.Controls.Add(this.chk_accClosing);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.chk_db);
             this.panel1.Controls.Add(this.btn_billpagesetting);
             this.panel1.Controls.Add(this.chk_savelocal);
@@ -187,149 +171,6 @@
             this.chk_accClosing.UseVisualStyleBackColor = true;
             this.chk_accClosing.Click += new System.EventHandler(this.chk_accClosing_Click);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.panel14);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(257, 198);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(612, 411);
-            this.flowLayoutPanel1.TabIndex = 125;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.prog_exce);
-            this.panel14.Controls.Add(this.dg_backupdetails);
-            this.panel14.Controls.Add(this.label6);
-            this.panel14.Controls.Add(this.label5);
-            this.panel14.Controls.Add(this.label4);
-            this.panel14.Controls.Add(this.txt_passcode);
-            this.panel14.Controls.Add(this.btn_datamove);
-            this.panel14.Controls.Add(this.txt_detail);
-            this.panel14.Controls.Add(this.last_date);
-            this.panel14.Controls.Add(this.date_start);
-            this.panel14.Controls.Add(this.label2);
-            this.panel14.Location = new System.Drawing.Point(3, 3);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(609, 408);
-            this.panel14.TabIndex = 0;
-            // 
-            // prog_exce
-            // 
-            this.prog_exce.Location = new System.Drawing.Point(6, 33);
-            this.prog_exce.Name = "prog_exce";
-            this.prog_exce.Size = new System.Drawing.Size(181, 23);
-            this.prog_exce.TabIndex = 304;
-            // 
-            // dg_backupdetails
-            // 
-            this.dg_backupdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_backupdetails.Location = new System.Drawing.Point(7, 99);
-            this.dg_backupdetails.Name = "dg_backupdetails";
-            this.dg_backupdetails.Size = new System.Drawing.Size(599, 306);
-            this.dg_backupdetails.TabIndex = 303;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(206, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 31);
-            this.label6.TabIndex = 302;
-            this.label6.Text = "تفصیل ‌";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(386, 31);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 31);
-            this.label5.TabIndex = 301;
-            this.label5.Text = "اخری ‌تاریخ";
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(523, 31);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(83, 30);
-            this.label4.TabIndex = 300;
-            this.label4.Text = "ابتدائی تاریخ";
-            // 
-            // txt_passcode
-            // 
-            this.txt_passcode.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_passcode.IsNumeric = false;
-            this.txt_passcode.LangEnglish = true;
-            this.txt_passcode.Location = new System.Drawing.Point(47, 62);
-            this.txt_passcode.Name = "txt_passcode";
-            this.txt_passcode.PasswordChar = '*';
-            this.txt_passcode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_passcode.Size = new System.Drawing.Size(69, 31);
-            this.txt_passcode.TabIndex = 298;
-            this.txt_passcode.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txt_passcode.WaterMarkText = "پاسورڈ ";
-            // 
-            // btn_datamove
-            // 
-            this.btn_datamove.BackColor = System.Drawing.Color.Transparent;
-            this.btn_datamove.Image = global::ArthiPOS.Properties.Resources.add;
-            this.btn_datamove.ImageActive = null;
-            this.btn_datamove.Location = new System.Drawing.Point(7, 62);
-            this.btn_datamove.Name = "btn_datamove";
-            this.btn_datamove.Size = new System.Drawing.Size(34, 31);
-            this.btn_datamove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btn_datamove.TabIndex = 297;
-            this.btn_datamove.TabStop = false;
-            this.btn_datamove.Zoom = 10;
-            this.btn_datamove.Click += new System.EventHandler(this.btn_datamove_Click);
-            // 
-            // txt_detail
-            // 
-            this.txt_detail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_detail.IsNumeric = false;
-            this.txt_detail.LangEnglish = false;
-            this.txt_detail.Location = new System.Drawing.Point(122, 64);
-            this.txt_detail.Multiline = true;
-            this.txt_detail.Name = "txt_detail";
-            this.txt_detail.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_detail.Size = new System.Drawing.Size(180, 29);
-            this.txt_detail.TabIndex = 296;
-            this.txt_detail.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txt_detail.WaterMarkText = "Description";
-            // 
-            // last_date
-            // 
-            this.last_date.CustomFormat = "yyyy-MM-dd";
-            this.last_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.last_date.Location = new System.Drawing.Point(460, 64);
-            this.last_date.MinimumSize = new System.Drawing.Size(0, 29);
-            this.last_date.Name = "last_date";
-            this.last_date.Size = new System.Drawing.Size(146, 29);
-            this.last_date.TabIndex = 117;
-            // 
-            // date_start
-            // 
-            this.date_start.CustomFormat = "yyyy-MM-dd";
-            this.date_start.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.date_start.Location = new System.Drawing.Point(308, 64);
-            this.date_start.MinimumSize = new System.Drawing.Size(0, 29);
-            this.date_start.Name = "date_start";
-            this.date_start.Size = new System.Drawing.Size(146, 29);
-            this.date_start.TabIndex = 116;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(5, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(429, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Reset Record and Move Record To Backup DB";
-            // 
             // chk_db
             // 
             this.chk_db.FormattingEnabled = true;
@@ -364,7 +205,7 @@
             this.btn_billpagesetting.IconVisible = true;
             this.btn_billpagesetting.IconZoom = 60D;
             this.btn_billpagesetting.IsTab = false;
-            this.btn_billpagesetting.Location = new System.Drawing.Point(686, 115);
+            this.btn_billpagesetting.Location = new System.Drawing.Point(692, 168);
             this.btn_billpagesetting.Name = "btn_billpagesetting";
             this.btn_billpagesetting.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(100)))), ((int)(((byte)(30)))));
             this.btn_billpagesetting.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -509,7 +350,7 @@
             this.btn_browse.IconVisible = true;
             this.btn_browse.IconZoom = 90D;
             this.btn_browse.IsTab = false;
-            this.btn_browse.Location = new System.Drawing.Point(668, 155);
+            this.btn_browse.Location = new System.Drawing.Point(624, 120);
             this.btn_browse.Name = "btn_browse";
             this.btn_browse.Normalcolor = System.Drawing.Color.DarkGray;
             this.btn_browse.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
@@ -527,7 +368,7 @@
             // 
             this.panel11.Controls.Add(this.btn_set_path);
             this.panel11.Controls.Add(this.lbl_link_path);
-            this.panel11.Location = new System.Drawing.Point(257, 107);
+            this.panel11.Location = new System.Drawing.Point(257, 195);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(423, 44);
             this.panel11.TabIndex = 117;
@@ -553,7 +394,7 @@
             // txt_restore_file_path
             // 
             this.txt_restore_file_path.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_restore_file_path.Location = new System.Drawing.Point(485, 161);
+            this.txt_restore_file_path.Location = new System.Drawing.Point(439, 126);
             this.txt_restore_file_path.Name = "txt_restore_file_path";
             this.txt_restore_file_path.Size = new System.Drawing.Size(177, 26);
             this.txt_restore_file_path.TabIndex = 30;
@@ -579,13 +420,13 @@
             this.btn_restore.IconVisible = true;
             this.btn_restore.IconZoom = 90D;
             this.btn_restore.IsTab = false;
-            this.btn_restore.Location = new System.Drawing.Point(737, 157);
+            this.btn_restore.Location = new System.Drawing.Point(693, 120);
             this.btn_restore.Name = "btn_restore";
             this.btn_restore.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(100)))), ((int)(((byte)(30)))));
             this.btn_restore.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btn_restore.OnHoverTextColor = System.Drawing.Color.White;
             this.btn_restore.selected = false;
-            this.btn_restore.Size = new System.Drawing.Size(132, 36);
+            this.btn_restore.Size = new System.Drawing.Size(173, 36);
             this.btn_restore.TabIndex = 28;
             this.btn_restore.Text = "Restore";
             this.btn_restore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -627,13 +468,13 @@
             this.btn_backup.IconVisible = true;
             this.btn_backup.IconZoom = 90D;
             this.btn_backup.IsTab = false;
-            this.btn_backup.Location = new System.Drawing.Point(260, 154);
+            this.btn_backup.Location = new System.Drawing.Point(267, 119);
             this.btn_backup.Name = "btn_backup";
             this.btn_backup.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btn_backup.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.btn_backup.OnHoverTextColor = System.Drawing.Color.White;
             this.btn_backup.selected = false;
-            this.btn_backup.Size = new System.Drawing.Size(219, 39);
+            this.btn_backup.Size = new System.Drawing.Size(166, 39);
             this.btn_backup.TabIndex = 25;
             this.btn_backup.Text = "Backup";
             this.btn_backup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1076,6 +917,16 @@
             this.bunifuImageButton1.TabStop = false;
             this.bunifuImageButton1.Zoom = 10;
             // 
+            // lbl_path_default
+            // 
+            this.lbl_path_default.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_path_default.Location = new System.Drawing.Point(259, 161);
+            this.lbl_path_default.Name = "lbl_path_default";
+            this.lbl_path_default.Size = new System.Drawing.Size(421, 28);
+            this.lbl_path_default.TabIndex = 127;
+            this.lbl_path_default.TabStop = true;
+            this.lbl_path_default.Text = "Path";
+            // 
             // AdminProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1084,14 +935,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "AdminProfile";
             this.Size = new System.Drawing.Size(878, 676);
-            this.Load += new System.EventHandler(this.AdminProfile_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_backupdetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_datamove)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
@@ -1175,20 +1020,8 @@
         private System.Windows.Forms.CheckBox chk_savelocal;
         private Bunifu.Framework.UI.BunifuFlatButton btn_billpagesetting;
         private System.Windows.Forms.ComboBox chk_db;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel14;
-        private Controls.UrduTextBox txt_passcode;
-        private Bunifu.Framework.UI.BunifuImageButton btn_datamove;
-        private Controls.UrduTextBox txt_detail;
-        private MetroFramework.Controls.MetroDateTime last_date;
-        private MetroFramework.Controls.MetroDateTime date_start;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dg_backupdetails;
-        private System.Windows.Forms.ProgressBar prog_exce;
         private System.Windows.Forms.CheckBox chk_accClosing;
         private Bunifu.Framework.UI.BunifuCustomLabel lbl_trade_mark;
+        private System.Windows.Forms.LinkLabel lbl_path_default;
     }
 }

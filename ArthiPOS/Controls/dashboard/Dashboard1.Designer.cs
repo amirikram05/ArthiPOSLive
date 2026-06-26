@@ -1227,7 +1227,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Dashboard1";
             this.Size = new System.Drawing.Size(1199, 656);
-            this.Load += new System.EventHandler(this.Dsahboard1_Load);
+            //this.Load += new System.EventHandler(this.Dsahboard1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1240,6 +1240,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.refresh();
 
         }
 

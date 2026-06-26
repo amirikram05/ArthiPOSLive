@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace ArthiPOS.Utill
 {
@@ -44,5 +39,7 @@ namespace ArthiPOS.Utill
         public string shopno { get; set; }
         public string email { get; set; }
         public string company { get; set; }
+        public string web_id { get; set; }
+
     }
 }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataMember
+﻿namespace DataMember
 {
     public class Expense
     {
 
-        public string labour_name="";
+        public string labour_name = "";
         public string rent_name = "";
         public string advance = "";
         public string clerk_name = "";
@@ -34,6 +28,6 @@ namespace DataMember
 
 
 
-        
+
     }
 }

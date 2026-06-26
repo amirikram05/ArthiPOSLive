@@ -1,21 +1,33 @@
-﻿using ArthiPOS.callback;
-using ArthiPOS.Properties;
+﻿using ArthiPOS.Properties;
 using BAL;
 using CommonUtilities;
-using DataMember;
 using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.UI.WebControls.Expressions;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
+    public class Item
+    {
+        public string id;
+        public string name;
+        public string cateUrdu;
+        public string catedetailEng;
+        public string lblcatedetail;
+        public string cate_id;
+        public string cate_name;
+        public string transaction_id;
+        public string transname;
+        public string account_trans_id;
+        public string account_trans_name;
+        public string cashtype;
+        
+    }
     public partial class Search : Form
     {
         private BLogic bal;
@@ -57,6 +69,43 @@ namespace ArthiPOS.Controls.dashboard
             LocalizeNameGrid();
             txt_searach.Text = search;
         }
+        //private int bipari_id=0;
+        public Search(int searchType, string search, int clientType, int bipari_id)
+        {
+            this.
+            InitializeComponent();
+            bal = new BLogic();
+            txt_searach.Focus();
+            this.searchType = searchType;
+            this.clientType = clientType;
+            //this.bipari_id = bipari_id;
+            txt_bip_id.Text = bipari_id + "";
+            //comb_select_searchtype.SelectedIndex = searchType;
+            comb_select_searchtype.TabIndex = searchType;
+
+            searchccpw();
+            LocalizeNameGrid();
+            txt_searach.Text = search;
+        }
+        private string city_product;
+        public Search(int searchType, string search, int clientType, int bipari_id,string city)
+        {
+            this.
+            InitializeComponent();
+            bal = new BLogic();
+            txt_searach.Focus();
+            this.searchType = searchType;
+            this.clientType = clientType;
+            //this.bipari_id = bipari_id;
+            txt_bip_id.Text = bipari_id + "";
+            //comb_select_searchtype.SelectedIndex = searchType;
+            comb_select_searchtype.TabIndex = searchType;
+            city_product = city;
+
+            searchccpw();
+            LocalizeNameGrid();
+            txt_searach.Text = search;
+        }
 
 
         public Search(string date, int searchType, string search)
@@ -88,7 +137,14 @@ namespace ArthiPOS.Controls.dashboard
         private string account_transactionname = "";
         private string address = "";
         private int oldamount = 0;
+        private Item itemsdetail;
 
+        public Item ItemsD
+        {
+            get { return itemsdetail; }
+            set { itemsdetail = value; }
+
+        }
 
         public string ExpenseID
         {
@@ -110,7 +166,8 @@ namespace ArthiPOS.Controls.dashboard
             get { return ramount; }
             set { ramount = value; }
         }
-        public string Id {
+        public string Id
+        {
             get { return id; }
             set { id = value; }
         }
@@ -134,16 +191,19 @@ namespace ArthiPOS.Controls.dashboard
             get { return transid; }
             set { transid = value; }
         }
-        public string Name {
+        public string Name
+        {
             get { return name; }
             set { name = value; }
         }
         public string DetailsEng { get; private set; }
         public string DetailsUrdu { get; private set; }
 
-        public string Type {
-            get {return type ; }
-            set { type = value; } }
+        public string Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
 
         public string Rent { get; private set; }
         public string Labour { get; private set; }
@@ -153,6 +213,8 @@ namespace ArthiPOS.Controls.dashboard
         public string Chongi { get; private set; }
         public string Munshiana { get; private set; }
         public string MarketFee { get; private set; }
+        public string ShopComm { get; private set; }
+        public string ShopLabour { get; private set; }
 
         public string MSG { get; private set; }
 
@@ -168,13 +230,27 @@ namespace ArthiPOS.Controls.dashboard
                 {
                     Id = selectedRow.Cells[0].Value.ToString();
                     Name = selectedRow.Cells[1].Value.ToString();
-                    RAmount = int.Parse(selectedRow.Cells[2].Value.ToString()==""?"0": selectedRow.Cells[2].Value.ToString());
-                    if (selectedRow.Cells.Count > 3) { 
-                        Address = selectedRow.Cells[4].Value.ToString();
+                    RAmount = int.Parse(selectedRow.Cells[2].Value.ToString() == "" ? "0" : selectedRow.Cells[2].Value.ToString());
+                    if (selectedRow.Cells.Count > 3)
+                    {
                         OldAmount = int.Parse(selectedRow.Cells[3].Value.ToString() == "" ? "0" : selectedRow.Cells[3].Value.ToString());
+                        Address = selectedRow.Cells[4].Value.ToString();
+
                     }
                 }
-                else 
+                else if(searchType==111)
+                {
+                    Id = selectedRow.Cells[0].Value.ToString();
+                    Name = selectedRow.Cells[2].Value.ToString();
+                    RAmount = int.Parse(selectedRow.Cells[3].Value.ToString() == "" ? "0" : selectedRow.Cells[3].Value.ToString());
+                    if (selectedRow.Cells.Count > 3)
+                    {
+                        OldAmount = int.Parse(selectedRow.Cells[4].Value.ToString() == "" ? "0" : selectedRow.Cells[4].Value.ToString());
+                        Address = selectedRow.Cells[5].Value.ToString();
+
+                    }
+                }
+                else
                 if (searchType == 3)
                 {
                     Id = selectedRow.Cells[0].Value.ToString();
@@ -188,7 +264,8 @@ namespace ArthiPOS.Controls.dashboard
                     Chongi = selectedRow.Cells[11].Value.ToString();
                     Munshiana = selectedRow.Cells[12].Value.ToString();
                     MarketFee = selectedRow.Cells[13].Value.ToString();
-
+                    ShopComm = selectedRow.Cells[14].Value.ToString();
+                    ShopLabour = selectedRow.Cells[15].Value.ToString();
 
                 }
                 else if (searchType == 4)
@@ -198,18 +275,34 @@ namespace ArthiPOS.Controls.dashboard
                 }
                 else if (searchType == 5)
                 {
-                    Id = selectedRow.Cells[0].Value.ToString();
-                    Name = selectedRow.Cells[1].Value.ToString();
-                    ExpenseID= selectedRow.Cells[3].Value.ToString();
+                    Id = selectedRow.Cells[9].Value.ToString();
+                    Name = selectedRow.Cells[0].Value.ToString();
+                    ExpenseID = selectedRow.Cells[10].Value.ToString();
                     //Transid = selectedRow.Cells[4].Value.ToString();
                     //AccountTransactionid = selectedRow.Cells[5].Value.ToString();
                     //AccountTransactionName = selectedRow.Cells[5].Value.ToString();
+                    this.ItemsD = new Item();
+                    itemsdetail.id= selectedRow.Cells[9].Value.ToString();
+                    ItemsD.name= selectedRow.Cells[0].Value.ToString();
+                    ItemsD.cate_id = selectedRow.Cells[10].Value.ToString();
+                    ItemsD.cate_name = selectedRow.Cells[2].Value.ToString();
+                    ItemsD.cateUrdu = selectedRow.Cells[1].Value.ToString();
+                    ItemsD.account_trans_id = selectedRow.Cells[7].Value.ToString();
+                    ItemsD.account_trans_name = selectedRow.Cells[3].Value.ToString();
+                    ItemsD.transaction_id = selectedRow.Cells[6].Value.ToString();
+                    ItemsD.transname = selectedRow.Cells[4].Value.ToString();
+                    ItemsD.cashtype = selectedRow.Cells[2].Value.ToString()+" "+ selectedRow.Cells[5].Value.ToString();
+
+
+
+
+
                 }
                 else if (searchType == 6)
                 {
                     Id = selectedRow.Cells[0].Value.ToString();
                     Name = selectedRow.Cells[1].Value.ToString();
-                    RAmount= int.Parse(selectedRow.Cells[2].Value.ToString());
+                    RAmount = int.Parse(selectedRow.Cells[2].Value.ToString());
                 }
                 else if (searchType == 7)
                 {
@@ -223,7 +316,7 @@ namespace ArthiPOS.Controls.dashboard
                     DetailsUrdu = selectedRow.Cells[1].Value.ToString();
                     DetailsEng = selectedRow.Cells[2].Value.ToString();
                     Name = selectedRow.Cells[3].Value.ToString();
-                    Type= selectedRow.Cells[4].Value.ToString();
+                    Type = selectedRow.Cells[4].Value.ToString();
                     AccountTransactionid = selectedRow.Cells[5].Value.ToString();
                     AccountTransactionName = selectedRow.Cells[6].Value.ToString();
                     Transid = selectedRow.Cells[7].Value.ToString();
@@ -235,15 +328,24 @@ namespace ArthiPOS.Controls.dashboard
                     Id = selectedRow.Cells[0].Value.ToString();
                     TransName = selectedRow.Cells[1].Value.ToString();
                 }
-
+                else if (searchType == 101)
+                {
+                    Id = selectedRow.Cells[0].Value.ToString();
+                    Name = selectedRow.Cells[1].Value.ToString();
+                }
+                else if(searchType==102)
+                {
+                    Id = selectedRow.Cells[0].Value.ToString();
+                    Name = selectedRow.Cells[1].Value.ToString();
+                }
 
             }
-            
+
         }
 
         private void Search_Load(object sender, EventArgs e)
         {
-            string[] sort= LogUtill.getSorSearch();
+            string[] sort = LogUtill.getSorSearch();
 
             if (sort[1] == "asc")
                 rd_asc.Checked = true;
@@ -284,6 +386,7 @@ namespace ArthiPOS.Controls.dashboard
                     return true;
                 case Keys.Enter:
                     searchCategory(txt_searach.Text);
+
                     this.Close();
                     return true;
                 case Keys.Tab:
@@ -291,7 +394,8 @@ namespace ArthiPOS.Controls.dashboard
                     {
                         txt_address.Focus();
                         txt_address.SelectAll();
-                    }else
+                    }
+                    else
                      if (txt_address.ContainsFocus)
                     {
                         txt_searach.Focus();
@@ -367,7 +471,7 @@ namespace ArthiPOS.Controls.dashboard
                 dgv.ClearSelection();
                 dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
                 grid.FirstDisplayedScrollingRowIndex = rowIndex - 1;
-                
+
                 if (grid.Name == "grid_shop")
                 {
                     //gridRow--;
@@ -398,7 +502,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
                 grid.FirstDisplayedScrollingRowIndex = rowIndex + 1;
-                
+
                 if (grid.Name == "grid_shop")
                 {
                     //gridRow++;
@@ -422,11 +526,23 @@ namespace ArthiPOS.Controls.dashboard
 
         private void searchccpw()
         {
-            if (searchType == 1 || searchType == 0 )
+           if (searchType == 1 || searchType == 0 || searchType == 111)
             {
                 if (searchType == 0)
                     searchType = 1;
-                grid_shop.DataSource = new BLogic().searchRecords(""+clientType, "Client", txt_searach.Text, pageindex, pageSize);
+
+                if (clientType == 111)//bipari
+                {
+                    searchType = 111;
+                    grid_shop.DataSource = new BLogic().searchRecords("" + clientType, "ClBipari", txt_searach.Text, pageindex, chk_all_bip.Checked ? 0 :
+                    string.IsNullOrEmpty(txt_bip_id.Text) ? 0 : int.Parse(txt_bip_id.Text));
+                }
+                else
+                {
+                    grid_shop.DataSource = new BLogic().searchRecords("" + clientType, "Client", txt_searach.Text, pageindex, chk_all_bip.Checked ? 0 :
+                   string.IsNullOrEmpty(txt_bip_id.Text) ? 0 : int.Parse(txt_bip_id.Text));
+                }
+               
             }
             else
             if (searchType == 2)
@@ -435,7 +551,8 @@ namespace ArthiPOS.Controls.dashboard
             }
             else if (searchType == 3)
             {
-                List<Object> obj = (List<object>)new BLogic().searchProfile("", "p_product", txt_searach.Text, pageindex, pageSize);
+                
+                List<Object> obj = (List<object>)new BLogic().searchProfile(city_product, "p_product", txt_searach.Text, pageindex, pageSize);
                 DataTable dt = (DataTable)obj[1];
                 grid_shop.DataSource = dt;
                 // grid_shop.Columns[4].Visible = false;
@@ -471,7 +588,7 @@ namespace ArthiPOS.Controls.dashboard
             else if (searchType == 7)
             {
                 string search = txt_searach.Text;
-                DataTable dt = new BLogic().getCategory("Read",search);
+                DataTable dt = new BLogic().getCategory("Read", search);
                 grid_shop.DataSource = dt;
             }
             else if (searchType == 8)
@@ -488,6 +605,26 @@ namespace ArthiPOS.Controls.dashboard
                 if (dt == null) return;
                 grid_shop.DataSource = dt;
             }
+            else if (searchType == 101)
+            {
+                string search = txt_searach.Text;
+                DataTable dt = (DataTable)new BLogic().p_acc_transcation_Read("Trans", 4);
+
+                if (dt == null) return;
+                grid_shop.DataSource = dt;
+            }
+            else if(searchType==102)
+            {
+                string search = txt_searach.Text;
+                DataTable dt = new BLogic().searchRecords(date, "City", search, pageindex, pageSize); ;
+                grid_shop.DataSource = dt;
+            }
+            else if (searchType == 103)
+            {
+                string search = txt_searach.Text;
+                DataTable dt = new BLogic().searchRecords(date, "ExpType", search, pageindex, pageSize); ;
+                grid_shop.DataSource = dt;
+            }
         }
         public void LocalizeNameGrid()
         {
@@ -495,12 +632,13 @@ namespace ArthiPOS.Controls.dashboard
             {
                 return;
             }
-            if (searchType ==3)
+            if (searchType == 3)
             {
                 this.grid_shop.Columns[0].HeaderText = Resources.ResourceManager.GetString("a0012");
                 this.grid_shop.Columns[1].HeaderText = Resources.ResourceManager.GetString("a0205");
                 this.grid_shop.Columns[2].HeaderText = Resources.ResourceManager.GetString("a1031");
             }
+            
             else
             {
                 this.grid_shop.Columns[0].HeaderText = Resources.ResourceManager.GetString("a0012");
@@ -513,7 +651,7 @@ namespace ArthiPOS.Controls.dashboard
             string txt = "";
             string adres = "";
             int id = 0;
-            if (searchType == 1 || searchType == 2 || searchType == 6)
+            if (searchType == 1 || searchType == 2 || searchType == 6 || searchType == 111)
             {
                 txt = txt_searach.Text;
                 adres = txt_address.Text;
@@ -523,12 +661,23 @@ namespace ArthiPOS.Controls.dashboard
                 }
                 if (string.IsNullOrEmpty(adres) || string.IsNullOrWhiteSpace(adres))
                 {
-                    adres="";
+                    adres = "";
                 }
-                if (searchType==6 || searchType == 2)// Customer
-                    id = bal.insertDataCPW(2, txt,adres);
-                else// Client
+                if (searchType == 6 || searchType == 2)// Customer
+                    id = bal.insertDataCPW(2, txt, adres);
+                else if (searchType == 111)// Bipari
+                    id = bal.insertDataCPW(111, txt, adres);
+
+                else
+                {
                     id = bal.insertDataCPW(1, txt, adres);
+                    if (!string.IsNullOrEmpty(txt_bip_id.Text))
+                    {
+                        new BLogic().update_Bipariidprofile(id + "", int.Parse(txt_bip_id.Text));
+                    }
+                }
+
+
                 Name = txt;
                 searchccpw();
             }
@@ -538,7 +687,7 @@ namespace ArthiPOS.Controls.dashboard
                 id = bal.insertDataCPW(3, txt);
                 if (id != 0)
                 {
-                    AddProduct ap = new AddProduct(1, "" + id, "", txt, "", "", "0", "0", "0", "0","0","0","0","0");
+                    AddProduct ap = new AddProduct(1, "" + id, "", txt, "", "", "0", "0", "0", "0", "0", "0", "0", "0", "0","0");
                     ap.ShowDialog();
                     Id = ap.Id;
                     Name = ap.UName;
@@ -579,10 +728,10 @@ namespace ArthiPOS.Controls.dashboard
                 }
                 searchccpw();
             }
-            else if(searchType==7)
+            else if (searchType == 7)
             {
                 txt = txt_searach.Text;
-                id = bal.p_CategoryCreateDelete("Add", txt,"",""+grid_shop.Rows.Count+1);
+                id = bal.p_CategoryCreateDelete("Add", txt, "", "" + grid_shop.Rows.Count + 1);
                 if (id != 0)
                 {
                     Id = "" + id;
@@ -590,7 +739,11 @@ namespace ArthiPOS.Controls.dashboard
                 }
                 searchccpw();
             }
-
+            else if (searchType == 103)
+            {
+                new BLogic().addExpenseName(txt);
+                searchccpw();
+            }
         }
         private void grid_shop_SelectionChanged(object sender, EventArgs e)
         {
@@ -663,6 +816,14 @@ namespace ArthiPOS.Controls.dashboard
                         Type += ",";
                 }
             }
+        }
+
+
+        private void chk_all_bip_CheckedChanged(object sender, EventArgs e)
+        {
+            searchccpw();
+            txt_searach.Focus();
+
         }
     }
 }

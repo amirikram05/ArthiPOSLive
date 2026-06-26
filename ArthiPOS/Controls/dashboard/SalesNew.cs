@@ -1,21 +1,20 @@
-﻿using System;
+﻿using ArthiPOS.controls.dashboard;
+using ArthiPOS.Properties;
+using ArthiPOS.utill;
+using ArthiPOS.Utill;
+using BAL;
+using CommonUtilities;
+using DataMember;
+using DataMember.memberlog;
+using Google.Cloud.Firestore;
+using MetroFramework.Controls;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using ArthiPOS.utill;
-using MetroFramework.Controls;
-using ArthiPOS.Properties;
-using BAL;
-using DataMember;
-using ArthiPOS.controls.dashboard;
-using DevComponents.DotNetBar;
-using ArthiPOS.shop;
-using ArthiPOS.Utill;
-using ArthiPOS.Controls.dashboard;
-using System.Data;
-using System.Drawing;
-using CommonUtilities;
-using DataMember.memberlog;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -53,13 +52,13 @@ namespace ArthiPOS.Controls.dashboard
         public SalesNew()
         {
             InitializeComponent();
-            this.StartPosition= FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.CenterScreen;
             localization();
         }
 
         public void localization()
         {
-            
+
             detail_datagrid.Columns[0].HeaderText = Resources.ResourceManager.GetString("a0101");
             detail_datagrid.Columns[1].HeaderText = Resources.ResourceManager.GetString("a1038");
             detail_datagrid.Columns[2].HeaderText = Resources.ResourceManager.GetString("a0204");
@@ -85,7 +84,7 @@ namespace ArthiPOS.Controls.dashboard
             check_date.Text = Resources.ResourceManager.GetString("a0009");
             check_remaining_amount.Text = Resources.ResourceManager.GetString("a1076");
             check_remaining_begs.Text = Resources.ResourceManager.GetString("a1019");
-            
+
 
 
         }
@@ -119,7 +118,7 @@ namespace ArthiPOS.Controls.dashboard
         }
         public Landlord searchbill(string bill_id, string bipariid)
         {
-            
+
             Landlord t_client = null;
             if (Admin.GetInstance.clients.Count > 0)
             {
@@ -129,7 +128,7 @@ namespace ArthiPOS.Controls.dashboard
             }
             return t_client;
         }
-        
+
         private void addSalesRowinGrid(Landlord land, bool check)
         {
             /*if (land.customers.Count == 0)
@@ -147,10 +146,11 @@ namespace ArthiPOS.Controls.dashboard
             string date = land.date;
             string billname = land.land_person.pname;
             int totalChalan = land.customers.Count();
+            string marka = land.land_product.marka;
             int count = this.detail_datagrid.Rows.Count;
 
             total_commission_chongi = (land.GetChongi + land.GetCommission);
-            client_services = land.expense.total_munshiana +land.expense.total_marketfee+
+            client_services = land.expense.total_munshiana + land.expense.total_marketfee +
                 land.expense.total_rent +
                 land.expense.total_labour +
                 land.land_person.advance;
@@ -204,16 +204,16 @@ namespace ArthiPOS.Controls.dashboard
             if (check)
             {
                 index = 0;
-                addUpdateRowGridLandlord(index, billname, customernames,
+                addUpdateRowGridLandlord(index, marka + " "+ billname, customernames,
                     "" + totalChalan, "" + client_services,
-                    rQuantity+"",
+                    rQuantity + "",
                     "" + total_sale_amount, "" + total_bill_amount, bill_key,
                     date, "" + total_commission_chongi, land.status.ToString());
 
             }
             else
             {
-                addRowGridLandlord(billname, customernames, "" + totalChalan, "" + client_services,
+                addRowGridLandlord(marka + " " + billname, customernames, "" + totalChalan, "" + client_services,
                     "" + land.land_product.total_Quantity, "" + total_sale_amount,
                     "" + total_bill_amount, bill_key, date,
                     "" + land.land_product.sale_remaining_product, land.land_person.pid,
@@ -353,13 +353,15 @@ namespace ArthiPOS.Controls.dashboard
         {
             this.bal = new BLogic();
             date = sale_date.Text;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
 
             }
             //DisplayData("");
+            link_file_path.Text = Path.GetDirectoryName(saleParser.filePath); 
+
             readDailySale(date, "");
             txt_userid.Select();
             gridColumnVisible();
@@ -416,7 +418,7 @@ namespace ArthiPOS.Controls.dashboard
         }
         #endregion
 
-        
+
 
         private void previousdate_Click(object sender, EventArgs e)
         {
@@ -437,7 +439,7 @@ namespace ArthiPOS.Controls.dashboard
         private void sale_date_ValueChanged(object sender, EventArgs e)
         {
             //date = sale_date.Text;
-            //saleParser = new SaleParser(date, Admin.SaveLog);
+            //saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             //detail_datagrid.Rows.Clear();
             //detail_datagrid.Refresh();
             //init();
@@ -605,24 +607,27 @@ namespace ArthiPOS.Controls.dashboard
 
                     try
                     {
-                        if(txt_userid.ContainsFocus)
+                        if (txt_userid.ContainsFocus)
                             chk_user = true;
 
                         grid_landload_CellClick(this, new DataGridViewCellEventArgs(0, currentrow));
-                        
+
 
                         if (templandlord.client._product.sale_remaining_product >= 0)
                         {
                             {
                                 changetxtBoxFocus();
                             }
-                            
+
                         }
                         else
                         {
                         }
 
-                        
+                        // If no row is selected, select the first row and initialize currentrow
+                        detail_datagrid.ClearSelection();
+                        if(detail_datagrid.Rows.Count>0) detail_datagrid.Rows[gridRow].Cells[0].Selected = true;
+                        currentrow = gridRow;
 
                     }
                     catch (NullReferenceException ex)
@@ -640,7 +645,7 @@ namespace ArthiPOS.Controls.dashboard
                     sd.ShowDialog();
                     return true;
                 case Keys.Control | Keys.Enter:
-                    
+
                     return true;
                 case Keys.Alt | Keys.Enter:
                     // btn_add_customer_Click(this, new EventArgs());
@@ -668,10 +673,10 @@ namespace ArthiPOS.Controls.dashboard
 
         private void updateUIData(Landlord temp)
         {
-            carrent.Text = "" + temp.expense.total_rent;
-            kharcha.Text = "" + temp.land_person.expense;
-            munshiana.Text = "" + temp.expense.total_munshiana;
-            mazdori.Text = "" + temp.expense.total_labour;
+            //carrent.Text = "" + temp.expense.total_rent;
+            //kharcha.Text = "" + temp.land_person.expense;
+            //munshiana.Text = "" + temp.expense.total_munshiana;
+            //mazdori.Text = "" + temp.expense.total_labour;
             remaining_quantity = temp.land_product.total_Quantity;
             if (temp.land_product.sale_remaining_product > 0)
             {
@@ -702,18 +707,18 @@ namespace ArthiPOS.Controls.dashboard
                 searchClientfortransportRent();
 
             }
-            
+
             currentrow = 0;
         }
         #endregion
         int pageindex = 1;
         int pageSize = 20;
-        
+
 
         public void searchClientfortransportRent()
         {
 
-           
+
             {
                 btn_refresh_Click(this, new EventArgs());
                 /*string search = txt_userid.Text;
@@ -728,7 +733,7 @@ namespace ArthiPOS.Controls.dashboard
             }
 
         }
-     
+
         /**
              *  1: Insert One by One Record in Daily Sales
              *  2.0: Get Total Sales of Customers.
@@ -739,8 +744,8 @@ namespace ArthiPOS.Controls.dashboard
              *     4.1 Calculate All Client Bills add in expense and deduct these bills from Capital Cash
              *     4.2 Calculate Total Munshiana, Labour, Rent and Advance for Client.  
              * */
-       
-       
+
+
         public void refreshSalesData()
         {
             addSalesRowinGrid(templandlord, true);
@@ -749,7 +754,7 @@ namespace ArthiPOS.Controls.dashboard
             clearAll();
             txt_userid.Clear();
             txt_userid.Select();
-            
+
         }
 
 
@@ -772,13 +777,13 @@ namespace ArthiPOS.Controls.dashboard
             searchClientfortransportRent();
         }
 
-      
 
 
 
-        
 
-        
+
+
+
         private void detail_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;// get the Row Index
@@ -817,22 +822,22 @@ namespace ArthiPOS.Controls.dashboard
                                 bool checkStatus = new BLogic().checkStatusofSale(billkey);
                                 if (checkStatus)
                                 {
-                                    ToastNotification.Show(this, "Inovice: " + billkey + " Can Not Deleted. Please Delete First From CashInout then Delete From POS");
+                                   // ToastNotification.Show(this, "Inovice: " + billkey + " Can Not Deleted. Please Delete First From CashInout then Delete From POS");
                                     return;
 
                                 }
                                 //bool updateCheck = new BLogic().p_ud_cust_sale_product(billkey, land, land.category);
 
-                                bool updateCheck = new BLogic().p_sales_delete("DeleteSales",date, billkey);
+                                bool updateCheck = new BLogic().p_sales_delete("DeleteSales", date, billkey);
 
 
                                 if (updateCheck)
                                 {
-                                    ToastNotification.Show(this, Resources.record_delete);
+                                    //ToastNotification.Show(this, Resources.record_delete);
                                     //new BLogic().addExtraAmountClient("DeleteSale", date, land.land_person.pid,
                                     //   (int)land.GetGrandTotal, land.bill_key, land.land_person.pname, 0);
                                     new BLogic().update_today_sales(land.date);
-                                    ToastNotification.Show(this, "Expense Updates...\nBalance Sheet Updated");
+                                    //ToastNotification.Show(this, "Expense Updates...\nBalance Sheet Updated");
                                     btn_refresh_Click(this, new EventArgs());
                                     return;
                                 }
@@ -841,7 +846,7 @@ namespace ArthiPOS.Controls.dashboard
                             {
                                 if (saleParser.DeleteCustomer(billkey))
                                 {
-                                    ToastNotification.Show(this, "Expense Updates...\nBalance Sheet Updated");
+                                   // ToastNotification.Show(this, "Expense Updates...\nBalance Sheet Updated");
                                 }
                                 return;
                             }
@@ -884,7 +889,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-        
+
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             detail_datagrid.Rows.Clear();
@@ -920,7 +925,7 @@ namespace ArthiPOS.Controls.dashboard
 
             if ((txt_userid.ContainsFocus || detail_datagrid.ContainsFocus) && detail_datagrid.RowCount > 0 && e.RowIndex < Admin.GetInstance.clients.Count/* && !chk*/)
             {
-                
+
                 selectedRowBipari = detail_datagrid.Rows[e.RowIndex];
                 row_selected_landlord = e.RowIndex;
 
@@ -953,28 +958,41 @@ namespace ArthiPOS.Controls.dashboard
 
                 if (chk_user)
                 {
-                    SalesAdd sale1 = new SalesAdd(date, cl_id, name, templandlord.client._person_cl.pname, bill_key, remainingitems, cl_id, billid, lbl_status.Text);
+                    SalesAdd sale1 = new SalesAdd(date, cl_id, name, templandlord.client._person_cl.pname, bill_key, remainingitems, templandlord.client._person_cl.pid, billid, lbl_status.Text, getZamidar(templandlord.client._person_cl.pkey));
                     sale1.ShowDialog();
                     chk_user = false;
                 }
 
             }
-           
+
             if (detail_datagrid.ContainsFocus)
             {
                 detail_datagrid_CellClick(sender, e);
 
             }
 
-            
+
         }
-        
+        private List<Landlord> getZamidar(string bipari)
+        {
+            List<Landlord> land = new List<Landlord>();
+            for (int i = 0; i < Admin.GetInstance.clients.Count; i++)
+            {
+                Landlord tem = Admin.GetInstance.clients[i];
+                if (tem.client._person_cl.pkey == bipari)
+                {
+                    land.Add(tem);
+                }
+            }
+            return land;
+        }
+
 
 
         Control cntObject;
 
         // Select DataGridView EditingControlShowing Event
-        
+
 
         // TextBox TextChanged Event
         private void check_date_CheckedChanged(object sender, EventArgs e)
@@ -985,7 +1003,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             gridColumnVisible();
         }
-        
+
         private void btn_addstock_Click(object sender, EventArgs e)
         {
             using (VendorForm vend = new VendorForm(date, 1, lbl_status.Text))
@@ -1002,45 +1020,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void menu_box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (menu_box.SelectedIndex == 0)
-            {
-                //AddCash ac = new AddCash(date);
-                //ac.ShowDialog();
-            }
-            else if (menu_box.SelectedIndex == 1)
-            {
-                using (VendorForm vend = new VendorForm(date, 3, lbl_status.Text))
-                {
-                    DialogResult res = vend.ShowDialog();
-                    vend.Close();
-                    btn_refresh_Click(this, new EventArgs());
 
-                    return;
-                }
-            }
-            else if (menu_box.SelectedIndex == 2)
-            {
-                using (SalesUpdate sales = new SalesUpdate())
-                {
-                    sales.initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder, "Default");
-                    DialogResult res = sales.ShowDialog();
-                    sales.Close();
-                    btn_refresh_Click(this, new EventArgs());
-
-                    return;
-                }
-            }
-            else if (menu_box.SelectedIndex == 3)
-            {
-                using (VendorForm vend = new VendorForm(date, 4, lbl_status.Text))
-                {
-                    DialogResult res = vend.ShowDialog();
-                    vend.Close();
-                    btn_refresh_Click(this, new EventArgs());
-
-                    return;
-                }
-            }
         }
 
         private void txt_begtype_TextChanged(object sender, EventArgs e)
@@ -1052,7 +1032,7 @@ namespace ArthiPOS.Controls.dashboard
         private void sale_date_CloseUp(object sender, EventArgs e)
         {
             date = sale_date.Text;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             detail_datagrid.Rows.Clear();
             detail_datagrid.Refresh();
             init();
@@ -1063,6 +1043,28 @@ namespace ArthiPOS.Controls.dashboard
             MoveKhata m = new MoveKhata(sale_date.Text);
             m.ShowDialog();
         }
+
+        private void link_file_path_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string folderPath = link_file_path.Text; // 🟢 change path as needed
+
+            try
+            {
+                if (System.IO.Directory.Exists(folderPath))
+                {
+                    Process.Start("explorer.exe", folderPath);
+                }
+                else
+                {
+                      MessageBox.Show("Folder not found: " + folderPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening folder: " + ex.Message);
+            }
+        }
+    
 
         private void btn_cust_reasses_id_Click(object sender, EventArgs e)
         {

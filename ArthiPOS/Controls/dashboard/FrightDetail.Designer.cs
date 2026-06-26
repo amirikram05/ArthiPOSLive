@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_submit = new System.Windows.Forms.Button();
             this.chk_zm = new System.Windows.Forms.CheckBox();
+            this.btn_print = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg_fright)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,11 +137,22 @@
             this.chk_zm.UseVisualStyleBackColor = true;
             this.chk_zm.CheckedChanged += new System.EventHandler(this.chk_zm_CheckedChanged);
             // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(554, 14);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(75, 23);
+            this.btn_print.TabIndex = 227;
+            this.btn_print.Text = "Print";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            // 
             // FrightDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 423);
+            this.Controls.Add(this.btn_print);
             this.Controls.Add(this.chk_zm);
             this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.label3);
@@ -172,5 +184,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_submit;
         private System.Windows.Forms.CheckBox chk_zm;
+        private System.Windows.Forms.Button btn_print;
     }
 }

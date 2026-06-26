@@ -2,25 +2,18 @@
 using ArthiPOS.Utilllll;
 using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
     public partial class AddInvestment : Form
     {
-        public string id="", ename="", name = "",date="",phone = "", address="";
+        public string id = "", ename = "", name = "", date = "", phone = "", address = "";
         public int remAmount = 0;
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (id != "" && (name!= "") || phone != "" || address != "")
+            if (id != "" && (name != "") || phone != "" || address != "")
             {
                 int oldamount = 0, amount = 0;
                 if (txt_advance.Text == "")
@@ -35,9 +28,9 @@ namespace ArthiPOS.Controls.dashboard
                 date = today_date.Text;
 
                 //string clkey = BillKey.getBillID(BillKey.EnumUser.ClientInvest, date, "" + id, 0);
-                string clkey = new BLogic().p_getInvoiceID("Other","0",date);
+                string clkey = new BLogic().p_getInvoiceID("Other", "0", date);
                 ProfilesBL pbl = new ProfilesBL();
-                if (pbl.updateAddAmount("AddClAmount", clkey, int.Parse(id), name, ename,phone, address, total, date, "", nameof(BillKey.EnumUser.ClientInvest)))
+                if (pbl.updateAddAmount("AddClAmount", clkey, int.Parse(id), name, ename, phone, address, total, date, "", nameof(BillKey.EnumUser.ClientInvest)))
                 {
                     //new BLogic().insertTodayExpense(date, name, ""+ total, clkey, nameof(BillKey.EnumUser.ClientInvest).Substring(0, 2)+"_"+ nameof(BillKey.EnumUser.ClientInvest) + "_"+ id, nameof(BillKey.EnumUser.ClientInvest), id);
                     new BLogic().addTodaySales(date);
@@ -56,10 +49,10 @@ namespace ArthiPOS.Controls.dashboard
         private void txt_advance_TextChanged(object sender, EventArgs e)
         {
             int total = remAmount + int.Parse(txt_advance.Text == "" ? "0" : txt_advance.Text);
-            lbl_total.Text = total+"";
+            lbl_total.Text = total + "";
         }
 
-        public AddInvestment(string date,string id,string name,int remAmount,string phone,string address,string ename)
+        public AddInvestment(string date, string id, string name, int remAmount, string phone, string address, string ename)
         {
             InitializeComponent();
             this.remAmount = remAmount;
@@ -103,7 +96,7 @@ namespace ArthiPOS.Controls.dashboard
                     }
 
                     return true;
-                
+
                 case Keys.Escape:
                     this.Close();
                     return true;

@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ArthiPOS.Utill;
-using System.IO;
-using DataMember;
-using ArthiPOS.Properties;
+﻿using ArthiPOS.Utill;
 using BAL;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using System;
+using System.Data;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.test
 {
@@ -29,14 +22,14 @@ namespace ArthiPOS.Controls.test
             InitializeComponent();
             this.date = date;
             adminlog = LogUtill.getAdminInputLog();
-            saleParser = new SaleParser("", Admin.SaveLog);
+            saleParser = new SaleParser("", Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
 
         }
 
         internal void initSalesUpdate(SaleParser saleParser, string path, string _grid)
         {
-            FileInfo[] files = saleParser.getAllFiles(path,false);
-             addFiles(files, dg_SER);
+            FileInfo[] files = saleParser.getAllFiles(path, false);
+            addFiles(files, dg_SER);
         }
 
         private void addFiles(FileInfo[] _files, DataGridView grid)
@@ -47,7 +40,11 @@ namespace ArthiPOS.Controls.test
             {
                 string file = _files[i].FullName;
                 Wrapper wraplandl = saleParser.LoadTodaySale(file);
+                
                 int total = 0, expense = 0, bill = 0, quantity = 0;
+
+                if (wraplandl.data == null)
+                    return; 
                 foreach (Landlord land in wraplandl.data)
                 {
                     quantity += land.land_product.total_Quantity;
@@ -60,12 +57,12 @@ namespace ArthiPOS.Controls.test
                     }
                 }
 
-                addRowAllSales(dg_SER, wraplandl.date, "Vendour Sales","", quantity + "", "" + total, "" + expense, "" + bill,"E", "Sales","");
+                addRowAllSales(dg_SER, wraplandl.date, "Vendour Sales", "", quantity + "", "" + total, "" + expense, "" + bill, "E", "Sales", "");
 
             }
         }
-        public void addRowAllSales(DataGridView grid, string date,string description,string amount, string quantity,
-            string totalSale, string expense, string billamount,string entry, string type,string key)
+        public void addRowAllSales(DataGridView grid, string date, string description, string amount, string quantity,
+            string totalSale, string expense, string billamount, string entry, string type, string key)
         {
             /*int count = grid.Rows.Count;
             if (count == 0)
@@ -126,14 +123,23 @@ namespace ArthiPOS.Controls.test
             // return;
             bool check = false;
 
-            addRowAllSales(dg_SER, date, ccname, ""+ cash
-                , "","", "", "", entrytype, cate_name, idcashinout);
+            addRowAllSales(dg_SER, date, ccname, "" + cash
+                , "", "", "", "", entrytype, cate_name, idcashinout);
         }
 
         private void ControlSalesExpRec_Load(object sender, EventArgs e)
         {
+
             expenseandreceiving();
-            initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder, "Default");
+            string testorlive = @"Test\";
+            string db = RegistryAccess.GetStringRegistryValue("db", "Test");
+            if (db == "Test")
+                testorlive = @"Test\";
+            else if (db == "Live")
+                testorlive = @"Live\";
+            else if (db == "Local")
+                testorlive = @"Local\";
+            initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder+ testorlive, "Default");
             Count = dg_SER.Rows.Count;
 
 

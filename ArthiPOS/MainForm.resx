@@ -122,11 +122,85 @@
     <value>True</value>
   </data>
   <metadata name="tshow.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>633, 17</value>
+    <value>473, 17</value>
   </metadata>
+  <data name="animation1.BlindCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation1.MosaicCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation1.MosaicShift" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation1.ScaleCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation1.SlideCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPwAAAAAL
+</value>
+  </data>
   <metadata name="thide.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>717, 17</value>
+    <value>559, 17</value>
   </metadata>
+  <data name="animation2.BlindCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation2.MosaicCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation2.MosaicShift" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation2.ScaleCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
+</value>
+  </data>
+  <data name="animation2.SlideCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
+        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPwAAAAAL
+</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -373,21 +447,20 @@
         VMyqf7PB6j+O4zhmpOM4juPUgRnpOI7jOHVgRjqO4zhO/9zT+P/c7/smYGeBcwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>0, 0</value>
   </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 106</value>
+    <value>182, 72</value>
   </data>
   <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
   <data name="pictureBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
     <value>pictureBox2</value>
@@ -396,390 +469,139 @@
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox2.Parent" xml:space="preserve">
-    <value>nav_menu_left</value>
+    <value>panel3</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="materialDivider1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 115</value>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
   </data>
-  <data name="materialDivider1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 3</value>
+  <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 72</value>
   </data>
-  <data name="materialDivider1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="materialDivider1.Text" xml:space="preserve">
-    <value>materialDivider1</value>
-  </data>
-  <data name="&gt;&gt;materialDivider1.Name" xml:space="preserve">
-    <value>materialDivider1</value>
-  </data>
-  <data name="&gt;&gt;materialDivider1.Type" xml:space="preserve">
-    <value>MaterialSkin.Controls.MaterialDivider, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;materialDivider1.Parent" xml:space="preserve">
-    <value>nav_menu_left</value>
-  </data>
-  <data name="&gt;&gt;materialDivider1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <data name="&gt;&gt;vmenu_billpaidout.Name" xml:space="preserve">
-    <value>vmenu_billpaidout</value>
-  </data>
-  <data name="&gt;&gt;vmenu_billpaidout.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_billpaidout.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_billpaidout.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;menu_signout.Name" xml:space="preserve">
-    <value>menu_signout</value>
-  </data>
-  <data name="&gt;&gt;menu_signout.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;menu_signout.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;menu_signout.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;vmenu_dashboard.Name" xml:space="preserve">
-    <value>vmenu_dashboard</value>
-  </data>
-  <data name="&gt;&gt;vmenu_dashboard.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_dashboard.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_dashboard.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_reports.Name" xml:space="preserve">
-    <value>vmenu_reports</value>
-  </data>
-  <data name="&gt;&gt;vmenu_reports.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_reports.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_reports.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;menu_account_profile.Name" xml:space="preserve">
-    <value>menu_account_profile</value>
-  </data>
-  <data name="&gt;&gt;menu_account_profile.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;menu_account_profile.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;menu_account_profile.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;menu_settings.Name" xml:space="preserve">
-    <value>menu_settings</value>
-  </data>
-  <data name="&gt;&gt;menu_settings.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;menu_settings.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;menu_settings.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;vmenu_profile.Name" xml:space="preserve">
-    <value>vmenu_profile</value>
-  </data>
-  <data name="&gt;&gt;vmenu_profile.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_profile.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_profile.ZOrder" xml:space="preserve">
+  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;vmenu_pos.Name" xml:space="preserve">
-    <value>vmenu_pos</value>
+  <data name="&gt;&gt;panel3.Name" xml:space="preserve">
+    <value>panel3</value>
   </data>
-  <data name="&gt;&gt;vmenu_pos.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_pos.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_pos.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;vmenu_augrai.Name" xml:space="preserve">
-    <value>vmenu_augrai</value>
-  </data>
-  <data name="&gt;&gt;vmenu_augrai.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_augrai.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_augrai.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;vmenu_ledger.Name" xml:space="preserve">
-    <value>vmenu_ledger</value>
-  </data>
-  <data name="&gt;&gt;vmenu_ledger.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_ledger.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_ledger.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;vmenu_invoicing.Name" xml:space="preserve">
-    <value>vmenu_invoicing</value>
-  </data>
-  <data name="&gt;&gt;vmenu_invoicing.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;vmenu_invoicing.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;vmenu_invoicing.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 124</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 548</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;panel3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
     <value>nav_menu_left</value>
   </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="materialDivider2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 678</value>
+  <data name="today_date.CalendarFont" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
   </data>
-  <data name="materialDivider2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 10</value>
+  <data name="today_date.CustomFormat" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
   </data>
-  <data name="materialDivider2.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+  <data name="today_date.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="materialDivider2.Text" xml:space="preserve">
-    <value>materialDivider2</value>
+  <data name="today_date.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 83</value>
   </data>
-  <data name="&gt;&gt;materialDivider2.Name" xml:space="preserve">
-    <value>materialDivider2</value>
+  <data name="today_date.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 29</value>
   </data>
-  <data name="&gt;&gt;materialDivider2.Type" xml:space="preserve">
-    <value>MaterialSkin.Controls.MaterialDivider, MaterialSkin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="today_date.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 29</value>
   </data>
-  <data name="&gt;&gt;materialDivider2.Parent" xml:space="preserve">
+  <data name="today_date.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;today_date.Name" xml:space="preserve">
+    <value>today_date</value>
+  </data>
+  <data name="&gt;&gt;today_date.Type" xml:space="preserve">
+    <value>MetroFramework.Controls.MetroDateTime, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
+  </data>
+  <data name="&gt;&gt;today_date.Parent" xml:space="preserve">
     <value>nav_menu_left</value>
   </data>
-  <data name="&gt;&gt;materialDivider2.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;today_date.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 8.8pt</value>
+  <data name="panel2.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 691</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 30</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>© Copy Right 2019 
-by Awrika</value>
-  </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>nav_menu_left</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="tshow.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>633, 17</value>
-  </metadata>
-  <data name="animation3.BlindCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation3.MosaicCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation3.MosaicShift" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation3.ScaleCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation3.SlideCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPwAAAAAL
-</value>
-  </data>
-  <metadata name="thide.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>717, 17</value>
-  </metadata>
-  <data name="animation4.BlindCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation4.MosaicCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation4.MosaicShift" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation4.ScaleCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAAAAAAAAAAAL
-</value>
-  </data>
-  <data name="animation4.SlideCoeff" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAABVTeXN0ZW0uRHJh
-        d2luZy5Qb2ludEYCAAAAAXgBeQAACwsCAAAAAACAPwAAAAAL
-</value>
-  </data>
-  <data name="nav_menu_left.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="nav_menu_left.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="nav_menu_left.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 740</value>
-  </data>
-  <data name="nav_menu_left.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;nav_menu_left.Name" xml:space="preserve">
-    <value>nav_menu_left</value>
-  </data>
-  <data name="&gt;&gt;nav_menu_left.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nav_menu_left.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;nav_menu_left.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="vmenu_billpaidout.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <data name="vmenu_rent.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
-  <data name="vmenu_billpaidout.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="vmenu_rent.Font" type="System.Drawing.Font, System.Drawing">
     <value>Cambria, 8.25pt</value>
   </data>
-  <data name="vmenu_billpaidout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 340</value>
+  <data name="vmenu_rent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 361</value>
   </data>
-  <data name="vmenu_billpaidout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+  <data name="vmenu_rent.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
   </data>
-  <data name="vmenu_billpaidout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 37</value>
+  <data name="vmenu_rent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 45</value>
   </data>
-  <data name="vmenu_billpaidout.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="vmenu_rent.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="vmenu_billpaidout.Text" xml:space="preserve">
-    <value>Bill Paidout</value>
+  <data name="vmenu_rent.Text" xml:space="preserve">
+    <value>Rent/Shop</value>
   </data>
-  <data name="&gt;&gt;vmenu_billpaidout.Name" xml:space="preserve">
-    <value>vmenu_billpaidout</value>
+  <data name="&gt;&gt;vmenu_rent.Name" xml:space="preserve">
+    <value>vmenu_rent</value>
   </data>
-  <data name="&gt;&gt;vmenu_billpaidout.Type" xml:space="preserve">
+  <data name="&gt;&gt;vmenu_rent.Type" xml:space="preserve">
     <value>Bunifu.Framework.UI.BunifuFlatButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;vmenu_billpaidout.Parent" xml:space="preserve">
+  <data name="&gt;&gt;vmenu_rent.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;vmenu_billpaidout.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;vmenu_rent.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="lbl_aboutinfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="lbl_aboutinfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="lbl_aboutinfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_aboutinfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 550</value>
+  </data>
+  <data name="lbl_aboutinfo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 5, 10, 10</value>
+  </data>
+  <data name="lbl_aboutinfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 17</value>
+  </data>
+  <data name="lbl_aboutinfo.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lbl_aboutinfo.Text" xml:space="preserve">
+    <value>v2.0.0 © 2024 ArthiPOS</value>
+  </data>
+  <data name="lbl_aboutinfo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lbl_aboutinfo.Name" xml:space="preserve">
+    <value>lbl_aboutinfo</value>
+  </data>
+  <data name="&gt;&gt;lbl_aboutinfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_aboutinfo.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;lbl_aboutinfo.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="menu_signout.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -788,13 +610,16 @@ by Awrika</value>
     <value>Stretch</value>
   </data>
   <data name="menu_signout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 515</value>
+    <value>-38, 678</value>
+  </data>
+  <data name="menu_signout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="menu_signout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 31</value>
+    <value>220, 45</value>
   </data>
   <data name="menu_signout.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>6</value>
   </data>
   <data name="menu_signout.Text" xml:space="preserve">
     <value>Logout</value>
@@ -809,7 +634,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;menu_signout.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="vmenu_dashboard.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -818,16 +643,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_dashboard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 32</value>
+    <value>18, 5</value>
   </data>
   <data name="vmenu_dashboard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_dashboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 40</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_dashboard.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="vmenu_dashboard.Text" xml:space="preserve">
     <value>Dashboard</value>
@@ -842,7 +667,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_dashboard.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="vmenu_reports.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -851,16 +676,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_reports.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 297</value>
+    <value>18, 310</value>
   </data>
   <data name="vmenu_reports.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_reports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 37</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_reports.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>8</value>
   </data>
   <data name="vmenu_reports.Text" xml:space="preserve">
     <value>Reports</value>
@@ -875,22 +700,25 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_reports.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="menu_account_profile.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="menu_account_profile.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="menu_account_profile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 453</value>
+    <value>15, 512</value>
+  </data>
+  <data name="menu_account_profile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="menu_account_profile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 31</value>
+    <value>152, 45</value>
   </data>
   <data name="menu_account_profile.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>9</value>
   </data>
   <data name="menu_account_profile.Text" xml:space="preserve">
     <value>Admin</value>
@@ -905,22 +733,25 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;menu_account_profile.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="menu_settings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="menu_settings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="menu_settings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 484</value>
+    <value>17, 475</value>
+  </data>
+  <data name="menu_settings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="menu_settings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 31</value>
+    <value>152, 45</value>
   </data>
   <data name="menu_settings.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>10</value>
   </data>
   <data name="menu_settings.Text" xml:space="preserve">
     <value>Configuration</value>
@@ -935,7 +766,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;menu_settings.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="vmenu_profile.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -944,16 +775,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_profile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 254</value>
+    <value>20, 259</value>
   </data>
   <data name="vmenu_profile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_profile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 37</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_profile.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>11</value>
   </data>
   <data name="vmenu_profile.Text" xml:space="preserve">
     <value>Profiles</value>
@@ -968,7 +799,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_profile.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="vmenu_pos.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -977,16 +808,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_pos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 76</value>
+    <value>18, 55</value>
   </data>
   <data name="vmenu_pos.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_pos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 40</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_pos.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="vmenu_pos.Text" xml:space="preserve">
     <value>Point of Sale</value>
@@ -1001,7 +832,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_pos.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="vmenu_augrai.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -1010,16 +841,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_augrai.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 165</value>
+    <value>18, 208</value>
   </data>
   <data name="vmenu_augrai.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_augrai.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 40</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_augrai.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>13</value>
   </data>
   <data name="vmenu_augrai.Text" xml:space="preserve">
     <value>Augrai</value>
@@ -1034,7 +865,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_augrai.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="vmenu_ledger.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -1043,16 +874,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_ledger.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 211</value>
+    <value>18, 157</value>
   </data>
   <data name="vmenu_ledger.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_ledger.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 37</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_ledger.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>14</value>
   </data>
   <data name="vmenu_ledger.Text" xml:space="preserve">
     <value>Cash INOUT</value>
@@ -1067,7 +898,7 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_ledger.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="vmenu_invoicing.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -1076,16 +907,16 @@ by Awrika</value>
     <value>Cambria, 8.25pt</value>
   </data>
   <data name="vmenu_invoicing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 122</value>
+    <value>18, 106</value>
   </data>
   <data name="vmenu_invoicing.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 3, 3</value>
+    <value>5, 3, 5, 3</value>
   </data>
   <data name="vmenu_invoicing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 37</value>
+    <value>152, 45</value>
   </data>
   <data name="vmenu_invoicing.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>15</value>
   </data>
   <data name="vmenu_invoicing.Text" xml:space="preserve">
     <value>Invoicing</value>
@@ -1100,44 +931,11 @@ by Awrika</value>
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;vmenu_invoicing.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 24</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="menuToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="menuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
-  </data>
-  <data name="menuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Menu</value>
-  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>640, 17</value>
+  </metadata>
   <data name="dashboardCTRL1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
   </data>
@@ -1186,143 +984,107 @@ by Awrika</value>
   <data name="cTRL0ToolStripMenuItem.Text" xml:space="preserve">
     <value>Admin CTRL + 0</value>
   </data>
-  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="menuToolStripMenuItem.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="google_btn_drive.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
+  <data name="menuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
   </data>
-  <data name="google_btn_drive.Location" type="System.Drawing.Point, System.Drawing">
-    <value>906, 44</value>
+  <data name="menuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Menu</value>
   </data>
-  <data name="google_btn_drive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 28</value>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="google_btn_drive.TabIndex" type="System.Int32, mscorlib">
-    <value>123</value>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 24</value>
   </data>
-  <data name="google_btn_drive.Text" xml:space="preserve">
-    <value>Upload File Google Drive</value>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
-  <data name="&gt;&gt;google_btn_drive.Name" xml:space="preserve">
-    <value>google_btn_drive</value>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
-  <data name="&gt;&gt;google_btn_drive.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;google_btn_drive.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;google_btn_drive.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lbl_dbname.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="lbl_dbname.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt, style=Bold</value>
-  </data>
-  <data name="lbl_dbname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lbl_dbname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>974, 4</value>
-  </data>
-  <data name="lbl_dbname.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="lbl_dbname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 21</value>
-  </data>
-  <data name="lbl_dbname.TabIndex" type="System.Int32, mscorlib">
-    <value>122</value>
-  </data>
-  <data name="lbl_dbname.Text" xml:space="preserve">
-    <value>db</value>
-  </data>
-  <data name="&gt;&gt;lbl_dbname.Name" xml:space="preserve">
-    <value>lbl_dbname</value>
-  </data>
-  <data name="&gt;&gt;lbl_dbname.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuCustomLabel, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;lbl_dbname.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lbl_dbname.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="today_date.CalendarFont" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="today_date.CustomFormat" xml:space="preserve">
-    <value>yyyy-MM-dd</value>
-  </data>
-  <data name="today_date.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuStrip1.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="today_date.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
-  <data name="today_date.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 29</value>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="today_date.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 29</value>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>panel2</value>
   </data>
-  <data name="today_date.TabIndex" type="System.Int32, mscorlib">
-    <value>121</value>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
-  <data name="&gt;&gt;today_date.Name" xml:space="preserve">
-    <value>today_date</value>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 118</value>
   </data>
-  <data name="&gt;&gt;today_date.Type" xml:space="preserve">
-    <value>MetroFramework.Controls.MetroDateTime, MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
+  <data name="panel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;today_date.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 570</value>
   </data>
-  <data name="&gt;&gt;today_date.ZOrder" xml:space="preserve">
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>nav_menu_left</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="combo_lang.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
+  <data name="nav_menu_left.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
   </data>
-  <data name="combo_lang.Items" xml:space="preserve">
-    <value>English</value>
+  <data name="nav_menu_left.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
+    <value>TopDown</value>
   </data>
-  <data name="combo_lang.Items1" xml:space="preserve">
-    <value>Urdu</value>
+  <data name="nav_menu_left.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 5</value>
   </data>
-  <data name="combo_lang.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1078, 51</value>
+  <data name="nav_menu_left.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 2, 10, 0</value>
   </data>
-  <data name="combo_lang.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 21</value>
+  <data name="nav_menu_left.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 715</value>
   </data>
-  <data name="combo_lang.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="nav_menu_left.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="combo_lang.Text" xml:space="preserve">
-    <value>Language</value>
+  <data name="&gt;&gt;nav_menu_left.Name" xml:space="preserve">
+    <value>nav_menu_left</value>
   </data>
-  <data name="&gt;&gt;combo_lang.Name" xml:space="preserve">
-    <value>combo_lang</value>
+  <data name="&gt;&gt;nav_menu_left.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;combo_lang.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;nav_menu_left.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;combo_lang.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;combo_lang.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;nav_menu_left.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="calcEdit1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="calcEdit1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>675, 39</value>
+    <value>882, 13</value>
+  </data>
+  <data name="calcEdit1.Properties.Appearance.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>Gainsboro</value>
   </data>
   <data name="calcEdit1.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt</value>
@@ -1332,7 +1094,7 @@ by Awrika</value>
     <value>Combo</value>
   </data>
   <data name="calcEdit1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 36</value>
+    <value>203, 36</value>
   </data>
   <data name="calcEdit1.SuperTip" type="DevExpress.Utils.SuperToolTip, DevExpress.Utils.v15.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1359,6 +1121,9 @@ by Awrika</value>
   <data name="calcEdit1.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
+  <data name="calcEdit1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;calcEdit1.Name" xml:space="preserve">
     <value>calcEdit1</value>
   </data>
@@ -1369,25 +1134,136 @@ by Awrika</value>
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;calcEdit1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>0</value>
+  </data>
+  <data name="lbl_dbname.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="lbl_dbname.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold, Italic</value>
+  </data>
+  <data name="lbl_dbname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_dbname.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1073, 36</value>
+  </data>
+  <data name="lbl_dbname.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="lbl_dbname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 15</value>
+  </data>
+  <data name="lbl_dbname.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lbl_dbname.Text" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="&gt;&gt;lbl_dbname.Name" xml:space="preserve">
+    <value>lbl_dbname</value>
+  </data>
+  <data name="&gt;&gt;lbl_dbname.Type" xml:space="preserve">
+    <value>Bunifu.Framework.UI.BunifuCustomLabel, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lbl_dbname.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;lbl_dbname.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="bunifuImageButton5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="bunifuImageButton5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAADVJREFUaEPt
+        zMEJADAIADHX7vR1AX8WlJLAfS8AvnOX1FZNJ2qrphO1nSUBAAAAAAAAAE9EJLsNda3e1KYtAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
+  <data name="bunifuImageButton5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="bunifuImageButton5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1091, 3</value>
+  </data>
+  <data name="bunifuImageButton5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 25</value>
+  </data>
+  <data name="bunifuImageButton5.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="bunifuImageButton5.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton5.Name" xml:space="preserve">
+    <value>bunifuImageButton5</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton5.Type" xml:space="preserve">
+    <value>Bunifu.Framework.UI.BunifuImageButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton5.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton5.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="bunifuImageButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="bunifuImageButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAKZJREFUaEPt
+        2UsKAjEQhOEc0SN5E4/i0TS1CBRSipm0jxn+D2rZnalNIEwDgMO4vZlLzyrtSLtTpqUlKRQxXyty7Tk/
+        yalnlXak3YrO9m+Z5sNa+Cs6279lmg9TpABFBh+mSIHlIrrbRyqu2K10tn8LAAAAAOyGP2Z2/bDy5yVv
+        9gIUGXyYIgUoMvjwYX4rvMqmu/2BdqTdKdPSkhSKmI8WAYB/09odzyv3mSi8IjUAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="bunifuImageButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="bunifuImageButton2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1119, 4</value>
+  </data>
+  <data name="bunifuImageButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 25</value>
+  </data>
+  <data name="bunifuImageButton2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="bunifuImageButton2.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton2.Name" xml:space="preserve">
+    <value>bunifuImageButton2</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton2.Type" xml:space="preserve">
+    <value>Bunifu.Framework.UI.BunifuImageButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton2.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;bunifuImageButton2.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lbl_header_title.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lbl_header_title.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 14pt, style=Bold</value>
   </data>
   <data name="lbl_header_title.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 51</value>
+    <value>37, 25</value>
   </data>
   <data name="lbl_header_title.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 21</value>
+    <value>189, 25</value>
   </data>
   <data name="lbl_header_title.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>4</value>
   </data>
   <data name="lbl_header_title.Text" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>ARTHI POS SYSTEM</value>
   </data>
   <data name="&gt;&gt;lbl_header_title.Name" xml:space="preserve">
     <value>lbl_header_title</value>
@@ -1399,19 +1275,19 @@ by Awrika</value>
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;lbl_header_title.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="bunifuImageButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 35</value>
+    <value>3, 22</value>
   </data>
   <data name="bunifuImageButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 39</value>
+    <value>30, 30</value>
   </data>
   <data name="bunifuImageButton1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
   <data name="bunifuImageButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;bunifuImageButton1.Name" xml:space="preserve">
     <value>bunifuImageButton1</value>
@@ -1423,49 +1299,31 @@ by Awrika</value>
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;bunifuImageButton1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="bunifuImageButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="bunifuImageButton3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1095, 4</value>
-  </data>
-  <data name="bunifuImageButton3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 28</value>
-  </data>
-  <data name="bunifuImageButton3.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="bunifuImageButton3.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;bunifuImageButton3.Name" xml:space="preserve">
-    <value>bunifuImageButton3</value>
-  </data>
-  <data name="&gt;&gt;bunifuImageButton3.Type" xml:space="preserve">
-    <value>Bunifu.Framework.UI.BunifuImageButton, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;bunifuImageButton3.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;bunifuImageButton3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="bunifuImageButton4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Right</value>
   </data>
+  <data name="bunifuImageButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAL9JREFUaEPt
+        z+EKAjEMA+C9/0srJyqnlrK2yW6VfNBf29JsiIiIiPyH23NY2PkPryWsZez8t+9FyGXMbBNjISNzCnIx
+        MisFUQCRAVEpUnlLkSmUebNEpFjk7iVmCs7c2YJX1DvbklXYmhas4udpxfrAMe1YnzimFesD52nBKm7N
+        1rzC3tlWZorO3LlUpGDk7lKZYpk3VJVClbdQiCKIjBJkAWRWCGMxI9PFXMjM/sFexM7/wF6y5BMiIiIi
+        dGPcAfji+wWHRoU0AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="bunifuImageButton4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1138, 4</value>
+    <value>1150, 2</value>
   </data>
   <data name="bunifuImageButton4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 28</value>
+    <value>25, 25</value>
   </data>
   <data name="bunifuImageButton4.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
   <data name="bunifuImageButton4.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;bunifuImageButton4.Name" xml:space="preserve">
     <value>bunifuImageButton4</value>
@@ -1477,22 +1335,127 @@ by Awrika</value>
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;bunifuImageButton4.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
+  </data>
+  <metadata name="menuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 54</value>
+  </metadata>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 22</value>
+  </data>
+  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="urduToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 22</value>
+  </data>
+  <data name="urduToolStripMenuItem.Text" xml:space="preserve">
+    <value>Urdu</value>
+  </data>
+  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
+  </data>
+  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+    <value>LANGAUGE</value>
+  </data>
+  <data name="logoutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
+  </data>
+  <data name="logoutToolStripMenuItem.Text" xml:space="preserve">
+    <value>LOGOUT</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>FILE</value>
+  </data>
+  <data name="gdriveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
+  </data>
+  <data name="gdriveToolStripMenuItem.Text" xml:space="preserve">
+    <value>GDRIVE UPLOAD</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>SHOP INCOME</value>
+  </data>
+  <data name="shopIncomeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="shopIncomeToolStripMenuItem.Text" xml:space="preserve">
+    <value>REPORT</value>
+  </data>
+  <data name="lOGToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="lOGToolStripMenuItem.Text" xml:space="preserve">
+    <value>LOG</value>
+  </data>
+  <data name="cONTRACTSToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="cONTRACTSToolStripMenuItem.Text" xml:space="preserve">
+    <value>CONTRACTS</value>
+  </data>
+  <data name="kEYBOARDToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="kEYBOARDToolStripMenuItem.Text" xml:space="preserve">
+    <value>KEYBOARD</value>
+  </data>
+  <data name="notificationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="notificationToolStripMenuItem.Text" xml:space="preserve">
+    <value>NOTIFICATIONS</value>
+  </data>
+  <data name="hELPToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 20</value>
+  </data>
+  <data name="hELPToolStripMenuItem1.Text" xml:space="preserve">
+    <value>HELP</value>
+  </data>
+  <data name="menuStrip2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1176, 24</value>
+  </data>
+  <data name="menuStrip2.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="menuStrip2.Text" xml:space="preserve">
+    <value>menuStrip2</value>
+  </data>
+  <data name="&gt;&gt;menuStrip2.Name" xml:space="preserve">
+    <value>menuStrip2</value>
+  </data>
+  <data name="&gt;&gt;menuStrip2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip2.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip2.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 0</value>
+    <value>194, 5</value>
   </data>
   <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 3, 3, 3</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1201, 78</value>
+    <value>1176, 55</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;panel1.Name" xml:space="preserve">
     <value>panel1</value>
@@ -1504,19 +1467,55 @@ by Awrika</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="lblUserInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblUserInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="lblUserInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="lblUserInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>885, 0</value>
+  </data>
+  <data name="lblUserInfo.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 10, 0</value>
+  </data>
+  <data name="lblUserInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 24</value>
+  </data>
+  <data name="lblUserInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblUserInfo.Text" xml:space="preserve">
+    <value>Welcome, User | Last Login: Today 09:00 AM</value>
+  </data>
+  <data name="&gt;&gt;lblUserInfo.Name" xml:space="preserve">
+    <value>lblUserInfo</value>
+  </data>
+  <data name="&gt;&gt;lblUserInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblUserInfo.Parent" xml:space="preserve">
+    <value>panel_info</value>
+  </data>
+  <data name="&gt;&gt;lblUserInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="panel_info.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="panel_info.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 78</value>
+    <value>194, 60</value>
   </data>
   <data name="panel_info.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1201, 662</value>
+    <value>1176, 660</value>
   </data>
   <data name="panel_info.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;panel_info.Name" xml:space="preserve">
     <value>panel_info</value>
@@ -1528,13 +1527,13 @@ by Awrika</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel_info.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="navigationFadeTransition1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>438, 17</value>
+    <value>281, 17</value>
   </metadata>
   <metadata name="miniToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 20</value>
+    <value>157, 17</value>
   </metadata>
   <data name="miniToolStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1551,6 +1550,54 @@ by Awrika</value>
   <data name="&gt;&gt;miniToolStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="dropdownMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="menuItemReports.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemReports.Text" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="menuItemShopDaily.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemShopDaily.Text" xml:space="preserve">
+    <value>Shop Daily</value>
+  </data>
+  <data name="menuItemNotifications.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemNotifications.Text" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="menuItemLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemLog.Text" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="menuItemEditor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemEditor.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="menuItemHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 22</value>
+  </data>
+  <data name="menuItemHelp.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="dropdownMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 136</value>
+  </data>
+  <data name="&gt;&gt;dropdownMenu.Name" xml:space="preserve">
+    <value>dropdownMenu</value>
+  </data>
+  <data name="&gt;&gt;dropdownMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1564,7 +1611,10 @@ by Awrika</value>
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1366, 740</value>
+    <value>1370, 720</value>
+  </data>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -1623,6 +1673,84 @@ by Awrika</value>
   <data name="&gt;&gt;cTRL0ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageToolStripMenuItem.Name" xml:space="preserve">
+    <value>languageToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;languageToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;englishToolStripMenuItem.Name" xml:space="preserve">
+    <value>englishToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;englishToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;urduToolStripMenuItem.Name" xml:space="preserve">
+    <value>urduToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;urduToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;logoutToolStripMenuItem.Name" xml:space="preserve">
+    <value>logoutToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;logoutToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gdriveToolStripMenuItem.Name" xml:space="preserve">
+    <value>gdriveToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;gdriveToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
+    <value>helpToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;shopIncomeToolStripMenuItem.Name" xml:space="preserve">
+    <value>shopIncomeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;shopIncomeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hELPToolStripMenuItem1.Name" xml:space="preserve">
+    <value>hELPToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;hELPToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lOGToolStripMenuItem.Name" xml:space="preserve">
+    <value>lOGToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;lOGToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cONTRACTSToolStripMenuItem.Name" xml:space="preserve">
+    <value>cONTRACTSToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;cONTRACTSToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;kEYBOARDToolStripMenuItem.Name" xml:space="preserve">
+    <value>kEYBOARDToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;kEYBOARDToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notificationToolStripMenuItem.Name" xml:space="preserve">
+    <value>notificationToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;notificationToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;navigationFadeTransition1.Name" xml:space="preserve">
     <value>navigationFadeTransition1</value>
   </data>
@@ -1634,6 +1762,42 @@ by Awrika</value>
   </data>
   <data name="&gt;&gt;tshow.Type" xml:space="preserve">
     <value>BunifuAnimatorNS.BunifuTransition, Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;menuItemReports.Name" xml:space="preserve">
+    <value>menuItemReports</value>
+  </data>
+  <data name="&gt;&gt;menuItemReports.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemShopDaily.Name" xml:space="preserve">
+    <value>menuItemShopDaily</value>
+  </data>
+  <data name="&gt;&gt;menuItemShopDaily.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemNotifications.Name" xml:space="preserve">
+    <value>menuItemNotifications</value>
+  </data>
+  <data name="&gt;&gt;menuItemNotifications.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemLog.Name" xml:space="preserve">
+    <value>menuItemLog</value>
+  </data>
+  <data name="&gt;&gt;menuItemLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemEditor.Name" xml:space="preserve">
+    <value>menuItemEditor</value>
+  </data>
+  <data name="&gt;&gt;menuItemEditor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuItemHelp.Name" xml:space="preserve">
+    <value>menuItemHelp</value>
+  </data>
+  <data name="&gt;&gt;menuItemHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;thide.Name" xml:space="preserve">
     <value>thide</value>

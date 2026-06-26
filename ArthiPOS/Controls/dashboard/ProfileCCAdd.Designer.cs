@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_oldaugrai = new System.Windows.Forms.Label();
+            this.lbl_augrai = new System.Windows.Forms.Label();
             this.cb_type = new System.Windows.Forms.ComboBox();
+            this.txt_address = new ArthiPOS.Controls.UrduTextBox();
             this.lbl_type = new System.Windows.Forms.Label();
             this.lbl_id = new System.Windows.Forms.Label();
             this.today_date = new MetroFramework.Controls.MetroDateTime();
             this.lbl_msg = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txt_quick_amount = new ArthiPOS.Controls.UrduTextBox();
             this.btn_cc_add = new Bunifu.Framework.UI.BunifuImageButton();
             this.lbl_add = new System.Windows.Forms.Label();
-            this.lbl_augrai = new System.Windows.Forms.Label();
-            this.txt_address = new ArthiPOS.Controls.UrduTextBox();
-            this.txt_quick_amount = new ArthiPOS.Controls.UrduTextBox();
             this.cc_txt_name = new ArthiPOS.Controls.UrduTextBox();
-            this.lbl_oldaugrai = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_cc_add)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +70,58 @@
             this.panel4.Size = new System.Drawing.Size(278, 354);
             this.panel4.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(195, 189);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label4.Size = new System.Drawing.Size(83, 23);
+            this.label4.TabIndex = 258;
+            this.label4.Text = "تازہ ‌‌اگراھی";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(183, 137);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(83, 23);
+            this.label2.TabIndex = 257;
+            this.label2.Text = "پرانی ‌اگراھی";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_oldaugrai
+            // 
+            this.lbl_oldaugrai.BackColor = System.Drawing.Color.White;
+            this.lbl_oldaugrai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.lbl_oldaugrai.ForeColor = System.Drawing.Color.Green;
+            this.lbl_oldaugrai.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbl_oldaugrai.Location = new System.Drawing.Point(16, 133);
+            this.lbl_oldaugrai.Name = "lbl_oldaugrai";
+            this.lbl_oldaugrai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_oldaugrai.Size = new System.Drawing.Size(150, 31);
+            this.lbl_oldaugrai.TabIndex = 256;
+            this.lbl_oldaugrai.Text = "0";
+            this.lbl_oldaugrai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_augrai
+            // 
+            this.lbl_augrai.BackColor = System.Drawing.Color.White;
+            this.lbl_augrai.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.lbl_augrai.ForeColor = System.Drawing.Color.Green;
+            this.lbl_augrai.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbl_augrai.Location = new System.Drawing.Point(12, 176);
+            this.lbl_augrai.Name = "lbl_augrai";
+            this.lbl_augrai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lbl_augrai.Size = new System.Drawing.Size(185, 46);
+            this.lbl_augrai.TabIndex = 255;
+            this.lbl_augrai.Text = "0";
+            this.lbl_augrai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // cb_type
             // 
             this.cb_type.FormattingEnabled = true;
@@ -80,6 +132,20 @@
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(165, 21);
             this.cb_type.TabIndex = 254;
+            this.cb_type.SelectedIndexChanged += new System.EventHandler(this.cb_type_SelectedIndexChanged);
+            // 
+            // txt_address
+            // 
+            this.txt_address.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_address.IsNumeric = false;
+            this.txt_address.LangEnglish = false;
+            this.txt_address.Location = new System.Drawing.Point(3, 104);
+            this.txt_address.Name = "txt_address";
+            this.txt_address.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_address.Size = new System.Drawing.Size(100, 26);
+            this.txt_address.TabIndex = 253;
+            this.txt_address.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txt_address.WaterMarkText = "Address";
             // 
             // lbl_type
             // 
@@ -136,6 +202,20 @@
             this.label3.TabIndex = 231;
             this.label3.Text = "CTRL + ENTER";
             // 
+            // txt_quick_amount
+            // 
+            this.txt_quick_amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txt_quick_amount.IsNumeric = true;
+            this.txt_quick_amount.LangEnglish = true;
+            this.txt_quick_amount.Location = new System.Drawing.Point(64, 225);
+            this.txt_quick_amount.Name = "txt_quick_amount";
+            this.txt_quick_amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_quick_amount.Size = new System.Drawing.Size(211, 29);
+            this.txt_quick_amount.TabIndex = 228;
+            this.txt_quick_amount.Text = "0";
+            this.txt_quick_amount.WaterMarkColor = System.Drawing.Color.Gray;
+            this.txt_quick_amount.WaterMarkText = "0";
+            // 
             // btn_cc_add
             // 
             this.btn_cc_add.BackColor = System.Drawing.Color.Transparent;
@@ -161,47 +241,6 @@
             this.lbl_add.TabIndex = 35;
             this.lbl_add.Text = "Quick Add";
             // 
-            // lbl_augrai
-            // 
-            this.lbl_augrai.BackColor = System.Drawing.Color.White;
-            this.lbl_augrai.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.lbl_augrai.ForeColor = System.Drawing.Color.Green;
-            this.lbl_augrai.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl_augrai.Location = new System.Drawing.Point(12, 176);
-            this.lbl_augrai.Name = "lbl_augrai";
-            this.lbl_augrai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_augrai.Size = new System.Drawing.Size(185, 46);
-            this.lbl_augrai.TabIndex = 255;
-            this.lbl_augrai.Text = "0";
-            this.lbl_augrai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txt_address
-            // 
-            this.txt_address.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_address.IsNumeric = false;
-            this.txt_address.LangEnglish = false;
-            this.txt_address.Location = new System.Drawing.Point(3, 104);
-            this.txt_address.Name = "txt_address";
-            this.txt_address.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_address.Size = new System.Drawing.Size(100, 26);
-            this.txt_address.TabIndex = 253;
-            this.txt_address.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txt_address.WaterMarkText = "Address";
-            // 
-            // txt_quick_amount
-            // 
-            this.txt_quick_amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txt_quick_amount.IsNumeric = true;
-            this.txt_quick_amount.LangEnglish = true;
-            this.txt_quick_amount.Location = new System.Drawing.Point(64, 225);
-            this.txt_quick_amount.Name = "txt_quick_amount";
-            this.txt_quick_amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_quick_amount.Size = new System.Drawing.Size(211, 29);
-            this.txt_quick_amount.TabIndex = 228;
-            this.txt_quick_amount.Text = "0";
-            this.txt_quick_amount.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txt_quick_amount.WaterMarkText = "0";
-            // 
             // cc_txt_name
             // 
             this.cc_txt_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,44 +253,6 @@
             this.cc_txt_name.TabIndex = 4;
             this.cc_txt_name.WaterMarkColor = System.Drawing.Color.Gray;
             this.cc_txt_name.WaterMarkText = "Name";
-            // 
-            // lbl_oldaugrai
-            // 
-            this.lbl_oldaugrai.BackColor = System.Drawing.Color.White;
-            this.lbl_oldaugrai.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.lbl_oldaugrai.ForeColor = System.Drawing.Color.Green;
-            this.lbl_oldaugrai.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbl_oldaugrai.Location = new System.Drawing.Point(16, 133);
-            this.lbl_oldaugrai.Name = "lbl_oldaugrai";
-            this.lbl_oldaugrai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_oldaugrai.Size = new System.Drawing.Size(150, 31);
-            this.lbl_oldaugrai.TabIndex = 256;
-            this.lbl_oldaugrai.Text = "0";
-            this.lbl_oldaugrai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(183, 137);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(83, 23);
-            this.label2.TabIndex = 257;
-            this.label2.Text = "پرانی ‌اگراھی";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Jameel Noori Nastaleeq", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(195, 189);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(83, 23);
-            this.label4.TabIndex = 258;
-            this.label4.Text = "تازہ ‌‌اگراھی";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProfileCCAdd
             // 

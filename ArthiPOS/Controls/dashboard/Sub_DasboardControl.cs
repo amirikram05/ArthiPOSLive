@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DataMember;
-using BAL;
-using ArthiPOS.Reporting;
-using DevComponents.DotNetBar;
+﻿using ArthiPOS.Reporting;
 using ArthiPOS.shop;
+using BAL;
+using DataMember;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -22,7 +18,7 @@ namespace ArthiPOS.Controls.dashboard
         public List<ReceiveCash> lrc;
         enum eMenu
         {
-            Vendor,Purchases,Recevings,Expenses
+            Vendor, Purchases, Recevings, Expenses
         }
         eMenu emenu = eMenu.Vendor;
         BLogic bal;
@@ -31,7 +27,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             InitializeComponent();
             this.date = date;
-           
+
         }
         private void Sub_DasboardControl_Load(object sender, EventArgs e)
         {
@@ -40,11 +36,11 @@ namespace ArthiPOS.Controls.dashboard
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             TabPage current = (sender as System.Windows.Forms.TabControl).SelectedTab;
-            switch(current.Text)
+            switch (current.Text)
             {
                 case "Vendor Sales":
                     emenu = eMenu.Vendor;
-                    readDailySale(date,"");
+                    readDailySale(date, "");
                     break;
                 case "Purchases":
                     emenu = eMenu.Purchases;
@@ -66,7 +62,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             List<Landlord> clients = bal.getLandlordsList(date, text);
             if (clients == null)
-                return; 
+                return;
             grid_vendor.Rows.Clear();
             grid_vendor.Refresh();
             foreach (Landlord landlord in clients)
@@ -105,7 +101,7 @@ namespace ArthiPOS.Controls.dashboard
                 total_quantity += customer.sale._sale_quantity;
                 total_sale_amount += (int)customer.sale.getTotalSale() + customer.sale.getTotalExtraAmountCustomer();
                 total_bill_amount += (int)customer.sale.getTotalSale() + customer.sale.getTotalExtraAmountLandlord();
-               
+
 
 
             }
@@ -113,14 +109,14 @@ namespace ArthiPOS.Controls.dashboard
 
             total_bill_amount = land.total_sale - client_services;
             int index = Admin.GetInstance.clients.FindIndex(x => x.land_person.pkey == land.land_person.pkey);
-            
-            addRowGridLandlord(billname, customernames, "" + totalChalan, "" + client_services, "" + land.land_product.total_Quantity, 
-                "" + total_sale_amount, "" + total_bill_amount, bill_key, date, "" + land.land_product.sale_remaining_product, 
-                land.land_person.pid, "" + (land.Total_Commission + land.Total_Chongi),land.status.ToString());
+
+            addRowGridLandlord(billname, customernames, "" + totalChalan, "" + client_services, "" + land.land_product.total_Quantity,
+                "" + total_sale_amount, "" + total_bill_amount, bill_key, date, "" + land.land_product.sale_remaining_product,
+                land.land_person.pid, "" + (land.Total_Commission + land.Total_Chongi), land.status.ToString());
         }
         private void addRowGridLandlord(string billname, string customernames, string totalChalan, string client_services,
-          string total_quantity, string total_sale_amount, string total_bill_amount, string bill_key, 
-          string date, string remaining_quantity, string ll_id, string chongi_commisison,string status)
+          string total_quantity, string total_sale_amount, string total_bill_amount, string bill_key,
+          string date, string remaining_quantity, string ll_id, string chongi_commisison, string status)
         {
 
             int count = this.grid_vendor.Rows.Count;
@@ -142,7 +138,7 @@ namespace ArthiPOS.Controls.dashboard
             this.grid_vendor.Rows[count - 1].Cells[2].Value = bill_key;
             this.grid_vendor.Rows[count - 1].Cells[3].Value = billname;
 
-            if (int.Parse(remaining_quantity)>0)
+            if (int.Parse(remaining_quantity) > 0)
             {
                 this.grid_vendor.Rows[count - 1].Cells[4].Value = "InComplete";
                 this.grid_vendor.Rows[count - 1].Cells[4].Style.BackColor = Color.Red;
@@ -153,7 +149,7 @@ namespace ArthiPOS.Controls.dashboard
                 this.grid_vendor.Rows[count - 1].Cells[4].Style.BackColor = Color.LimeGreen;
             }
             this.grid_vendor.Rows[count - 1].Cells[5].Value = total_bill_amount;
-            
+
             if (status == "Paid")
             {
                 grid_vendor.Rows[count - 1].Cells[6].Value = 1;
@@ -168,37 +164,37 @@ namespace ArthiPOS.Controls.dashboard
 
 
         }
-       
 
 
 
-       /*
-        //Combo Box in gridview
-            private void grid_vendor_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (grid_vendor.CurrentCell.ColumnIndex == 6 && e.Control is ComboBox)
-            {
-                ComboBox comboBox = e.Control as ComboBox;
-                comboBox.SelectedValueChanged-= LastColumnComboSelectionChanged;
-                comboBox.SelectedValueChanged += LastColumnComboSelectionChanged;
-            }
-        }
 
-        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
-        {
-            var currentcell = grid_vendor.CurrentCellAddress;
-            var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            DataGridViewTextBoxCell cel = (DataGridViewTextBoxCell)grid_vendor.Rows[currentcell.Y].Cells[0];
-            cel.Value = sendingCB.EditingControlFormattedValue.ToString();
-            string status= sendingCB.EditingControlFormattedValue.ToString();
-            //grid_vendor.Rows[currentcell.Y].Cells[]
-            string key = "";
-            MessageBox.Show(sendingCB.Text);
-            if (bal.changeSaleStatus(key,status))
-            {
+        /*
+         //Combo Box in gridview
+             private void grid_vendor_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+         {
+             if (grid_vendor.CurrentCell.ColumnIndex == 6 && e.Control is ComboBox)
+             {
+                 ComboBox comboBox = e.Control as ComboBox;
+                 comboBox.SelectedValueChanged-= LastColumnComboSelectionChanged;
+                 comboBox.SelectedValueChanged += LastColumnComboSelectionChanged;
+             }
+         }
 
-            }
-        }*/
+         private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+         {
+             var currentcell = grid_vendor.CurrentCellAddress;
+             var sendingCB = sender as DataGridViewComboBoxEditingControl;
+             DataGridViewTextBoxCell cel = (DataGridViewTextBoxCell)grid_vendor.Rows[currentcell.Y].Cells[0];
+             cel.Value = sendingCB.EditingControlFormattedValue.ToString();
+             string status= sendingCB.EditingControlFormattedValue.ToString();
+             //grid_vendor.Rows[currentcell.Y].Cells[]
+             string key = "";
+             MessageBox.Show(sendingCB.Text);
+             if (bal.changeSaleStatus(key,status))
+             {
+
+             }
+         }*/
 
 
 
@@ -208,16 +204,16 @@ namespace ArthiPOS.Controls.dashboard
         #region Purchases
         public void readCustomerDailySale(string date)
         {
-            customers = bal.getCustomerBills(date,true);
+            customers = bal.getCustomerBills(date, true);
             grid_purchaes.Rows.Clear();
             grid_purchaes.Refresh();
-            foreach(Customer customer in customers)
+            foreach (Customer customer in customers)
             {
                 addRowCustomerGrid(customer.date,
-                    customer.customer_profile.pkey,customer.customer_profile.pname,""+ customer.GrandTotalCustomer);
+                    customer.customer_profile.pkey, customer.customer_profile.pname, "" + customer.GrandTotalCustomer);
             }
         }
-        private void addRowCustomerGrid(string date,string key,string billname,string total)
+        private void addRowCustomerGrid(string date, string key, string billname, string total)
         {
 
             int count = this.grid_purchaes.Rows.Count;
@@ -239,7 +235,7 @@ namespace ArthiPOS.Controls.dashboard
             this.grid_purchaes.Rows[count - 1].Cells[2].Value = key;
             this.grid_purchaes.Rows[count - 1].Cells[3].Value = billname;
 
-           
+
             this.grid_purchaes.Rows[count - 1].Cells[4].Value = total;
 
 
@@ -251,18 +247,18 @@ namespace ArthiPOS.Controls.dashboard
         #region Receivings
         private void readCashRecived(string date)
         {
-            DataTable dt = bal.getRecivedCash("ReadCashCust",date,"","");
+            DataTable dt = bal.getRecivedCash("ReadCashCust", date, "", "");
             lrc = null;
             lrc = new List<ReceiveCash>();
             grid_receivings.Rows.Clear();
             grid_receivings.Refresh();
-            int count = 0,total=0;
+            int count = 0, total = 0;
             foreach (DataRow rw in dt.Rows)
             {
                 ReceiveCash rc = new ReceiveCash(rw[0].ToString(),
                     rw[1].ToString(), int.Parse(rw[2].ToString()), rw[3].ToString(),
                     rw[4].ToString(), int.Parse(rw[5].ToString()) > 0 ? int.Parse(rw[5].ToString()) : 0,
-                    0, rw[6].ToString(),rw[7].ToString(),"");
+                    0, rw[6].ToString(), rw[7].ToString(), "");
                 addGridRow(rc.date, rc.name, rc.amount, rc.key, rw[5].ToString());
                 lrc.Add(rc);
                 total += rc.amount;
@@ -346,10 +342,10 @@ namespace ArthiPOS.Controls.dashboard
             this.grid_expense.Rows[count - 1].Cells[2].Value = _key;
             this.grid_expense.Rows[count - 1].Cells[3].Value = _name;
             this.grid_expense.Rows[count - 1].Cells[4].Value = _amount;
-            
+
         }
         #endregion
-        public void init( string date)
+        public void init(string date)
         {
             this.date = date;
             bal = new BLogic();
@@ -357,14 +353,15 @@ namespace ArthiPOS.Controls.dashboard
             grid_vendor.Refresh();
 
 
-          
 
 
-            if (emenu==eMenu.Vendor)
+
+            if (emenu == eMenu.Vendor)
             {
                 readDailySale(date, "");
 
-            }else if (emenu==eMenu.Purchases)
+            }
+            else if (emenu == eMenu.Purchases)
             {
                 readCustomerDailySale(date);
             }
@@ -398,15 +395,15 @@ namespace ArthiPOS.Controls.dashboard
                     grid_vendor.Rows[e.RowIndex].Cells[6].Value = 1;
 
 
-                    string key =grid_vendor.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    if (bal.changeSaleStatus(key, "Paid",date, grid_vendor.Rows[e.RowIndex].Cells[3].Value.ToString()))
+                    string key = grid_vendor.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    if (bal.changeSaleStatus(key, "Paid", date, grid_vendor.Rows[e.RowIndex].Cells[3].Value.ToString()))
                     {
-                        ToastNotification.Show(this, ConstMessages._StatusChange);
+                        //ToastNotification.Show(this, ConstMessages._StatusChange);
                     }
                 }
                 else //When you decheck
                 {
-                   // grid_vendor.Rows[e.RowIndex].Cells[5].Value = String.Empty;
+                    // grid_vendor.Rows[e.RowIndex].Cells[5].Value = String.Empty;
 
                     //SET BY CODE THE CHECK BOX
                     grid_vendor.Rows[e.RowIndex].Cells[6].Value = 0;
@@ -414,7 +411,7 @@ namespace ArthiPOS.Controls.dashboard
                     string key = grid_vendor.Rows[e.RowIndex].Cells[2].Value.ToString();
                     if (bal.changeSaleStatus(key, "unPaid", date, grid_vendor.Rows[e.RowIndex].Cells[3].Value.ToString()))
                     {
-                        ToastNotification.Show(this, ConstMessages._StatusChange);
+                        //ToastNotification.Show(this, ConstMessages._StatusChange);
                     }
 
                 }
@@ -431,7 +428,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 string billkey = grid_vendor.Rows[index].Cells[2].Value.ToString();
                 Landlord land = tclients.Find(x => x.land_person.pkey == billkey);
-                if (land!=null)
+                if (land != null)
                 {
                     using (RCBilling rc = new RCBilling(land, land.date))
                     {
@@ -468,6 +465,6 @@ namespace ArthiPOS.Controls.dashboard
             //readCashRecived(date);
         }
 
-       
+
     }
 }

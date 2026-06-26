@@ -10,59 +10,56 @@
  * If you feel you have improved it, please let me know at mobeen211@yahoo.com
  * so that others may benefit from it. 
  * */
-using System;
 using System.Text;
-using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MetroUrduTextBox
 {
-	/// <summary>
-	/// A simple UrduTextBox Control for C# by Muhammad Mobeen Movania
-	/// </summary>
-	//Control, IMaterialControl
+    /// <summary>
+    /// A simple UrduTextBox Control for C# by Muhammad Mobeen Movania
+    /// </summary>
+    //Control, IMaterialControl
     public class MetroUrduTextBox : /*MaterialSkin.Controls.MaterialSingleLineTextField*/
         MetroFramework.Controls.MetroTextBox
     {
-		//used to keep track of keystrokes handled by us
-		private bool handled = false;
-		
-		/// <summary> 
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        //used to keep track of keystrokes handled by us
+        private bool handled = false;
 
-		public MetroUrduTextBox()
-		{
-			// This call is required by the Windows.Forms Form Designer.
-			InitializeComponent();
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
-			this.RightToLeft = RightToLeft.Yes;			
-		}
+        public MetroUrduTextBox()
+        {
+            // This call is required by the Windows.Forms Form Designer.
+            InitializeComponent();
 
-		/// <summary> 
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+            this.RightToLeft = RightToLeft.Yes;
+        }
 
-		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetroUrduTextBox));
             this.SuspendLayout();
             // 
@@ -74,7 +71,7 @@ namespace MetroUrduTextBox
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
         #endregion
 
         #region Urdutextbox custom code
@@ -275,7 +272,7 @@ namespace MetroUrduTextBox
                 case Keys.OemCloseBrackets:
                     sb.Append("\u007d");
                     break;
-                
+
             }
 
             //Set the text to our textbox from the string builder

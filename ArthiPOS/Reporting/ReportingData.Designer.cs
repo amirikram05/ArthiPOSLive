@@ -42,6 +42,7 @@
             this.dg_data = new System.Windows.Forms.DataGridView();
             this.chk_sort = new System.Windows.Forms.CheckBox();
             this.btn_recalSale = new System.Windows.Forms.Button();
+            this.btn_browserprint = new System.Windows.Forms.LinkLabel();
             this.flowLayoutPanel2.SuspendLayout();
             this.date_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_data)).BeginInit();
@@ -54,7 +55,7 @@
             this.flowLayoutPanel2.Controls.Add(this.txt_name);
             this.flowLayoutPanel2.Controls.Add(this.date_panel);
             this.flowLayoutPanel2.Controls.Add(this.comboBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(143, 5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(193, 5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flowLayoutPanel2.Size = new System.Drawing.Size(812, 42);
@@ -154,7 +155,9 @@
             "Augrai Difference",
             "RemaingFreshNotZero",
             "AllAugrai",
-            "Receiving Report"});
+            "Receiving Report",
+            "Bikri Customer Sales",
+            "Zamidar Customer Sales"});
             this.comboBox1.Location = new System.Drawing.Point(33, 3);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(159, 24);
@@ -166,9 +169,9 @@
             // 
             this.lbl_print.BackColor = System.Drawing.Color.White;
             this.lbl_print.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_print.Location = new System.Drawing.Point(12, 28);
+            this.lbl_print.Location = new System.Drawing.Point(12, 38);
             this.lbl_print.Name = "lbl_print";
-            this.lbl_print.Size = new System.Drawing.Size(100, 42);
+            this.lbl_print.Size = new System.Drawing.Size(100, 32);
             this.lbl_print.TabIndex = 120;
             this.lbl_print.TabStop = true;
             this.lbl_print.Text = "Print";
@@ -179,7 +182,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 26);
+            this.label1.Location = new System.Drawing.Point(93, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 12);
             this.label1.TabIndex = 162;
@@ -217,12 +220,26 @@
             this.btn_recalSale.UseVisualStyleBackColor = true;
             this.btn_recalSale.Click += new System.EventHandler(this.btn_recalSale_Click);
             // 
+            // btn_browserprint
+            // 
+            this.btn_browserprint.BackColor = System.Drawing.Color.White;
+            this.btn_browserprint.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_browserprint.Location = new System.Drawing.Point(12, 6);
+            this.btn_browserprint.Name = "btn_browserprint";
+            this.btn_browserprint.Size = new System.Drawing.Size(175, 32);
+            this.btn_browserprint.TabIndex = 165;
+            this.btn_browserprint.TabStop = true;
+            this.btn_browserprint.Text = "Browser";
+            this.btn_browserprint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_browserprint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btn_browserprint_LinkClicked);
+            // 
             // ReportingData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1017, 511);
+            this.Controls.Add(this.btn_browserprint);
             this.Controls.Add(this.btn_recalSale);
             this.Controls.Add(this.chk_sort);
             this.Controls.Add(this.dg_data);
@@ -258,5 +275,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox chk_sort;
         private System.Windows.Forms.Button btn_recalSale;
+        private System.Windows.Forms.LinkLabel btn_browserprint;
     }
 }

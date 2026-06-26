@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using BAL;
+﻿using BAL;
 using LiveCharts;
 using LiveCharts.Wpf;
-using SeriesCollection = LiveCharts.SeriesCollection;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Axis = LiveCharts.Wpf.Axis;
+using SeriesCollection = LiveCharts.SeriesCollection;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -26,18 +22,18 @@ namespace ArthiPOS.Controls.dashboard
             bal = new BLogic();
             pan_Date.Enabled = false;
         }
-        
+
         private void Sub_DashboardDailySales_Load(object sender, EventArgs e)
         {
             this.chart1.Series.Clear();
 
-            DataTable dt = bal.getAllSales_ProfitDetail("","");
+            DataTable dt = bal.getAllSales_ProfitDetail("", "");
             DrawPieChart(dt);
-            loadBarchart("","");
+            loadBarchart("", "");
             loadCartisian("", "");
             this.chart1.Palette = ChartColorPalette.BrightPastel;
 
-            
+
 
             //addX_Axis(sale);
             //addX_Axis(balance);
@@ -72,9 +68,9 @@ namespace ArthiPOS.Controls.dashboard
                 balance.Label = row[1].ToString();
             }
         }
-        public void loadCartisian(string sdate,string ldate)
+        public void loadCartisian(string sdate, string ldate)
         {
-            DataTable sales20 = bal.getDashboardSales20(sdate,ldate);
+            DataTable sales20 = bal.getDashboardSales20(sdate, ldate);
             DataTable cash20 = bal.getDashboardCash20(sdate, ldate);
             // Set title
             this.cartesianChart1.Series.Clear();
@@ -118,7 +114,7 @@ namespace ArthiPOS.Controls.dashboard
                 }
             };
 
-          
+
             cartesianChart1.AxisX.Add(new Axis
             {
                 Title = "Date",
@@ -130,7 +126,7 @@ namespace ArthiPOS.Controls.dashboard
             cartesianChart1.AxisY.Add(new Axis
             {
                 Title = "Amount",
-                LabelFormatter = value => "Rs "+value
+                LabelFormatter = value => "Rs " + value
             });
 
 
@@ -143,13 +139,13 @@ namespace ArthiPOS.Controls.dashboard
 
         }
 
-        public void piechart(float augrai,float cash,float discount)
+        public void piechart(float augrai, float cash, float discount)
         {
             Func<ChartPoint, string> labelPoint = chartPoint =>
                 string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             pieChart1.Series = new SeriesCollection
             {
-                
+
                 new PieSeries
                 {
                     Title = "Augrai",
@@ -175,7 +171,7 @@ namespace ArthiPOS.Controls.dashboard
                     LabelPoint = labelPoint,
                     Fill = System.Windows.Media.Brushes.OrangeRed
                 },
-               
+
             };
             pieChart1.LegendLocation = LegendLocation.Bottom;
         }
@@ -208,7 +204,7 @@ namespace ArthiPOS.Controls.dashboard
             });
         }
 
-        
+
         /*
         private void addX_Axis(System.Windows.Forms.DataVisualization.Charting.Series series)
         {
@@ -289,20 +285,20 @@ namespace ArthiPOS.Controls.dashboard
         // Display One Week Profit and Credit
         private void DrawPieChart(DataTable dt)
         {
-            if (dt == null || dt.Rows.Count==0)
+            if (dt == null || dt.Rows.Count == 0)
                 return;
 
             DataRow dr = dt.Rows[0];
             float augrai = 0;
             float recevings = 0;
             float discount = 0;
-            if (dr[9].ToString()!="" && dr[10].ToString() != ""&& dr[11].ToString() != "")
+            if (dr[9].ToString() != "" && dr[10].ToString() != "" && dr[11].ToString() != "")
             {
-                augrai = mTruncate( float.Parse(dr[9].ToString()), 2);
+                augrai = mTruncate(float.Parse(dr[9].ToString()), 2);
                 recevings = mTruncate(float.Parse(dr[10].ToString()), 2);
-                discount = mTruncate(float.Parse(dr[11].ToString()),2);
+                discount = mTruncate(float.Parse(dr[11].ToString()), 2);
             }
-            piechart(augrai,recevings,discount);
+            piechart(augrai, recevings, discount);
 
             //reset your chart series and legends
             pie.Series.Clear();
@@ -323,10 +319,10 @@ namespace ArthiPOS.Controls.dashboard
             pie.Series[seriesname].ChartType = SeriesChartType.Pie;
 
             //Add some datapoints so the series. in this case you can pass the values to this method
-            pie.Series[seriesname].Points.AddXY("Augrai: "+ (float.Parse(augrai.ToString("0.00")) - float.Parse(recevings.ToString("0.00"))), 
-                float.Parse(augrai.ToString("0.00"))- float.Parse(recevings.ToString("0.00")));
-            pie.Series[seriesname].Points.AddXY("CashRecevings: "+recevings.ToString("0.00"), recevings.ToString("0.00"));
-            pie.Series[seriesname].Points.AddXY("Discount: "+discount.ToString("0.00"), float.Parse(discount.ToString("0.00")));
+            pie.Series[seriesname].Points.AddXY("Augrai: " + (float.Parse(augrai.ToString("0.00")) - float.Parse(recevings.ToString("0.00"))),
+                float.Parse(augrai.ToString("0.00")) - float.Parse(recevings.ToString("0.00")));
+            pie.Series[seriesname].Points.AddXY("CashRecevings: " + recevings.ToString("0.00"), recevings.ToString("0.00"));
+            pie.Series[seriesname].Points.AddXY("Discount: " + discount.ToString("0.00"), float.Parse(discount.ToString("0.00")));
         }
         public float mTruncate(float value, int digits)
         {
@@ -340,10 +336,11 @@ namespace ArthiPOS.Controls.dashboard
             {
                 pan_Date.Enabled = true;
 
-            }else
+            }
+            else
             {
                 pan_Date.Enabled = false;
-                
+
 
             }
         }
@@ -368,7 +365,7 @@ namespace ArthiPOS.Controls.dashboard
                 loadBarchart(sdate, ldate);
                 loadCartisian(sdate, ldate);
             }
-            
+
         }
     }
 }

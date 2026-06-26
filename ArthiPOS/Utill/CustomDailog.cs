@@ -5,9 +5,6 @@ using DataMember;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Utill
@@ -22,7 +19,7 @@ namespace ArthiPOS.Utill
         public CustomDailog()
         {
         }
-
+        
         public CustomDailog(List<Landlord> tclients, string type, string buttonText1, string buttonText2)
         {
             InitializeComponent();
@@ -81,7 +78,7 @@ namespace ArthiPOS.Utill
         private void button1_Click(object sender, EventArgs e)
         {
             //All
-            if (type=="Client")
+            if (type == "Client")
             {
                 DataTable dt = ReportData.createSaleDataset(tclients);
                 /*SalesTodayAllDetail rb = new SalesTodayAllDetail();
@@ -110,8 +107,8 @@ namespace ArthiPOS.Utill
                 string startupPath = Environment.CurrentDirectory;
                 wm.Rows.Add(@startupPath + "\\watermark.jpg");
                 rb.Database.Tables["Watermark"].SetDataSource(wm);
-                
-                
+
+
                 AllReportsCC all = new AllReportsCC();
                 all.crystalReportViewer1.ReportSource = rb;
                 all.ShowDialog();

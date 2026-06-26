@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace DataMember
 {
     /*public class SeasonSetting
@@ -41,7 +37,7 @@ namespace DataMember
         public Product() { }
 
         public Product(string _product_id, string _product_name, string _type,
-            string _weight_id, string _weight, int _quantity,string marka/*,int _rent,int _labour,int _munshiana*/)
+            string _weight_id, string _weight, int _quantity, string marka/*,int _rent,int _labour,int _munshiana*/)
         {
             this._product_id = _product_id;
             this._product_name = _product_name;

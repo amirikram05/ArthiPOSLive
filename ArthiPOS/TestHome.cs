@@ -6,10 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS
@@ -28,7 +25,7 @@ namespace ArthiPOS
                 Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 
-                label1.Text = Program.ResourceManager.GetString("0008");
+                label1.Text = Resources.ResourceManager.GetString("0008");
             }
             else
             {
@@ -44,7 +41,7 @@ namespace ArthiPOS
             loadGridData(1);
 
         }
-        
+
 
         #region GridPaging
         private int ActivePage = 1;//Here give the by default selected page in datagridview

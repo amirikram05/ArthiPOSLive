@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+﻿using ArthiPOS.Properties;
 using ArthiPOS.utill;
-using BAL;
-using ArthiPOS.Properties;
-using DataMember;
 using ArthiPOS.Utill;
-using System.IO;
+using BAL;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using System;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
 {
@@ -33,8 +27,8 @@ namespace ArthiPOS.Controls.dashboard
         {
             InitializeComponent();
             date = sale_date.Text;
-            saleParser = new SaleParser(date,Admin.SaveLog);
-            Admin.Date= DateTime.Now.ToString("yyyy-MM-dd"); 
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
+            Admin.Date = DateTime.Now.ToString("yyyy-MM-dd");
             bal = new BLogic();
             adminlog = LogUtill.getAdminInputLog();
 
@@ -97,7 +91,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             date = sale_date.Text;
             newSub_DasboardControl.date = date;
-            newSub_DashboardDailySales.date=date;
+            newSub_DashboardDailySales.date = date;
 
             newSub_DasboardControl.init(date);//refresh
             init();
@@ -105,52 +99,61 @@ namespace ArthiPOS.Controls.dashboard
 
         private void init()
         {
-            
-            DataTable sales = bal.getDashBoardSales(date);
-            DataTable custsale = bal.getDashBoardCustSales(date);
+
+            DataTable sales = new BLogic().getDashBoardSales(date);
+            DataTable custsale = new BLogic().getDashBoardCustSales(date);
             account = Authentication.Account;
+            if (sales != null && sales.Rows.Count > 0 && custsale != null && custsale.Rows.Count > 0 && account != null)
+            {
+                // Continue with your logic
+                string sbalance = new BLogic().getCapitalPreviousDayCash(account.api_key, date, date);
+                string balance = new BLogic().getCapitalCash(account.api_key);
+                DataRow dr_Sale = sales.Rows[0];
+                DataRow dr_custsale = custsale.Rows[0];
 
-            string sbalance=bal.getCapitalPreviousDayCash(account.api_key,date, date);
-            string balance = bal.getCapitalCash(account.api_key);
-            DataRow dr_Sale = sales.Rows[0];
-            DataRow dr_custsale = custsale.Rows[0];
-            
-            updateadmin(dr_custsale[0].ToString(), dr_Sale[0].ToString(), 
-                sbalance,
-                dr_Sale[1].ToString(),
-                dr_custsale[2].ToString(),
-                 dr_custsale[1].ToString(),
-                 balance);
-            updatevendor(dr_Sale[2].ToString(),
-                dr_Sale[0].ToString(),
-                dr_Sale[9].ToString(),
-                dr_Sale[3].ToString(),
-                dr_Sale[4].ToString(),
-                dr_Sale[5].ToString(),
-                dr_Sale[6].ToString(),
-                dr_Sale[7].ToString(),
-                dr_Sale[8].ToString(),
-                dr_Sale[9].ToString(),
-                dr_Sale[10].ToString(),
-                dr_Sale[11].ToString()
-                );
+                updateadmin(dr_custsale[0].ToString(), dr_Sale[0].ToString(),
+                    sbalance,
+                    dr_Sale[1].ToString(),
+                    dr_custsale[2].ToString(),
+                     dr_custsale[1].ToString(),
+                     balance);
+                updatevendor(dr_Sale[2].ToString(),
+                    dr_Sale[0].ToString(),
+                    dr_Sale[9].ToString(),
+                    dr_Sale[3].ToString(),
+                    dr_Sale[4].ToString(),
+                    dr_Sale[5].ToString(),
+                    dr_Sale[6].ToString(),
+                    dr_Sale[7].ToString(),
+                    dr_Sale[8].ToString(),
+                    dr_Sale[9].ToString(),
+                    dr_Sale[10].ToString(),
+                    dr_Sale[11].ToString()
+                    );
 
-            updateCustomerSales(dr_custsale[0].ToString(),
-                dr_custsale[3].ToString(),
-                dr_custsale[4].ToString(),
-                dr_custsale[5].ToString(), 
-                dr_custsale[6].ToString(), 
-                dr_custsale[7].ToString(),
-                dr_custsale[8].ToString());
+                updateCustomerSales(dr_custsale[0].ToString(),
+                    dr_custsale[3].ToString(),
+                    dr_custsale[4].ToString(),
+                    dr_custsale[5].ToString(),
+                    dr_custsale[6].ToString(),
+                    dr_custsale[7].ToString(),
+                    dr_custsale[8].ToString());
+            }
+            else
+            {
+                // Handle the null or empty DataTable case
+                MessageBox.Show("Sales data is not available for the selected date.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
 
 
 
         }
-        private void updateadmin(string vendortotalcount,string customertotalcount,
-           string sbalance,string shopexpense,string cashsale,string receivings,
+        private void updateadmin(string vendortotalcount, string customertotalcount,
+           string sbalance, string shopexpense, string cashsale, string receivings,
            string balance)
         {
-            if (int.Parse(sbalance)==0)
+            if (int.Parse(sbalance) == 0)
             {
                 _lbl_start_balance.Text = balance;
                 _lbl_balance.Text = balance;
@@ -170,22 +173,22 @@ namespace ArthiPOS.Controls.dashboard
             _lbl_customers.Text = customertotalcount;
         }
         private void updateCustomerSales(string count, string totalsale,
-            string quantity,string sale,string commission,string chongi,
+            string quantity, string sale, string commission, string chongi,
             string total)
         {
             _lbl_quantity.Text = quantity;
             lbl_customer_total_count.Text = count;
-            _lbl_cust_total_sales.Text = ""+totalsale;
+            _lbl_cust_total_sales.Text = "" + totalsale;
             _lbl_cust_sales.Text = sale;
             _lbl_commission.Text = commission;
             _lbl_chongi.Text = chongi;
-            _lbl_total_cust.Text = ""+total;
+            _lbl_total_cust.Text = "" + total;
         }
-        private void updatevendor(string quantity,string count,
+        private void updatevendor(string quantity, string count,
             string gtotalsale,
-            string ritem,string advance,string fright,string labour,
-            string munshiana,string totalExpense,string totalsale,
-            string total,string chcomiss)
+            string ritem, string advance, string fright, string labour,
+            string munshiana, string totalExpense, string totalsale,
+            string total, string chcomiss)
         {
 
             _lbl_vendor_quantity.Text = quantity;
@@ -201,8 +204,7 @@ namespace ArthiPOS.Controls.dashboard
             _lbl_total_vendor.Text = total;
             _lbl_bipari_cc.Text = chcomiss;
         }
-
-        private void Dsahboard1_Load(object sender, EventArgs e)
+        public void refresh()
         {
             date = sale_date.Text;
             newSub_DashboardDailySales = new Sub_DashboardDailySales();
@@ -212,19 +214,18 @@ namespace ArthiPOS.Controls.dashboard
 
             newSub_DasboardControl.init(date);//refresh
             init();
-
-
         }
+
 
         public void getUpdateSale()
         {
-            FileInfo[] files = saleParser.getAllFiles(adminlog.SalesInProccessedFolder,true);
+            FileInfo[] files = saleParser.getAllFiles(adminlog.SalesInProccessedFolder, true);
 
             if (files.Length > 0)
             {
                 btn_update_sales.Textcolor = Color.Red;
                 //btn_update_sales.Enabled = true;
-                btn_update_sales.Text = Resources.ResourceManager.GetString("a1085")+ "\t\t(" + files.Length+")";
+                btn_update_sales.Text = Resources.ResourceManager.GetString("a1085") + "\t\t(" + files.Length + ")";
             }
             else
             {
@@ -236,7 +237,7 @@ namespace ArthiPOS.Controls.dashboard
         private void btn_update_sales_Click(object sender, EventArgs e)
         {
             SalesUpdate sales = new SalesUpdate();
-            sales.initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder,"Default");
+            sales.initSalesUpdate(saleParser, adminlog.SalesInProccessedFolder, "Default");
             sales.ShowDialog();
         }
     }

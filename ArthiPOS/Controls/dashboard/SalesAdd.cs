@@ -1,28 +1,26 @@
 ﻿using ArthiPOS.controls.dashboard;
 using ArthiPOS.Properties;
-using ArthiPOS.utill;
+using ArthiPOS.Reporting.ReportDataSet;
 using ArthiPOS.Utill;
 using BAL;
+using CommonUtilities;
 using DataMember;
-using DevComponents.DotNetBar;
+using DataMember.memberlog;
+using DevExpress.XtraPrinting.Native;
+using Google.Apis.Drive.v3.Data;
 using MetroFramework.Controls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CommonUtilities;
-using DataMember.memberlog;
+using SaleDetail = ArthiPOS.controls.dashboard.SaleDetail;
 
 namespace ArthiPOS.Controls.dashboard
 {
     public partial class SalesAdd : Form
     {
-       
+
 
         #region Client object , client list index, Landlord list index
 
@@ -53,17 +51,27 @@ namespace ArthiPOS.Controls.dashboard
         };
         public EnumShop shop_enum = EnumShop.Sale;
         private string landkey;
-        public SalesAdd(string date,string userid,string bipariname,string landlordname,
-            string bill_key,string remainingitems,string cl_id,string billid,string status)
+        private List<Landlord> landlist;
+        public SalesAdd(string date, string userid, string bipariname, string landlordname,
+            string bill_key, string remainingitems, string cl_id, string billid, string status, List<Landlord> landlist)
         {
             InitializeComponent();
+
+            item_datagrid.RowTemplate.Height = 30;
+            item_datagrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            item_datagrid.DefaultCellStyle.Font = new Font("Arial", 18);
+            item_datagrid.Columns[2].DefaultCellStyle.Font = new Font("Arial", 18, FontStyle.Bold); // Replace 0 with the index of your target column.
+           // loadExpense(0, 0, 0, 0, 0, 0, 0, 0);
+
+
             this.date = date;
             localization();
             string search = userid;
             shop_enum = EnumShop.Customer;
             bal = new BLogic();
             lbl_status.Text = status;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
+            this.landlist = landlist;
             if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
@@ -72,22 +80,30 @@ namespace ArthiPOS.Controls.dashboard
             change_AddTOUpdate(false);
             this.cl_id = cl_id;
             this.billid = billid;
-            initRefresh(bipariname, landlordname,bill_key,  remainingitems,cl_id,billid);
-
-
-
-
+            lbl_head_date.Text = date;
+            initRefresh(bipariname, landlordname, bill_key, remainingitems, cl_id, billid,"");
+            changeColor(Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White);
+            txt_customerID.Focus();
 
         }
         private string cl_id = "", billid = "";
         private void initRefresh(string bipariname, string landlordname,
-            string bill_key, string remainingitems, string cl_id, string billid)
+            string bill_key, string remainingitems, string cl_id, string billid,string bilti_vehicle)
         {
-            List<Landlord> tclients = bal.getLandlordsList(date, "");
+             List<Landlord> tclients = bal.getLandlordsList(date, "");
+           
+            if (string.IsNullOrEmpty(billid) && string.IsNullOrEmpty(bilti_vehicle))
+            {
+                return;
+            }
+            
+
             foreach (Landlord landlord in tclients)
             {
-                if (billid == landlord.bill_key)
+                
+                if (billid == landlord.bill_key || bilti_vehicle==landlord.client._vehicle_id)
                     addSalesRowinGrid(landlord, false);
+                
             }
 
 
@@ -100,6 +116,8 @@ namespace ArthiPOS.Controls.dashboard
 
                 // Search Landlord
                 templandlord = searchbill(billid, cl_id);
+                lbl_bipari_id.Text = templandlord.client._person_cl.pkey;
+
                 cust_index = templandlord.customers.Count;
                 templandlord.tag_Action = "insert";
                 updateUIData(templandlord);
@@ -109,11 +127,13 @@ namespace ArthiPOS.Controls.dashboard
                     oldAmount = (int)templandlord.GetGrandTotal;
                 }
             }
+            showTotal((int)templandlord.GetTotalService + (int)templandlord.GetChongi + (int)templandlord.GetCommission, templandlord.GetTotalSaleLandLord, (int)templandlord.GetGrandTotal);
+
         }
 
         public void localization()
         {
-            _lbl_khata.Text = Resources.ResourceManager.GetString("a0013");
+            //_lbl_khata.Text = Resources.ResourceManager.GetString("a0013");
             _lbl_bipari.Text = Resources.ResourceManager.GetString("a0207");
             _lbl_billname.Text = Resources.ResourceManager.GetString("a0201");
             _lbl_cust_id.Text = Resources.ResourceManager.GetString("a0012");
@@ -133,7 +153,6 @@ namespace ArthiPOS.Controls.dashboard
             //_lbl_total_customer.Text = Resources.ResourceManager.GetString("a0202");
             //_lbl_total_clients.Text = Resources.ResourceManager.GetString("a0201");
 
-            _lbl_total_sale.Text = Resources.ResourceManager.GetString("a0504");
 
 
 
@@ -150,11 +169,11 @@ namespace ArthiPOS.Controls.dashboard
 
 
 
-            
-            _lbl_rquantity.Text= Resources.ResourceManager.GetString("a2017");
-            _lbl_total_amount.Text= Resources.ResourceManager.GetString("a0503");
-            _lbl_grandtotal.Text= Resources.ResourceManager.GetString("a0512"); 
-            _lbl_total_comlga.Text= Resources.ResourceManager.GetString("a1026");
+
+            _lbl_rquantity.Text = Resources.ResourceManager.GetString("a2017");
+            _lbl_total_amount.Text = Resources.ResourceManager.GetString("a0503");
+            _lbl_grandtotal.Text = Resources.ResourceManager.GetString("a0512");
+            _lbl_total_comlga.Text = Resources.ResourceManager.GetString("a1026");
 
 
 
@@ -167,7 +186,7 @@ namespace ArthiPOS.Controls.dashboard
         }
         public void refreshUI(List<Landlord> tclients)
         {
-            if (tclients==null)
+            if (tclients == null)
             {
                 return;
             }
@@ -176,7 +195,7 @@ namespace ArthiPOS.Controls.dashboard
 
             foreach (Landlord landlord in tclients)
             {
-                addSalesRowinGrid(landlord,false);
+                addSalesRowinGrid(landlord, false);
 
             }
 
@@ -216,7 +235,7 @@ namespace ArthiPOS.Controls.dashboard
             this.item_datagrid.Rows[count - 1].Cells[2].Value = cust.customer_profile.pname;
             this.item_datagrid.Rows[count - 1].Cells[3].Value = cust.sale._sale_quantity;
             this.item_datagrid.Rows[count - 1].Cells[4].Value = cust.sale._sale_amount;
-            this.item_datagrid.Rows[count - 1].Cells[5].Value = cust.sale.getTotalSale()
+            this.item_datagrid.Rows[count - 1].Cells[5].Value = (cust.sale.getTotalSale() + cust.Total_Commission + cust.Total_Chongi);
                 //+cust.sale.getTotalExtraAmountLandlord()
                 ;
             this.item_datagrid.Rows[count - 1].Cells[6].Value = cust.sale.getTotalExtraAmountCustomer();
@@ -225,7 +244,20 @@ namespace ArthiPOS.Controls.dashboard
             this.item_datagrid.Rows[count - 1].Cells[11].Value = cust.status;
 
         }
-        private void addSalesRowinGrid(Landlord land,bool check)
+
+        private void addRowingrid_Zamidar(Landlord land)
+        {
+            int count = this.dgv_zamidar.Rows.Count;
+
+            this.dgv_zamidar.Rows.Add();
+            this.dgv_zamidar.Rows[count - 1].Cells[0].Value = land.land_person.pkey;
+            this.dgv_zamidar.Rows[count - 1].Cells[1].Value = land.land_product.marka+" " + land.land_product._product_name+" "+land.land_person.pname;
+            this.dgv_zamidar.Rows[count - 1].Cells[2].Value = land.total_quantity;
+            this.dgv_zamidar.Rows[count - 1].Cells[3].Value = (int)land.GetTotalService;
+            this.dgv_zamidar.Rows[count - 1].Cells[4].Value = (int)land.GetGrandTotal;
+
+        }
+        private void addSalesRowinGrid(Landlord land, bool check)
         {
             /*if (land.customers.Count == 0)
             {
@@ -242,9 +274,9 @@ namespace ArthiPOS.Controls.dashboard
             string date = land.date;
             string billname = land.land_person.pname;
             int totalChalan = land.customers.Count();
-            
+
             total_commission_chongi = (land.GetChongi + land.GetCommission);
-            client_services = land.expense.total_munshiana +land.expense.total_marketfee+
+            client_services = land.expense.total_munshiana + land.expense.total_marketfee +
                 land.expense.total_rent +
                 land.expense.total_labour +
                 land.land_person.advance;
@@ -256,10 +288,10 @@ namespace ArthiPOS.Controls.dashboard
                 //customer.landloard = land;
                 customernames += customer.customer_profile.pname + ", ";
                 total_quantity += customer.sale._sale_quantity;
-                total_sale_amount += (int)customer.sale._TotalSaleAmount 
+                total_sale_amount += (int)customer.sale._TotalSaleAmount
                     + customer.sale._TotalExtraAmountLandlord;
                 total_bill_amount += (int)customer.GrandTotalLandlord;
-                
+
 
 
             }
@@ -275,12 +307,11 @@ namespace ArthiPOS.Controls.dashboard
             v_lbl_total_rent.Text = "" + land.expense.total_rent;
             v_lbl_total_expense.Text = "" + land.expense.total_expense;
             v_lbl_total_advance.Text = "" + land.land_person.advance;
-            v_lbl_total_sale.Text = "" + total_sale_amount;
-            v_lbl_total_expense.Text = ""+(client_services + (int)total_commission_chongi);
+            v_lbl_total_expense.Text = "" + (client_services + (int)total_commission_chongi);
 
             total_amountsum.Text = "" + total_sale_amount;
-            lbl_expenset.Text = "" + (client_services + (int)total_commission_chongi);
-            grand_total.Text = "" + total_bill_amount;
+            //lbl_expenset.Text = "" + (client_services + (int)total_commission_chongi);
+            //grand_total.Text = "" + total_bill_amount;
 
 
             #region Commented
@@ -309,35 +340,76 @@ namespace ArthiPOS.Controls.dashboard
 
 
         }
-       
-
+        //private void SetTotalValue(int rowIndex, object value,Color color)
+        //{
+            
+        //    if (rowIndex >= 0 && rowIndex < dgv_expense.Rows.Count)
+        //    {
+        //        dgv_expense.Rows[rowIndex].DefaultCellStyle.ForeColor = color;
+        //        dgv_expense.Rows[rowIndex].Cells[1].Value = value;
+        //    }
+        //}
+        //private void loadExpense(int Freight, int Labour, float Commission, int Laga, int Munshiana, int MarketFee, int Advance,int Extra)
+        //{
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("efreight"), ""+ Freight);       // Add row with "Frieght" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("elabour"), "" + Labour);        // Add row with "Labour" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("ecommission"), "" + Commission);    // Add row with "Commission" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("elaga"), "" + Laga);          // Add row with "Laga" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("emunshiana"), ""+ Munshiana);    // Add row with "Munshiana" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("emarketfee"), ""+ MarketFee);    // Add row with "Munshiana" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("eadvance"), ""+ Advance);      // Add row with "Advance" in the first column
+        //    dgv_expense.Rows.Add(Resources.ResourceManager.GetString("eextra"), ""+ Extra);
+        //    dgv_expense.Rows.Add("Total", ""+ 0);        // Add row with "Extra" in the first column
+        //}
 
         private void SalesAdd_Load(object sender, EventArgs e)
         {
             //init();
             adminlog = LogUtill.getAdminInputLog();
+            int row = 0;
+            foreach (Landlord l in landlist)
+            {
+
+
+                addRowingrid_Zamidar(l);
+                if (tlbl_khata_id.Text == l.land_person.pkey)
+                {
+                    row++;
+                }
+            }
+            dgv_zamidar.ClearSelection();
+            try
+            {
+                dgv_zamidar.Rows[row - 1].Cells[0].Selected = true;
+            }
+            catch (Exception ex) {
+            }
+            currentrow = row - 1;
+            gridRow = row - 1;
+            txt_customerID.Focus();
+
         }
         private void init()
         {
             this.bal = new BLogic();
-            saleParser = new SaleParser(date, Admin.SaveLog);
-            if (Authentication.Account.local=="1")
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
+            if (Authentication.Account.local == "1")
             {
                 saleParser.SAVELOG = true;
 
             }
             change_AddTOUpdate(false);
             //DisplayData("");
-            readDailySale(date,"");
+            readDailySale(date, "");
         }
 
         #region Refresh
 
         bool localRecord = true;
-        public void readDailySale(string date,string text)
+        public void readDailySale(string date, string text)
         {
             List<Landlord> tclients = bal.getLandlordsList(date, text);//Test Comment
-            if (tclients.Count>0)
+            if (tclients.Count > 0)
             {
                 localRecord = false;
 
@@ -352,27 +424,27 @@ namespace ArthiPOS.Controls.dashboard
                 lbl_status.Text = "Not Live";
                 lbl_status.BackColor = Color.DarkOrange;
                 //grid_bipari.Columns[0].Visible = false;
-                if (Authentication.Account.local=="1")
+                if (Authentication.Account.local == "1")
                 {
                     localRecord = true;
-                    tclients= saleParser.LoadTodaySale();
-                        /*List<Landlord> landList = saleParser.LoadTodaySale();
-                                if (landList!=null)
+                    tclients = saleParser.LoadTodaySale();
+                    /*List<Landlord> landList = saleParser.LoadTodaySale();
+                            if (landList!=null)
+                            {
+                                if (landList.Count > 0)
                                 {
-                                    if (landList.Count > 0)
+                                    if (tclients.Count > 0)
                                     {
-                                        if (tclients.Count > 0)
-                                        {
-                                            tclients.Clear();
-                                            //merge both files and load sales
-                                            tclients = saleParser.mergeBothFiles().data;
-                                        }
-                                        else
-                                        {
-                                            tclients = landList;
-                                        }
+                                        tclients.Clear();
+                                        //merge both files and load sales
+                                        tclients = saleParser.mergeBothFiles().data;
                                     }
-                                }*/
+                                    else
+                                    {
+                                        tclients = landList;
+                                    }
+                                }
+                            }*/
                 }
             }
             refreshUI(tclients);
@@ -380,7 +452,7 @@ namespace ArthiPOS.Controls.dashboard
         }
         #endregion
 
-       
+
 
         #region SelectRow Grid Movement by row
         private void selectCellValue(DataGridView grid)
@@ -449,10 +521,10 @@ namespace ArthiPOS.Controls.dashboard
                 {
                     currentrow = 0;
                 }
-                if (grid.Name== "detail_datagrid")
+                if (grid.Name == "detail_datagrid")
                 {
                     gridRow--;
-                    if (gridRow<0)
+                    if (gridRow < 0)
                     {
                         gridRow = 0;
                     }
@@ -479,7 +551,7 @@ namespace ArthiPOS.Controls.dashboard
                 currentrow++;
                 if (currentrow > totalRows)
                 {
-                    currentrow = totalRows-1;
+                    currentrow = totalRows - 1;
                 }
 
                 if (grid.Name == "detail_datagrid")
@@ -487,7 +559,7 @@ namespace ArthiPOS.Controls.dashboard
                     gridRow++;
                     if (gridRow > totalRows)
                     {
-                        gridRow = totalRows-1;
+                        gridRow = totalRows - 1;
                     }
                 }
             }
@@ -500,11 +572,21 @@ namespace ArthiPOS.Controls.dashboard
             switch (keyData)
             {
                 case Keys.Up:
-                    
+                    if (txt_client_nameid.Focused)
+                        selectUpRow(dgv_zamidar);
+                    else
+                    if (dgv_zamidar.Focused)
+                        selectUpRow(dgv_zamidar);
+
 
                     return true;
                 case Keys.Down:
-                    
+                    if (txt_client_nameid.Focused)
+                        selectDownRow(dgv_zamidar);
+                    else
+                    if (dgv_zamidar.Focused)
+                        selectDownRow(dgv_zamidar);
+
                     return true;
                 case Keys.Delete:
                     return true;
@@ -513,52 +595,101 @@ namespace ArthiPOS.Controls.dashboard
                 case Keys.Escape:
                     this.Close();
                     return true;
-                case Keys.F5:
+                case Keys.Control | Keys.F5:
                     btn_refresh_Click(this, new EventArgs());
                     return true;
-                case Keys.Control | Keys.G:
+                case Keys.F5:
                     //Stuff
+                    btn_change_Click(this, new EventArgs());
                     return true;
-                    case Keys.Control | Keys.N:
-                    btn_addstock_Click(this,new EventArgs());
+                case Keys.Control | Keys.N:
+                    btn_addstock_Click(this, new EventArgs());
                     return true;
                 case Keys.Enter:
 
                     try
                     {
-                        grid_landload_CellClick(this, new DataGridViewCellEventArgs(0, currentrow));
-                        if (btn_calculate.ContainsFocus)
+                        if(txt_bikri_quantity.ContainsFocus)
                         {
-                            btn_calculate_Click(this, new EventArgs());
+                            txt_bikri_rate.Focus();
                         }
-
-                        if (templandlord.client._product.sale_remaining_product >= 0)
+                        else if(txt_bikri_rate.ContainsFocus)
                         {
-                            //if (!grid_bipari.ContainsFocus)
-                            {
-                                changetxtBoxFocus();
-                            }
-                            //else
-                            //{ txt_customerID.Select(); }
-                            //txt_customerID.Select();
+                            txt_customerID.Focus();
+                        }
+                        else if (txt_biltino.ContainsFocus)
+                        {
+                            searchByVehicle(txt_biltino.Text);
+                            txt_client_nameid.Focus();
+                        }
+                        else
+                        if (txt_client_nameid.ContainsFocus)
+                        {
+                            Landlord land = landlist[currentrow];
+                            lbl_vehicle_no.Text = land.client._vehicle_id;
+                            lbl_marka.Text = land.land_product.marka;
+                            lbl_product.Text = land.land_product._product_name;
+                            lbl_zamid.Text = land.land_person.pid;
+                            lbl_bipari_id.Text = land.client._person_cl.pid;
+                            txt_landloard_nameid.Text = land.client._person_cl.pname;
+                            initRefresh(land.land_person.pname, land.client._person_cl.pname, land.bill_key, "" + land.land_product.sale_remaining_product, land.client._person_cl.pid, land.land_person.pkey,"");
+                            txt_customerID.Focus();
                         }
                         else
                         {
-                            btnAddCalculate.Select();
-                        }
-
-                        if (txt_begamount.ContainsFocus || txt_begamount.ContainsFocus)
-                        {
-                            int rsale = int.Parse(lbl_remaining_sale.Text == "" ? "0" : lbl_remaining_sale.Text);
-                            if (rsale==0)
+                            if (txt_nobegs.ContainsFocus || txt_begamount.ContainsFocus)
                             {
-                                return true;
 
-                                //txt_userid.Select();
-                                //MessageBox.Show("No Remaining Product...");
+                                if (txt_nobegs.ContainsFocus)
+                                {
+                                    string quanti = txt_nobegs.Text;
+                                    if (quanti == "" || !quanti.Any(char.IsDigit)) return true;
+                                }
+                                else
+                                if (txt_begamount.ContainsFocus)
+                                {
+                                    string rate = txt_begamount.Text;
+                                    if (rate == "" || !rate.Any(char.IsDigit)) return true;
+                                }
+                            }
+                                grid_landload_CellClick(this, new DataGridViewCellEventArgs(0, currentrow));
+                            if (btn_calculate.ContainsFocus)
+                            {
+                                btn_calculate_Click(this, new EventArgs());
+                            }
+                            
+                            
+
+                            if (templandlord.client._product.sale_remaining_product >= 0)
+                            {
+                                //if (!grid_bipari.ContainsFocus)
+                                {
+                                    changetxtBoxFocus();
+                                }
+                                //else
+                                //{ txt_customerID.Select(); }
+                                //txt_customerID.Select();
+                            }
+                            else
+                            {
+                                btnAddCalculate.Select();
                             }
 
+                            if (txt_nobegs.ContainsFocus || txt_begamount.ContainsFocus)
+                            {
+
+                                int rsale = int.Parse(lbl_remaining_sale.Text == "" ? "0" : lbl_remaining_sale.Text);
+                                if (rsale == 0)
+                                {
+                                    return true;
+
+                                    //txt_userid.Select();
+                                    //MessageBox.Show("No Remaining Product...");
+                                }
+
+                            }
                         }
+
 
                     }
                     catch (NullReferenceException ex)
@@ -583,7 +714,7 @@ namespace ArthiPOS.Controls.dashboard
 
                     return true;
                 case Keys.Alt | Keys.Enter:
-                   // btn_add_customer_Click(this, new EventArgs());
+                    // btn_add_customer_Click(this, new EventArgs());
 
                     return true;
 
@@ -593,6 +724,88 @@ namespace ArthiPOS.Controls.dashboard
 
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void searchByVehicle(string bilti_vehicle)
+        {
+            //1 Vehicle no
+            //2 Marka
+            //3 Bipari Name
+            //4 Zamidar Name
+            //5 Product
+            //6 Bipari ID
+            //7 Zamidar ID
+            //8 Bipari Key
+            //9 Zamidar Key
+            
+
+            if (!string.IsNullOrEmpty(bilti_vehicle) && bilti_vehicle!="")
+            {
+                dgv_zamidar.Rows.Clear();
+                foreach (Landlord land in landlist)
+                {
+                    
+                    if (cm_seach.SelectedIndex == 0) {
+                        if (land.client._vehicle_id == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 1) {
+                        if (land.land_product.marka == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 2) {
+                        if (land.client._person_cl.pname == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 3) {
+                        if (land.land_person.pname == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 4) {
+                        if (land.land_product._product_name == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 5) {
+                        if (land.client._person_cl.pid == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 6) {
+                        if (land.land_person.pid == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 7) {
+                        if (land.client._person_cl.pkey == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                    else if (cm_seach.SelectedIndex == 8) {
+                        if (land.land_person.pkey == bilti_vehicle)
+                        {
+                            addRowingrid_Zamidar(land);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                dgv_zamidar.Rows.Clear();
+                SalesAdd_Load(this, new EventArgs());
+            }
         }
 
         private void deleteCurrentRow()
@@ -610,17 +823,17 @@ namespace ArthiPOS.Controls.dashboard
 
 
             total_commission_chongi = (temp.GetChongi + temp.GetCommission);
-            client_services = temp.expense.total_munshiana +temp.expense.total_marketfee+
+            client_services = temp.expense.total_munshiana + temp.expense.total_marketfee +
                 temp.expense.total_rent +
                 temp.expense.total_labour +
                 temp.land_person.advance;
-            if (temp.land_product.sale_remaining_product>0)
+            if (temp.land_product.sale_remaining_product > 0)
             {
-               // change_AddTOUpdate(true);
+                // change_AddTOUpdate(true);
             }
             showCustomerSale(templandlord);
 
-           
+
             if (temp.bill_type == "B")
             {
                 txt_bikri_rate.Text = "" + temp.bikri_rate;
@@ -639,20 +852,33 @@ namespace ArthiPOS.Controls.dashboard
                 total_amountsum.Text = "" + total_sale_amount;
 
             }
-             v_lbl_total_comlaga.Text = "" + (int)total_commission_chongi;
+            v_lbl_total_comlaga.Text = "" + (int)total_commission_chongi;
             v_lbl_total_munshiana.Text = "" + temp.expense.total_munshiana;
             v_lbl_total_marketfee.Text = "" + temp.expense.total_marketfee;
             v_lbl_total_labour.Text = "" + temp.expense.total_labour;
             v_lbl_total_rent.Text = "" + temp.expense.total_rent;
             v_lbl_total_expense.Text = "" + temp.expense.total_expense;
             v_lbl_total_advance.Text = "" + temp.land_person.advance;
-            v_lbl_total_sale.Text = "" + total_sale_amount;
             v_lbl_total_expense.Text = "" + (client_services + (int)total_commission_chongi);
-            lbl_expenset.Text = "" + (client_services + (int)total_commission_chongi);
 
-            grand_total.Text = "" + total_bill_amount;
+
+            // Set total values using the function
+            //SetTotalValue(0, temp.expense.total_rent, Color.Black); // Frieght
+            //SetTotalValue(1, temp.expense.total_labour, Color.Black); // Labour
+            //SetTotalValue(2, temp.GetCommission, Color.Black); // Commission
+            //SetTotalValue(3, temp.GetChongi, Color.Black);  // Laga
+            //SetTotalValue(4, temp.expense.total_munshiana, Color.Black);  // Munshiana
+            //SetTotalValue(5, temp.expense.total_marketfee, Color.Black);  // Munshiana
+            //SetTotalValue(6, temp.land_person.advance, Color.Black); // Advance
+            //SetTotalValue(7, 0, Color.Black); // Extra
+            //SetTotalValue(8, (client_services + (int)total_commission_chongi), Color.Red); // Total
+
+            showTotal((int)temp.GetTotalService + (int)temp.GetChongi + (int)temp.GetCommission, temp.GetTotalSaleLandLord, (int)temp.GetGrandTotal);
+
+
+
         }
-        
+
 
 
 
@@ -661,23 +887,34 @@ namespace ArthiPOS.Controls.dashboard
         #endregion
 
         #region Focus Change
-        
-
+        private void changeColor(Color customer ,Color begs,Color rate, Color cal, Color add)
+        {
+            txt_customerID.BackColor = customer;
+            txt_nobegs.BackColor = begs;
+            txt_begamount.BackColor = rate;
+            btn_calculate.BackColor = cal;
+            btnAddCalculate.BackColor = add;
+        }
         public void changetxtBoxFocus()
         {
 
             if (txt_customerID.ContainsFocus)
             {
+                changeColor(Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE),  Color.White, Color.White, Color.White);
+
                 txt_nobegs.Select();
                 txt_nobegs.SelectAll();
             }
             else if (txt_nobegs.ContainsFocus)
             {
+                changeColor(Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White);
                 txt_begamount.Select();
                 txt_begamount.SelectAll();
             }
             else if (txt_begamount.ContainsFocus)
             {
+                changeColor(Color.White, Color.White, Color.White, Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White);
+
                 //btn_calculate_Click(this, new EventArgs());
                 //btn_calculate.Select();
                 //btn_calculate.Focus();
@@ -686,11 +923,14 @@ namespace ArthiPOS.Controls.dashboard
             }
             else if (btn_calculate.ContainsFocus)
             {
+
                 btn_calculate.selected = false;
                 txt_customerID.Select();
             }
             else if (btnAddCalculate.ContainsFocus)
             {
+                changeColor(Color.FromArgb(0xEE, 0xEE, 0xEE), Color.White, Color.White, Color.White, Color.White);
+
             }
             currentrow = 0;
         }
@@ -710,7 +950,7 @@ namespace ArthiPOS.Controls.dashboard
             //grid_bipari.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             //grid_bipari.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            
+
         }
 
         public void searchClientfortransportRent()
@@ -719,7 +959,7 @@ namespace ArthiPOS.Controls.dashboard
             if (shop_enum == EnumShop.Customer && txt_customerID.ContainsFocus)
             {
                 string search = txt_customerID.Text;
-                
+
                 //grid_bipari.DataSource = bal.searchRecords(date, "Customer", search, pageindex, pageSize);
             }
             else
@@ -738,36 +978,45 @@ namespace ArthiPOS.Controls.dashboard
             }
 
         }
+        private void showTotal(int expense, int salestotal, int grandtotal)
+        {
+            lbl_expenset.Text = "" + expense;
+            total_amountsum.Text = "" + salestotal;
+            grand_total.Text = "" + grandtotal;
+        }
         private void btn_calculate_Click(object sender, EventArgs e)
         {
-            
-            if (txt_client_nameid.Text=="")
+
+            if (txt_client_nameid.Text == "")
             {
-                
+
                 return;
             }
-            string bikri = "";
-            //if (chk_bikri.Checked)
-            //    bikri = "B";
 
+
+            string bikritype = "";
+            float bikri_quantity = 0, bikri_rate = 0;
             string customerid = lbl_custid.Text;
             string customer_name = txt_customerID.Text;
             int _sale_quantity = int.Parse(txt_nobegs.Text == "" ? "0" : txt_nobegs.Text);
             int _sale_amount = int.Parse(txt_begamount.Text == "" ? "0" : txt_begamount.Text);
 
-            //int bikri_quantity = int.Parse(txt_bikri_quantity.Text == "" ? "0" : txt_bikri_quantity.Text);
-            //int bikri_rate= int.Parse(txt_bikri_rate.Text == "" ? "0" : txt_bikri_rate.Text);
+            if (chk_bikri.Checked)
+            {
+                bikritype = "B";
+                bikri_quantity = float.Parse(txt_bikri_quantity.Text == "" ? "0" : txt_bikri_quantity.Text);
+                bikri_rate = float.Parse(txt_bikri_rate.Text == "" ? "0" : txt_bikri_rate.Text);
+            }
 
-
-            remaining_quantity = int.Parse(lbl_remaining_sale.Text=="" ? "0" : lbl_remaining_sale.Text);
-            if (_sale_quantity==0)
+            remaining_quantity = int.Parse(lbl_remaining_sale.Text == "" ? "0" : lbl_remaining_sale.Text);
+            if (_sale_quantity == 0)
             {
                 return;
             }
 
-            if (remaining_quantity-_sale_quantity<0)
+            if (remaining_quantity - _sale_quantity < 0)
             {
-                txt_nobegs.Text = remaining_quantity+"";
+                txt_nobegs.Text = remaining_quantity + "";
                 txt_customerID.Focus();
                 return;
             }
@@ -806,12 +1055,12 @@ namespace ArthiPOS.Controls.dashboard
                 Product prCust = new Product(templandlord.land_product._product_id, templandlord.land_product._product_name,
                     templandlord.land_product._type, templandlord.land_product._weight_id, templandlord.land_product._weight, _sale_quantity, templandlord.land_product.marka);
                 string ptype = txt_begtype.Text;
-                if (ptype!="")
+                if (ptype != "")
                 {
                     prCust._type = txt_begtype.Text;
                 }
                 Sale msale = new Sale(_sale_quantity, _sale_amount);
-                Customer cust = new Customer(date,templandlord.service, false, msale,templandlord.land_person);
+                Customer cust = new Customer(date, templandlord.service, false, msale, templandlord.land_person);
                 cust.tag_Action = "newinsert";
                 cust.customer_profile = customer;
                 cust.product = prCust;
@@ -852,9 +1101,10 @@ namespace ArthiPOS.Controls.dashboard
                 // MessageBox.Show("ChongiCommission = "+chongicommisison);
                 // 4
                 //cust.landloard = templandlord;
-                templandlord.bill_type = bikri;
-                //templandlord.bikri_rate = bikri_rate;
-                //templandlord.bikri_quantity = bikri_quantity;
+                templandlord.bikri_quantity = bikri_quantity;
+                templandlord.bikri_rate = bikri_rate;
+                templandlord.bill_type = bikritype;
+                templandlord.total_bikri = (int)Math.Ceiling(bikri_quantity * bikri_rate);
 
                 templandlord.total_quantity = templandlord.land_product.total_Quantity;
                 templandlord.land_product.sale_remaining_product = templandlord.land_product.sale_remaining_product - _sale_quantity; //Error
@@ -862,18 +1112,19 @@ namespace ArthiPOS.Controls.dashboard
                 //if (chk_bikri.Checked)
                 //    templandlord.total_bikri = bikri_rate * bikri_quantity;
                 //else
-                    templandlord.total_sale +=(int) cust.sale.getTotalSale()+cust.sale.getTotalExtraAmountLandlord();
+                templandlord.total_sale += (int)cust.sale.getTotalSale() + cust.sale.getTotalExtraAmountLandlord();
 
 
                 templandlord.getCommission();
                 templandlord.getChongi();
                 #endregion
 
-                if (templandlord.land_product.sale_remaining_product>0)
+                if (templandlord.land_product.sale_remaining_product > 0)
                 {
                     templandlord.status = EStatus.InComplete;
-                }else 
-                if(templandlord.land_product.sale_remaining_product==0)
+                }
+                else
+                if (templandlord.land_product.sale_remaining_product == 0)
                 {
                     if (templandlord.status == EStatus.InComplete)
                     {
@@ -887,11 +1138,12 @@ namespace ArthiPOS.Controls.dashboard
                 lbl_remaining_sale.Text = "" + templandlord.land_product.sale_remaining_product;
                 total_amountsum.Text = "" + cust.total_sale;
                 templandlord.customers.Add(cust);
-                templandlord.total_services = (int)(templandlord.GetTotalService+templandlord.GetChongi+templandlord.GetCommission);
+                templandlord.total_services = (int)(templandlord.GetTotalService + templandlord.GetChongi + templandlord.GetCommission);
 
-               
+
                 addRowingrid_bipari(cust);
                 clear();
+                showTotal((int)templandlord.GetTotalService+(int)templandlord.GetChongi+(int)templandlord.GetCommission, templandlord.GetTotalSaleLandLord, (int)templandlord.GetGrandTotal);
             }
             else
             {
@@ -932,10 +1184,10 @@ namespace ArthiPOS.Controls.dashboard
             {
                 return;
             }
-            int rq=(lbl_remaining_sale.Text=="" || lbl_remaining_sale.Text == "0")?0:int.Parse(lbl_remaining_sale.Text);
+            int rq = (lbl_remaining_sale.Text == "" || lbl_remaining_sale.Text == "0") ? 0 : int.Parse(lbl_remaining_sale.Text);
             int rtitems = (lbl_totalitems.Text == "" || lbl_totalitems.Text == "0") ? 0 : int.Parse(lbl_totalitems.Text);
 
-            if (rq==rtitems)
+            if (rq == rtitems)
             {
                 return;
             }
@@ -945,7 +1197,7 @@ namespace ArthiPOS.Controls.dashboard
 
             //  return;
             string statuslive = lbl_status.Text;
-            if (acc.local == "0" || statuslive=="Live")
+            if (acc.local == "0" || statuslive == "Live")
             {
 
                 addSales(templandlord);
@@ -953,8 +1205,31 @@ namespace ArthiPOS.Controls.dashboard
             }
             else if (acc.local == "1")
             {
+                // Safely parse and assign values from DataGridView
                 addLocalandDBSale(templandlord);
+
+
+                //This code use to send sales in temp table
+                /*foreach (Customer c in templandlord.customers)
+                {
+                    new BLogic().p_daily_temp_table_crud("", templandlord.date, int.Parse(templandlord.land_person.pid), int.Parse(templandlord.client._person_cl.pid) ,
+                      templandlord.total_quantity, templandlord.expense.total_rent,
+                      templandlord.expense.total_labour, templandlord.expense.total_advance_amount,
+                      templandlord.GetCommission, (int)templandlord.GetChongi,
+                      c.Total_Commission, (int)c.getChongi(), templandlord.expense.total_munshiana, templandlord.expense.total_marketfee
+                      , int.Parse(c.customer_profile.pid), c.sale._sale_quantity, (int)c.sale._sale_amount, c.sale._TotalSaleAmount, c.GrandTotalCustomer, c.GrandTotalLandlord,
+                      c.sale.add_extra_amount_Customer, c.sale.add_extra_amount_Landlord, int.Parse(templandlord.land_product._product_id),
+                      templandlord.land_product._product_name, templandlord.land_product.marka, int.Parse(templandlord.land_product._weight_id), templandlord.land_product._weight,
+                      templandlord.client._person_cl.pkey, templandlord.land_person.pkey,
+                      c.customer_profile.pkey, int.Parse(templandlord.land_product._weight_id),
+                      templandlord.land_product._weight, templandlord.bill_type, templandlord.bikri_quantity,
+                      templandlord.bikri_rate, templandlord.client._vehicle_id, templandlord.land_product._weight, 1,templandlord.service.commission_customer_product, templandlord.service.commission_client_product, templandlord.service.client_chongi,
+                      templandlord.service.customer_chongi, templandlord.service.rent_per_product, templandlord.service.labour_per_product);
+                }*/
             }
+            if (templandlord == null) return;
+            showTotal((int)templandlord.GetTotalService+(int)(templandlord.GetChongi+templandlord.GetCommission), templandlord.GetTotalSaleLandLord, (int)templandlord.GetGrandTotal);
+
 
         }
 
@@ -964,13 +1239,16 @@ namespace ArthiPOS.Controls.dashboard
             string statuslive = lbl_status.Text;
             //return;
 
-            if (landlord.status==EStatus.CompleteUpdate)
+            if (landlord.status == EStatus.CompleteUpdate || landlord.status == EStatus.Complete)
             {
                 //Refresh Sale Data of landlord
                 int tchk = 1;
+                List<string> msgSuccess=new List<string>();
+                List<string> msgError = new List<string>();
 
-                for (int i=0;i< item_datagrid.Rows.Count; i++)
+                for (int i = 0; i < item_datagrid.Rows.Count; i++)
                 {
+                    
                     string status = item_datagrid.Rows[i].Cells[11].Value.ToString();
                     if (status == "0")
                     {
@@ -982,17 +1260,53 @@ namespace ArthiPOS.Controls.dashboard
                          templandlord.land_person.pkey, customer.customer_profile.pkey,
                        customer.customer_profile.pid, tchk, customer.cust_bill_id);*/
 
-                        string[] temp = new BLogic().p_singlesaleadd(templandlord, customer);
+                        string[] result = new BLogic().p_singlesaleadd(templandlord, customer);
                         tchk = 0;
 
+                        if (result[0] == "OK" || result[0] == "1")
+                        {
+                           
+                            //int chk = new BLogic().post_to_journal_sales("S_ALL", "", date);
+                            //chk += new BLogic().post_to_journal_sales("P_ALL", "", date);
+                            //if (result[0] == "OK" || result[0] == "1")
+                            //{
+
+                            //}
+                            List<string> msgup = new BLogic().p_singlesaleupdate_landlord_customer(date, templandlord.land_person.pid, customer.customer_profile.pid);
+
+                            msgSuccess.Add(result[1] + "- Update:- "  + string.Join(", ", msgup));
+
+                        }
+                        else
+                        {
+                            msgError.Add(result[1]);
+                        }
+                        //return;
                     }
+                }
+                if(msgSuccess.Count>0)
+                {
+                    tchk = 1;
+                    //int chk = new BLogic().post_to_journal_sales("S_ALL", "", date);
+                    //chk += new BLogic().post_to_journal_sales("P_ALL", "", date);
+                    MessageBox.Show($"✅ Sale added. New IDs: {string.Join(", ", msgSuccess)}",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if(msgError.Count>0)
+                {
+                    tchk = 0;
+                    MessageBox.Show($"⚠️ Error adding sale:\n{string.Join(", ", msgError)}",
+                                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 if (tchk == 0 || tchk == 1)
                 {
+                   // int chk = new BLogic().post_to_journal_sales("S_ALL", "", date);
+                   // chk += new BLogic().post_to_journal_sales("P_ALL", "", date);
                     item_datagrid.Rows.Clear();
                     item_datagrid.Refresh();
                     refresh();
+                    txt_client_nameid.Focus(); 
                     return;
                 }
                 /*
@@ -1008,10 +1322,10 @@ namespace ArthiPOS.Controls.dashboard
                     tchk = 0;
                 }*/
             }
-            //return;
+            
             bool check = new BLogic().insertCustomerSale(landlord, cust_index);
 
-
+            
             if (check)
             {
                 item_datagrid.Rows.Clear();
@@ -1022,9 +1336,11 @@ namespace ArthiPOS.Controls.dashboard
             {
                 //when client receive amount then add bill amount in expense and balance sheet
                 new BLogic().addExtraAmountClient("updateClientAmount", landlord.date, landlord.land_person.pid,
-                    (int)landlord.GetGrandTotal,landlord.land_person.pkey,landlord.land_person.pname,0,"19");
+                    (int)landlord.GetGrandTotal, landlord.land_person.pkey, landlord.land_person.pname, 0, "19");
                 //bal.addExpense_IUSales(landlord.date, landlord.land_person.pkey,landlord.land_person.pname, (int)landlord.GetGrandTotal,nameof(BillKey.EnumUser.PaymentSale));
                 //bal.addBalanceSheet("credit", 0, landlord,nameof(BillKey.EnumUser.Client), "insert", landlord.land_person.pkey,"");
+                int chk = new BLogic().post_to_journal_sales("S_ALL", "", date);
+                chk += new BLogic().post_to_journal_sales("P_ALL", "", date);
                 refresh();
 
             }
@@ -1033,12 +1349,11 @@ namespace ArthiPOS.Controls.dashboard
         {
             refreshSalesData();
             readDailySale(date, "");
-            ToastNotification.Show(this, "Sale Record Inserted.");
             lbl_status.Text = "Sale Record Inserted.";
         }
         private void addLocalandDBSale(Landlord temp)
         {
-            if(temp.customers!=null)
+            if (temp.customers != null)
             {
                 bool check = false;
                 Admin.GetInstance.clients[ll_index] = temp;
@@ -1046,10 +1361,10 @@ namespace ArthiPOS.Controls.dashboard
                 {
                     if (saleParser.SAVELOG)
                     {
-                        if(temp.land_product.sale_remaining_product==0)
+                        if (temp.land_product.sale_remaining_product == 0)
                             temp.status = EStatus.Complete;
                         else
-                        if(temp.land_product.sale_remaining_product > 0)
+                        if (temp.land_product.sale_remaining_product > 0)
                             temp.status = EStatus.InComplete;
 
                         check = saleParser.updateLandLord(temp);
@@ -1066,18 +1381,27 @@ namespace ArthiPOS.Controls.dashboard
 
                 if (check)
                 {
+                    int selectedRowIndex = 0;
+                    if (dgv_zamidar.SelectedRows.Count > 0)
+                    {
+                        selectedRowIndex = dgv_zamidar.SelectedRows[0].Index;
+                    }
+                    dgv_zamidar.Rows[selectedRowIndex].Cells[4].Value = templandlord.GetGrandTotal;
+                    landlist[selectedRowIndex] = templandlord;
+
                     item_datagrid.Rows.Clear();
                     item_datagrid.Refresh();
                     total_amountsum.Text = "" + temp.total_sale;
-                    lbl_expenset.Text = "" + (temp.GetTotalService+temp.GetChongi+temp.GetCommission);
-                    grand_total.Text = "" + temp.GetGrandTotal;
-                    refreshSalesData();
+                    //lbl_expenset.Text = "" + (temp.GetTotalService + temp.GetChongi + temp.GetCommission);
+                    //grand_total.Text = "" + temp.GetGrandTotal;
                     readDailySale(date, "");
-                    ToastNotification.Show(this, "Sale Record Inserted.");
+                    refreshSalesData();
                     lbl_status.Text = "Sale Record Inserted.";
+                    txt_client_nameid.Focus();
+
                 }
             }
-            
+
         }
         public void refreshSalesData()
         {
@@ -1092,7 +1416,7 @@ namespace ArthiPOS.Controls.dashboard
             if (check_data_action)
             {
                 change_AddTOUpdate(false);
-                
+
             }
         }
 
@@ -1196,7 +1520,6 @@ namespace ArthiPOS.Controls.dashboard
                     searchClientfortransportRent();
                     lbl_custid.Text = "" + id;
 
-                    ToastNotification.Show(this, id + " " + txt + " " + Resources.added_in_database);
                 }
 
             }
@@ -1215,6 +1538,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+            txt_client_nameid.Focus();
             /*item_datagrid.Rows.Clear();
             item_datagrid.Refresh();
             init();*/
@@ -1224,17 +1548,17 @@ namespace ArthiPOS.Controls.dashboard
         #region Edit Customer Sales
         bool updateCustRec = false;
 
-        
+
         private void updateCustomerSaleView(Customer customer)
         {
 
             change_AddTOUpdate(true);
             lbl_custid.Text = customer.customer_profile.pid;
             txt_customerID.Text = customer.customer_profile.pname;
-            txt_nobegs.Text = customer.sale._sale_quantity+"";
-            txt_begamount.Text = customer.sale._sale_amount+"";
-            
-            
+            txt_nobegs.Text = customer.sale._sale_quantity + "";
+            txt_begamount.Text = customer.sale._sale_amount + "";
+
+
         }
 
         #endregion
@@ -1262,7 +1586,8 @@ namespace ArthiPOS.Controls.dashboard
                     return;
                 }
             }
-            else*/ if (e.ColumnIndex == 0)
+            else*/
+            if (e.ColumnIndex == 0)
             {
                 if (Authentication.Account.local == "0" || lbl_status.Text == "Live")
                 {
@@ -1278,11 +1603,11 @@ namespace ArthiPOS.Controls.dashboard
                     string custid = id;
                     int delquantity = int.Parse(item_datagrid.Rows[index].Cells[3].Value.ToString());
                     int delrate = int.Parse(item_datagrid.Rows[index].Cells[4].Value.ToString());
-                    int totsale = int.Parse(item_datagrid.Rows[index].Cells[5].Value.ToString());
+                    float totsale = float.Parse(item_datagrid.Rows[index].Cells[5].Value.ToString());
                     string status = item_datagrid.Rows[index].Cells[11].Value.ToString();
                     string customerpurchaseid = item_datagrid.Rows[index].Cells[10].Value.ToString();
 
-                    
+
 
                     #region UpdateDB
                     //bal.changeSaleDelete(date,landkey, cust.cust_bill_id, custid,delquantity,delrate,totsale);
@@ -1292,11 +1617,11 @@ namespace ArthiPOS.Controls.dashboard
                         templandlord.customers.RemoveAt(index);
                         updateCustomerSaleView(cust);
                         txt_customerID.Focus();
-                        initRefresh(txt_client_nameid.Text, txt_landloard_nameid.Text, tlbl_khata_id.Text, lbl_remaining_sale.Text, this.cl_id, this.billid);
+                        initRefresh(txt_client_nameid.Text, txt_landloard_nameid.Text, tlbl_khata_id.Text, lbl_remaining_sale.Text, this.cl_id, this.billid,"");
 
                     }
                     //oldData = templandlord.customers.Count;
-                    
+
                     #endregion
 
 
@@ -1326,40 +1651,42 @@ namespace ArthiPOS.Controls.dashboard
                     }
                 }
 
-            }else if(e.ColumnIndex == 8)
+            }
+            else if (e.ColumnIndex == 8)
             {
                 AddExtraAmount extra = new AddExtraAmount(templandlord, templandlord.customers[index], index, lbl_status.Text);
-                int ex_amountLandlor=extra.getCustomer().sale.add_extra_amount_Landlord;
+                int ex_amountLandlor = extra.getCustomer().sale.add_extra_amount_Landlord;
                 int ex_amountCustomer = extra.getCustomer().sale.add_extra_amount_Customer;
                 extra.ShowDialog();
                 if (ex_amountLandlor != extra.getCustomer().sale.add_extra_amount_Landlord)
                 {
-                    Customer cust= extra.getCustomer();
+                    Customer cust = extra.getCustomer();
                     templandlord.customers[index] = cust;
                     templandlord.total_sale = (int)templandlord.customers.Sum(x => x.sale._TotalSaleAmount);
                     item_datagrid.Rows.Clear();
                     item_datagrid.Refresh();
-                    bal.updateExtraAmount(templandlord, templandlord.customers[index],"Client");
-                    
+                    bal.updateExtraAmount(templandlord, templandlord.customers[index], "Client");
+
 
                     showCustomerSale(templandlord);
                     addSalesRowinGrid(templandlord, true);
 
-                }else if (ex_amountCustomer != extra.getCustomer().sale.add_extra_amount_Customer)
+                }
+                else if (ex_amountCustomer != extra.getCustomer().sale.add_extra_amount_Customer)
                 {
                     Customer cust = extra.getCustomer();
                     templandlord.customers[index] = cust;
                     item_datagrid.Rows.Clear();
                     item_datagrid.Refresh();
-                    templandlord.total_sale = 
+                    templandlord.total_sale =
                         (int)templandlord.customers.Sum(x => x.sale._TotalSaleAmount);
-                    
+
                     bal.updateExtraAmount(templandlord, templandlord.customers[index], "Customer");
                     showCustomerSale(templandlord);
                     addSalesRowinGrid(templandlord, true);
                 }
             }
-            else if(e.ColumnIndex==9)//Changename
+            else if (e.ColumnIndex == 9)//Changename
             {
                 string id = item_datagrid.Rows[index].Cells[1].Value.ToString();
                 Customer cust = templandlord.customers[index];
@@ -1402,7 +1729,7 @@ namespace ArthiPOS.Controls.dashboard
                 for (int i = 0; i < templandlord.customers.Count; i++)
                 {
                     Customer temp = templandlord.customers[i];
-                    bal.p_ud_cust_sale_product(templandlord.land_person.pkey, templandlord,templandlord.category);
+                    bal.p_ud_cust_sale_product(templandlord.land_person.pkey, templandlord, templandlord.category);
 
                 }
                 int land_index = 0;
@@ -1428,17 +1755,17 @@ namespace ArthiPOS.Controls.dashboard
             if (e.RowIndex < 0)
                 return;
 
-            
 
-            
+
+
             if (txt_begtype.ContainsFocus)
             {
-                btn_seach_beg_Click(this,new EventArgs());
-            }    
+                btn_seach_beg_Click(this, new EventArgs());
+            }
             else
             if ((txt_customerID.ContainsFocus))
             {
-                btn_search_cust_Click(this,new EventArgs());
+                btn_search_cust_Click(this, new EventArgs());
             }
             else
             if ((txt_client_nameid.ContainsFocus))
@@ -1455,7 +1782,7 @@ namespace ArthiPOS.Controls.dashboard
 
 
         }
-        int oldData=0, oldAmount=0;
+        int oldData = 0, oldAmount = 0;
         public void change_AddTOUpdate(bool check)
         {
             if (check)
@@ -1464,7 +1791,7 @@ namespace ArthiPOS.Controls.dashboard
                 btn_calculate.BackColor = MetroFramework.MetroColors.Yellow;
                 btn_calculate.Text = "Update";
                 check_data_action = check;
-                
+
             }
             else
             {
@@ -1503,13 +1830,13 @@ namespace ArthiPOS.Controls.dashboard
 
                 DataGridViewTextBoxCell total = (DataGridViewTextBoxCell)item_datagrid.Rows[currentcell.Y].Cells[5];
                 rate.Value = sendingCB.EditingControlFormattedValue.ToString();
-                sendingCB.EditingControlFormattedValue= int.Parse(b.ToString()) * int.Parse(r.ToString());
+                sendingCB.EditingControlFormattedValue = int.Parse(b.ToString()) * int.Parse(r.ToString());
 
 
 
             }
         }
-        
+
 
         private void txt_begamount_TextChanged(object sender, EventArgs e)
         {
@@ -1552,7 +1879,7 @@ namespace ArthiPOS.Controls.dashboard
 
         private void btn_addstock_Click(object sender, EventArgs e)
         {
-            using (VendorForm vend = new VendorForm(date,1,lbl_status.Text))
+            using (VendorForm vend = new VendorForm(date, 1, lbl_status.Text))
             {
                 DialogResult res = vend.ShowDialog();
                 vend.Close();
@@ -1562,7 +1889,7 @@ namespace ArthiPOS.Controls.dashboard
             }
         }
 
-        
+
         private void txt_begtype_TextChanged(object sender, EventArgs e)
         {
             shop_enum = EnumShop.BegType;
@@ -1604,7 +1931,8 @@ namespace ArthiPOS.Controls.dashboard
                 panel_bikri.Enabled = true;
             else
                 panel_bikri.Enabled = false;
-
+            if (templandlord == null) return;
+            showTotal((int)templandlord.GetTotalService + (int)templandlord.GetChongi + (int)templandlord.GetCommission, templandlord.GetTotalSaleLandLord, (int)templandlord.GetGrandTotal);
         }
 
         private void btn_seach_beg_Click(object sender, EventArgs e)
@@ -1613,7 +1941,7 @@ namespace ArthiPOS.Controls.dashboard
             {
                 DialogResult res = search.ShowDialog();
                 txt_begtype.Text = search.Name;
-                
+
                 search.Close();
 
                 return;
@@ -1638,5 +1966,133 @@ namespace ArthiPOS.Controls.dashboard
                 }
             }
         }
+
+        private void btn_change_Click(object sender, EventArgs e)
+        {
+            txt_client_nameid.Focus();
+        }
+
+        private void btn_update_expense_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+           
+            searchByVehicle(txt_biltino.Text);
+            txt_client_nameid.Focus();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < item_datagrid.Rows.Count; i++)
+            {
+
+                string status = item_datagrid.Rows[i].Cells[11].Value.ToString();
+                //if (status == "0")
+                {
+                    Customer customer = templandlord.customers[i];
+                    List<string> msgUp = new BLogic().p_singlesaleupdate_landlord_customer(date, templandlord.land_person.pid, customer.customer_profile.pid);
+                    MessageBox.Show(string.Join(", ", msgUp));
+
+                }
+            }
+        }
+
+        private void txt_bikri_rate_TextChanged(object sender, EventArgs e)
+        {
+            float bikri_quantity=float.Parse(txt_bikri_quantity.Text == "" ? "0" : txt_bikri_quantity.Text);
+            float bikri_rate = float.Parse(txt_bikri_rate.Text == "" ? "0" : txt_bikri_rate.Text);
+            float total_bikri = bikri_quantity * bikri_rate;
+            lbl_total_bikri.Text = total_bikri.ToString();
+        }
+
+        private void txt_bikri_quantity_TextChanged(object sender, EventArgs e)
+        {
+            float bikri_quantity = float.Parse(txt_bikri_quantity.Text == "" ? "0" : txt_bikri_quantity.Text);
+            float bikri_rate = float.Parse(txt_bikri_rate.Text == "" ? "0" : txt_bikri_rate.Text);
+            float total_bikri = bikri_quantity * bikri_rate;
+            lbl_total_bikri.Text = total_bikri.ToString();
+        }
+
+        #region New Code For DataGridview of dgv_zamidar
+        // Function to select the previous row (Move Up)
+        private void selectUpRow(DataGridView grid)
+        {
+            DataGridView dgv = grid;
+            int totalRows = dgv.Rows.Count;
+
+            // Ensure there are rows and at least one cell is selected
+            if (totalRows > 0 && dgv.SelectedCells.Count > 0)
+            {
+                // Get the currently selected row and column
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+
+                // Check if we are not at the first row
+                if (rowIndex > 0)
+                {
+                    dgv.ClearSelection(); // Clear previous selection
+                    dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true; // Select the previous row
+                    grid.FirstDisplayedScrollingRowIndex = rowIndex - 1; // Scroll to the previous row
+
+                    // Update currentrow variable
+                    currentrow = rowIndex - 1;
+
+                    if (grid.Name == "detail_datagrid")
+                    {
+                        gridRow = currentrow; // Update gridRow for detail_datagrid
+                    }
+                }
+            }
+            else
+            {
+                // If no row is selected, select the first row and initialize currentrow
+                dgv.ClearSelection();
+                dgv.Rows[0].Cells[0].Selected = true;
+                currentrow = 0;
+            }
+        }
+
+        // Function to select the next row (Move Down)
+        private void selectDownRow(DataGridView grid)
+        {
+            DataGridView dgv = grid;
+            int totalRows = dgv.Rows.Count;
+
+            // Ensure there are rows and at least one cell is selected
+            if (totalRows > 0 && dgv.SelectedCells.Count > 0)
+            {
+                // Get the currently selected row and column
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+
+                // Check if we are not at the last row
+                if (rowIndex < totalRows - 1)
+                {
+                    dgv.ClearSelection(); // Clear previous selection
+                    dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true; // Select the next row
+                    grid.FirstDisplayedScrollingRowIndex = rowIndex + 1; // Scroll to the next row
+
+                    // Update currentrow variable
+                    currentrow = rowIndex + 1;
+
+                    if (grid.Name == "detail_datagrid")
+                    {
+                        gridRow = currentrow; // Update gridRow for detail_datagrid
+                    }
+                }
+            }
+            else
+            {
+                // If no row is selected, select the first row and initialize currentrow
+                dgv.ClearSelection();
+                dgv.Rows[0].Cells[0].Selected = true;
+                currentrow = 0;
+            }
+        }
+
+        #endregion
     }
 }

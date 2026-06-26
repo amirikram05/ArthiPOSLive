@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ArthiPOS.shop;
+using CommonUtilities;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
-using System.Text;
-using ArthiPOS.shop;
-using CommonUtilities;
-using System.Diagnostics;
 
 namespace ArthiPOS.Utill
 {
@@ -90,7 +84,7 @@ namespace ArthiPOS.Utill
         public readonly byte[] salt = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }; // Must be at least eight bytes.  MAKE THIS SALTIER!
         public const int iterations = 1042; // Recommendation is >= 1000.
 
-        public bool IsFileSecure=false;
+        public bool IsFileSecure = false;
         public EncrypDecrypt()
         {
             IsFileSecure = RegistryAccess.GetStringSecurityValue(Const.SECURITYKEY, false);
@@ -123,8 +117,8 @@ namespace ArthiPOS.Utill
             string dpath = ".\\db\\db_pt";
             string path1 = ".\\db\\db_pt_log.mdf";
             string dpath1 = ".\\db\\db_pt_log";
-            EncryptFile(path,dpath, key, salt, 1);
-            EncryptFile(path1,dpath1, key, salt, 1);
+            EncryptFile(path, dpath, key, salt, 1);
+            EncryptFile(path1, dpath1, key, salt, 1);
         }
 
         public void DecryptFile(string sourceFilename, string destinationFilename, string password, byte[] salt, int iterations)

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace DataMember
 {
     public class TotalSale
@@ -44,7 +40,7 @@ namespace DataMember
             }
             set
             {
-                total_commission = (float)Math.Ceiling(value);
+                total_commission = (float)/*Math.Ceiling*/(value);
             }
         }
         public float Total_Chongi
@@ -55,7 +51,7 @@ namespace DataMember
             }
             set
             {
-                total_chongi = (int)Math.Ceiling(value);
+                total_chongi = (int)/*Math.Ceiling*/(value);
             }
         }
 
@@ -63,9 +59,9 @@ namespace DataMember
         {
             get
             {
-                return total_sale+total_commission+total_chongi;
+                return total_sale + total_commission + total_chongi;
             }
-            
+
         }
 
         public TotalSale()

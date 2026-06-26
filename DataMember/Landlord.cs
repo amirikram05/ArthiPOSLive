@@ -6,14 +6,14 @@ namespace DataMember
 {
     public enum EStatus
     {
-        InComplete=0,UnPaid=1,Paid=2,Initial=3,Complete=4, CompleteUpdate = 5
+        InComplete = 0, UnPaid = 1, Paid = 2, Initial = 3, Complete = 4, CompleteUpdate = 5
     }
     public class Landlord : TotalSale
     {
         #region Bikri detail
         public string bill_type = "";
-        public int bikri_quantity = 0;
-        public int bikri_rate = 0;
+        public float bikri_quantity = 0;
+        public float bikri_rate = 0;
         public int total_bikri = 0;
 
         #endregion
@@ -25,14 +25,15 @@ namespace DataMember
         public Client client;
         public string record_id;
         public string date;
-        public EStatus status=EStatus.Initial;
-       // public string status= "InComplete";// 1:InComplete/2:UnPaid/3:Paid
+        public EStatus status = EStatus.Initial;
+        // public string status= "InComplete";// 1:InComplete/2:UnPaid/3:Paid
 
         public string status_date;
         public string bill_paid_to;
+        public string bikri_type = "B";
         //public Sale sale;
         //public Client client;
-        public  List<Customer> customers { get; set; }
+        public List<Customer> customers { get; set; }
         //public SeasonSetting setting;
 
         //public TotalSale client_sale;
@@ -42,7 +43,7 @@ namespace DataMember
 
         public Services service;
         public string bill_key;
-        public string category="";
+        public string category = "";
 
 
         /*public ExtraAmount ExtraAmountLandlord
@@ -73,7 +74,7 @@ namespace DataMember
             {
                 status = EStatus.InComplete; //Enum.GetName(typeof(EStatus), 0);
             }*/
-            
+
             return quantity;
         }
         public void UpdateTotal()
@@ -89,7 +90,7 @@ namespace DataMember
         }
         public float GetCommission
         {
-            get 
+            get
             {
                 return (float)Math.Ceiling(Total_Commission);
             }
@@ -102,7 +103,7 @@ namespace DataMember
         {
             get
             {
-               
+
                 return Total_Chongi;
             }
             set
@@ -115,7 +116,8 @@ namespace DataMember
             get
             {
                 if (bill_type == "B")
-                {   total_bikri = bikri_quantity * bikri_rate;
+                {
+                    total_bikri =(int) Math.Ceiling( bikri_quantity * bikri_rate);
                     return total_bikri;
                 }
                 else
@@ -130,7 +132,7 @@ namespace DataMember
             get
             {
                 if (bill_type == "B")
-                    return (bikri_quantity* bikri_rate)- (GetCommission + GetChongi + GetTotalService);
+                    return (bikri_quantity * bikri_rate) - (GetCommission + GetChongi + GetTotalService);
                 else
                     return (GetTotalSaleLandLord -
                     (GetCommission + GetChongi + GetTotalService));
@@ -140,10 +142,10 @@ namespace DataMember
         {
             get
             {
-                total_services = 
-                    expense.total_labour + expense.total_rent 
-                    + expense.total_munshiana +expense.total_marketfee
-                    + (land_person.advance>0?land_person.advance:client._person_cl.advance);
+                total_services =
+                    expense.total_labour + expense.total_rent
+                    + expense.total_munshiana + expense.total_marketfee
+                    + (land_person.advance > 0 ? land_person.advance : client._person_cl.advance);
                 return total_services;
             }
         }
@@ -163,7 +165,7 @@ namespace DataMember
 
         }
 
-       
+
 
 
         public void addCustomer()
@@ -198,7 +200,7 @@ namespace DataMember
                 service = new Services();
             }
 
-            Total_Commission = bill_type== "b"?((float)(bikri_quantity*bikri_rate) * service.commission_client_product) / 100: ((float)(total_sale) * service.commission_client_product) / 100;
+            Total_Commission = bill_type == "b" ? ((float)(bikri_quantity * bikri_rate) * service.commission_client_product) / 100 : ((float)(total_sale) * service.commission_client_product) / 100;
             return Total_Commission;
         }
         public float getChongi()

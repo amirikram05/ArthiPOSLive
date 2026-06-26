@@ -84,18 +84,27 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.urduTextBox1 = new ArthiPOS.Controls.UrduTextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.fontsize = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -715,6 +724,57 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Invoice ID";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.fontsize);
+            this.tabPage4.Controls.Add(this.checkBox1);
+            this.tabPage4.Controls.Add(this.urduTextBox1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(547, 356);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Letter";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // urduTextBox1
+            // 
+            this.urduTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.urduTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.urduTextBox1.IsNumeric = false;
+            this.urduTextBox1.LangEnglish = false;
+            this.urduTextBox1.Location = new System.Drawing.Point(6, 29);
+            this.urduTextBox1.Multiline = true;
+            this.urduTextBox1.Name = "urduTextBox1";
+            this.urduTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.urduTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.urduTextBox1.Size = new System.Drawing.Size(535, 321);
+            this.urduTextBox1.TabIndex = 0;
+            this.urduTextBox1.WaterMarkColor = System.Drawing.Color.Gray;
+            this.urduTextBox1.WaterMarkText = "Water Mark";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 6);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(88, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "English/Urdu";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // fontsize
+            // 
+            this.fontsize.Location = new System.Drawing.Point(111, 3);
+            this.fontsize.Name = "fontsize";
+            this.fontsize.Size = new System.Drawing.Size(100, 20);
+            this.fontsize.TabIndex = 2;
+            this.fontsize.Text = "13";
+            this.fontsize.TextChanged += new System.EventHandler(this.fontsize_TextChanged);
+            // 
             // PageSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,6 +795,8 @@
             this.panel2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -797,5 +859,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lbl05;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TabPage tabPage4;
+        private Controls.UrduTextBox urduTextBox1;
+        private System.Windows.Forms.TextBox fontsize;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

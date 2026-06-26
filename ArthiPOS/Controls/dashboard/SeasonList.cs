@@ -2,12 +2,7 @@
 using BAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -26,8 +21,8 @@ namespace ArthiPOS.Controls.dashboard
             string sdate = date_start.Text;
             string ldate = date_last.Text;
 
-           List<object> obj=(List<object>)new BLogic().createSeason(sdate,ldate);
-            if (obj[0].ToString()!="")
+            List<object> obj = (List<object>)new BLogic().createSeason(sdate, ldate);
+            if (obj[0].ToString() != "")
             {
                 reload();
             }
@@ -37,7 +32,7 @@ namespace ArthiPOS.Controls.dashboard
         {
             dgv_season.Refresh();
             dgv_season.Rows.Clear();
-            dt = new BLogic().seasonList("","");
+            dt = new BLogic().seasonList("", "");
             foreach (DataRow dr in dt.Rows)
             {
                 addUpdateRowGridLandlord(dr[0].ToString(),
@@ -83,10 +78,10 @@ namespace ArthiPOS.Controls.dashboard
             string col17,
             string col18,
             string col19,
-            string col20,string col21)
+            string col20, string col21)
         {
             int count = this.dgv_season.Rows.Count;
-            
+
             this.dgv_season.Rows.Add();
 
             this.dgv_season.Rows[count - 1].Cells[2].Value = col2;
@@ -125,7 +120,7 @@ namespace ArthiPOS.Controls.dashboard
             if (e.ColumnIndex == 0)
             {
                 string id = dgv_season.Rows[index].Cells[21].Value.ToString();
-                DialogResult dialogResult = MessageBox.Show( "Do You Want To Delete. "+id+"?", "Delete", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Do You Want To Delete. " + id + "?", "Delete", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     bal.deleteSeason(id);

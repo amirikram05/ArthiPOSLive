@@ -37,6 +37,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_add_Item = new Bunifu.Framework.UI.BunifuImageButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chk_all_bip = new System.Windows.Forms.CheckBox();
+            this.txt_bip_id = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chk_amount = new System.Windows.Forms.RadioButton();
             this.chk_name = new System.Windows.Forms.RadioButton();
             this.chk_id = new System.Windows.Forms.RadioButton();
@@ -125,7 +128,7 @@
             "Product",
             "Weight",
             "ExpenseType"});
-            this.comb_select_searchtype.Location = new System.Drawing.Point(12, 5);
+            this.comb_select_searchtype.Location = new System.Drawing.Point(464, 5);
             this.comb_select_searchtype.Name = "comb_select_searchtype";
             this.comb_select_searchtype.Size = new System.Drawing.Size(119, 28);
             this.comb_select_searchtype.TabIndex = 2;
@@ -135,7 +138,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(124, 36);
+            this.label2.Location = new System.Drawing.Point(573, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 12);
             this.label2.TabIndex = 164;
@@ -146,7 +149,7 @@
             this.btn_add_Item.BackColor = System.Drawing.Color.Transparent;
             this.btn_add_Item.Image = global::ArthiPOS.Properties.Resources.add;
             this.btn_add_Item.ImageActive = null;
-            this.btn_add_Item.Location = new System.Drawing.Point(137, 3);
+            this.btn_add_Item.Location = new System.Drawing.Point(589, 5);
             this.btn_add_Item.Name = "btn_add_Item";
             this.btn_add_Item.Size = new System.Drawing.Size(30, 30);
             this.btn_add_Item.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -159,20 +162,53 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chk_all_bip);
+            this.groupBox1.Controls.Add(this.txt_bip_id);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.chk_amount);
             this.groupBox1.Controls.Add(this.chk_name);
             this.groupBox1.Controls.Add(this.chk_id);
-            this.groupBox1.Location = new System.Drawing.Point(711, 36);
+            this.groupBox1.Location = new System.Drawing.Point(608, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(468, 40);
+            this.groupBox1.Size = new System.Drawing.Size(571, 40);
             this.groupBox1.TabIndex = 168;
             this.groupBox1.TabStop = false;
+            // 
+            // chk_all_bip
+            // 
+            this.chk_all_bip.AutoSize = true;
+            this.chk_all_bip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_all_bip.Location = new System.Drawing.Point(145, 14);
+            this.chk_all_bip.Name = "chk_all_bip";
+            this.chk_all_bip.Size = new System.Drawing.Size(103, 22);
+            this.chk_all_bip.TabIndex = 177;
+            this.chk_all_bip.Text = "Search ALL";
+            this.chk_all_bip.UseVisualStyleBackColor = true;
+            this.chk_all_bip.CheckedChanged += new System.EventHandler(this.chk_all_bip_CheckedChanged);
+            // 
+            // txt_bip_id
+            // 
+            this.txt_bip_id.Enabled = false;
+            this.txt_bip_id.Location = new System.Drawing.Point(54, 16);
+            this.txt_bip_id.Name = "txt_bip_id";
+            this.txt_bip_id.Size = new System.Drawing.Size(85, 20);
+            this.txt_bip_id.TabIndex = 172;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(78, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 19);
+            this.label1.TabIndex = 176;
+            this.label1.Text = "Bipari ID";
             // 
             // chk_amount
             // 
             this.chk_amount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_amount.AutoSize = true;
-            this.chk_amount.Location = new System.Drawing.Point(300, 12);
+            this.chk_amount.Location = new System.Drawing.Point(403, 12);
             this.chk_amount.Name = "chk_amount";
             this.chk_amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chk_amount.Size = new System.Drawing.Size(61, 17);
@@ -185,7 +221,7 @@
             // 
             this.chk_name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_name.AutoSize = true;
-            this.chk_name.Location = new System.Drawing.Point(367, 12);
+            this.chk_name.Location = new System.Drawing.Point(470, 12);
             this.chk_name.Name = "chk_name";
             this.chk_name.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chk_name.Size = new System.Drawing.Size(53, 17);
@@ -199,7 +235,7 @@
             this.chk_id.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_id.AutoSize = true;
             this.chk_id.Checked = true;
-            this.chk_id.Location = new System.Drawing.Point(426, 12);
+            this.chk_id.Location = new System.Drawing.Point(529, 12);
             this.chk_id.Name = "chk_id";
             this.chk_id.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chk_id.Size = new System.Drawing.Size(36, 17);
@@ -215,9 +251,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.rd_desc);
             this.groupBox2.Controls.Add(this.rd_asc);
-            this.groupBox2.Location = new System.Drawing.Point(496, 36);
+            this.groupBox2.Location = new System.Drawing.Point(851, 36);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(487, 40);
+            this.groupBox2.Size = new System.Drawing.Size(132, 40);
             this.groupBox2.TabIndex = 172;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sort";
@@ -226,7 +262,7 @@
             // 
             this.rd_desc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rd_desc.AutoSize = true;
-            this.rd_desc.Location = new System.Drawing.Point(389, 16);
+            this.rd_desc.Location = new System.Drawing.Point(34, 16);
             this.rd_desc.Name = "rd_desc";
             this.rd_desc.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rd_desc.Size = new System.Drawing.Size(50, 17);
@@ -240,7 +276,7 @@
             this.rd_asc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rd_asc.AutoSize = true;
             this.rd_asc.Checked = true;
-            this.rd_asc.Location = new System.Drawing.Point(438, 16);
+            this.rd_asc.Location = new System.Drawing.Point(83, 16);
             this.rd_asc.Name = "rd_asc";
             this.rd_asc.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rd_asc.Size = new System.Drawing.Size(43, 17);
@@ -257,10 +293,10 @@
             this.txt_searach.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.txt_searach.IsNumeric = false;
             this.txt_searach.LangEnglish = false;
-            this.txt_searach.Location = new System.Drawing.Point(338, 6);
+            this.txt_searach.Location = new System.Drawing.Point(790, 6);
             this.txt_searach.Name = "txt_searach";
             this.txt_searach.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_searach.Size = new System.Drawing.Size(840, 31);
+            this.txt_searach.Size = new System.Drawing.Size(388, 31);
             this.txt_searach.TabIndex = 0;
             this.txt_searach.WaterMarkColor = System.Drawing.Color.Gray;
             this.txt_searach.WaterMarkText = "Search";
@@ -284,7 +320,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.txt_address);
-            this.panel1.Location = new System.Drawing.Point(173, 2);
+            this.panel1.Location = new System.Drawing.Point(625, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 37);
             this.panel1.TabIndex = 175;
@@ -295,6 +331,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.Controls.Add(this.txt_searach);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
@@ -302,7 +339,6 @@
             this.Controls.Add(this.btn_add_Item);
             this.Controls.Add(this.comb_select_searchtype);
             this.Controls.Add(this.grid_shop);
-            this.Controls.Add(this.txt_searach);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Search";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -336,5 +372,8 @@
         private System.Windows.Forms.RadioButton rd_asc;
         public UrduTextBox txt_address;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_bip_id;
+        private System.Windows.Forms.CheckBox chk_all_bip;
     }
 }

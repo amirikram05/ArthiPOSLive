@@ -1,12 +1,7 @@
 ﻿using BAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Reporting
@@ -39,11 +34,11 @@ namespace ArthiPOS.Reporting
 
         private void btn_correctbs_Click(object sender, EventArgs e)
         {
-            if(chk_correctbs.Checked)
+            if (chk_correctbs.Checked)
             {
                 string sdate = date_start.Text;
                 string ldate = date_last.Text;
-                if (new BLogic().p_bs_read("UPbs", sdate, ldate)!=null)
+                if (new BLogic().p_bs_read("UPbs", sdate, ldate) != null)
                 {
                     init();
                 }

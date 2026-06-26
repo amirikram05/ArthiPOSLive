@@ -1,12 +1,5 @@
 ﻿using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -16,7 +9,7 @@ namespace ArthiPOS.Controls.dashboard
         private int type;
         private string tablename;
         public ProfilesBL pbl;
-        public ProfileCCAdd(int type,string tablename)
+        public ProfileCCAdd(int type, string tablename)
         {
             InitializeComponent();
             this.type = type;
@@ -38,17 +31,17 @@ namespace ArthiPOS.Controls.dashboard
 
             switch (keyData)
             {
-                
+
                 case Keys.Enter:
 
                     if (cc_txt_name.Focused)
                     {
-                        if(cb_type.SelectedIndex==0)
+                        if (cb_type.SelectedIndex == 0)
                             searchDialog(2); //Customer
-                        else if(cb_type.SelectedIndex==1)
+                        else if (cb_type.SelectedIndex == 1)
                             searchDialog(1);
                     }
-                    else if(txt_quick_amount.Focused)
+                    else if (txt_quick_amount.Focused)
                     {
 
                     }
@@ -64,7 +57,7 @@ namespace ArthiPOS.Controls.dashboard
                     this.Close();
                     return true;
                 case Keys.Tab:
-                    if(cc_txt_name.Focused ||cc_txt_name.ContainsFocus)
+                    if (cc_txt_name.Focused || cc_txt_name.ContainsFocus)
                     {
                         txt_address.Focus();
                     }
@@ -91,9 +84,9 @@ namespace ArthiPOS.Controls.dashboard
                 DialogResult res = search.ShowDialog();
                 cc_txt_name.Text = search.Name;
                 lbl_id.Text = search.Id;
-                lbl_augrai.Text = search.RAmount+"";
+                lbl_augrai.Text = search.RAmount + "";
                 txt_address.Text = search.Address;
-                lbl_oldaugrai.Text = ""+search.OldAmount;
+                lbl_oldaugrai.Text = "" + search.OldAmount;
                 search.Close();
                 txt_quick_amount.Focus();
 
@@ -102,14 +95,14 @@ namespace ArthiPOS.Controls.dashboard
         }
         public void addUser()
         {
-            
+
             if (type == 0)
             {
                 if (cc_txt_name.Text == "")
                 {
                     return;
                 }
-                
+
                 if (txt_quick_amount.Text == "")
                 {
                     txt_quick_amount.Text = "0";
@@ -117,12 +110,18 @@ namespace ArthiPOS.Controls.dashboard
 
 
                 bool chk = false;
-                if(cb_type.SelectedIndex==0)
-                    chk = pbl.insert_oldRecord("Customer",lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                if (cb_type.SelectedIndex == 0)
+                {
+                    chk = pbl.insert_oldRecord("Customer", lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", today_date.Text, "2", "21", int.Parse(txt_quick_amount.Text), "+");
+
+                }
                 else
-                    chk = pbl.insert_oldRecord("Client",lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                {
+                    chk = pbl.insert_oldRecord("Client", lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", today_date.Text, "2", "22", int.Parse(txt_quick_amount.Text), "+");
 
-
+                }
             }
             else if (type == 1)
             {
@@ -138,7 +137,18 @@ namespace ArthiPOS.Controls.dashboard
 
 
                 bool chk = pbl.insert_CC_OldRecord(tablename, cc_txt_name.Text, "", "", "", int.Parse(txt_quick_amount.Text), today_date.Text);
+                if (tablename == "tbl_customer")
+                {
+                    chk = pbl.insert_oldRecord("Customer", lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", today_date.Text, "2", "21", int.Parse(txt_quick_amount.Text), "+");
 
+                }
+                else
+                {
+                    chk = pbl.insert_oldRecord("Client", lbl_id.Text, cc_txt_name.Text, today_date.Text, int.Parse(txt_quick_amount.Text), txt_address.Text);
+                    new BLogic().p_fin_BalanceSheet_CRUD("I", today_date.Text, "2", "22", int.Parse(txt_quick_amount.Text), "+");
+
+                }
 
             }
             txt_quick_amount.Text = "";
@@ -149,6 +159,20 @@ namespace ArthiPOS.Controls.dashboard
         private void btn_cc_add_Click(object sender, EventArgs e)
         {
             addUser();
+        }
+
+        private void cb_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_type.SelectedIndex == 0)
+            {
+                lbl_type.Text = "tbl_customer";
+            }
+            else
+            {
+                lbl_type.Text = "tbl_client";
+
+            }
+
         }
     }
 }

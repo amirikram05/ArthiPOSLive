@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataMember
+﻿namespace DataMember
 {
     public class Account
     {
 
-        public string username="";
+        public string username = "";
         public string shop_name = "";
         public string business_type = "";
         public string address = "";
@@ -25,19 +19,20 @@ namespace DataMember
         public string license_exp_date = "";
         public string api_key = "";
         public string api_key_exp_date = "";
-        public int debit=0;
-        public int credit=0;
-        public int capital_Cash=0;
+        public int debit = 0;
+        public int credit = 0;
+        public int capital_Cash = 0;
         public string role = "";
         public string local = "";
-        public string isdb="0";
+        public string isdb = "0";
         public string accountclosing = "0";
-        public string trade_mark="";
+        public string trade_mark = "MAQ";
+        public string web_id = "";
         public Account()
         {
-            username =shop_name=address=phone=propriters_name=email=password=license_exp_date=license_no=
-                api_key = api_key_exp_date = name1=name2=phone1=phone2=role= local= accountclosing="";
-            debit =credit=capital_Cash =0;
+            username = shop_name = address = phone = propriters_name = email = password = license_exp_date = license_no =
+                api_key = api_key_exp_date = name1 = name2 = phone1 = phone2 = role = local = accountclosing= web_id = "";
+            debit = credit = capital_Cash = 0;
         }
 
     }

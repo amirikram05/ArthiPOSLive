@@ -19,7 +19,7 @@ namespace ArthiPOS.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -1871,6 +1871,105 @@ namespace ArthiPOS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad1 {
+            get {
+                return ResourceManager.GetString("ad1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad10 {
+            get {
+                return ResourceManager.GetString("ad10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad11 {
+            get {
+                return ResourceManager.GetString("ad11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad2 {
+            get {
+                return ResourceManager.GetString("ad2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad3 {
+            get {
+                return ResourceManager.GetString("ad3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad4 {
+            get {
+                return ResourceManager.GetString("ad4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad5 {
+            get {
+                return ResourceManager.GetString("ad5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad6 {
+            get {
+                return ResourceManager.GetString("ad6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad7 {
+            get {
+                return ResourceManager.GetString("ad7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad8 {
+            get {
+                return ResourceManager.GetString("ad8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ad9 {
+            get {
+                return ResourceManager.GetString("ad9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap add {
@@ -1886,6 +1985,132 @@ namespace ArthiPOS.Properties {
         internal static string added_in_database {
             get {
                 return ResourceManager.GetString("added_in_database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af1 {
+            get {
+                return ResourceManager.GetString("af1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af2 {
+            get {
+                return ResourceManager.GetString("af2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af3 {
+            get {
+                return ResourceManager.GetString("af3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af4 {
+            get {
+                return ResourceManager.GetString("af4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af5 {
+            get {
+                return ResourceManager.GetString("af5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af6 {
+            get {
+                return ResourceManager.GetString("af6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af7 {
+            get {
+                return ResourceManager.GetString("af7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string af8 {
+            get {
+                return ResourceManager.GetString("af8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd1 {
+            get {
+                return ResourceManager.GetString("bd1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd2 {
+            get {
+                return ResourceManager.GetString("bd2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd3 {
+            get {
+                return ResourceManager.GetString("bd3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd4 {
+            get {
+                return ResourceManager.GetString("bd4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd5 {
+            get {
+                return ResourceManager.GetString("bd5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string bd6 {
+            get {
+                return ResourceManager.GetString("bd6", resourceCulture);
             }
         }
         
@@ -1924,6 +2149,141 @@ namespace ArthiPOS.Properties {
         internal static string bipari_commssion {
             get {
                 return ResourceManager.GetString("bipari_commssion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd1 {
+            get {
+                return ResourceManager.GetString("cd1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd2 {
+            get {
+                return ResourceManager.GetString("cd2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd3 {
+            get {
+                return ResourceManager.GetString("cd3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd4 {
+            get {
+                return ResourceManager.GetString("cd4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd5 {
+            get {
+                return ResourceManager.GetString("cd5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd6 {
+            get {
+                return ResourceManager.GetString("cd6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd7 {
+            get {
+                return ResourceManager.GetString("cd7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd8 {
+            get {
+                return ResourceManager.GetString("cd8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cd9 {
+            get {
+                return ResourceManager.GetString("cd9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio1 {
+            get {
+                return ResourceManager.GetString("cio1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio2 {
+            get {
+                return ResourceManager.GetString("cio2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio3 {
+            get {
+                return ResourceManager.GetString("cio3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio4 {
+            get {
+                return ResourceManager.GetString("cio4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio5 {
+            get {
+                return ResourceManager.GetString("cio5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string cio6 {
+            get {
+                return ResourceManager.GetString("cio6", resourceCulture);
             }
         }
         
@@ -2034,6 +2394,15 @@ namespace ArthiPOS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string desc {
+            get {
+                return ResourceManager.GetString("desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap dollar4 {
@@ -2094,12 +2463,129 @@ namespace ArthiPOS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ایڈوانس.
+        /// </summary>
+        internal static string eadvance {
+            get {
+                return ResourceManager.GetString("eadvance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to كمیشن.
+        /// </summary>
+        internal static string ecommission {
+            get {
+                return ResourceManager.GetString("ecommission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اكسٹرا.
+        /// </summary>
+        internal static string eextra {
+            get {
+                return ResourceManager.GetString("eextra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to كرایاء.
+        /// </summary>
+        internal static string efreight {
+            get {
+                return ResourceManager.GetString("efreight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مزدوری.
+        /// </summary>
+        internal static string elabour {
+            get {
+                return ResourceManager.GetString("elabour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لاگا.
+        /// </summary>
+        internal static string elaga {
+            get {
+                return ResourceManager.GetString("elaga", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ماركیٹ ‌فیس.
+        /// </summary>
+        internal static string emarketfee {
+            get {
+                return ResourceManager.GetString("emarketfee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to منشیانہ.
+        /// </summary>
+        internal static string emunshiana {
+            get {
+                return ResourceManager.GetString("emunshiana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ex1 {
+            get {
+                return ResourceManager.GetString("ex1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ex2 {
+            get {
+                return ResourceManager.GetString("ex2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ex3 {
+            get {
+                return ResourceManager.GetString("ex3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ex4 {
+            get {
+                return ResourceManager.GetString("ex4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ex5 {
+            get {
+                return ResourceManager.GetString("ex5", resourceCulture);
             }
         }
         
@@ -2166,6 +2652,15 @@ namespace ArthiPOS.Properties {
             get {
                 object obj = ResourceManager.GetObject("keyboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to لاگا.
+        /// </summary>
+        internal static string laga {
+            get {
+                return ResourceManager.GetString("laga", resourceCulture);
             }
         }
         
@@ -2545,6 +3040,69 @@ namespace ArthiPOS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سابقہ ‌بل ‌بنام.
+        /// </summary>
+        internal static string r1 {
+            get {
+                return ResourceManager.GetString("r1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سابقہ ‌ایڈوانس.
+        /// </summary>
+        internal static string r11 {
+            get {
+                return ResourceManager.GetString("r11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تازہ ‌بنام.
+        /// </summary>
+        internal static string r2 {
+            get {
+                return ResourceManager.GetString("r2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تازہ ایڈوانس.
+        /// </summary>
+        internal static string r22 {
+            get {
+                return ResourceManager.GetString("r22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to وصولی.
+        /// </summary>
+        internal static string r3 {
+            get {
+                return ResourceManager.GetString("r3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ٹوٹل ‌بنام.
+        /// </summary>
+        internal static string r4 {
+            get {
+                return ResourceManager.GetString("r4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ٹوٹل ایڈوانس.
+        /// </summary>
+        internal static string r44 {
+            get {
+                return ResourceManager.GetString("r44", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Season Report.
         /// </summary>
         internal static string rd1 {
@@ -2590,6 +3148,15 @@ namespace ArthiPOS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string recevingcash {
+            get {
+                return ResourceManager.GetString("recevingcash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Record Deleted..
         /// </summary>
         internal static string record_delete {
@@ -2605,6 +3172,24 @@ namespace ArthiPOS.Properties {
             get {
                 object obj = ResourceManager.GetObject("refresh1x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Resources_ur_PK {
+            get {
+                return ResourceManager.GetString("Resources_ur_PK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Resources_ur_PK_Designer {
+            get {
+                return ResourceManager.GetString("Resources_ur_PK_Designer", resourceCulture);
             }
         }
         
@@ -2625,6 +3210,42 @@ namespace ArthiPOS.Properties {
             get {
                 object obj = ResourceManager.GetObject("right1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اوگراہی ‌‌رپورٹ.
+        /// </summary>
+        internal static string rt1 {
+            get {
+                return ResourceManager.GetString("rt1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ایڈوانس رپورٹ.
+        /// </summary>
+        internal static string rt2 {
+            get {
+                return ResourceManager.GetString("rt2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سیل ‌رپورٹ.
+        /// </summary>
+        internal static string rt3 {
+            get {
+                return ResourceManager.GetString("rt3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string sa9 {
+            get {
+                return ResourceManager.GetString("sa9", resourceCulture);
             }
         }
         

@@ -1,12 +1,6 @@
 ﻿using BAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ArthiPOS.Controls.dashboard
@@ -41,9 +35,9 @@ namespace ArthiPOS.Controls.dashboard
         }
         private void updateRow(int index)
         {
-           this.dg_cate.Rows[index].Cells[0].Value = "Update";
+            this.dg_cate.Rows[index].Cells[0].Value = "Update";
         }
-        private void addGridRow(string ID,string CateName, string Key)
+        private void addGridRow(string ID, string CateName, string Key)
         {
             int count = this.dg_cate.Rows.Count;
             this.dg_cate.Rows.Add();
@@ -52,7 +46,7 @@ namespace ArthiPOS.Controls.dashboard
             this.dg_cate.Rows[count - 1].Cells[2].Value = Key;
             this.dg_cate.Rows[count - 1].Cells[3].Value = "Update";
         }
-       
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,7 +54,7 @@ namespace ArthiPOS.Controls.dashboard
             string name = text_cat.Text;
             if (name == "")
                 return;
-            int chk=bal.p_CategoryCreateDelete("Add", name, "",""+dg_cate.Rows.Count+1);
+            int chk = bal.p_CategoryCreateDelete("Add", name, "", "" + dg_cate.Rows.Count + 1);
 
         }
 

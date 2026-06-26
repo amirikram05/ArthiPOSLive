@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="flowLayoutPanel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="check_khata.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_khata.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="check_khata.Location" type="System.Drawing.Point, System.Drawing">
+    <value>556, 3</value>
+  </data>
+  <data name="check_khata.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_khata.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 17</value>
+  </data>
+  <data name="check_khata.TabIndex" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="check_khata.Text" xml:space="preserve">
+    <value>Khata #</value>
+  </data>
+  <data name="check_cust_name.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_cust_name.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_cust_name.Location" type="System.Drawing.Point, System.Drawing">
+    <value>444, 3</value>
+  </data>
+  <data name="check_cust_name.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_cust_name.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 17</value>
+  </data>
+  <data name="check_cust_name.TabIndex" type="System.Int32, mscorlib">
+    <value>202</value>
+  </data>
+  <data name="check_cust_name.Text" xml:space="preserve">
+    <value>Customer Names</value>
+  </data>
+  <data name="check_bill_no.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_bill_no.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_bill_no.Location" type="System.Drawing.Point, System.Drawing">
+    <value>389, 3</value>
+  </data>
+  <data name="check_bill_no.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_bill_no.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="check_bill_no.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
+  </data>
+  <data name="check_bill_no.Text" xml:space="preserve">
+    <value>Bill #</value>
+  </data>
+  <data name="check_remaining_begs.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_remaining_begs.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_remaining_begs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 3</value>
+  </data>
+  <data name="check_remaining_begs.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_remaining_begs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 17</value>
+  </data>
+  <data name="check_remaining_begs.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="check_remaining_begs.Text" xml:space="preserve">
+    <value>Remaining Begs</value>
+  </data>
+  <data name="check_chalan.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_chalan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_chalan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 3</value>
+  </data>
+  <data name="check_chalan.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_chalan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="check_chalan.TabIndex" type="System.Int32, mscorlib">
+    <value>205</value>
+  </data>
+  <data name="check_chalan.Text" xml:space="preserve">
+    <value>Chalan</value>
+  </data>
+  <data name="check_remaining_amount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_remaining_amount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_remaining_amount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 3</value>
+  </data>
+  <data name="check_remaining_amount.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_remaining_amount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="check_remaining_amount.TabIndex" type="System.Int32, mscorlib">
+    <value>207</value>
+  </data>
+  <data name="check_remaining_amount.Text" xml:space="preserve">
+    <value>Remaining Amount</value>
+  </data>
+  <data name="check_date.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="check_date.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="check_date.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 3</value>
+  </data>
+  <data name="check_date.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="check_date.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="check_date.TabIndex" type="System.Int32, mscorlib">
+    <value>208</value>
+  </data>
+  <data name="check_date.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 62</value>
+  </data>
+  <data name="flowLayoutPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="flowLayoutPanel2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>623, 24</value>
+  </data>
+  <data name="flowLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>213</value>
+  </data>
+  <data name="panel3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>288, 41</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 17</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="btn_movekahta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btn_movekahta.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="btn_movekahta.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btn_movekahta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>529, 0</value>
+  </data>
+  <data name="btn_movekahta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 60</value>
+  </data>
+  <data name="btn_movekahta.TabIndex" type="System.Int32, mscorlib">
+    <value>217</value>
+  </data>
+  <data name="btn_movekahta.Text" xml:space="preserve">
+    <value>Move Khata To Other Date</value>
+  </data>
+  <data name="lbl_status.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="lbl_status.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lbl_status.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 55</value>
+  </data>
+  <data name="lbl_status.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 32</value>
+  </data>
+  <data name="lbl_status.TabIndex" type="System.Int32, mscorlib">
+    <value>216</value>
+  </data>
+  <data name="lbl_status.Text" xml:space="preserve">
+    <value>Not Live</value>
+  </data>
+  <data name="lbl_status.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btn_addstock.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btn_addstock.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="btn_addstock.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btn_addstock.Location" type="System.Drawing.Point, System.Drawing">
+    <value>281, 0</value>
+  </data>
+  <data name="btn_addstock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 60</value>
+  </data>
+  <data name="btn_addstock.TabIndex" type="System.Int32, mscorlib">
+    <value>146</value>
+  </data>
+  <data name="btn_addstock.Text" xml:space="preserve">
+    <value>Add Stock CTRL+N</value>
+  </data>
+  <data name="txt_userid.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="txt_userid.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt</value>
+  </data>
+  <data name="txt_userid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>875, 57</value>
+  </data>
+  <data name="txt_userid.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="txt_userid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 27</value>
+  </data>
+  <data name="txt_userid.TabIndex" type="System.Int32, mscorlib">
+    <value>138</value>
+  </data>
+  <data name="txt_userid.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="nextdate.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="nextdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 6</value>
+  </data>
+  <data name="nextdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 23</value>
+  </data>
+  <data name="nextdate.TabIndex" type="System.Int32, mscorlib">
+    <value>115</value>
+  </data>
+  <data name="previousdate.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="previousdate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="previousdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 23</value>
+  </data>
+  <data name="previousdate.TabIndex" type="System.Int32, mscorlib">
+    <value>114</value>
+  </data>
+  <data name="sale_date.CustomFormat" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
+  </data>
+  <data name="sale_date.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="sale_date.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 29</value>
+  </data>
+  <data name="sale_date.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 29</value>
+  </data>
+  <data name="sale_date.TabIndex" type="System.Int32, mscorlib">
+    <value>114</value>
+  </data>
+  <data name="panel13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="panel13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 35</value>
+  </data>
+  <data name="panel13.TabIndex" type="System.Int32, mscorlib">
+    <value>97</value>
+  </data>
+  <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="_lbl_mazdori.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_lbl_mazdori.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.5pt</value>
+  </data>
+  <data name="_lbl_mazdori.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_lbl_mazdori.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 29</value>
+  </data>
+  <data name="_lbl_mazdori.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="_lbl_mazdori.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 18</value>
+  </data>
+  <data name="_lbl_mazdori.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="_lbl_mazdori.Text" xml:space="preserve">
+    <value>Mazdori</value>
+  </data>
+  <data name="carrent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="carrent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="carrent.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 12pt, style=Bold</value>
+  </data>
+  <data name="carrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="carrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 4</value>
+  </data>
+  <data name="carrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="carrent.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="carrent.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="carrent.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="_lbl_munshiana.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_lbl_munshiana.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.5pt</value>
+  </data>
+  <data name="_lbl_munshiana.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="_lbl_munshiana.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_lbl_munshiana.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 5</value>
+  </data>
+  <data name="_lbl_munshiana.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="_lbl_munshiana.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="_lbl_munshiana.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="_lbl_munshiana.Text" xml:space="preserve">
+    <value>Munshiana</value>
+  </data>
+  <data name="mazdori.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="mazdori.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mazdori.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 12pt, style=Bold</value>
+  </data>
+  <data name="mazdori.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mazdori.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 28</value>
+  </data>
+  <data name="mazdori.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="mazdori.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="mazdori.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="mazdori.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="munshiana.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="munshiana.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="munshiana.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 12pt, style=Bold</value>
+  </data>
+  <data name="munshiana.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="munshiana.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 5</value>
+  </data>
+  <data name="munshiana.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="munshiana.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="munshiana.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="munshiana.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="label16.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>199</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>F5</value>
+  </data>
+  <data name="_lbl_kharcha.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_lbl_kharcha.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.5pt</value>
+  </data>
+  <data name="_lbl_kharcha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_lbl_kharcha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>337, 29</value>
+  </data>
+  <data name="_lbl_kharcha.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="_lbl_kharcha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="_lbl_kharcha.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="_lbl_kharcha.Text" xml:space="preserve">
+    <value>Kharcha</value>
+  </data>
+  <data name="_lbl_rent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="_lbl_rent.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.5pt</value>
+  </data>
+  <data name="_lbl_rent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="_lbl_rent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>331, 6</value>
+  </data>
+  <data name="_lbl_rent.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="_lbl_rent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 22</value>
+  </data>
+  <data name="_lbl_rent.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="_lbl_rent.Text" xml:space="preserve">
+    <value>Rent</value>
+  </data>
+  <data name="kharcha.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="kharcha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="kharcha.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 12pt, style=Bold</value>
+  </data>
+  <data name="kharcha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="kharcha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 28</value>
+  </data>
+  <data name="kharcha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="kharcha.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="kharcha.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="kharcha.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="btn_refresh.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btn_refresh.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="btn_refresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="btn_refresh.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 6, 6, 6</value>
+  </data>
+  <data name="btn_refresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 42</value>
+  </data>
+  <data name="btn_refresh.TabIndex" type="System.Int32, mscorlib">
+    <value>193</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>777, 5</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>405, 50</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>129</value>
+  </data>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1185, 89</value>
+  </data>
+  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
+    <value>156</value>
+  </data>
+  <data name="dataGridViewImageColumn1.HeaderText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="detail_datagrid.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="Column18.HeaderText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Column18.Width" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Column8.Width" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>Bill Name</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>Customer Names</value>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>RQuantity</value>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>Total Chalan</value>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Total Amount</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>Bill Amount</value>
+  </data>
+  <data name="Column19.HeaderText" xml:space="preserve">
+    <value>Commission/Chongi</value>
+  </data>
+  <data name="Column17.HeaderText" xml:space="preserve">
+    <value>Remaining Amount</value>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Bill  ID</value>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Column23.HeaderText" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Column26.HeaderText" xml:space="preserve">
+    <value>Satus</value>
+  </data>
+  <data name="detail_datagrid.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11px</value>
+  </data>
+  <data name="detail_datagrid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 93</value>
+  </data>
+  <data name="detail_datagrid.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="detail_datagrid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1204, 544</value>
+  </data>
+  <data name="detail_datagrid.TabIndex" type="System.Int32, mscorlib">
+    <value>86</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1204, 637</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+</root>

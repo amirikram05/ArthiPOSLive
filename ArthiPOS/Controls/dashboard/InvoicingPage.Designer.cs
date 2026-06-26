@@ -1,4 +1,6 @@
-﻿namespace ArthiPOS.controls.dashboard
+﻿using System.Windows.Forms;
+
+namespace ArthiPOS.controls.dashboard
 {
     partial class InvoicingPage
     {
@@ -30,9 +32,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoicingPage));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.billtype_combo = new MetroFramework.Controls.MetroComboBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.today_date = new MetroFramework.Controls.MetroDateTime();
@@ -42,15 +47,15 @@
             this.btn_update_sales = new Bunifu.Framework.UI.BunifuFlatButton();
             this.chk_status_localload = new System.Windows.Forms.CheckBox();
             this.dg_invoice = new System.Windows.Forms.DataGridView();
-            this.Column9 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewImageColumn();
             this.label1 = new System.Windows.Forms.Label();
@@ -114,7 +119,7 @@
             this.today_date.Name = "today_date";
             this.today_date.Size = new System.Drawing.Size(152, 29);
             this.today_date.TabIndex = 116;
-            this.today_date.ValueChanged += new System.EventHandler(this.today_date_ValueChanged);
+            this.today_date.CloseUp += new System.EventHandler(this.today_date_CloseUp);
             // 
             // nextdate
             // 
@@ -225,7 +230,8 @@
             // dg_invoice
             // 
             this.dg_invoice.AllowUserToOrderColumns = true;
-            this.dg_invoice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dg_invoice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -248,25 +254,25 @@
             this.Column7,
             this.Column12,
             this.Column13});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_invoice.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_invoice.DefaultCellStyle = dataGridViewCellStyle6;
             this.dg_invoice.Location = new System.Drawing.Point(6, 84);
             this.dg_invoice.Name = "dg_invoice";
             this.dg_invoice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_invoice.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_invoice.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dg_invoice.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dg_invoice.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dg_invoice.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
@@ -280,7 +286,7 @@
             // 
             this.Column9.HeaderText = "Date";
             this.Column9.Name = "Column9";
-            this.Column9.WordWrap = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Column1
             // 
@@ -296,9 +302,10 @@
             // 
             // Column3
             // 
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column3.HeaderText = "Invoice";
             this.Column3.Name = "Column3";
-            this.Column3.WordWrap = true;
             // 
             // Column4
             // 
@@ -307,15 +314,17 @@
             // 
             // Column5
             // 
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column5.HeaderText = "Total Bill";
             this.Column5.Name = "Column5";
-            this.Column5.WordWrap = true;
             // 
             // Column6
             // 
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column6.HeaderText = "Previous Amount";
             this.Column6.Name = "Column6";
-            this.Column6.WordWrap = true;
             // 
             // Column8
             // 
@@ -325,12 +334,12 @@
             // 
             // Column7
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column7.HeaderText = "Total";
             this.Column7.Name = "Column7";
-            this.Column7.WordWrap = true;
             // 
             // Column12
             // 
@@ -415,11 +424,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.groupBox1.Controls.Add(this.rd_local);
             this.groupBox1.Controls.Add(this.rd_both);
             this.groupBox1.Controls.Add(this.rd_live);
-            this.groupBox1.Location = new System.Drawing.Point(998, 8);
+            this.groupBox1.Location = new System.Drawing.Point(985, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(195, 37);
             this.groupBox1.TabIndex = 206;
@@ -588,17 +598,6 @@
         private System.Windows.Forms.CheckBox chk_status_localload;
         private Controls.UrduTextBox txt_search;
         private System.Windows.Forms.DataGridView dg_invoice;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column9;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column4;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column6;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column8;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column7;
-        private System.Windows.Forms.DataGridViewImageColumn Column12;
-        private System.Windows.Forms.DataGridViewImageColumn Column13;
         private System.Windows.Forms.Label label1;
         private Bunifu.Framework.UI.BunifuTileButton btn_frieght_detail;
         private System.Windows.Forms.RadioButton rd_live;
@@ -615,5 +614,16 @@
         private System.Windows.Forms.CheckBox chk_date;
         private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewImageColumn Column12;
+        private System.Windows.Forms.DataGridViewImageColumn Column13;
     }
 }

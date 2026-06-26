@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-using ArthiPOS.utill;
-using BAL;
-using DataMember;
-using System.Drawing.Printing;
-using DevExpress.XtraReports.UI;
-using DevExpress.XtraPrinting;
-using ArthiPOS.Reporting;
-using ArthiPOS.Utill;
-using ArthiPOS.Controls.dashboard;
-using System.IO;
+﻿using ArthiPOS.Controls.dashboard;
 using ArthiPOS.Properties;
-using ArthiPOS.Reporting.ReportView.Header;
-using ArthiPOS.Reporting.ReportView.NoHeader;
-using ArthiPOS.Reporting.ReportDataSet;
+using ArthiPOS.Reporting;
+using ArthiPOS.utill;
+using ArthiPOS.Utill;
+using BAL;
 using CommonUtilities;
+using DataMember;
 using DataMember.memberlog;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ArthiPOS.controls.dashboard
 {
@@ -40,13 +33,13 @@ namespace ArthiPOS.controls.dashboard
         public Invoicing()
         {
             InitializeComponent();
-           
+
         }
         public Invoicing(string date)
         {
             InitializeComponent();
             this.date = date;
-            today_date.Text=date;
+            today_date.Text = date;
         }
 
         public void addViews()
@@ -58,10 +51,10 @@ namespace ArthiPOS.controls.dashboard
 
                 /*Thread t = new Thread(new ThreadStart(() => RUN(i)));
                 t.Start();*/
-                invoicing = new InvoiceControl(null,null, null,"");
-                btn_print_all_bill.Controls.Add(invoicing);
+            invoicing = new InvoiceControl(null, null, null, "");
+            btn_print_all_bill.Controls.Add(invoicing);
 
-                // re-enable things
+            // re-enable things
             //}
 
         }
@@ -73,18 +66,18 @@ namespace ArthiPOS.controls.dashboard
             {
                 this.BeginInvoke((MethodInvoker)delegate ()
                 {
-                    invoicing = new InvoiceControl(null,null, null, "");
+                    invoicing = new InvoiceControl(null, null, null, "");
                     btn_print_all_bill.Controls.Add(invoicing);
                 });
             }
             else
             {
-                invoicing = new InvoiceControl(null, null,null, "");
+                invoicing = new InvoiceControl(null, null, null, "");
                 btn_print_all_bill.Controls.Add(invoicing);
             }
         }
-        bool localRecord=false;
-        public void readClientDailySale(string date,string search)
+        bool localRecord = false;
+        public void readClientDailySale(string date, string search)
         {
             tLandlords = bal.getLandlordsList(date, search);
             if (tLandlords.Count > 0)
@@ -94,12 +87,12 @@ namespace ArthiPOS.controls.dashboard
             else
             {
                 localRecord = true;
-                if (saleParser==null)
+                if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date,Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadTodaySale();
-                if (tLandlords==null)
+                if (tLandlords == null)
                 {
                     return;
                 }
@@ -121,7 +114,7 @@ namespace ArthiPOS.controls.dashboard
                 }
             }
 
-            if (search=="" || !localRecord)
+            if (search == "" || !localRecord)
             {
                 btn_print_all_bill.Controls.Clear();
                 addControls(tLandlords);
@@ -142,7 +135,7 @@ namespace ArthiPOS.controls.dashboard
             }
         }
 
-        public void readCustomerDailySale(string date,string search)
+        public void readCustomerDailySale(string date, string search)
         {
             //customers = bal.getCustomerBills(date, true);
             List<DataMember.CustomerSales> custSales = bal.getCustomerBills(date);
@@ -155,7 +148,7 @@ namespace ArthiPOS.controls.dashboard
                 localRecord = true;
                 if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date, Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadTodaySale();
 
@@ -183,7 +176,7 @@ namespace ArthiPOS.controls.dashboard
                     {
                         bool exists = custs.Any(item => (item.customer_profile.pid.Contains(search) || item.customer_profile.pname.Contains(search)));
 
-                        if (exists && search!="")
+                        if (exists && search != "")
                         {
                             bool check = custSales.Any(item => item.person.pkey == c.customer_profile.pkey);
                             if (!check)
@@ -247,8 +240,8 @@ namespace ArthiPOS.controls.dashboard
                 foreach (DataMember.CustomerSales cs in custSales)
                 {
                     //cust.isCustomerBill = true;
-                    invoicing = new InvoiceControl(null, cs,null, date);
-                   // invoicing.isLocal = localRecord;
+                    invoicing = new InvoiceControl(null, cs, null, date);
+                    // invoicing.isLocal = localRecord;
                     //invoicing.panel_header_top.BackColor = CustomColors.getColor();
                     if (localRecord)
                     {
@@ -258,7 +251,7 @@ namespace ArthiPOS.controls.dashboard
                     btn_print_all_bill.Controls.Add(invoicing);
                 }
             }
-            
+
 
         }
         /*
@@ -308,8 +301,8 @@ namespace ArthiPOS.controls.dashboard
         {
             this.bal = new BLogic();
             date = today_date.Text;
-            billtype_combo.SelectedIndex=0;
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            billtype_combo.SelectedIndex = 0;
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             adminlog = LogUtill.getAdminInputLog();
             getUpdateSale();
             //readClientDailySale(date);
@@ -318,20 +311,20 @@ namespace ArthiPOS.controls.dashboard
 
         private void billtype_combo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            callCustomerClientSales();   
+            callCustomerClientSales();
         }
 
         private void callCustomerClientSales()
         {
-            saleParser = new SaleParser(date, Admin.SaveLog);
+            saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
             btn_print_all_bill.Controls.Clear();
             if (billtype_combo.Text == "Client")
             {
-                readClientDailySale(date,"");
+                readClientDailySale(date, "");
             }
             else if (billtype_combo.Text == "Customer")
             {
-                readCustomerDailySale(date,"");
+                readCustomerDailySale(date, "");
             }
             else if (billtype_combo.Text == "Landlord")
             {
@@ -351,7 +344,7 @@ namespace ArthiPOS.controls.dashboard
 
             }
         }
-       
+
         public void readLandlordClientSale()
         {
             DataTable dt = bal.readLandlordDailySale(today_date.Text, today_date.Text, "");
@@ -390,7 +383,7 @@ namespace ArthiPOS.controls.dashboard
         * */
         private PrinterSettings prnSettings;
 
-        private void multiplePages(XtraReport report1,List<XtraReport> reports)
+        private void multiplePages(XtraReport report1, List<XtraReport> reports)
         {
             //XtraReport report1 = new XtraReport();
             //XtraReport[] reports = new XtraReport[] { new XtraReport(), new XtraReport() };
@@ -407,10 +400,10 @@ namespace ArthiPOS.controls.dashboard
 
             pt1.PrintDialog();
             foreach (XtraReport report in reports)
-             {
-                 ReportPrintTool pts = new ReportPrintTool(report);
-                 pts.Print();
-             }
+            {
+                ReportPrintTool pts = new ReportPrintTool(report);
+                pts.Print();
+            }
         }
 
         void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
@@ -490,7 +483,7 @@ namespace ArthiPOS.controls.dashboard
                 }*/
                 //else if (billtype_combo.Text == "Customer")
                 {
-                    CustomDailog frm = new CustomDailog(tLandlords,billtype_combo.Text,"ALL Pages", "Local Invoice");
+                    CustomDailog frm = new CustomDailog(tLandlords, billtype_combo.Text, "ALL Pages", "Local Invoice");
                     frm.ShowDialog();
 
                     /*SalesTodayCustAllDetail rb = new SalesTodayCustAllDetail();
@@ -516,7 +509,7 @@ namespace ArthiPOS.controls.dashboard
 
         }
 
-     
+
         public void getUpdateSale()
         {
             FileInfo[] files = saleParser.getAllFiles(adminlog.SalesInProccessedFolder, true);
@@ -549,7 +542,7 @@ namespace ArthiPOS.controls.dashboard
             {
                 if (saleParser == null)
                 {
-                    saleParser = new SaleParser(date, Admin.SaveLog);
+                    saleParser = new SaleParser(date, Admin.SaveLog, Authentication.Account.local == "0" ? false : true);
                 }
                 tLandlords = saleParser.LoadProcessedTodaySale();
                 if (tLandlords == null)
@@ -561,7 +554,7 @@ namespace ArthiPOS.controls.dashboard
             else
             if (billtype_combo.Text == "Customer")
             {
-                readCustomerDailySale(date,"");
+                readCustomerDailySale(date, "");
             }
         }
 
@@ -569,20 +562,20 @@ namespace ArthiPOS.controls.dashboard
 
         private void txt_search_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (billtype_combo.Text == "Client")
             {
 
-                readClientDailySale(date,txt_search.Text);
+                readClientDailySale(date, txt_search.Text);
             }
             else
             if (billtype_combo.Text == "Customer")
             {
-                readCustomerDailySale(date,txt_search.Text);
+                readCustomerDailySale(date, txt_search.Text);
             }
 
         }
 
-       
+
     }
 }

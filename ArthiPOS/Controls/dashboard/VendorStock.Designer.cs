@@ -45,22 +45,22 @@
             this.btn_frieght_detail = new Bunifu.Framework.UI.BunifuTileButton();
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column14 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column15 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column16 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column17 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column18 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column19 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column20 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column21 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column22 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column23 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column24 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column31 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.Column4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grid_client_detail)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -304,97 +304,97 @@
             // 
             this.Column14.HeaderText = "Column14";
             this.Column14.Name = "Column14";
-            this.Column14.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column15
             // 
             this.Column15.HeaderText = "Column15";
             this.Column15.Name = "Column15";
-            this.Column15.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column16
             // 
             this.Column16.HeaderText = "Column16";
             this.Column16.Name = "Column16";
-            this.Column16.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column17
             // 
             this.Column17.HeaderText = "Column17";
             this.Column17.Name = "Column17";
-            this.Column17.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column18
             // 
             this.Column18.HeaderText = "Column18";
             this.Column18.Name = "Column18";
-            this.Column18.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column19
             // 
             this.Column19.HeaderText = "Column19";
             this.Column19.Name = "Column19";
-            this.Column19.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column20
             // 
             this.Column20.HeaderText = "Column20";
             this.Column20.Name = "Column20";
-            this.Column20.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column21
             // 
             this.Column21.HeaderText = "Column21";
             this.Column21.Name = "Column21";
-            this.Column21.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column22
             // 
             this.Column22.HeaderText = "Column22";
             this.Column22.Name = "Column22";
-            this.Column22.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column23
             // 
             this.Column23.HeaderText = "Column23";
             this.Column23.Name = "Column23";
-            this.Column23.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column24
             // 
             this.Column24.HeaderText = "Column24";
             this.Column24.Name = "Column24";
-            this.Column24.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
-            this.Column5.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column31
             // 
             this.Column31.HeaderText = "Total";
             this.Column31.Name = "Column31";
-            this.Column31.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Expense";
             this.Column1.Name = "Column1";
-            this.Column1.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column2
             // 
             this.Column2.HeaderText = "RQuantity";
             this.Column2.Name = "Column2";
-            this.Column2.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Product";
             this.Column4.Name = "Column4";
-            this.Column4.TextAlignment = System.Drawing.StringAlignment.Center;
+            
             // 
             // VendorStock
             // 
@@ -428,21 +428,21 @@
         private MetroFramework.Controls.MetroDateTime date_today;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewButtonColumn1;
         private System.Windows.Forms.DataGridViewImageColumn Column3;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column14;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column15;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column16;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column17;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column18;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column19;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column20;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column21;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column22;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column23;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column24;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column5;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column31;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column1;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column2;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
